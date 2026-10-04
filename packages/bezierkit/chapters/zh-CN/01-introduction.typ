@@ -1,0 +1,42 @@
+#import "/template/manual.typ": *
+
+= 简介 <sec-intro>
+
+#changed("0.5.0rc1")[首次发布到 PyPI：任意次数的 Bézier 曲线、三次线段与路径、构造、Hermite 插值、拟合、等值线描绘、采样、导出器与命令行界面]
+#changed("1.0.0")[第一个正式版；公开 API 按语义化版本管理]
+
+#pkg("bezierkit") 是处理 Bézier 曲线的小型数学工具软件包。它可由控制点或端点条件构造曲线，计算曲线值与导数，分割与截取曲线，将曲线拟合到函数、采样点与等值线，并输出为 JSON、SVG 路径数据或 TikZ。软件包本身不绘图，绘图交给 Matplotlib、#pkg("mosaickit") 或 #LaTeX 文档等绘图端，它们收到的是精确的三次控制点。
+
+== 符号
+
+点与向量位于某个维度 $d >= 1$ 的 $RR^d$ 中；多数图使用 $d = 2$。$n$ 次 Bézier 曲线有 $n + 1$ 个控制点 $P_0, dots, P_n$，定义为映射
+$ B(t) = sum_(i=0)^n b_(i,n)(t) P_i, quad t in [0, 1], $
+其中 $b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i)$ 为 Bernstein 多项式（详见#ref(<sec-curves>)）。依次连接控制点即为控制多边形。软件包中每条曲线的参数范围都是 $[0, 1]$；超出范围的参数会抛出 `ParameterOutOfDomain`。
+
+== 数学与证明
+
+各章以编号定理陈述算法所依据的性质：Bernstein 基底的保证、de Casteljau 算法为何能计算并分割曲线、Hermite 插值最多偏离多少、导出器因四舍五入损失多少精度。证明集中在#ref(<app-proofs>)，只想了解 API 时可略过。标准参考书为 #citet(<farin2002>) 与 #citet(<prautzsch2002>)。
+
+== 阅读指引
+
+#tbl(caption: [章节主题])[
+  #booktabs(
+    columns: (auto, 1fr, auto),
+    header: ([主题], [内容], [章节]),
+    table.cell(rowspan: 3)[基础],
+    [点、向量、参数、异常], [#ref(<sec-geometry>)],
+    [Bernstein 基底、曲线、求值], [#ref(<sec-curves>)],
+    [导数、分割、反转], [#ref(<sec-operations>)],
+    table.cell(rowspan: 2)[三次曲线],
+    [三次线段与分段路径], [#ref(<sec-paths>)],
+    [构造与 Hermite 插值], [#ref(<sec-construction>)],
+    table.cell(rowspan: 2)[近似],
+    [拟合函数与折线], [#ref(<sec-fitting>)],
+    [描绘等值线], [#ref(<sec-implicit>)],
+    table.cell(rowspan: 2)[输出],
+    [采样、JSON、SVG、TikZ、Matplotlib], [#ref(<sec-export>)],
+    [命令行], [#ref(<sec-cli>)],
+  )
+] <tab-guide>
+
+初次使用时，先读#ref(<sec-quickstart>)与#ref(<sec-curves>)。本手册的图本身就是 #pkg("bezierkit") 的输出：每条曲线都由#ref(<sec-export>)的 TikZ 导出器写出，再以 #LaTeX 编译。
