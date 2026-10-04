@@ -798,11 +798,17 @@
     set par(justify: false, first-line-indent: 0pt)
 
     let title-face = font-stack(edition, "heading")
-    // Keep the title at the text block's width so it breaks as before.
-    block(width: 100% - title-extra, text(size: 17.28pt, font: title-face, weight: heading-weight(edition), modify({
+    // A title that fits on one line across the whole centred width stays on
+    // one line; a longer one breaks at the text block's width, as before, so
+    // its lines stay balanced instead of leaving one word on the second.
+    let title = text(size: 17.28pt, font: title-face, weight: heading-weight(edition), modify({
       show doc-meta.package.name: pkg
       s.title
-    })))
+    }))
+    layout(size => {
+      let one-line = measure(title).width <= size.width
+      block(width: if one-line { 100% } else { 100% - title-extra }, title)
+    })
     v(1.1em)
     // Authors with \thanks-style notes, as in journals: one note per
     // affiliation, marked on every author who shares it, then a note for
