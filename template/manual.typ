@@ -15,7 +15,7 @@
 //
 // Usage (from <manual>/main.typ, compiled with --root at the repository):
 //   #import "/template/manual.typ": *
-//   #show: manual.with(toml("manual.toml"), root: "/utility-viz", edition: "en")
+//   #show: manual.with(toml("manual.toml"), root: "/packages/utility-viz", edition: "en")
 //   ...chapters...
 //   #references(read("config/refs.bib", encoding: none))
 
@@ -529,9 +529,9 @@
 #let _float(body) = place(auto, float: true, clearance: 1.6em, body)
 
 // config: the manual's settings as a dictionary (toml("manual.toml") or
-//   yaml("manual.yml")); see utility-viz/manual.toml for the keys.
+//   yaml("manual.yml")); see packages/utility-viz/manual.toml for the keys.
 // root: the manual's directory under the repository root, e.g.
-//   "/utility-viz"; figure paths are resolved against it.
+//   "/packages/utility-viz"; figure paths are resolved against it.
 // edition: one of config.editions.
 #let manual(config, root: "", edition: "en", body) = {
   let editions = config.at("editions", default: ("en",))

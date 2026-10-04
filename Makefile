@@ -1,13 +1,14 @@
 # Build the EconViz package manuals.
 #
-# Every directory with a manual.toml is a manual (utility-viz/, ...).
+# Every directory under packages/ with a manual.toml is a manual
+# (packages/utility-viz/, packages/principle-viz/, ...).
 #
 #   make                          utility-viz, English edition (default)
 #   make utility-viz EDITION=zh-TW
 #   make pdf MANUAL=utility-viz EDITION=zh-CN
 #   make all                      every edition of every manual
 #   make watch MANUAL=utility-viz EDITION=zh-TW
-#   make figures MANUAL=utility-viz    regenerate <manual>/figures/ (uv)
+#   make figures MANUAL=utility-viz    regenerate packages/<manual>/figures/ (uv)
 #   make publish MANUAL=utility-viz    build every edition, copy to econ-viz-docs
 #
 # Output: build/<manual>/<manual>-<edition>.pdf.
@@ -21,8 +22,10 @@
 # System fonts are ignored, so every machine builds deterministically.
 
 TYPST     ?= typst
-MANUALS   := $(patsubst %/manual.toml,%,$(wildcard */manual.toml))
+PACKAGES  := packages
+MANUALS   := $(patsubst $(PACKAGES)/%/manual.toml,%,$(wildcard $(PACKAGES)/*/manual.toml))
 MANUAL    ?= utility-viz
+DIR        = $(PACKAGES)/$(MANUAL)
 EDITION   ?= en
 OUT       ?= build
 TEXMFDIST ?= $(shell kpsewhich -var-value TEXMFDIST 2>/dev/null)
@@ -37,8 +40,8 @@ KAITI_DIR      ?= $(patsubst %/,%,$(dir $(firstword $(wildcard /System/Library/A
 
 # A manual's editions and published file name, read from its manual.toml
 # (`editions = [...]` and `[publish] name = "..."`).
-editions-of = $(shell sed -n 's/^editions *= *\[\(.*\)\]/\1/p' $(1)/manual.toml | tr -d '",')
-publish-name-of = $(shell sed -n '/^\[publish\]/,/^\[/s/^name *= *"\(.*\)"/\1/p' $(1)/manual.toml)
+editions-of = $(shell sed -n 's/^editions *= *\[\(.*\)\]/\1/p' $(PACKAGES)/$(1)/manual.toml | tr -d '",')
+publish-name-of = $(shell sed -n '/^\[publish\]/,/^\[/s/^name *= *"\(.*\)"/\1/p' $(PACKAGES)/$(1)/manual.toml)
 
 # `make publish` copies the PDFs to econ-viz-docs, which serves them at
 # econ-viz.org/assets/manual/<publish name>-<edition>.pdf.
@@ -57,9 +60,9 @@ TYPST_FLAGS = --root . --font-path fonts \
 .PHONY: pdf all editions watch figures publish clean $(MANUALS)
 
 pdf:
-	@test -f $(MANUAL)/manual.toml || { echo "no manual at $(MANUAL)/ (choose: $(MANUALS))" >&2; exit 1; }
+	@test -f $(DIR)/manual.toml || { echo "no manual at $(DIR)/ (choose: $(MANUALS))" >&2; exit 1; }
 	@mkdir -p $(OUT)/$(MANUAL)
-	$(TYPST) compile $(TYPST_FLAGS) --input edition=$(EDITION) $(MANUAL)/main.typ $(OUT)/$(MANUAL)/$(MANUAL)-$(EDITION).pdf
+	$(TYPST) compile $(TYPST_FLAGS) --input edition=$(EDITION) $(DIR)/main.typ $(OUT)/$(MANUAL)/$(MANUAL)-$(EDITION).pdf
 
 $(MANUALS):
 	@$(MAKE) --no-print-directory pdf MANUAL=$@
@@ -76,10 +79,10 @@ all:
 	done
 
 watch:
-	$(TYPST) watch $(TYPST_FLAGS) --input edition=$(EDITION) $(MANUAL)/main.typ $(OUT)/$(MANUAL)/$(MANUAL)-$(EDITION).pdf
+	$(TYPST) watch $(TYPST_FLAGS) --input edition=$(EDITION) $(DIR)/main.typ $(OUT)/$(MANUAL)/$(MANUAL)-$(EDITION).pdf
 
 figures:
-	cd $(MANUAL) && uv run python scripts/make_figures.py
+	cd $(DIR) && uv run python scripts/make_figures.py
 
 # The published PDFs must use the same fonts as a local build, so refuse to
 # publish without Kaiti.
@@ -87,7 +90,7 @@ publish:
 	@test -f fonts/Kaiti.ttc -o -n "$(KAITI_DIR)" || \
 		{ echo "Kaiti not found; see README (Fonts)." >&2; exit 1; }
 	@test -d "$(DOCS)/docs" || { echo "econ-viz-docs not found at $(DOCS); pass DOCS=..." >&2; exit 1; }
-	@test -n "$(call publish-name-of,$(MANUAL))" || { echo "$(MANUAL)/manual.toml has no [publish] name" >&2; exit 1; }
+	@test -n "$(call publish-name-of,$(MANUAL))" || { echo "$(DIR)/manual.toml has no [publish] name" >&2; exit 1; }
 	@$(MAKE) --no-print-directory editions MANUAL=$(MANUAL)
 	@mkdir -p "$(MANUAL_DIR)"
 	@for e in $(call editions-of,$(MANUAL)); do \

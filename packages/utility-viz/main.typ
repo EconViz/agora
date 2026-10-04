@@ -3,7 +3,7 @@
 // Compiled from the repository root, which is Typst's --root:
 //   make utility-viz              # English (default)
 //   make utility-viz EDITION=zh-TW
-//   typst compile --root . --input edition=zh-TW utility-viz/main.typ
+//   typst compile --root . --input edition=zh-TW packages/utility-viz/main.typ
 //
 // Chapters live in chapters/<edition>/ with the same file names in every
 // edition, so the list below is shared. Settings for this manual are in
@@ -12,7 +12,7 @@
 #import "/template/manual.typ": *
 
 #let edition = sys.inputs.at("edition", default: "en")
-#show: manual.with(toml("manual.toml"), root: "/utility-viz", edition: edition)
+#show: manual.with(toml("manual.toml"), root: "/packages/utility-viz", edition: edition)
 
 #let chapters = (
   "01-introduction",

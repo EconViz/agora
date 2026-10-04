@@ -19,7 +19,7 @@ collected in a change history.
 
 | Manual | Package | Editions |
 |--------|---------|----------|
-| [`utility-viz/`](utility-viz/) | [utility-viz](https://github.com/EconViz/utility-viz) 2.0.0b1 (formerly econ-viz) | English, 繁體中文, 简体中文 |
+| [`packages/utility-viz/`](packages/utility-viz/) | [utility-viz](https://github.com/EconViz/utility-viz) 2.0.0b1 (formerly econ-viz) | English, 繁體中文, 简体中文 |
 
 The published PDFs can be downloaded from [econ-viz.org](https://econ-viz.org/project/manual/).
 
@@ -41,7 +41,7 @@ make utility-viz EDITION=zh-TW        # one edition of one manual
 make editions MANUAL=utility-viz      # every edition of one manual
 make all                              # every edition of every manual
 make watch MANUAL=utility-viz EDITION=zh-CN
-make figures MANUAL=utility-viz       # regenerate utility-viz/figures/
+make figures MANUAL=utility-viz       # regenerate packages/utility-viz/figures/
 make publish MANUAL=utility-viz       # build every edition, copy to econ-viz-docs
 make clean
 ```
@@ -60,29 +60,31 @@ through `kpsewhich`; if TeX Live is not on your `PATH`, pass
 | `template/config/fonts.toml` | Font stacks for each edition |
 | `template/config/layout.toml` | Page geometry and paragraph settings |
 | `fonts/` | CJK fonts (Noto Serif TC / SC; Kaiti is added locally) |
-| `<manual>/main.typ` | Entry point; `--input edition=<en\|zh-TW\|zh-CN>` picks the edition |
-| `<manual>/manual.toml` | Package, title, editions, authors, release dates, placeholder names, publish name |
-| `<manual>/chapters/<edition>/` | Chapter sources, with the same file names in every edition |
-| `<manual>/figures/` | Generated SVG figures, shared by all editions |
-| `<manual>/scripts/`, `config/` | Figure script and its settings, references (`refs.bib`) |
+| `packages/<manual>/main.typ` | Entry point; `--input edition=<en\|zh-TW\|zh-CN>` picks the edition |
+| `packages/<manual>/manual.toml` | Package, title, editions, authors, release dates, placeholder names, publish name |
+| `packages/<manual>/chapters/<edition>/` | Chapter sources, with the same file names in every edition |
+| `packages/<manual>/figures/` | Generated SVG figures, shared by all editions |
+| `packages/<manual>/scripts/`, `config/` | Figure script and its settings, references (`refs.bib`) |
 | `build/<manual>/` | Built PDFs (not tracked) |
 
 ## Adding a manual
 
-1. Create `<package>/` with a `manual.toml` (copy `utility-viz/manual.toml`
+1. Create `packages/<package>/` with a `manual.toml` (copy
+   `packages/utility-viz/manual.toml`
    and change the keys), a `main.typ` and `chapters/<edition>/` for every
    entry in `editions`.
 2. In `main.typ`, pass the config and the manual's directory to the template:
 
    ```typst
    #import "/template/manual.typ": *
-   #show: manual.with(toml("manual.toml"), root: "/<package>", edition: edition)
+   #show: manual.with(toml("manual.toml"), root: "/packages/<package>", edition: edition)
    ```
 
    The config is a plain dictionary, so `yaml("manual.yml")` works just as
    well. Figure paths such as `#fig("/figures/x.svg")` are resolved against
    `root`.
-3. Run `make <package>`; `make all` picks the new directory up automatically.
+3. Run `make <package>`; `make all` picks up every directory under
+   `packages/` that has a `manual.toml`.
 
 ## Publishing
 

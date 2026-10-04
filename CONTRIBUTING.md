@@ -12,7 +12,7 @@ make all
 ```
 
 See the [README](README.md#requirements) for the required tools and fonts.
-Run `uv sync` inside a manual's directory (e.g. `utility-viz/`) before
+Run `uv sync` inside a manual's directory (e.g. `packages/utility-viz/`) before
 `make figures MANUAL=<manual>` to install its package.
 
 ## How to contribute
