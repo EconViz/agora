@@ -343,6 +343,45 @@
 
 #let tbl(body, caption: none) = figure(body, caption: caption, kind: table)
 
+// ---------------------------------------------------------------------------
+// Theorems, proofs and appendices
+// ---------------------------------------------------------------------------
+
+// A numbered statement; label it to refer to it ("Theorem 3"):
+//   #theorem(name: [Partition of unity])[...] <thm-unity>
+#let theorem(name: none, body) = figure(
+  body,
+  kind: "theorem",
+  supplement: none,
+  numbering: "1",
+  caption: name,
+  outlined: false,
+)
+
+// The proof of a statement, ending in the QED box (amsthm's \qedsymbol).
+// `of` names the theorem it proves: #proof(of: <thm-unity>)[...].
+#let proof(of: none, body) = block(above: 0.6em, below: 1.2em, width: 100%, context {
+  set par(first-line-indent: 0pt)
+  let s = strings-for(edition-state.get())
+  if of == none { emph(s.proof) } else {
+    let (before, after) = s.proof-of.split("{}")
+    emph[#before#ref(of)#after]
+  }
+  if is-cjk(edition-state.get()) [：] else [. ]
+  body
+  h(1fr)
+  box($square$)
+})
+
+// Chapters after this are appendices, numbered A, B, ...:
+//   #show: appendix
+#let _is-appendix(h) = h.numbering == "A.1"
+#let appendix(body) = {
+  counter(heading).update(0)
+  set heading(numbering: "A.1")
+  body
+}
+
 // Back matter (change history, index) spans the margin column too: no
 // hanging names there, so the page is used edge to edge like \twocolumn.
 #let full-width(body) = pad(
@@ -580,8 +619,9 @@
         if sec != none {
           let mark = if s.header-upper { upper(sec.body) } else { sec.body }
           if sec.numbering != none {
-            let n = numbering("1", counter(heading).at(sec.location()).first())
-            mark = [#fmt(s.section-number, n)#h(1em)#mark]
+            let n = numbering(sec.numbering, counter(heading).at(sec.location()).first())
+            let pattern = if _is-appendix(sec) { s.appendix-number } else { s.section-number }
+            mark = [#fmt(pattern, n)#h(1em)#mark]
           }
           if cjk { text(font: font-stack(edition, "emph"), mark) } else { emph(mark) }
         }
@@ -663,7 +703,8 @@
     show emph: set text(font: face, weight: heading-weight(edition))
     show strong: set text(font: face, weight: heading-weight(edition))
     if it.numbering != none {
-      fmt(s.section-number, counter(heading).display("1"))
+      let n = numbering(it.numbering, counter(heading).get().first())
+      fmt(if _is-appendix(it) { s.appendix-number } else { s.section-number }, n)
       h(1em)
     }
     it.body
@@ -743,17 +784,30 @@
     _indent-anchor
   }
 
+  // amsthm "plain" style: bold label, optional name in parentheses, body in
+  // italics (Kai in the CJK editions, which have no italics).
+  show figure.where(kind: "theorem"): it => block(above: 1.2em, below: 0.9em, width: 100%, {
+    set align(left)
+    set par(first-line-indent: 0pt)
+    strong[#s.theorem #context it.counter.display(it.numbering)]
+    if it.caption != none [ (#it.caption.body)]
+    if cjk [ ] else [. ]
+    emph(it.body)
+  })
+
   // Cross-references: “section 2”, “table 1”, “第 2 節”, “表 1”.
   show ref: it => {
     let el = it.element
     if el == none { return it }
     if el.func() == heading and el.numbering != none {
       let n = numbering(el.numbering, ..counter(heading).at(el.location()))
-      link(el.location(), fmt(s.section-ref, n))
+      let pattern = if _is-appendix(el) and el.level == 1 { s.appendix-ref } else { s.section-ref }
+      link(el.location(), fmt(pattern, n))
     } else if el.func() == figure {
       let n = numbering("1", ..el.counter.at(el.location()))
       let pattern = if el.kind == table { s.table-ref }
         else if el.kind == image { s.figure-ref }
+        else if el.kind == "theorem" { s.theorem-ref }
         else { s.example-ref }
       link(el.location(), fmt(pattern, n))
     } else { it }
