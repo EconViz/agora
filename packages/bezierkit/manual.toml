@@ -12,9 +12,9 @@ email = "contact@econ-viz.org"
 license = "MIT License"
 
 [title]
-en = "bezierkit: Constructing and Analysing Bézier Curves"
-zh-TW = "bezierkit 套件：Bézier 曲線的建構與分析"
-zh-CN = "bezierkit 软件包：Bézier 曲线的构造与分析"
+en = "bezierkit: Bézier Curve Output Tools"
+zh-TW = "bezierkit 套件：Bézier 曲線輸出工具"
+zh-CN = "bezierkit 软件包：Bézier 曲线输出工具"
 
 [releases]
 "1.0.0" = "2026-10-04"
