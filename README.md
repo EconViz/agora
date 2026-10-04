@@ -20,6 +20,7 @@ collected in a change history.
 | Manual | Package | Editions |
 |--------|---------|----------|
 | [`packages/utility-viz/`](packages/utility-viz/) | [utility-viz](https://github.com/EconViz/utility-viz) 2.0.0b1 (formerly econ-viz) | English, 繁體中文, 简体中文 |
+| [`packages/principle-viz/`](packages/principle-viz/) | [principle-viz](https://github.com/EconViz/principle-viz) 0.10.1 | English, 繁體中文, 简体中文 |
 
 The published PDFs can be downloaded from [econ-viz.org](https://econ-viz.org/project/manual/).
 

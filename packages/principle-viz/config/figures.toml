@@ -1,0 +1,17 @@
+# Figure output and fonts for the manual. Read by scripts/make_figures.py.
+# Colours, line widths and label placement are principle-viz's own defaults
+# (the "default" palette), so every figure looks the way users' output does.
+
+[output]
+dir = "figures"
+format = "svg"   # vector; Typst embeds SVG directly
+
+[fonts]
+# Text and math in the figures use TeX Gyre Pagella, the manual's body face.
+family = "TeX Gyre Pagella"
+# Font files registered with matplotlib (relative to TEXMFDIST).
+texmf_files = [
+  "fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",
+  "fonts/opentype/public/tex-gyre/texgyrepagella-italic.otf",
+  "fonts/opentype/public/tex-gyre/texgyrepagella-bold.otf",
+]
