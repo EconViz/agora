@@ -19,11 +19,11 @@ email = "contact@econ-viz.org"
 license = "MIT License"
 
 # Title page, per edition. Every occurrence of package.name is set in the
-# package face.
+# package face; "\n" breaks the line.
 [title]
-en = "The principle-viz Package: Market Diagrams for Principles of Economics"
-zh-TW = "principle-viz 套件：經濟學原理市場圖形"
-zh-CN = "principle-viz 软件包：经济学原理市场图形"
+en = "principle-viz:\nDiagrams for Principles of Economics"
+zh-TW = "principle-viz 套件：經濟學基本圖形"
+zh-CN = "principle-viz 软件包：经济学基本图形"
 
 # Release date of every version that #changed() or #api(added: ...) tags, so
 # call sites only name the version. Newest first.
