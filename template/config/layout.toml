@@ -1,0 +1,35 @@
+# Page geometry and paragraph settings.
+# Lengths are plain numbers: page lengths in inches, font sizes in pt,
+# spacing in em. template/manual.typ converts them.
+
+[page]
+paper = "a4"
+# ctxdoc: \newgeometry{hmargin={2.0in, 0.8in}, vmargin={1.2in, 1.0in}, marginpar=1.8in}
+left = 2.0
+right = 0.8
+top = 1.2
+bottom = 1.0
+margin-width = 1.7  # left column holding names, captions and notes
+margin-sep = 0.12   # gap between that column and the text block
+
+# Western text (English).
+[par.latin]
+size = 10.0
+leading = 0.62
+indent = 1.5
+code-size = 9.6
+caption-size = 8.4
+note-size = 8.0
+
+# CJK text (zh-TW / zh-CN): leading 1em, 2-character
+# indent, and the line box fixed to the CJK font's cap height (top-edge) so
+# Latin words and bold runs in other fonts do not stretch the line spacing.
+[par.cjk]
+size = 10.5
+leading = 1.2
+spacing = 1.2
+indent = 2.0
+top-edge = 0.6035
+code-size = 10.0
+caption-size = 8.8
+note-size = 8.4

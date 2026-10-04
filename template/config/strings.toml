@@ -1,0 +1,115 @@
+# Interface strings shared by every manual, per language edition.
+# "{}" is replaced by a number. Keys missing from a language fall back to [en].
+# A manual's own title and placeholder names live in its manual.toml.
+
+[en]
+references = "References"
+lang = "en"
+region = ""
+script = "latin"
+contents = "Contents"
+command-index = "Command Index"
+new = "New"
+updated = "Updated"
+email = "Email: {}"                                                       # author footnote on the title page
+corresponding = "Corresponding author. "
+note-sep = ": "                                                             # between “New”/“Updated” and the version
+example = "Example {}"
+figure = "Figure"
+table = "Table"
+section-number = "{}"                                                       # how a section number is shown in its heading
+section-ref = "Section {}"                                                  # how a section is referred to in running text
+figure-ref = "Figure {}"
+table-ref = "Table {}"
+example-ref = "Example {}"
+default = "default"
+header-upper = true                                                         # running header in upper case (LaTeX headings style)
+version-date = "{date} · v{version}"
+
+changelog-general = "General"
+
+[zh-TW]
+email = "電子郵件：{}"
+corresponding = "通訊作者。"
+references = "參考文獻"
+lang = "zh"
+region = "TW"
+script = "cjk"
+contents = "目錄"
+command-index = "指令索引"
+new = "新增"
+updated = "更新"
+note-sep = "："
+example = "例 {}"
+figure = "圖"
+table = "表"
+section-number = "第 {} 節"
+section-ref = "第 {} 節"
+figure-ref = "圖 {}"
+table-ref = "表 {}"
+example-ref = "例 {}"
+default = "預設"
+header-upper = false
+version-date = "{date} · v{version}"
+changelog-general = "一般"
+
+[zh-CN]
+email = "电子邮箱：{}"
+corresponding = "通讯作者。"
+references = "参考文献"
+lang = "zh"
+region = "CN"
+script = "cjk"
+contents = "目录"
+command-index = "命令索引"
+new = "新增"
+updated = "更新"
+note-sep = "："
+example = "例 {}"
+figure = "图"
+table = "表"
+section-number = "第 {} 节"
+section-ref = "第 {} 节"
+figure-ref = "图 {}"
+table-ref = "表 {}"
+example-ref = "例 {}"
+default = "默认"
+header-upper = false
+version-date = "{date} · v{version}"
+changelog-general = "一般"
+
+# Generic placeholder names shown inside meta()/oarg() angle brackets
+# ⟨...⟩, translated for CJK editions. A manual adds its own in the
+# [meta-terms.<edition>] tables of its manual.toml; unlisted names fall back
+# to English (e.g. a literal type name such as `Theme`).
+[zh-TW.meta-terms]
+"callable" = "可呼叫物件"
+"command" = "指令"
+"expression" = "算式"
+"float" = "浮點數"
+"int" = "整數"
+"max" = "上限"
+"method" = "方法"
+"min" = "下限"
+"name" = "名稱"
+"options" = "選項"
+"path" = "路徑"
+"step" = "間距"
+"str" = "字串"
+"values" = "數值"
+
+[zh-CN.meta-terms]
+"callable" = "可调用对象"
+"command" = "命令"
+"expression" = "算式"
+"float" = "浮点数"
+"int" = "整数"
+"max" = "上限"
+"method" = "方法"
+"min" = "下限"
+"name" = "名称"
+"options" = "选项"
+"path" = "路径"
+"step" = "间距"
+"str" = "字符串"
+"values" = "数值"

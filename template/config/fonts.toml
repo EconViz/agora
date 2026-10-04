@@ -1,0 +1,44 @@
+# Font stacks per edition.
+#
+# Latin fonts follow ctxdoc: TeX Gyre Pagella for roman text,
+# TeX Gyre Heros for sans serif, CMU Typewriter Text for code, and Pagella Math.
+# They come from TeX Live / TinyTeX; CJK fonts live in fonts/.
+# The Makefile passes both directories to Typst with --font-path.
+#
+# For a CJK edition every stack is the Latin stack followed by the CJK fonts,
+# in (latin, cjk) order: Latin letters come from the Latin font, everything it lacks falls through to the CJK font.
+
+[latin]
+serif = ["TeX Gyre Pagella", "TeXGyrePagellaX"]
+sans = ["TeX Gyre Heros", "TeXGyrePagellaX"]
+mono = ["CMU Typewriter Text"]
+# ctxdoc: \setmonofont{cmun}[UprightFont=*btl, ItalicFont=*bto], i.e. the
+# Light cut (weight 200) of CMU Typewriter Text.
+mono-weight = 200
+math = ["TeX Gyre Pagella Math", "New Computer Modern Math"]
+heading = ["TeX Gyre Pagella", "TeXGyrePagellaX"]
+heading-weight = "bold"
+
+# Traditional Chinese: Noto Serif TC (Source Han Serif's sibling family, same
+# design, genuine Taiwan glyph forms) with Kaiti TC for emph. strong has
+# no separate family; Noto Serif TC ships a real Bold cut under the same
+# family name, so Typst picks it up directly (no Hei mixed in).
+[zh-TW]
+serif = ["Noto Serif TC"]
+emph = ["Kaiti TC"]        # CJK has no italics; emphasis uses Kai
+mono = ["Noto Serif TC"]   # Chinese comments in code use Song; Latin stays CMU Typewriter
+heading-latin = ["TeX Gyre Pagella", "TeXGyrePagellaX"]
+heading = ["Noto Serif TC"]
+heading-weight = "bold"
+
+# Simplified Chinese uses the corresponding SC faces: Noto Serif SC's static
+# Regular and Bold (the variable Source Han Serif SC would render at its
+# default ExtraLight weight). Code keeps Latin characters in CMU Typewriter
+# and falls back to Song for Chinese text.
+[zh-CN]
+serif = ["Noto Serif SC"]
+mono = ["Noto Serif SC"] # Chinese comments in code use Song
+emph = ["Kaiti SC"]
+heading-latin = ["TeX Gyre Pagella", "TeXGyrePagellaX"]
+heading = ["Noto Serif SC"]
+heading-weight = "bold"

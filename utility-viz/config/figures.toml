@@ -1,0 +1,29 @@
+# Figure fonts and sizes for the manual. Read by scripts/make_figures.py.
+# Colours are utility-viz's default theme (themes.default), so every figure
+# looks the way users' own output does.
+
+[output]
+dir = "figures"
+format = "svg"   # vector; Typst embeds SVG directly
+dpi = 300
+
+[canvas]
+# Canvas() draws on a 6 x 6 in figure by default; the manual renders it at
+# `size` inches and scales it down in Typst (see template/manual.typ).
+size = [4.5, 4.5]
+font = ["TeX Gyre Pagella", "Palatino", "DejaVu Serif"]
+# Math ("x", "x^*", ...) uses TeX Gyre Pagella too: make_figures.py sets
+# mathtext's "custom" set to its upright/italic/bold cuts; glyphs Pagella
+# lacks (e.g. arrows) fall back to stix.
+# Since econ-viz 1.8, Label(fontsize=...) for point/equilibrium labels ("x^*",
+# "A"). 14pt matches utility-viz's fixed axis labels "x"/"y", so every label in
+# a figure reads at one size once it is scaled into the text column.
+label_fontsize = 14
+
+[fonts]
+# Extra font files registered with matplotlib (relative to TEXMFDIST).
+texmf_files = [
+  "fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",
+  "fonts/opentype/public/tex-gyre/texgyrepagella-italic.otf",
+  "fonts/opentype/public/tex-gyre/texgyrepagella-bold.otf",
+]

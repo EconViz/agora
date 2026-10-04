@@ -1,0 +1,109 @@
+# utility-viz manual: everything the shared template needs to know about this
+# manual. main.typ reads it with toml() and passes it to manual(); a YAML file
+# with the same keys works too (read it with yaml()).
+
+# Editions this manual is written in; each has chapters/<edition>/.
+editions = ["en", "zh-TW", "zh-CN"]
+
+# The documented package: shown on the title page and in the text via
+# #pkg-meta("version"), #pkg-meta("python"), ...
+[package]
+name = "utility-viz"
+version = "2.0.0b1"
+date = "2026-10-03"
+python = "3.10"
+repo = "https://github.com/EconViz/utility-viz"
+site = "https://econ-viz.org"
+pypi = "https://pypi.org/project/utility-viz/"
+email = "contact@econ-viz.org"
+license = "MIT License"
+
+# Title page, per edition. Every occurrence of package.name is set in the
+# package face.
+[title]
+en = "The utility-viz Package: Diagrams of Utility and Consumer Choice"
+zh-TW = "utility-viz 套件：效用與消費者選擇圖形"
+zh-CN = "utility-viz 软件包：效用与消费者选择图形"
+
+# Release date of every version that #changed() or #api(added: ...) tags, so
+# call sites only name the version. Newest first; pre-releases allowed.
+[releases]
+"2.0.0b1" = "2026-10-03"
+"1.12.0" = "2026-09-26"
+"1.11.0" = "2026-09-26"
+"1.10.1" = "2026-09-26"
+"1.10.0" = "2026-09-26"
+"1.9.0" = "2026-09-26"
+"1.8.0" = "2026-09-26"
+"1.7.0" = "2026-09-25"
+"1.6.0" = "2026-04-24"
+"1.5.0" = "2026-04-21"
+"1.4.0" = "2026-04-09"
+"1.3.2" = "2026-04-03"
+"1.3.1" = "2026-04-03"
+"1.3.0" = "2026-04-03"
+"1.2.3" = "2026-03-31"
+"1.2.2" = "2026-03-31"
+"1.2.0" = "2026-03-30"
+"1.1.0" = "2026-03-30"
+"1.0.2" = "2026-03-29"
+"1.0.1" = "2026-03-29"
+"1.0.0" = "2026-03-28"
+
+# Authors in title-page order. `name` and `affiliation` are given per
+# edition. `affiliation` and `email` are optional; the corresponding author's
+# note gives the project address, so readers do not write to co-authors.
+# See template/manual.typ (\maketitle) for how the notes are laid out.
+[[authors]]
+name = { en = "Pin Yue Sung", zh-TW = "Pin Yue Sung", zh-CN = "Pin Yue Sung" }
+affiliation = { en = "Department of International Business, National Chengchi University, Taipei, Taiwan", zh-TW = "國立政治大學國際經營與貿易學系，臺北，臺灣", zh-CN = "台湾政治大学国际经营与贸易学系，台北，台湾" }
+email = "contact@econ-viz.org"
+corresponding = true
+
+[[authors]]
+name = { en = "Ling Tak Douglas Chung", zh-TW = "Ling Tak Douglas Chung", zh-CN = "Ling Tak Douglas Chung" }
+affiliation = { en = "Department of International Business, National Chengchi University, Taipei, Taiwan", zh-TW = "國立政治大學國際經營與貿易學系，臺北，臺灣", zh-CN = "台湾政治大学国际经营与贸易学系，台北，台湾" }
+
+# Placeholder names in ⟨...⟩ specific to this manual, translated for the CJK
+# editions (generic ones come from template/config/strings.toml).
+[meta-terms.zh-TW]
+"ArrowStyle" = "箭頭樣式"
+"draw" = "繪圖函式"
+"equilibrium" = "均衡"
+"good" = "商品"
+"layout" = "版面"
+"levels" = "效用水準"
+"LineStyle" = "線條樣式"
+"model" = "模型"
+"new" = "新值"
+"old" = "舊值"
+"price path" = "價格路徑"
+"quantity" = "數量"
+"shares" = "權重"
+"utility A" = "效用函數 A"
+"utility B" = "效用函數 B"
+"utility" = "效用值"
+
+[meta-terms.zh-CN]
+"ArrowStyle" = "箭头样式"
+"draw" = "绘图函数"
+"equilibrium" = "均衡"
+"good" = "商品"
+"layout" = "版面"
+"levels" = "效用水平"
+"LineStyle" = "线条样式"
+"model" = "模型"
+"new" = "新值"
+"old" = "旧值"
+"price path" = "价格路径"
+"quantity" = "数量"
+"shares" = "权重"
+"utility A" = "效用函数 A"
+"utility B" = "效用函数 B"
+"utility" = "效用值"
+
+# `make publish MANUAL=utility-viz` copies <name>-<edition>.pdf to
+# econ-viz-docs/docs/assets/manual/. The name predates the rename and is kept
+# so links on econ-viz.org stay valid.
+[publish]
+name = "econ-viz-manual"

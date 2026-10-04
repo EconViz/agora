@@ -1,0 +1,17 @@
+# Build output
+build/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Editors, OS and local tooling
+.vscode/
+.idea/
+.claude/
+.DS_Store
+
+# Kaiti.ttc is Apple-licensed and over GitHub's 100 MB limit; copy it in
+# locally (see README).
+fonts/Kaiti.ttc
