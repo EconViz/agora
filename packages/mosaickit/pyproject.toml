@@ -1,0 +1,7 @@
+[project]
+name = "mosaickit-manual"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "mosaickit==0.5.1",
+]

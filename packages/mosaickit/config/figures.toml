@@ -1,0 +1,15 @@
+# Figure output and sizes. Read by scripts/make_figures.py.
+
+[output]
+dir = "figures"
+format = "pdf"
+
+[size]
+width = 2.4      # inches: one canvas, placed in the manual at this size
+height = 1.9
+grid-cell = 1.55 # inches: one cell of a grid figure
+dpi = 300
+
+[text]
+size = 8         # pt: labels, marks and titles, the size of the captions
+note = 7         # pt: axis notes (the axes.note role)
