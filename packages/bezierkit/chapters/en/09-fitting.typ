@@ -17,7 +17,7 @@ in the coordinate units of the curve. The functions live in
   recursive bisection:
 
   + Build the Hermite segment on the current interval from $C$ and $C'$ at its
-    ends (@thm-hermite).
+    ends (@prop-hermite).
   + Measure its error: the largest Euclidean distance between $C(t_j)$ and
     the segment at `error_samples` equally spaced parameters, ends included.
   + If the error is at most `tolerance`, keep the segment, recording the
@@ -59,7 +59,7 @@ Segments are short where the curve bends sharply and long where it is
 nearly straight (@fig-adaptive). The Hermite error bound predicts how deep
 the bisection has to go:
 
-#theorem(name: [Depth of adaptive fitting])[
+#corollary(name: [Depth of adaptive fitting])[
   Let each coordinate of $C$ be four times continuously differentiable on
   $[t_0, t_1]$ with $|C_k^((4))| <= M$, let $H = |t_1 - t_0|$, and let
   $d$ be the dimension. Every interval at depth
@@ -67,7 +67,7 @@ the bisection has to go:
   passes the error test with tolerance $epsilon$, so unless `max_depth` or
   `max_segments` is reached first, the bisection stops at that depth at the
   latest.
-] <thm-depth>
+] <cor-depth>
 
 The measured error is a lower bound for the true maximum error of a
 segment: it is checked only at the probe parameters. Increase
@@ -79,7 +79,7 @@ segment: it is checked only at the probe parameters. Increase
   #raw("fit_polyline(")#meta("points")#raw(", *, tolerance, closed=False, duplicate_tolerance=1e-12, preserve_corners=True, corner_angle=pi/4)")
 ])[
   Simplify sampled points into a path of straight chords, each written as
-  an exact cubic (@thm-elevation). The steps are:
+  an exact cubic (@prop-elevation). The steps are:
 
   + Drop each point within `duplicate_tolerance` of the one before it. A
     closed polyline also drops a final copy of its first point, and is
@@ -96,10 +96,10 @@ segment: it is checked only at the probe parameters. Increase
   replaced to the chord (@fig-polyline).
 ]
 
-#theorem(name: [Polyline tolerance])[
+#proposition(name: [Polyline tolerance])[
   Every input vertex that survives step 1 lies within `tolerance` of the
   chord of the output segment that replaced it.
-] <thm-rdp>
+] <prop-rdp>
 
 #fig("/figures/fitting/polyline.pdf", width: auto, caption: [
   41 noisy samples simplified with tolerance $0.08$.
@@ -109,7 +109,7 @@ segment: it is checked only at the probe parameters. Increase
   #raw("maximum_polyline_deviation(")#meta("points")#raw(", ")#meta("path")#raw(")")
 ])[
   The largest distance from any of the points to the nearest chord
-  $P_0 P_3$ of the path's segments: a check of @thm-rdp that also covers the
+  $P_0 P_3$ of the path's segments: a check of @prop-rdp that also covers the
   points step 1 dropped.
 ]
 

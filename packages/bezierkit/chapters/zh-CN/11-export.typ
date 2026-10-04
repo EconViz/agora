@@ -23,11 +23,11 @@ print(sample.x)   # [0.      0.90625 2.      3.09375 4.     ]
 
 文字格式的导出器以固定的小数位数 `precision` 写出每个坐标，并接受 `transform`：在写出前把每个控制点（`Point`）对应到二维 `Point`，例如由数据坐标转为页面坐标。
 
-#theorem(name: [四舍五入误差])[
+#proposition(name: [四舍五入误差])[
   若每个控制点的每个坐标最多改变 $epsilon$，则对每个 $t in [0, 1]$，$B(t)$ 的每个坐标最多改变 $epsilon$，$B(t)$ 最多移动 $epsilon sqrt(d)$。四舍五入到小数点后 $p$ 位时，$epsilon = 1/2 dot 10^(-p)$。
-] <thm-rounding>
+] <prop-rounding>
 
-因此在默认的 `precision=6` 下，导出的平面曲线处处与原曲线相差不超过 $0.71 times 10^(-6)$，不只在控制点上成立。根据#ref(<thm-affine>)，仿射的 `transform` 是精确的；非仿射的变换能正确移动控制点，但一般不能正确移动控制点之间的曲线。
+因此在默认的 `precision=6` 下，导出的平面曲线处处与原曲线相差不超过 $0.71 times 10^(-6)$，不只在控制点上成立。根据#ref(<prop-affine>)，仿射的 `transform` 是精确的；非仿射的变换能正确移动控制点，但一般不能正确移动控制点之间的曲线。
 
 == JSON
 
@@ -101,7 +101,7 @@ print(to_tikz(path, precision=2, options="thick"))
   #raw("to_path(")#meta("path")#raw(")") \
   #raw("approximate_path(")#meta("path")#raw(", ")#meta("transform")#raw(", *, tolerance, max_depth=20)")
 ])[
-  位于 `bezierkit.adapters.matplotlib`，需安装 `matplotlib` 可选依赖。`from_path()` 精确转换 Matplotlib `Path`：`MOVETO`、`LINETO`、`CURVE3`、`CURVE4` 与 `CLOSEPOLY` 都转为三次曲线，直线与二次曲线根据#ref(<thm-elevation>)升阶。仿射的 `transform` 直接套用在控制点上，结果精确（详见#ref(<thm-affine>)）；非仿射的变换抛出 `ValueError`。`to_path()` 反向转换，每个线段一个 `CURVE4`。
+  位于 `bezierkit.adapters.matplotlib`，需安装 `matplotlib` 可选依赖。`from_path()` 精确转换 Matplotlib `Path`：`MOVETO`、`LINETO`、`CURVE3`、`CURVE4` 与 `CLOSEPOLY` 都转为三次曲线，直线与二次曲线根据#ref(<prop-elevation>)升阶。仿射的 `transform` 直接套用在控制点上，结果精确（详见#ref(<prop-affine>)）；非仿射的变换抛出 `ValueError`。`to_path()` 反向转换，每个线段一个 `CURVE4`。
 ]
 
 非仿射变换（例如对数坐标轴）不会把三次曲线对应到三次曲线。`approximate_path()` 是明确的选择：它细分每个变换后的线段，直到中点与弦的距离在 `tolerance / 2` 以内，再以 `tolerance / 2` 对这些点调用 `fit_polyline`。它不宣称结果精确。

@@ -2,7 +2,14 @@
 
 = 等值线 <sec-implicit>
 
-无差异曲线、等产量曲线与等高线，都是二元函数的等值集 $F(x, y) = c$。`trace_implicit` 不需解出 $y$ 就能把它们转为三次路径，因此可以处理会折返、闭合或分成数段的曲线。
+无差异曲线、等产量曲线与等高线，都是二元函数的等值集。
+
+#definition(name: [等值集])[
+  对 $F: RR^2 -> RR$ 与水准 $c in RR$，等值集为
+  $ L_c = {(x, y) : F(x, y) = c}. $
+] <def-level-set>
+
+`trace_implicit` 不需解出 $y$ 就能把等值集转为三次路径，因此可以处理会折返、闭合或分成数段的曲线。
 
 #api(("trace_implicit",), syntax: [
   #raw("trace_implicit(")#meta("function")#raw(", *, levels, viewport, resolution=(101, 101), tolerance=1e-2, gradient=None)")
@@ -19,10 +26,16 @@
 == 算法
 
 + *采样。*在 viewport 的规则网格上计算 $F$。
-+ *行进。*在每个网格单元中标出 $F >= c$ 的角点。两端标记不同的边与等值集相交，交点以沿该边的 $F$ 线性插值定位 #citep(<lorensen1987>)。有两个交点的单元贡献一条线段。有四个交点的单元是鞍点，由四个角点值的平均决定如何连接（参见#ref(<fig-saddle>)）。
++ *行进。*在每个网格单元中标出 $F >= c$ 的角点。两端标记不同的边与等值集相交，交点即#ref(<def-crossing>)所定义的点 #citep(<lorensen1987>)。有两个交点的单元贡献一条线段。有四个交点的单元是鞍点，由四个角点值的平均决定如何连接（参见#ref(<fig-saddle>)）。
 + *缝合。*把端点相同的线段串成链。回到起点的链是闭合的；抵达 viewport 边界或分支点的链是开放的。互不相连的部分保持为不同的路径。
 + *简化。*以 `tolerance` 对每条链调用 `fit_polyline`（详见#ref(<sec-fitting>)），不保留转角。
 + *弯曲*（提供 `gradient` 时）。把每条直线段换成端点切线沿等值集方向的三次曲线（详见#ref(<thm-gradient>)），控制柄长为弦长的三分之一。只有当三次曲线与弦的距离不超过 `tolerance` 时才采用；任一端 $nabla F = 0$ 时维持直线。
+
+#definition(name: [边上的交点])[
+  设网格的一条边由 $p$ 到 $q$，且 $F(p) >= c > F(q)$ 或 $F(q) >= c > F(p)$。其交点为 $p + lambda (q - p)$，其中
+  $ lambda = (c - F(p)) / (F(q) - F(p)), $
+  即 $F - c$ 沿该边的线性插值之零点。
+] <def-crossing>
 
 #fig("/figures/implicit/saddle.pdf", width: auto, caption: [
   鞍点单元：(a) 中心高、(b) 中心低。

@@ -2,38 +2,44 @@
 
 = Proofs <app-proofs>
 
-This appendix proves the theorems stated in the chapters, in the order they
-appear. Throughout, $b_(i,n)$ is the Bernstein polynomial of
-@sec-curves, with the convention $b_(i,n) = 0$ for $i < 0$ or $i > n$, and
-$B(t) = sum_i b_(i,n)(t) P_i$ is a curve of degree $n$.
-
-Two identities of binomial coefficients are used repeatedly:
-$ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
-  i binom(n, i) = n binom(n-1, i-1). $
+This appendix proves the lemmas, propositions, theorems and corollaries
+stated in the chapters, in the order they appear. Throughout, $b_(i,n)$ is
+the Bernstein polynomial of @def-bernstein and $B$ the Bézier curve of
+@def-curve, of degree $n$ with control points $P_0, dots, P_n$.
 
 == The Bernstein basis and evaluation
 
-#proof(of: <thm-unity>)[
+#proof(of: <lem-binomial>)[
+  Both sides of each identity vanish when the indices leave the stated
+  ranges, so assume $0 <= j <= n$ and $1 <= i <= n$. For the first, write
+  both terms over the common denominator $j! (n - j)!$:
+  $ (n-1)! / (j! (n-1-j)!) + (n-1)! / ((j-1)! (n-j)!)
+    = ((n-1)! ((n - j) + j)) / (j! (n-j)!) = binom(n, j). $
+  For the second,
+  $i binom(n, i) = n! slash ((i-1)! (n-i)!) = n binom(n-1, i-1)$.
+]
+
+#proof(of: <prop-unity>)[
   For $t in [0, 1]$ both $t$ and $1 - t$ are non-negative, hence so is every
   $b_(i,n)(t)$. By the binomial theorem,
   $ sum_(i=0)^n binom(n, i) t^i (1-t)^(n-i) = (t + (1 - t))^n = 1. $
 ]
 
-#proof(of: <thm-endpoints>)[
+#proof(of: <prop-endpoints>)[
   At $t = 0$ the factor $t^i$ vanishes unless $i = 0$, and
   $b_(0,n)(0) = (1 - 0)^n = 1$. At $t = 1$ the factor $(1-t)^(n-i)$ vanishes
   unless $i = n$, and $b_(n,n)(1) = 1$. Hence
   $B(0) = sum_i b_(i,n)(0) P_i = P_0$ and likewise $B(1) = P_n$.
 ]
 
-#proof(of: <thm-hull>)[
-  By @thm-unity, $B(t) = sum_i lambda_i P_i$ with $lambda_i = b_(i,n)(t) >= 0$
+#proof(of: <cor-hull>)[
+  By @prop-unity, $B(t) = sum_i lambda_i P_i$ with $lambda_i = b_(i,n)(t) >= 0$
   and $sum_i lambda_i = 1$. A convex combination of points lies in their
   convex hull by definition.
 ]
 
-#proof(of: <thm-affine>)[
-  Using linearity of $M$ and @thm-unity,
+#proof(of: <prop-affine>)[
+  Using linearity of $M$ and @prop-unity,
   $ A(B(t)) = M sum_i b_(i,n)(t) P_i + (sum_i b_(i,n)(t)) v
             = sum_i b_(i,n)(t) (M P_i + v)
             = sum_i b_(i,n)(t) A(P_i). $
@@ -45,29 +51,45 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
   $ P_i^((r)) &= (1 - t) sum_(j=0)^(r-1) b_(j,r-1)(t) P_(i+j)
                 + t sum_(j=0)^(r-1) b_(j,r-1)(t) P_(i+1+j) \
               &= sum_(j=0)^r [(1 - t) b_(j,r-1)(t) + t b_(j-1,r-1)(t)] P_(i+j). $
-  The bracket equals
+  By @lem-binomial the bracket equals
   $[binom(r-1, j) + binom(r-1, j-1)] t^j (1-t)^(r-j) = b_(j,r)(t)$.
   With $r = n$ and $i = 0$ the claim reads $P_0^((n)) = B(t)$.
 ]
 
 == Derivatives, subdivision and reversal
 
-#proof(of: <thm-hodograph>)[
-  Differentiating and using $i binom(n, i) = n binom(n-1, i-1)$ and
-  $(n - i) binom(n, i) = n binom(n-1, i)$,
-  $ b'_(i,n)(t) = n [b_(i-1,n-1)(t) - b_(i,n-1)(t)]. $
-  Hence
-  $ B'(t) = n sum_(i=0)^n [b_(i-1,n-1)(t) - b_(i,n-1)(t)] P_i
-          = n sum_(i=0)^(n-1) b_(i,n-1)(t) (P_(i+1) - P_i), $
-  by shifting the index in the first sum. The values at $0$ and $1$ follow
-  from @thm-endpoints applied to this curve of degree $n - 1$.
+#proof(of: <lem-bernstein-derivative>)[
+  By the product rule,
+  $ b'_(i,n)(t) = binom(n, i) [i t^(i-1) (1-t)^(n-i) - (n - i) t^i (1-t)^(n-i-1)]. $
+  By @lem-binomial, $i binom(n, i) = n binom(n-1, i-1)$; applied to $n - i$
+  in place of $i$, with $binom(n, i) = binom(n, n-i)$, it also gives
+  $(n - i) binom(n, i) = n binom(n-1, i)$. The two terms are therefore
+  $n b_(i-1,n-1)(t)$ and $n b_(i,n-1)(t)$; at $i = 0$ and $i = n$ the
+  vanishing term matches the convention $b_(-1,n-1) = b_(n,n-1) = 0$.
 ]
 
-#proof(of: <thm-reversal>)[
+#proof(of: <thm-hodograph>)[
+  By @lem-bernstein-derivative,
+  $ B'(t) = n sum_(i=0)^n [b_(i-1,n-1)(t) - b_(i,n-1)(t)] P_i
+          = n sum_(i=0)^(n-1) b_(i,n-1)(t) (P_(i+1) - P_i), $
+  by shifting the index in the first sum.
+]
+
+#proof(of: <cor-end-tangents>)[
+  By @thm-hodograph, $B'$ is the curve of degree $n - 1$ with control
+  points $n(P_(i+1) - P_i)$, $i = 0, dots, n - 1$; apply @prop-endpoints to
+  it.
+]
+
+#proof(of: <lem-symmetry>)[
+  $ b_(i,n)(1 - t) = binom(n, i) (1-t)^i t^(n-i) = binom(n, n-i) t^(n-i) (1-t)^i = b_(n-i,n)(t). $
+]
+
+#proof(of: <prop-reversal>)[
   Re-indexing with $j = n - i$,
   $ sum_(i=0)^n b_(i,n)(t) P_(n-i) = sum_(j=0)^n b_(n-j,n)(t) P_j, $
-  and $b_(n-j,n)(t) = binom(n, j) t^(n-j) (1-t)^j = b_(j,n)(1 - t)$, so the
-  sum is $B(1 - t)$.
+  and $b_(n-j,n)(t) = b_(j,n)(1 - t)$ by @lem-symmetry, so the sum is
+  $B(1 - t)$.
 ]
 
 #proof(of: <thm-subdivision>)[
@@ -82,20 +104,20 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
 
   _Right part._ Let $overline(B)$ be the reversed curve, with controls
   $overline(P)_i = P_(n-i)$, so $overline(B)(u) = B(1 - u)$ by
-  @thm-reversal. The left part applied to $overline(B)$ at
+  @prop-reversal. The left part applied to $overline(B)$ at
   $overline(c) = 1 - c$ gives
   $overline(B)(overline(c) s) = sum_j b_(j,n)(s) overline(L)_j$ with
   $ overline(L)_j = sum_(i=0)^j b_(i,j)(1 - c) P_(n-i)
                   = sum_(l=0)^j b_(l,j)(c) P_(n-j+l) = P_(n-j)^((j)) = R_(n-j), $
-  using $b_(i,j)(1 - c) = b_(j-i,j)(c)$, the substitution $l = j - i$, and
-  @thm-casteljau. Therefore
+  using @lem-symmetry, the substitution $l = j - i$, and @thm-casteljau.
+  Therefore, again by @lem-symmetry,
   $ B(c + (1 - c) s) = overline(B)((1 - c)(1 - s))
                      = sum_(j=0)^n b_(j,n)(1 - s) R_(n-j)
                      = sum_(j=0)^n b_(n-j,n)(s) R_(n-j)
                      = sum_(k=0)^n b_(k,n)(s) R_k. $
 ]
 
-#proof(of: <thm-segment>)[
+#proof(of: <cor-segment>)[
   Write $a = t_0$ and $e = t_1$, so $e > a >= 0$. Splitting at $e$ and
   keeping the left part gives, by @thm-subdivision, the curve
   $u |-> B(e u)$. Splitting that curve at $a slash e in [0, 1)$ and keeping
@@ -105,7 +127,7 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
 
 == Cubic segments and paths
 
-#proof(of: <thm-bbox>)[
+#proof(of: <prop-bbox>)[
   Expanding the cubic Bernstein form,
   $ B(t) = (1-t)^3 P_0 + 3t(1-t)^2 P_1 + 3t^2(1-t) P_2 + t^3 P_3
          = a t^3 + b t^2 + c t + P_0 $
@@ -118,16 +140,26 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
   the curve, so no smaller box contains it.
 ]
 
-#proof(of: <thm-elevation>)[
-  _Line._ First, $sum_i i b_(i,n)(t) = n t sum_i b_(i-1,n-1)(t) = n t$ by
-  $i binom(n, i) = n binom(n-1, i-1)$ and @thm-unity. With
-  $Q_i = P_0 + i/3 (P_3 - P_0)$,
+#proof(of: <lem-basis-elevation>)[
+  _1._ For $n = 0$ both sides vanish. For $n >= 1$, @lem-binomial gives
+  $i b_(i,n)(t) = n t b_(i-1,n-1)(t)$, so
+  $sum_i i b_(i,n)(t) = n t sum_i b_(i-1,n-1)(t) = n t$ by @prop-unity.
+
+  _2._ Multiplying $b_(i,n)(t)$ by $(1 - t) + t = 1$,
+  $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n+1-i) + binom(n, i) t^(i+1) (1-t)^(n-i). $
+  Since $binom(n, i) slash binom(n+1, i) = (n + 1 - i) slash (n + 1)$ and
+  $binom(n, i) slash binom(n+1, i+1) = (i + 1) slash (n + 1)$, the two terms
+  are the stated multiples of $b_(i,n+1)(t)$ and $b_(i+1,n+1)(t)$.
+]
+
+#proof(of: <prop-elevation>)[
+  _Line._ With $Q_i = P_0 + i/3 (P_3 - P_0)$, by @prop-unity and part 1 of
+  @lem-basis-elevation,
   $ sum_(i=0)^3 b_(i,3)(t) Q_i = P_0 + (P_3 - P_0) sum_i i/3 b_(i,3)(t) = P_0 + t (P_3 - P_0). $
 
-  _Quadratic._ Multiplying $b_(i,2)(t)$ by $(1 - t) + t$,
-  $ b_(i,2)(t) = (3 - i)/3 b_(i,3)(t) + (i + 1)/3 b_(i+1,3)(t), $
-  since $binom(2, i) slash binom(3, i) = (3 - i) slash 3$ and
-  $binom(2, i) slash binom(3, i+1) = (i + 1) slash 3$. For quadratic controls
+  _Quadratic._ By part 2 of @lem-basis-elevation with $n = 2$,
+  $ b_(i,2)(t) = (3 - i)/3 b_(i,3)(t) + (i + 1)/3 b_(i+1,3)(t). $
+  For quadratic controls
   $R_0 = P_0$, $R_1 = C$, $R_2 = P_3$ this gives
   $ sum_(i=0)^2 b_(i,2)(t) R_i = sum_(k=0)^3 b_(k,3)(t) [k/3 R_(k-1) + (3 - k)/3 R_k], $
   whose controls are $R_0 = P_0$, $1/3 P_0 + 2/3 C$, $2/3 C + 1/3 P_3$ and
@@ -135,10 +167,10 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
   parameterization is unchanged.
 ]
 
-#proof(of: <thm-continuity>)[
+#proof(of: <prop-continuity>)[
   Let the join be at the global parameter $u_0$. On its span $S$ is
   evaluated at $s = (u - u_0 + h_S) slash h_S$, and $T$ at
-  $s = (u - u_0) slash h_T$. By the chain rule and @thm-hodograph the
+  $s = (u - u_0) slash h_T$. By the chain rule and @cor-end-tangents the
   one-sided derivatives at $u_0$ are $S'(1) slash h_S = 3(P_3 - P_2) slash h_S$
   and $T'(0) slash h_T = 3(Q_1 - Q_0) slash h_T$. The curve is continuous
   since $P_3 = Q_0$, and it is $C^1$ at the join exactly when the two
@@ -148,8 +180,8 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
 
 == Constructions and interpolation
 
-#proof(of: <thm-endpoint>)[
-  By @thm-endpoints, $B(0) = P_0$ and $B(1) = P_3$; by @thm-hodograph,
+#proof(of: <prop-endpoint>)[
+  By @prop-endpoints, $B(0) = P_0$ and $B(1) = P_3$; by @cor-end-tangents,
   $B'(0) = 3(P_1 - P_0) = D_0$ and $B'(1) = 3(P_3 - P_2) = D_1$. Conversely,
   the cubic Bernstein polynomials form a basis, so a cubic curve has exactly
   one set of controls, and these four conditions determine them:
@@ -157,10 +189,10 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
   $P_2 = P_3 - B'(1) slash 3$.
 ]
 
-#proof(of: <thm-hermite>)[
+#proof(of: <prop-hermite>)[
   At $t = t_0$ and $t = t_1$ the segment is evaluated at $s = 0$ and
-  $s = 1$, so $H(t_0) = P_0$ and $H(t_1) = P_3$ by @thm-endpoints. By the
-  chain rule $H'(t) = B'(s) slash h$. By @thm-hodograph,
+  $s = 1$, so $H(t_0) = P_0$ and $H(t_1) = P_3$ by @prop-endpoints. By the
+  chain rule $H'(t) = B'(s) slash h$. By @cor-end-tangents,
   $B'(0) = 3(P_1 - P_0) = h D_0$ and $B'(1) = 3(P_3 - P_2) = h D_1$, so
   $H'(t_0) = D_0$ and $H'(t_1) = D_1$. Nothing requires $h > 0$.
 ]
@@ -188,10 +220,10 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
 
 == Fitting and level sets
 
-#proof(of: <thm-depth>)[
+#proof(of: <cor-depth>)[
   An interval at depth $k$ has width $h = H slash 2^k$. On it, each
   coordinate of the Hermite segment interpolates the corresponding
-  coordinate of $C$ with its derivative at both ends (@thm-hermite), so it
+  coordinate of $C$ with its derivative at both ends (@prop-hermite), so it
   is the cubic Hermite interpolant of that coordinate, and
   @thm-hermite-error bounds its error by $M h^4 slash 384$. The Euclidean
   error is therefore at most $sqrt(d) M h^4 slash 384$ everywhere, in
@@ -201,7 +233,7 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
   $k$.
 ]
 
-#proof(of: <thm-rdp>)[
+#proof(of: <prop-rdp>)[
   Consider the recursive step on the vertices with indices $i < j$. We show
   by induction on $j - i$ that for any two consecutive indices $u < v$ it
   returns, every vertex strictly between $u$ and $v$ lies within the
@@ -229,10 +261,10 @@ $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
 
 == Export
 
-#proof(of: <thm-rounding>)[
+#proof(of: <prop-rounding>)[
   Let $tilde(P)_i = P_i + delta_i$ with $|delta_(i,k)| <= epsilon$ for every
   coordinate $k$. The perturbed curve differs from $B$ by
-  $tilde(B)(t) - B(t) = sum_i b_(i,n)(t) delta_i$. By @thm-unity, on each
+  $tilde(B)(t) - B(t) = sum_i b_(i,n)(t) delta_i$. By @prop-unity, on each
   coordinate
   $ |sum_i b_(i,n)(t) delta_(i,k)| <= sum_i b_(i,n)(t) |delta_(i,k)| <= epsilon, $
   so the Euclidean distance is at most $sqrt(d epsilon^2) = epsilon sqrt(d)$.

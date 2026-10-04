@@ -2,9 +2,15 @@
 
 = Level sets <sec-implicit>
 
-Indifference curves, isoquants and contour lines are level sets
-$F(x, y) = c$ of a function of two variables. `trace_implicit` turns them
-into cubic paths without solving for $y$, so it handles curves that turn
+Indifference curves, isoquants and contour lines are level sets of a
+function of two variables.
+
+#definition(name: [Level set])[
+  For $F: RR^2 -> RR$ and a level $c in RR$, the level set is
+  $ L_c = {(x, y) : F(x, y) = c}. $
+] <def-level-set>
+
+`trace_implicit` turns level sets into cubic paths without solving for $y$, so it handles curves that turn
 back, close up or break into several pieces.
 
 #api(("trace_implicit",), syntax: [
@@ -24,9 +30,8 @@ back, close up or break into several pieces.
 
 + *Sample.* Evaluate $F$ on a regular grid of the viewport.
 + *March.* In each grid cell, mark the corners where $F >= c$. An edge whose
-  ends are marked differently is crossed by the level set; the crossing point
-  is placed by linear interpolation of $F$ along the edge
-  #citep(<lorensen1987>). A cell with two crossings contributes one line
+  ends are marked differently is crossed by the level set, at the point of
+  @def-crossing #citep(<lorensen1987>). A cell with two crossings contributes one line
   piece. A cell with four crossings is a saddle: the average of the four
   corner values decides which crossings to join (@fig-saddle).
 + *Stitch.* Join pieces that share an end point into chains. A chain that
@@ -38,6 +43,13 @@ back, close up or break into several pieces.
   tangents follow the level set (@thm-gradient), with handles one third of
   the chord long. The cubic is kept only if it stays within `tolerance` of
   the chord; where $nabla F = 0$ at either end, the piece stays straight.
+
+#definition(name: [Edge crossing])[
+  Let a grid edge run from $p$ to $q$ with $F(p) >= c > F(q)$ or
+  $F(q) >= c > F(p)$. Its crossing point is $p + lambda (q - p)$ with
+  $ lambda = (c - F(p)) / (F(q) - F(p)), $
+  the zero of the linear interpolant of $F - c$ along the edge.
+] <def-crossing>
 
 #fig("/figures/implicit/saddle.pdf", width: auto, caption: [
   Saddle cell, centre (a) high, (b) low; filled corners have $F >= c$.

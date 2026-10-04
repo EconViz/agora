@@ -14,18 +14,18 @@
 
 #param("fit_error", type: "float | None", default: "None")[拟合线段的实测误差（详见#ref(<sec-fitting>)）；分割、截取与反转后保留，判断相等时忽略。]
 #param("as_curve(), from_curve(curve)")[与 3 次 `BezierCurve` 互相转换，不改变任何控制点。]
-#param("from_line(p0, p3), from_quadratic(p0, c, p3)")[直线或二次曲线的精确三次表示（详见#ref(<thm-elevation>)）。]
+#param("from_line(p0, p3), from_quadratic(p0, c, p3)")[直线或二次曲线的精确三次表示（详见#ref(<prop-elevation>)）。]
 
 == 紧密边界框
 
-控制点凸包包含曲线（详见#ref(<thm-hull>)），但可能比曲线大得多。`bounding_box` 返回最小的轴对齐方框（参见#ref(<fig-bbox>)）。
+控制点凸包包含曲线（详见#ref(<cor-hull>)），但可能比曲线大得多。`bounding_box` 返回最小的轴对齐方框（参见#ref(<fig-bbox>)）。
 
-#theorem(name: [边界框])[
+#proposition(name: [边界框])[
   将三次曲线写成 $B(t) = a t^3 + b t^2 + c t + P_0$，其中 $a = -P_0 + 3P_1 - 3P_2 + P_3$、$b = 3P_0 - 6P_1 + 3P_2$、$c = 3(P_1 - P_0)$。在每个坐标轴 $k$ 上，$B_k(t)$ 于 $[0, 1]$ 的最小值与最大值出现在 $t = 0$、$t = 1$，或 $3a_k t^2 + 2 b_k t + c_k$ 在 $(0, 1)$ 内的根。
-] <thm-bbox>
+] <prop-bbox>
 
 #api(("CubicBezierSegment.bounding_box",))[
-  返回 `(low, high)` 两点，分别为曲线在各轴的最小值与最大值，由#ref(<thm-bbox>)的候选参数求值而得。
+  返回 `(low, high)` 两点，分别为曲线在各轴的最小值与最大值，由#ref(<prop-bbox>)的候选参数求值而得。
 ]
 
 #fig("/figures/paths/bbox.pdf", width: auto, caption: [
@@ -34,14 +34,20 @@
 
 == 升阶
 
-#theorem(name: [升阶])[
+#lemma(name: [基底恒等式])[
+  对 $n >= 0$ 与每个 $t$，
+  + $sum_(i=0)^n i b_(i,n)(t) = n t$；
+  + $b_(i,n)(t) = (n + 1 - i) / (n + 1) b_(i,n+1)(t) + (i + 1) / (n + 1) b_(i+1,n+1)(t)$。
+] <lem-basis-elevation>
+
+#proposition(name: [升阶])[
   由 $P_0$ 到 $P_3$ 的直线，等于控制点为 $P_0$、$P_0 + 1/3 (P_3 - P_0)$、$P_0 + 2/3 (P_3 - P_0)$、$P_3$ 的三次曲线。控制点为 $P_0, C, P_3$ 的二次曲线，等于控制点为 $P_0$、$P_0 + 2/3 (C - P_0)$、$P_3 + 2/3 (C - P_3)$、$P_3$ 的三次曲线。两者都是同一条曲线，参数化也相同。
-] <thm-elevation>
+] <prop-elevation>
 
 #api(("to_cubic", "line_to_cubic", "quadratic_to_cubic"), syntax: [
   #raw("to_cubic(")#meta("curve")#raw(")")
 ])[
-  位于 `bezierkit.bezier`。`to_cubic()` 根据#ref(<thm-elevation>)将一次、二次或三次 `BezierCurve` 转为 `CubicBezierSegment`（传入线段时原样返回）；更高次数抛出 `DegreeError`。
+  位于 `bezierkit.bezier`。`to_cubic()` 根据#ref(<prop-elevation>)将一次、二次或三次 `BezierCurve` 转为 `CubicBezierSegment`（传入线段时原样返回）；更高次数抛出 `DegreeError`。
 ]
 
 ```python
@@ -62,8 +68,11 @@ print(to_cubic(q).control_points)
   由三次线段组成的路径。相邻线段必须相接：每段的 `p3` 与下一段的 `p0` 距离不得超过 `continuity_tolerance`，闭合路径最后的 `p3` 与第一个 `p0` 亦然，否则抛出 `ValueError`。`closed` 是给导出器的信息（SVG 的 `Z`、TikZ 的 `cycle`），不会额外加入闭合线段。
 ]
 
-由 $m$ 段 $S_0, dots, S_(m-1)$ 组成的路径采均匀参数化：
-$ P(t) = S_k (m t - k), quad k = min(floor(m t), m - 1), $
+#definition(name: [均匀参数化])[
+  由 $m$ 段 $S_0, dots, S_(m-1)$ 组成的路径是映射
+  $ P(t) = S_k (m t - k), quad k = min(floor(m t), m - 1), quad t in [0, 1]. $
+] <def-uniform>
+
 不论长短，每段都占 $[0, 1]$ 的 $1 slash m$。
 
 #param("segments, control_points, subpaths")[依次排列的线段、其控制点，以及各 `BezierSubpath`。]
@@ -89,8 +98,12 @@ print(path.segment(0.25, 0.75).at(1.0))  # Point(coords=(2.0, 2.0))
 
 == 连续性
 
-#theorem(name: [三次曲线接点的连续性])[
+#definition(name: [接点的连续性])[
+  定义在某区间上的曲线 $C$，若在内部参数 $u_0$ 处连续，称其在 $u_0$ 为 $C^0$；若其在 $u_0$ 的单边导数还都存在且相等，称为 $C^1$。
+] <def-continuity>
+
+#proposition(name: [三次曲线接点的连续性])[
   设控制点为 $P_0, dots, P_3$ 与 $Q_0, dots, Q_3$ 的三次曲线 $S$、$T$ 依次占据长度为 $h_S$、$h_T$ 的参数区间，且 $P_3 = Q_0$。接合后的曲线在接点为 $C^1$，若且唯若 $(P_3 - P_2) slash h_S = (Q_1 - Q_0) slash h_T$。在 `PiecewiseBezier` 的均匀参数化下 $h_S = h_T$，条件即为 $P_3 - P_2 = Q_1 - Q_0$。
-] <thm-continuity>
+] <prop-continuity>
 
 `PiecewiseBezier` 只要求 $C^0$，也就是端点相接。接点是否也要平滑由调用方决定：无差异曲线的折角或折线的转角本来就该保留。

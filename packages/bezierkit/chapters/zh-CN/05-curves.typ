@@ -4,31 +4,50 @@
 
 == Bernstein 基底
 
-$n$ 次 Bernstein 多项式为
-$ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i), quad i = 0, dots, n, $
-构成次数不超过 $n$ 的多项式空间的一组基底 #citep(<farouki2012>)。三次的情形如#ref(<fig-basis>)。
+#definition(name: [Bernstein 多项式])[
+  $n >= 0$ 次 Bernstein 多项式为
+  $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i), quad i = 0, dots, n. $
+  其他的 $i$ 令 $b_(i,n) = 0$。
+] <def-bernstein>
+
+它们构成次数不超过 $n$ 的多项式空间的一组基底 #citep(<farouki2012>)；三次的情形如#ref(<fig-basis>)。
+
+#definition(name: [Bézier 曲线])[
+  设 $P_0, dots, P_n in RR^d$。以 $P_0, dots, P_n$ 为控制点的 $n$ 次 Bézier 曲线为
+  $ B(t) = sum_(i=0)^n b_(i,n)(t) P_i, quad t in [0, 1], $
+  其控制多边形为折线 $P_0 P_1 dots P_n$。
+] <def-curve>
+
+以下的证明依赖两个二项式系数恒等式。
+
+#lemma(name: [二项式恒等式])[
+  对整数 $n >= 1$ 与 $i$、$j$，
+  $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
+    i binom(n, i) = n binom(n-1, i-1), $
+  其中 $k < 0$ 或 $k > m$ 时 $binom(m, k) = 0$。
+] <lem-binomial>
 
 #fig("/figures/curves/basis.pdf", width: auto, caption: [
   三次 Bernstein 多项式。
 ]) <fig-basis>
 
-#theorem(name: [单位分解])[
+#proposition(name: [单位分解])[
   对每个 $t in [0, 1]$，所有 $b_(i,n)(t) >= 0$，且 $sum_(i=0)^n b_(i,n)(t) = 1$。
-] <thm-unity>
+] <prop-unity>
 
-#theorem(name: [端点])[
+#proposition(name: [端点])[
   $b_(i,n)(0)$ 在 $i = 0$ 时为 1，其余为 0；$b_(i,n)(1)$ 在 $i = n$ 时为 1，其余为 0。因此 $B(0) = P_0$、$B(1) = P_n$。
-] <thm-endpoints>
+] <prop-endpoints>
 
-#theorem(name: [凸包])[
+#corollary(name: [凸包])[
   每个 $B(t)$（$t in [0, 1]$）都位于控制点 $P_0, dots, P_n$ 的凸包内。
-] <thm-hull>
+] <cor-hull>
 
-#theorem(name: [仿射不变性])[
+#proposition(name: [仿射不变性])[
   对每个仿射映射 $A(x) = M x + v$，$A(B(t)) = sum_i b_(i,n)(t) A(P_i)$：变换曲线等同于变换其控制点。
-] <thm-affine>
+] <prop-affine>
 
-#ref(<thm-hull>)让曲线不超出控制多边形所张的区域；#ref(<thm-affine>)则是导出器与 Matplotlib 适配器只需移动控制点，就能平移、缩放或旋转曲线的原因。
+#ref(<cor-hull>)让曲线不超出控制多边形所张的区域；#ref(<prop-affine>)则是导出器与 Matplotlib 适配器只需移动控制点，就能平移、缩放或旋转曲线的原因。
 
 #api(("BernsteinBasis",), syntax: [
   #raw("BernsteinBasis(")#meta("int")#raw(")(")#meta("float")#raw(")") \
@@ -57,8 +76,13 @@ $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i), quad i = 0, dots, n, $
 
 == 求值
 
-*de Casteljau 算法*以反复的线性插值计算 $B(t)$。由 $P_i^((0)) = P_i$ 开始，令
-$ P_i^((r)) = (1 - t) P_i^((r-1)) + t P_(i+1)^((r-1)), quad r = 1, dots, n, quad i = 0, dots, n - r. $
+*de Casteljau 算法*以反复的线性插值计算 $B(t)$。
+
+#definition(name: [de Casteljau 点])[
+  对参数 $t$，令 $P_i^((0)) = P_i$，以及
+  $ P_i^((r)) = (1 - t) P_i^((r-1)) + t P_(i+1)^((r-1)), quad r = 1, dots, n, quad i = 0, dots, n - r. $
+] <def-casteljau>
+
 每一轮对相邻点取平均，多边形少一个点；$n$ 轮后只剩一点（参见#ref(<fig-casteljau>)）。
 
 #theorem(name: [de Casteljau])[

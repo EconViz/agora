@@ -7,15 +7,22 @@ that keeps the evaluator of the original.
 
 == Derivatives
 
+#lemma(name: [Derivative of the Bernstein polynomials])[
+  For $n >= 1$, $b'_(i,n)(t) = n [b_(i-1,n-1)(t) - b_(i,n-1)(t)]$.
+] <lem-bernstein-derivative>
+
 #theorem(name: [Hodograph])[
   The derivative of a degree-$n$ Bézier curve ($n >= 1$) is the degree
   $n - 1$ Bézier curve
   $ B'(t) = sum_(i=0)^(n-1) b_(i,n-1)(t) dot n (P_(i+1) - P_i). $
-  In particular $B'(0) = n(P_1 - P_0)$ and $B'(1) = n(P_n - P_(n-1))$.
 ] <thm-hodograph>
 
-The last statement is why a curve leaves $P_0$ in the direction of $P_1$
-and arrives at $P_n$ from $P_(n-1)$.
+#corollary(name: [End tangents])[
+  $B'(0) = n(P_1 - P_0)$ and $B'(1) = n(P_n - P_(n-1))$.
+] <cor-end-tangents>
+
+This is why a curve leaves $P_0$ in the direction of $P_1$ and arrives at
+$P_n$ from $P_(n-1)$.
 
 #api(("BezierCurve.derivative",), syntax: [
   #raw("derivative(order=1)")
@@ -64,10 +71,10 @@ before $c$, and the last points that of the part after it (@fig-split).
 `segment()` splits twice: first at $t_1$, keeping the left part, then that
 part at $t_0 slash t_1$, keeping the right part.
 
-#theorem(name: [Segment extraction])[
+#corollary(name: [Segment extraction])[
   For $0 <= t_0 < t_1 <= 1$ the curve returned by `segment(t0, t1)` is
   $s |-> B(t_0 + (t_1 - t_0) s)$.
-] <thm-segment>
+] <cor-segment>
 
 ```python
 left, right = curve.split(0.4)
@@ -77,10 +84,14 @@ print(curve.segment(0.25, 0.75).at(0.5))   # B(0.5) = (2.0, 1.5)
 
 == Reversal
 
-#theorem(name: [Reversal])[
+#lemma(name: [Symmetry])[
+  $b_(i,n)(1 - t) = b_(n-i,n)(t)$ for all $i$ and $t$.
+] <lem-symmetry>
+
+#proposition(name: [Reversal])[
   The curve with control points $P_n, dots, P_0$ is $t |-> B(1 - t)$.
-] <thm-reversal>
+] <prop-reversal>
 
 #api(("BezierCurve.reversed",))[
-  The curve traced in the opposite direction, by @thm-reversal.
+  The curve traced in the opposite direction, by @prop-reversal.
 ]

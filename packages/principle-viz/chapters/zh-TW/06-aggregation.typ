@@ -69,7 +69,7 @@ print(market.values)   # (10.0, 8.0, 7.0, 5.0, 4.0, 2.0)
 
 == 加總圖
 
-#changed("0.10.0", label: "demand_aggregation_figure")[需求與供給（線性與離散）的「個人 | 個人 | 市場」圖，回傳 `AggregationFigure`]
+#changed("0.10.0", label: "demand_aggregation_figure")[需求與供給（線性與離散）的*個人 | 個人 | 市場*圖，回傳 `AggregationFigure`]
 #changed("0.10.0", label: "demand_aggregation_figure")[`link_price=True` 讓價格線橫跨所有面板]
 #changed("0.10.1", label: "demand_aggregation_figure")[市場曲線在折點處標出當時有效的需求]
 

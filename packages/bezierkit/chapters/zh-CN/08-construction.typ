@@ -14,14 +14,14 @@
   满足 $B(0) = $ `start`、$B(1) = $ `end`、$B'(0) = $ `start_derivative`、$B'(1) = $ `end_derivative` 的三次曲线，维度不限。
 ]
 
-#theorem(name: [端点条件])[
+#proposition(name: [端点条件])[
   控制点为 $P_0$、$P_0 + D_0 slash 3$、$P_3 - D_1 slash 3$、$P_3$ 的三次曲线，是唯一满足 $B(0) = P_0$、$B(1) = P_3$、$B'(0) = D_0$、$B'(1) = D_1$ 的三次曲线。
-] <thm-endpoint>
+] <prop-endpoint>
 
 #api(("TangentDirections",), syntax: [
   #raw("TangentDirections(start, end, start_direction, end_direction, start_handle=1.0, end_handle=1.0).build()")
 ])[
-  以方向给定端点切线，控制柄长度为 $|P_1 - P_0| = $ `start_handle`、$|P_3 - P_2| = $ `end_handle`。方向会先归一化，因此只有方向有影响；控制柄长度必须为有限的非负值。根据#ref(<thm-endpoint>)，$B'(0)$ 等于 3 倍 `start_handle` 乘以起点的单位方向。
+  以方向给定端点切线，控制柄长度为 $|P_1 - P_0| = $ `start_handle`、$|P_3 - P_2| = $ `end_handle`。方向会先归一化，因此只有方向有影响；控制柄长度必须为有限的非负值。根据#ref(<prop-endpoint>)，$B'(0)$ 等于 3 倍 `start_handle` 乘以起点的单位方向。
 ]
 
 #api(("PlanarSlopes",), syntax: [
@@ -41,7 +41,13 @@ print(demand.control_points[1])   # (0.447, 4.106): one unit from (0, 5) along s
 
 == Hermite 插值
 
-三次 Hermite 插值在区间两端同时吻合函数值与导数。在宽度为 $h = t_1 - t_0$ 的参数区间 $[t_0, t_1]$ 上，Bézier 线段在 $s = (t - t_0) slash h$ 处求值，导数因此乘上 $h$。
+三次 Hermite 插值在区间两端同时吻合函数值与导数。
+
+#definition(name: [三次 Hermite 插值多项式])[
+  设 $f$ 在 $[x_0, x_1]$ 上可微，$x_0 != x_1$。其三次 Hermite 插值多项式是次数不超过 3、满足 $H(x_i) = f(x_i)$ 与 $H'(x_i) = f'(x_i)$（$i = 0, 1$）的多项式 $H$。对曲线则逐一插值每个坐标。
+] <def-hermite>
+
+将区间重新缩放到 $[0, 1]$ 后，就单一坐标套用#ref(<prop-endpoint>)，可知它存在且唯一。在宽度为 $h = t_1 - t_0$ 的参数区间 $[t_0, t_1]$ 上，Bézier 线段在 $s = (t - t_0) slash h$ 处求值，导数因此乘上 $h$。
 
 #api(("parametric_hermite",), syntax: [
   #raw("parametric_hermite(p0, p3, derivative0, derivative1, *, t0=0.0, t1=1.0)")
@@ -49,9 +55,9 @@ print(demand.control_points[1])   # (0.447, 4.106): one unit from (0, 5) along s
   控制点为 $P_0$、$P_0 + h D_0 slash 3$、$P_3 - h D_1 slash 3$、$P_3$ 的三次线段，位于 `bezierkit.interpolation`。$h = 0$ 时抛出 `ValueError`；$h$ 为负表示反向的区间。
 ]
 
-#theorem(name: [Hermite 插值])[
+#proposition(name: [Hermite 插值])[
   对 `parametric_hermite` 返回的线段，令 $H(t) = B((t - t_0) slash h)$。则 $H(t_0) = P_0$、$H(t_1) = P_3$、$H'(t_0) = D_0$、$H'(t_1) = D_1$。
-] <thm-hermite>
+] <prop-hermite>
 
 #api(("graph_hermite",), syntax: [
   #raw("graph_hermite(*, x0, x1, y0, y1, m0, m1)")
@@ -75,7 +81,7 @@ segment = graph_hermite(x0=1, x1=1.5, y0=4, y1=16 / 9, m0=-8, m1=-64 / 27)
 == 插值误差
 
 #theorem(name: [Hermite 误差界限])[
-  设 $f$ 在 $[x_0, x_1]$ 上四阶连续可微，$H$ 为其三次 Hermite 插值，$h = x_1 - x_0$，$M = max |f^((4))|$。则
+  设 $f$ 在 $[x_0, x_1]$ 上四阶连续可微，$H$ 为其三次 Hermite 插值多项式（详见#ref(<def-hermite>)），$h = x_1 - x_0$，$M = max |f^((4))|$。则
   $ max_(x in [x_0, x_1]) |f(x) - H(x)| <= M h^4 / 384. $
 ] <thm-hermite-error>
 

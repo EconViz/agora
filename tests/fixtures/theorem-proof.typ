@@ -27,6 +27,16 @@
 
 #proof(of: <thm-identity>)[Reflexivity gives the result.]
 
+#definition(name: [Square])[The square of $x$ is $x dot x$.] <def-square>
+
+#lemma[Squares are non-negative.] <lem-square>
+
+#proposition[Sums of squares are non-negative.] <prop-sum>
+
+#corollary[A square is zero only at zero.] <cor-zero>
+
+References: @def-square, @lem-square, @prop-sum, @cor-zero.
+
 #show: appendix
 
 = Details <app-details>

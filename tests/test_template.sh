@@ -38,16 +38,29 @@ for edition in en zh-TW zh-CN; do
       rg -q 'Theorem 1.*Identity' "$text" || fail "English theorem label is missing"
       rg -q 'Proof of Theorem 1' "$text" || fail "English named proof label is missing"
       rg -q 'Appendix A.*Details' "$text" || fail "English appendix label is missing"
+      rg -q 'Definition 2.*Square' "$text" || fail "English definition shares the statement counter"
+      rg -q 'Lemma 3' "$text" || fail "English lemma label is missing"
+      rg -q 'Proposition 4' "$text" || fail "English proposition label is missing"
+      rg -q 'Corollary 5' "$text" || fail "English corollary label is missing"
+      rg -q 'Definition 2, Lemma 3, Proposition 4, Corollary 5' "$text" || fail "English references do not name their kinds"
       ;;
     zh-TW)
       rg -q '定理 1.*Identity' "$text" || fail "Traditional Chinese theorem label is missing"
       rg -q '定理 1.*的證明' "$text" || fail "Traditional Chinese named proof label is missing"
       rg -q '附錄 A.*Details' "$text" || fail "Traditional Chinese appendix label is missing"
+      rg -q '定義 2.*Square' "$text" || fail "Traditional Chinese definition label is missing"
+      rg -q '引理 3' "$text" || fail "Traditional Chinese lemma label is missing"
+      rg -q '命題 4' "$text" || fail "Traditional Chinese proposition label is missing"
+      rg -q '推論 5' "$text" || fail "Traditional Chinese corollary label is missing"
       ;;
     zh-CN)
       rg -q '定理 1.*Identity' "$text" || fail "Simplified Chinese theorem label is missing"
       rg -q '定理 1.*的证明' "$text" || fail "Simplified Chinese named proof label is missing"
       rg -q '附录 A.*Details' "$text" || fail "Simplified Chinese appendix label is missing"
+      rg -q '定义 2.*Square' "$text" || fail "Simplified Chinese definition label is missing"
+      rg -q '引理 3' "$text" || fail "Simplified Chinese lemma label is missing"
+      rg -q '命题 4' "$text" || fail "Simplified Chinese proposition label is missing"
+      rg -q '推论 5' "$text" || fail "Simplified Chinese corollary label is missing"
       ;;
   esac
 
@@ -55,4 +68,4 @@ for edition in en zh-TW zh-CN; do
   [[ "$qed_count" == 2 ]] || fail "$edition must render one QED square per proof"
 done
 
-printf 'PASS: theorem, proof, appendix, and QED output in all editions\n'
+printf 'PASS: statements, proofs, appendix, and QED output in all editions\n'

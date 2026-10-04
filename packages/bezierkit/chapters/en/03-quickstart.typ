@@ -28,7 +28,7 @@ print(to_tikz(path, precision=2, options="thick"))
 
 The curve starts at $P_0$ and ends at $P_3$, leaves $P_0$ towards $P_1$ and
 arrives at $P_3$ from $P_2$, and never leaves the shaded hull of its control
-points (@thm-hull). The last line is the curve as a TikZ path, ready to paste
+points (@cor-hull). The last line is the curve as a TikZ path, ready to paste
 into a #LaTeX document.
 
 == The pieces

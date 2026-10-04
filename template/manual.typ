@@ -347,16 +347,33 @@
 // Theorems, proofs and appendices
 // ---------------------------------------------------------------------------
 
-// A numbered statement; label it to refer to it ("Theorem 3"):
+// Numbered statements, amsthm style: definitions, lemmas, propositions,
+// theorems and corollaries share one counter ("Definition 1", "Lemma 2",
+// "Theorem 3", ...). Label one to refer to it; the reference names its
+// kind ("Lemma 2", "引理 2"):
 //   #theorem(name: [Partition of unity])[...] <thm-unity>
-#let theorem(name: none, body) = figure(
+// The kind travels as the figure's supplement, a key into the interface
+// strings (config/strings.toml: theorem, lemma, ...).
+#let _statement(kind, name, body) = figure(
   body,
   kind: "theorem",
-  supplement: none,
+  supplement: kind,
   numbering: "1",
   caption: name,
   outlined: false,
 )
+#let definition(name: none, body) = _statement("definition", name, body)
+#let lemma(name: none, body) = _statement("lemma", name, body)
+#let proposition(name: none, body) = _statement("proposition", name, body)
+#let theorem(name: none, body) = _statement("theorem", name, body)
+#let corollary(name: none, body) = _statement("corollary", name, body)
+
+// The interface-string key of a statement figure ("theorem", "lemma", ...).
+#let _statement-kind(it) = {
+  let key = it.supplement
+  if type(key) == content { key = key.text }
+  if key in ("definition", "lemma", "proposition", "theorem", "corollary") { key } else { "theorem" }
+}
 
 // The proof of a statement, ending in the QED box (amsthm's \qedsymbol).
 // `of` names the theorem it proves: #proof(of: <thm-unity>)[...].
@@ -784,15 +801,16 @@
     _indent-anchor
   }
 
-  // amsthm "plain" style: bold label, optional name in parentheses, body in
-  // italics (Kai in the CJK editions, which have no italics).
+  // amsthm styles: "plain" (lemma, proposition, theorem, corollary) sets the
+  // body in italics, Kai in the CJK editions; "definition" keeps it upright.
   show figure.where(kind: "theorem"): it => block(above: 1.2em, below: 0.9em, width: 100%, {
     set align(left)
     set par(first-line-indent: 0pt)
-    strong[#s.theorem #context it.counter.display(it.numbering)]
+    let kind = _statement-kind(it)
+    strong[#s.at(kind) #context it.counter.display(it.numbering)]
     if it.caption != none [ (#it.caption.body)]
     if cjk [ ] else [. ]
-    emph(it.body)
+    if kind == "definition" { it.body } else { emph(it.body) }
   })
 
   // Cross-references: “section 2”, “table 1”, “第 2 節”, “表 1”.
@@ -807,7 +825,7 @@
       let n = numbering("1", ..el.counter.at(el.location()))
       let pattern = if el.kind == table { s.table-ref }
         else if el.kind == image { s.figure-ref }
-        else if el.kind == "theorem" { s.theorem-ref }
+        else if el.kind == "theorem" { s.at(_statement-kind(el) + "-ref") }
         else { s.example-ref }
       link(el.location(), fmt(pattern, n))
     } else { it }

@@ -11,7 +11,7 @@
 ])[
   在 $[t_0, t_1]$ 上擬合參數曲線 $C(t)$；`function` 回傳 `Point`，`derivative` 回傳 `Vector`。演算法為遞迴二分：
 
-  + 以目前區間兩端的 $C$ 與 $C'$ 建立 Hermite 線段（詳見#ref(<thm-hermite>)）。
+  + 以目前區間兩端的 $C$ 與 $C'$ 建立 Hermite 線段（詳見#ref(<prop-hermite>)）。
   + 量測誤差：在 `error_samples` 個等距參數（含兩端）上，$C(t_j)$ 與線段之間的最大歐氏距離。
   + 誤差不超過 `tolerance` 時保留此線段，並將誤差記為其 `fit_error`；否則將區間對半，兩半各自擬合。
 
@@ -44,11 +44,11 @@ print(max(s.fit_error for s in path))        # 0.000676
 
 曲線彎曲劇烈處線段較短，接近直線處線段較長（參見#ref(<fig-adaptive>)，相鄰線段以不同顏色區分）。Hermite 誤差界限可預估二分需要的深度：
 
-#theorem(name: [自適應擬合的深度])[
+#corollary(name: [自適應擬合的深度])[
   設 $C$ 的每個座標在 $[t_0, t_1]$ 上四階連續可微且 $|C_k^((4))| <= M$，令 $H = |t_1 - t_0|$，$d$ 為維度。深度
   $ k >= 1/4 log_2 (sqrt(d) M H^4 / (384 epsilon)) $
   的每個區間都能通過容許誤差 $epsilon$ 的檢查；因此除非先達到 `max_depth` 或 `max_segments`，二分最遲在此深度停止。
-] <thm-depth>
+] <cor-depth>
 
 實測誤差是線段真實最大誤差的下界，因為只在量測參數上檢查。若曲線可能在量測點之間起伏，請增加 `error_samples`。
 
@@ -57,7 +57,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 #api(("fit_polyline",), syntax: [
   #raw("fit_polyline(")#meta("points")#raw(", *, tolerance, closed=False, duplicate_tolerance=1e-12, preserve_corners=True, corner_angle=pi/4)")
 ])[
-  把取樣點簡化為由直線弦組成的路徑，每條弦以精確的三次曲線表示（詳見#ref(<thm-elevation>)）。步驟如下：
+  把取樣點簡化為由直線弦組成的路徑，每條弦以精確的三次曲線表示（詳見#ref(<prop-elevation>)）。步驟如下：
 
   + 刪除與前一點距離在 `duplicate_tolerance` 以內的點。封閉折線另外刪除結尾重複的起點，並旋轉為從字典序最小的點開始，使結果與取樣起點無關。
   + 保留兩端點；啟用 `preserve_corners` 時，另保留方向轉折至少 `corner_angle` 弧度的頂點。
@@ -66,9 +66,9 @@ print(max(s.fit_error for s in path))        # 0.000676
   每條弦的 `fit_error` 是被它取代的頂點到弦的最大距離（參見#ref(<fig-polyline>)）。
 ]
 
-#theorem(name: [折線容許誤差])[
+#proposition(name: [折線容許誤差])[
   通過步驟 1 的每個輸入頂點，到取代它的輸出線段之弦的距離都不超過 `tolerance`。
-] <thm-rdp>
+] <prop-rdp>
 
 #fig("/figures/fitting/polyline.pdf", width: auto, caption: [
   以容許誤差 $0.08$ 簡化 41 個雜訊樣本。
@@ -77,7 +77,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 #api(("maximum_polyline_deviation",), syntax: [
   #raw("maximum_polyline_deviation(")#meta("points")#raw(", ")#meta("path")#raw(")")
 ])[
-  各點到路徑中最近之弦 $P_0 P_3$ 的最大距離：可用來檢查#ref(<thm-rdp>)，也涵蓋步驟 1 刪除的點。
+  各點到路徑中最近之弦 $P_0 P_3$ 的最大距離：可用來檢查#ref(<prop-rdp>)，也涵蓋步驟 1 刪除的點。
 ]
 
 如同所有只看得到樣本的方法，`fit_polyline` 限制的是與樣本的偏差，而非與樣本之間未知連續曲線的偏差；需要更貼近時請加密取樣。

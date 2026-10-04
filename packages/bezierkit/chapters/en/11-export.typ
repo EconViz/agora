@@ -31,16 +31,16 @@ places `precision`, and accept a `transform` that maps each control point
 (a `Point`) to a two-dimensional `Point` before it is written, for example
 from data to page coordinates.
 
-#theorem(name: [Rounding error])[
+#proposition(name: [Rounding error])[
   If every coordinate of every control point is changed by at most
   $epsilon$, then every coordinate of $B(t)$ changes by at most $epsilon$
   for every $t in [0, 1]$, and $B(t)$ moves by at most $epsilon sqrt(d)$.
   Rounding to $p$ decimal places gives $epsilon = 1/2 dot 10^(-p)$.
-] <thm-rounding>
+] <prop-rounding>
 
 So with the default `precision=6`, an exported planar curve stays within
 $0.71 times 10^(-6)$ of the original everywhere, not only at its control
-points. An affine `transform` is exact by @thm-affine; a non-affine one
+points. An affine `transform` is exact by @prop-affine; a non-affine one
 moves the control points correctly but not, in general, the points between
 them.
 
@@ -135,8 +135,8 @@ with #pkg("bezierkit"), writes them with `to_tikz()` into a `standalone`
   In `bezierkit.adapters.matplotlib`, with the `matplotlib` extra.
   `from_path()` converts a Matplotlib `Path` exactly: `MOVETO`, `LINETO`,
   `CURVE3`, `CURVE4` and `CLOSEPOLY` become cubics, lines and quadratics by
-  @thm-elevation. An affine `transform` is applied to the control points,
-  which is exact (@thm-affine); a non-affine one raises `ValueError`.
+  @prop-elevation. An affine `transform` is applied to the control points,
+  which is exact (@prop-affine); a non-affine one raises `ValueError`.
   `to_path()` converts back, one `CURVE4` per segment.
 ]
 

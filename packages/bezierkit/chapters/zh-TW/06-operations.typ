@@ -6,13 +6,20 @@
 
 == 導數
 
+#lemma(name: [Bernstein 多項式的導數])[
+  對 $n >= 1$，$b'_(i,n)(t) = n [b_(i-1,n-1)(t) - b_(i,n-1)(t)]$。
+] <lem-bernstein-derivative>
+
 #theorem(name: [速端曲線])[
   $n$ 次 Bézier 曲線（$n >= 1$）的導數是 $n - 1$ 次 Bézier 曲線
   $ B'(t) = sum_(i=0)^(n-1) b_(i,n-1)(t) dot n (P_(i+1) - P_i). $
-  特別地，$B'(0) = n(P_1 - P_0)$、$B'(1) = n(P_n - P_(n-1))$。
 ] <thm-hodograph>
 
-最後一句說明了曲線為何朝 $P_1$ 的方向離開 $P_0$，並從 $P_(n-1)$ 的方向抵達 $P_n$。
+#corollary(name: [端點切線])[
+  $B'(0) = n(P_1 - P_0)$，$B'(1) = n(P_n - P_(n-1))$。
+] <cor-end-tangents>
+
+這說明了曲線為何朝 $P_1$ 的方向離開 $P_0$，並從 $P_(n-1)$ 的方向抵達 $P_n$。
 
 #api(("BezierCurve.derivative",), syntax: [
   #raw("derivative(order=1)")
@@ -50,9 +57,9 @@ print(d.at(0.5))   # Point(coords=(4.5, 0.0)): the tangent at the top is horizon
 
 `segment()` 分割兩次：先在 $t_1$ 分割並保留左段，再在 $t_0 slash t_1$ 分割該段並保留右段。
 
-#theorem(name: [截取])[
+#corollary(name: [截取])[
   對 $0 <= t_0 < t_1 <= 1$，`segment(t0, t1)` 回傳的曲線為 $s |-> B(t_0 + (t_1 - t_0) s)$。
-] <thm-segment>
+] <cor-segment>
 
 ```python
 left, right = curve.split(0.4)
@@ -62,10 +69,14 @@ print(curve.segment(0.25, 0.75).at(0.5))   # B(0.5) = (2.0, 1.5)
 
 == 反轉
 
-#theorem(name: [反轉])[
+#lemma(name: [對稱性])[
+  對所有 $i$ 與 $t$，$b_(i,n)(1 - t) = b_(n-i,n)(t)$。
+] <lem-symmetry>
+
+#proposition(name: [反轉])[
   控制點為 $P_n, dots, P_0$ 的曲線就是 $t |-> B(1 - t)$。
-] <thm-reversal>
+] <prop-reversal>
 
 #api(("BezierCurve.reversed",))[
-  依#ref(<thm-reversal>)，回傳反向走訪的曲線。
+  依#ref(<prop-reversal>)，回傳反向走訪的曲線。
 ]

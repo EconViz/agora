@@ -4,38 +4,58 @@
 
 == The Bernstein basis
 
-The Bernstein polynomials of degree $n$ are
-$ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i), quad i = 0, dots, n, $
-a basis of the polynomials of degree at most $n$ #citep(<farouki2012>).
-@fig-basis shows the cubic ones.
+#definition(name: [Bernstein polynomials])[
+  The Bernstein polynomials of degree $n >= 0$ are
+  $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i), quad i = 0, dots, n. $
+  For other $i$ we put $b_(i,n) = 0$.
+] <def-bernstein>
+
+They form a basis of the polynomials of degree at most $n$
+#citep(<farouki2012>); @fig-basis shows the cubic ones.
+
+#definition(name: [Bézier curve])[
+  Let $P_0, dots, P_n in RR^d$. The Bézier curve of degree $n$ with control
+  points $P_0, dots, P_n$ is
+  $ B(t) = sum_(i=0)^n b_(i,n)(t) P_i, quad t in [0, 1], $
+  and its control polygon is the polyline $P_0 P_1 dots P_n$.
+] <def-curve>
+
+The proofs below lean on two identities of binomial coefficients.
+
+#lemma(name: [Binomial identities])[
+  For integers $n >= 1$ and $i, j$,
+  $ binom(n-1, j) + binom(n-1, j-1) = binom(n, j), quad
+    i binom(n, i) = n binom(n-1, i-1), $
+  with $binom(m, k) = 0$ for $k < 0$ or $k > m$.
+] <lem-binomial>
 
 #fig("/figures/curves/basis.pdf", width: auto, caption: [
   The cubic Bernstein polynomials.
 ]) <fig-basis>
 
-#theorem(name: [Partition of unity])[
+#proposition(name: [Partition of unity])[
   For every $t in [0, 1]$, $b_(i,n)(t) >= 0$ for all $i$, and
   $sum_(i=0)^n b_(i,n)(t) = 1$.
-] <thm-unity>
+] <prop-unity>
 
-#theorem(name: [Endpoints])[
+#proposition(name: [Endpoints])[
   $b_(i,n)(0) = 1$ if $i = 0$ and $0$ otherwise; $b_(i,n)(1) = 1$ if
   $i = n$ and $0$ otherwise. Hence $B(0) = P_0$ and $B(1) = P_n$.
-] <thm-endpoints>
+] <prop-endpoints>
 
-#theorem(name: [Convex hull])[
+#corollary(name: [Convex hull])[
   Every point $B(t)$, $t in [0, 1]$, lies in the convex hull of the control
   points $P_0, dots, P_n$.
-] <thm-hull>
+] <cor-hull>
 
-#theorem(name: [Affine invariance])[
+#proposition(name: [Affine invariance])[
   For every affine map $A(x) = M x + v$,
   $A(B(t)) = sum_i b_(i,n)(t) A(P_i)$: transforming the curve is the same as
   transforming its control points.
-] <thm-affine>
+] <prop-affine>
 
-@thm-hull keeps a curve inside the region its control polygon spans, and
-@thm-affine is why the exporters and the Matplotlib adapter can move,
+@cor-hull keeps a curve inside the region its control polygon spans, and
+@prop-affine is why the exporters and the Matplotlib adapter can move,
 scale or rotate a curve by moving its control points alone.
 
 #api(("BernsteinBasis",), syntax: [
@@ -72,8 +92,13 @@ The operations on a curve, `derivative()`, `split()`, `segment()` and
 == Evaluation
 
 *de Casteljau's algorithm* evaluates $B(t)$ by repeated linear
-interpolation. Start from $P_i^((0)) = P_i$ and set
-$ P_i^((r)) = (1 - t) P_i^((r-1)) + t P_(i+1)^((r-1)), quad r = 1, dots, n, quad i = 0, dots, n - r. $
+interpolation.
+
+#definition(name: [de Casteljau points])[
+  For a parameter $t$, put $P_i^((0)) = P_i$ and
+  $ P_i^((r)) = (1 - t) P_i^((r-1)) + t P_(i+1)^((r-1)), quad r = 1, dots, n, quad i = 0, dots, n - r. $
+] <def-casteljau>
+
 Each round averages neighbouring points, so the polygon shrinks by one
 point; after $n$ rounds one point is left (@fig-casteljau).
 
