@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:03:11.949340</dc:date>
+    <dc:date>2026-10-04T14:51:49.518439</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -61,7 +61,7 @@ z
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(121.45 27.197) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(120.075 25.6515) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-51" d="M -45 -1728 
 L 0 -1766 
@@ -103,7 +103,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(356.682353 271.5835) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(356.682353 272.80725) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-32" d="M 339 1741 
 C 339 531 941 -115 2067 -115 
@@ -143,7 +143,7 @@ z
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(111.7 278.5835) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(108.95 279.80725) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -165,7 +165,7 @@ z
    </g>
    <g id="aggregation.A.quantity.label">
     <!-- $Q_A$ -->
-    <g style="fill: #222222" transform="translate(228.838137 282.122) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(225.235637 286.115) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-22" d="M -122 -19 
 C 115 -6 358 0 595 0 
@@ -206,7 +206,7 @@ z
    </g>
    <g id="aggregation.A.price.label">
     <!-- $p_1$ -->
-    <g style="fill: #222222" transform="translate(109.52 150.097587) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(104.68 151.321337) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-12" d="M 384 3827 
 L 429 3552 
@@ -236,41 +236,41 @@ z
    <g id="aggregation.A.curve.connector.0">
     <path d="M 180.121569 66.659478 
 L 180.121569 127.402435 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.connector.1">
     <path d="M 236.043137 127.402435 
 L 236.043137 188.145391 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.price">
     <path d="M 124.2 147.650087 
 L 236.043137 147.650087 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.quantity">
     <path d="M 236.043137 196.295071 
 L 236.043137 269.136 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.0">
     <path d="M 124.2 66.659478 
 L 180.121569 66.659478 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.1">
     <path d="M 180.121569 127.402435 
 L 236.043137 127.402435 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.2">
     <path d="M 236.043137 188.145391 
 L 291.964706 188.145391 
-" clip-path="url(#p19958b91fd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p42a236af6b)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Individual A -->
-    <g style="fill: #222222" transform="translate(203.229926 30.288) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(186.124301 30.288) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-2a" d="M 141 -19 
 C 454 -6 762 0 1075 0 
@@ -537,7 +537,7 @@ z
    </g>
    <g id="aggregation.A.curve.closed">
     <defs>
-     <path id="m4d73baa5ae" d="M 0 2.915476 
+     <path id="mb93f80eef9" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -550,14 +550,14 @@ z
 " style="stroke: #01a2d9; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m4d73baa5ae" x="124.2" y="66.659478" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="180.121569" y="127.402435" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="236.043137" y="188.145391" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="124.2" y="66.659478" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="180.121569" y="127.402435" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="236.043137" y="188.145391" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.A.curve.open">
     <defs>
-     <path id="m477a1d52a3" d="M 0 2.915476 
+     <path id="mdaa83f0895" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -570,14 +570,14 @@ z
 " style="stroke: #01a2d9; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m477a1d52a3" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.A.curve.label">
     <!-- $D_A$ -->
-    <g style="fill: #01a2d9" transform="translate(298.703609 178.310488) scale(0.11 -0.11)">
+    <g style="fill: #01a2d9" transform="translate(298.701109 176.764988) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-25" d="M 179 -19 
 C 378 -6 576 0 774 0 
@@ -645,25 +645,25 @@ z
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(393.228824 27.197) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(391.853824 25.6515) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(628.461176 271.5835) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(628.461176 272.80725) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
     </g>
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(383.478824 278.5835) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(380.728824 279.80725) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Regular-11"/>
     </g>
    </g>
    <g id="aggregation.B.quantity.label">
     <!-- $Q_B$ -->
-    <g style="fill: #222222" transform="translate(445.135392 282.122) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(441.752892 286.115) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-23" d="M 166 -19 
 C 358 -6 557 0 749 0 
@@ -708,7 +708,7 @@ z
    </g>
    <g id="aggregation.B.price.label">
     <!-- $p_1$ -->
-    <g style="fill: #222222" transform="translate(381.298824 150.097587) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(376.458824 151.321337) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
      <use xlink:href="#TeXGyrePagella-Regular-12" transform="translate(49.999954 -13.664062) scale(0.7)"/>
     </g>
@@ -716,41 +716,41 @@ z
    <g id="aggregation.B.curve.connector.0">
     <path d="M 451.900392 107.154783 
 L 451.900392 167.897739 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.connector.1">
     <path d="M 507.821961 167.897739 
 L 507.821961 228.640696 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.price">
     <path d="M 395.978824 147.650087 
 L 451.900392 147.650087 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.quantity">
     <path d="M 451.900392 176.047419 
 L 451.900392 269.136 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.0">
     <path d="M 395.978824 107.154783 
 L 451.900392 107.154783 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.1">
     <path d="M 451.900392 167.897739 
 L 507.821961 167.897739 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.2">
     <path d="M 507.821961 228.640696 
 L 563.743529 228.640696 
-" clip-path="url(#pa38d0df1ae)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p81ccf7b8a5)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_2">
     <!-- Individual B -->
-    <g style="fill: #222222" transform="translate(476.010937 30.288) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(459.406406 30.288) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-23" d="M 166 4237 
 L 397 4218 
@@ -804,21 +804,21 @@ z
    </g>
    <g id="aggregation.B.curve.closed">
     <g>
-     <use xlink:href="#m4d73baa5ae" x="395.978824" y="107.154783" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="451.900392" y="167.897739" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="507.821961" y="228.640696" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="395.978824" y="107.154783" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="451.900392" y="167.897739" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="507.821961" y="228.640696" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.B.curve.open">
     <g>
-     <use xlink:href="#m477a1d52a3" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.B.curve.label">
     <!-- $D_B$ -->
-    <g style="fill: #01a2d9" transform="translate(570.682432 218.805793) scale(0.11 -0.11)">
+    <g style="fill: #01a2d9" transform="translate(570.659932 217.260293) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-25" transform="translate(0 0.796875)"/>
      <use xlink:href="#TeXGyrePagella-Italic-23" transform="translate(77.799927 -13.664062) scale(0.7)"/>
     </g>
@@ -857,25 +857,25 @@ z
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(665.007647 27.197) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(663.632647 25.6515) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(900.24 271.5835) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(900.24 272.80725) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
     </g>
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(655.257647 278.5835) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(652.507647 279.80725) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Regular-11"/>
     </g>
    </g>
    <g id="aggregation.market.quantity.label">
     <!-- $Q_A + Q_B = Q$ -->
-    <g style="fill: #222222" transform="translate(728.320588 282.122) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(713.305588 286.115) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-c" d="M 512 1408 
 L 2240 1408 
@@ -925,7 +925,7 @@ z
    </g>
    <g id="aggregation.market.price.label">
     <!-- $p_1$ -->
-    <g style="fill: #222222" transform="translate(653.077647 150.097587) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(648.237647 151.321337) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
      <use xlink:href="#TeXGyrePagella-Regular-12" transform="translate(49.999954 -13.664062) scale(0.7)"/>
     </g>
@@ -933,71 +933,71 @@ z
    <g id="aggregation.market.curve.connector.0">
     <path d="M 697.955294 66.659478 
 L 697.955294 107.154783 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.1">
     <path d="M 728.152941 107.154783 
 L 728.152941 127.402435 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.2">
     <path d="M 758.350588 127.402435 
 L 758.350588 167.897739 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.3">
     <path d="M 788.548235 167.897739 
 L 788.548235 188.145391 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.4">
     <path d="M 818.745882 188.145391 
 L 818.745882 228.640696 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.price">
     <path d="M 667.757647 147.650087 
 L 758.350588 147.650087 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.quantity">
     <path d="M 758.350588 176.047419 
 L 758.350588 269.136 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.0">
     <path d="M 667.757647 66.659478 
 L 697.955294 66.659478 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.1">
     <path d="M 697.955294 107.154783 
 L 728.152941 107.154783 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.2">
     <path d="M 728.152941 127.402435 
 L 758.350588 127.402435 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.3">
     <path d="M 758.350588 167.897739 
 L 788.548235 167.897739 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.4">
     <path d="M 788.548235 188.145391 
 L 818.745882 188.145391 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.5">
     <path d="M 818.745882 228.640696 
 L 848.943529 228.640696 
-" clip-path="url(#p1bfd55f8cd)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p00d93d6cc7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_3">
     <!-- Market -->
-    <g style="fill: #222222" transform="translate(762.027574 30.288) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(752.541949 30.288) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-2e" d="M 102 -19 
 C 352 -6 595 0 845 0 
@@ -1156,40 +1156,40 @@ z
    </g>
    <g id="aggregation.market.curve.closed">
     <g>
-     <use xlink:href="#m4d73baa5ae" x="667.757647" y="66.659478" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="697.955294" y="107.154783" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="728.152941" y="127.402435" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="758.350588" y="167.897739" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="788.548235" y="188.145391" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4d73baa5ae" x="818.745882" y="228.640696" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="667.757647" y="66.659478" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="697.955294" y="107.154783" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="728.152941" y="127.402435" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="758.350588" y="167.897739" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="788.548235" y="188.145391" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mb93f80eef9" x="818.745882" y="228.640696" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.market.curve.open">
     <g>
-     <use xlink:href="#m477a1d52a3" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m477a1d52a3" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#mdaa83f0895" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.market.curve.label">
     <!-- $D$ -->
-    <g style="fill: #01a2d9" transform="translate(855.717432 218.805793) scale(0.11 -0.11)">
+    <g style="fill: #01a2d9" transform="translate(855.732432 217.260293) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-25" transform="translate(0 0.796875)"/>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p19958b91fd">
+  <clipPath id="p42a236af6b">
    <rect x="124.2" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="pa38d0df1ae">
+  <clipPath id="p81ccf7b8a5">
    <rect x="395.978824" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="p1bfd55f8cd">
+  <clipPath id="p00d93d6cc7">
    <rect x="667.757647" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
  </defs>

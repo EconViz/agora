@@ -27,6 +27,7 @@ matplotlib.use("Agg")
 
 from matplotlib import font_manager
 from mosaickit import CanvasGrid, TextStyle
+from mosaickit.rendering.matplotlib import fonts as mpl_fonts
 from mosaickit.themes import resolution
 
 from principle_viz import (
@@ -117,6 +118,21 @@ def use_manual_fonts() -> None:
     resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
         base, text=dataclasses.replace(base.text or TextStyle(), family=FONT)
     )
+    # Every label, axis mark and brace text is set through MosaicKit's
+    # font_properties(); scale its size there, in each module that imported it
+    # (placement measures text through the same function, so labels still
+    # avoid each other at the larger size).
+    scale = CONFIG["fonts"].get("text_scale", 1.0)
+    original = mpl_fonts.font_properties
+
+    def font_properties(style):
+        props = original(style)
+        props.set_size(props.get_size_in_points() * scale)
+        return props
+
+    for name, module in list(sys.modules.items()):
+        if name.startswith("mosaickit") and getattr(module, "font_properties", None) is original:
+            module.font_properties = font_properties
 
 
 def out(group: str, name: str) -> Path:

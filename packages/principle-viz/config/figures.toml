@@ -9,6 +9,10 @@ format = "svg"   # vector; Typst embeds SVG directly
 [fonts]
 # Text and math in the figures use TeX Gyre Pagella, the manual's body face.
 family = "TeX Gyre Pagella"
+# A figure is drawn at 6 x 6 in and set at about half the text width, which
+# shrinks its 10-11 pt labels; scale every text size by this factor (line
+# widths are unchanged).
+text_scale = 1.5
 # Font files registered with matplotlib (relative to TEXMFDIST).
 texmf_files = [
   "fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",

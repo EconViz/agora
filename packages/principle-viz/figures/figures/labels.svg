@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:03:12.969019</dc:date>
+    <dc:date>2026-10-04T14:51:50.837127</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -61,7 +61,7 @@ z
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(51.25 42.749) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(49.875 41.2035) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-51" d="M -45 -1728 
 L 0 -1766 
@@ -103,7 +103,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(394.8 386.9275) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(394.8 388.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-32" d="M 339 1741 
 C 339 531 941 -115 2067 -115 
@@ -144,16 +144,16 @@ z
    <g id="market.demand">
     <path d="M 54 107.28 
 L 333 384.48 
-" clip-path="url(#p2076168b1b)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p6a9f30f9b5)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 329.04 
 L 306.216 78.4512 
-" clip-path="url(#p2076168b1b)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p6a9f30f9b5)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.equilibrium">
     <defs>
-     <path id="m4576c633ef" d="M 0 3.25 
+     <path id="m03b384b3cb" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -166,12 +166,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m4576c633ef" x="165.6" y="218.16" style="fill: #222222"/>
+     <use xlink:href="#m03b384b3cb" x="165.6" y="218.16" style="fill: #222222"/>
     </g>
    </g>
    <g id="market.demand.label">
     <!-- Demand -->
-    <g style="fill: #01a2d9" transform="translate(336.648583 377.473573) scale(0.11 -0.11)">
+    <g style="fill: #01a2d9" transform="translate(301.410234 374.833) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-25" d="M 141 4237 
 L 397 4218 
@@ -376,7 +376,7 @@ z
    </g>
    <g id="market.supply.label">
     <!-- Supply -->
-    <g style="fill: #e3120b" transform="translate(310.331224 71.299445) scale(0.11 -0.11)">
+    <g style="fill: #e3120b" transform="translate(310.236497 69.877781) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-34" d="M 154 3098 
 C 154 2784 237 2554 422 2381 
@@ -529,7 +529,7 @@ z
    </g>
    <g id="market.equilibrium.label">
     <!-- $E$ -->
-    <g style="fill: #222222" transform="translate(162.19 206.819) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(160.485 205.2735) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-26" d="M 192 -19 
 C 518 -6 851 0 1178 0 
@@ -576,7 +576,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p2076168b1b">
+  <clipPath id="p6a9f30f9b5">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

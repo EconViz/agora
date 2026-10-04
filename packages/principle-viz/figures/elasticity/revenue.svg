@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:03:12.019752</dc:date>
+    <dc:date>2026-10-04T14:51:49.660348</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -61,7 +61,7 @@ z
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(105.25 42.749) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(103.875 41.2035) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-51" d="M -45 -1728 
 L 0 -1766 
@@ -103,7 +103,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(418.363636 386.9275) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(418.363636 388.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-32" d="M 339 1741 
 C 339 531 941 -115 2067 -115 
@@ -143,7 +143,7 @@ z
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(95.5 393.9275) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(92.75 395.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -166,11 +166,11 @@ z
    <g id="elasticity.demand">
     <path d="M 108 67.68 
 L 361.636364 384.48 
-" clip-path="url(#p9fb20a259c)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p8406cde2c5)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="elasticity.unit.point">
     <defs>
-     <path id="m90ee4cd6ad" d="M 0 3.25 
+     <path id="m39c88d49e7" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -183,12 +183,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m90ee4cd6ad" x="234.818182" y="226.08" style="fill: #222222"/>
+     <use xlink:href="#m39c88d49e7" x="234.818182" y="226.08" style="fill: #222222"/>
     </g>
    </g>
    <g id="elasticity.label.elastic">
     <!-- Elastic -->
-    <g style="fill: #222222" transform="translate(167.610615 130.175573) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(167.841708 128.489573) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-26" d="M 141 4237 
 L 448 4218 
@@ -377,7 +377,7 @@ z
    </g>
    <g id="elasticity.label.unit">
     <!-- Unit elastic -->
-    <g style="fill: #222222" transform="translate(241.812234 215.629573) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(242.010046 213.943573) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-36" d="M 77 4237 
 L 384 4218 
@@ -483,7 +483,7 @@ z
    </g>
    <g id="elasticity.label.inelastic">
     <!-- Inelastic -->
-    <g style="fill: #222222" transform="translate(309.723853 307.583573) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(309.993385 305.897573) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-2a" d="M 141 -19 
 C 454 -6 762 0 1075 0 
@@ -520,7 +520,7 @@ z
    </g>
    <g id="text_1">
     <!-- Demand and Elasticity -->
-    <g style="fill: #222222" transform="translate(199.828381 45.84) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(169.651662 45.84) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-25" d="M 141 4237 
 L 397 4218 
@@ -684,7 +684,7 @@ z
    </g>
    <g id="elasticity.demand.label">
     <!-- $D$ -->
-    <g style="fill: #01a2d9" transform="translate(365.494791 377.560573) scale(0.11 -0.11)">
+    <g style="fill: #01a2d9" transform="translate(365.509791 376.015073) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-25" d="M 179 -19 
 C 378 -6 576 0 774 0 
@@ -751,7 +751,7 @@ z
    </g>
    <g id="axes.y.label">
     <!-- $TR$ -->
-    <g style="fill: #222222" transform="translate(466.196364 42.749) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(462.676364 41.2035) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-35" d="M 339 3379 
 L 525 3379 
@@ -824,13 +824,13 @@ z
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(783.6 386.9275) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(783.6 388.15125) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
     </g>
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(460.736364 393.9275) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(457.986364 395.15125) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Regular-11"/>
     </g>
    </g>
@@ -936,16 +936,16 @@ L 716.926203 340.886439
 L 719.412834 351.451205 
 L 721.899465 362.238387 
 L 724.386096 373.247986 
-" clip-path="url(#p7e99dcf9a7)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pcec4a1eef1)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="elasticity.revenue.maximum">
     <g>
-     <use xlink:href="#m90ee4cd6ad" x="600.054545" y="95.227826" style="fill: #222222"/>
+     <use xlink:href="#m39c88d49e7" x="600.054545" y="95.227826" style="fill: #222222"/>
     </g>
    </g>
    <g id="elasticity.revenue.maximum.label">
     <!-- Maximum $TR$ at $|\varepsilon| = 1$ -->
-    <g style="fill: #222222" transform="translate(607.192973 84.777399) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(510.864545 81.919826) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-2e" d="M 102 -19 
 C 352 -6 595 0 845 0 
@@ -1145,7 +1145,7 @@ z
    </g>
    <g id="text_2">
     <!-- Total Revenue -->
-    <g style="fill: #222222" transform="translate(588.242557 45.84) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(569.654744 45.84) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-35" d="M 115 4429 
 C 147 4064 160 3814 160 3398 
@@ -1267,10 +1267,10 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p9fb20a259c">
+  <clipPath id="p8406cde2c5">
    <rect x="108" y="51.84" width="304.363636" height="332.64"/>
   </clipPath>
-  <clipPath id="p7e99dcf9a7">
+  <clipPath id="pcec4a1eef1">
    <rect x="473.236364" y="51.84" width="304.363636" height="332.64"/>
   </clipPath>
  </defs>

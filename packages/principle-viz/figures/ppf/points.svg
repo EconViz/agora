@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:03:12.901900</dc:date>
+    <dc:date>2026-10-04T14:51:50.687834</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -61,7 +61,7 @@ z
    </g>
    <g id="axes.y.label">
     <!-- Capital goods -->
-    <g style="fill: #222222" transform="translate(20.193047 42.727344) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(3.28957 41.171016) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-24" d="M 141 2189 
 C 141 806 1152 -128 2656 -128 
@@ -337,7 +337,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- Consumer goods -->
-    <g style="fill: #222222" transform="translate(305.707031 398.466) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(264.160547 402.459) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-4f" d="M 38 -19 
 C 301 -6 570 0 832 0 
@@ -518,7 +518,7 @@ z
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(41.5 393.9275) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(38.75 395.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -643,7 +643,7 @@ L 342.21913 378.723882
 L 345.130435 384.48 
 L 345.130435 384.48 
 z
-" clip-path="url(#pdbfa34a7e5)" style="fill: #01a2d9; fill-opacity: 0.12"/>
+" clip-path="url(#p9f89fe09dc)" style="fill: #01a2d9; fill-opacity: 0.12"/>
    </g>
    <g id="ppf.frontier">
     <path d="M 54 95.227826 
@@ -747,11 +747,11 @@ L 336.396522 367.385197
 L 339.307826 373.025614 
 L 342.21913 378.723882 
 L 345.130435 384.48 
-" clip-path="url(#pdbfa34a7e5)" style="fill: none; stroke: #222222; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#p9f89fe09dc)" style="fill: none; stroke: #222222; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Production Possibilities Frontier -->
-    <g style="fill: #222222" transform="translate(136.475625 45.84) scale(0.12 -0.12)">
+    <g style="fill: #222222" transform="translate(94.013438 45.84) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-31" d="M 141 -19 
 C 454 -6 762 0 1075 0 
@@ -898,7 +898,7 @@ z
    </g>
    <g id="ppf.point.0">
     <defs>
-     <path id="m619a7cb7aa" d="M 0 3.25 
+     <path id="meea31c1f9b" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -911,12 +911,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m619a7cb7aa" x="228.678261" y="199.358609" style="fill: #222222"/>
+     <use xlink:href="#meea31c1f9b" x="228.678261" y="199.358609" style="fill: #222222"/>
     </g>
    </g>
    <g id="ppf.point.1">
     <defs>
-     <path id="m32f24add39" d="M 0 3.25 
+     <path id="md7463341ba" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -929,12 +929,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m32f24add39" x="170.452174" y="276.010435" style="fill: #666666"/>
+     <use xlink:href="#md7463341ba" x="170.452174" y="276.010435" style="fill: #666666"/>
     </g>
    </g>
    <g id="ppf.point.2">
     <defs>
-     <path id="mf6b7adfdab" d="M 0 3.25 
+     <path id="md44e091a29" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -947,12 +947,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mf6b7adfdab" x="257.791304" y="167.54087" style="fill: #00887d"/>
+     <use xlink:href="#md44e091a29" x="257.791304" y="167.54087" style="fill: #00887d"/>
     </g>
    </g>
    <g id="ppf.point.0.label">
     <!-- A -->
-    <g style="fill: #222222" transform="translate(235.706844 189.470182) scale(0.1 -0.1)">
+    <g style="fill: #222222" transform="translate(235.681922 188.065182) scale(0.15 -0.15)">
      <defs>
       <path id="TeXGyrePagella-Regular-22" d="M 96 -19 
 C 326 -6 563 0 794 0 
@@ -993,7 +993,7 @@ z
    </g>
    <g id="ppf.point.1.label">
     <!-- B -->
-    <g style="fill: #222222" transform="translate(177.595914 266.122008) scale(0.1 -0.1)">
+    <g style="fill: #222222" transform="translate(177.50857 264.717008) scale(0.15 -0.15)">
      <defs>
       <path id="TeXGyrePagella-Regular-23" d="M 166 4237 
 L 397 4218 
@@ -1036,13 +1036,13 @@ z
    </g>
    <g id="ppf.point.2.label">
     <!-- C -->
-    <g style="fill: #222222" transform="translate(264.924419 157.652442) scale(0.1 -0.1)">
+    <g style="fill: #222222" transform="translate(264.831763 156.247442) scale(0.15 -0.15)">
      <use xlink:href="#TeXGyrePagella-Regular-24"/>
     </g>
    </g>
    <g id="ppf.frontier.label">
     <!-- PPF -->
-    <g style="fill: #222222" transform="translate(349.096518 377.560573) scale(0.11 -0.11)">
+    <g style="fill: #222222" transform="translate(349.045346 376.015073) scale(0.165 -0.165)">
      <use xlink:href="#TeXGyrePagella-Regular-31"/>
      <use xlink:href="#TeXGyrePagella-Regular-31" transform="translate(60.40625 0)"/>
      <use xlink:href="#TeXGyrePagella-Regular-27" transform="translate(120.8125 0)"/>
@@ -1051,7 +1051,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pdbfa34a7e5">
+  <clipPath id="p9f89fe09dc">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>
