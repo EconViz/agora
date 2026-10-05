@@ -6,10 +6,14 @@
 
 == 取樣
 
-#api(("UniformSampler", "Sample"), syntax: [
+#api(("UniformSampler",), syntax: [
   #raw("UniformSampler(")#meta("int")#raw(").sample(")#meta("curve")#raw(")")
 ])[
-  在曲線或路徑的定義域上，以 `count` 個等距參數求值（含兩端，`count` $>= 2$），位於 `bezierkit.sampling`。`Sample` 保存唯讀的參數 `t` 與 `points`，提供座標陣列 `x`、`y`，並可逐一取出 `(t, point)`。
+  在曲線或路徑的定義域上，以 `count` 個等距參數求值（含兩端，`count` $>= 2$），位於 `bezierkit.sampling`。
+]
+
+#api(("Sample",))[
+  取樣的結果：唯讀的參數 `t` 與 `points`，提供座標陣列 `x`、`y`，並可逐一取出 `(t, point)`。
 ]
 
 ```python
@@ -24,18 +28,29 @@ print(sample.x)   # [0.      0.90625 2.      3.09375 4.     ]
 文字格式的匯出器以固定的小數位數 `precision` 寫出每個座標，並接受 `transform`：在寫出前把每個控制點（`Point`）對應到二維 `Point`，例如由資料座標轉為頁面座標。
 
 #proposition(name: [四捨五入誤差])[
-  若每個控制點的每個座標至多改變 $epsilon$，則對每個 $t in [0, 1]$，$B(t)$ 的每個座標至多改變 $epsilon$，$B(t)$ 至多移動 $epsilon sqrt(d)$。四捨五入到小數點後 $p$ 位時，$epsilon = 1/2 dot 10^(-p)$。
+  設 $B$、$tilde(B)$ 是同為 $n$ 次的 $RR^d$ 中 Bézier 曲線，控制點分別為 $P_i$ 與 $tilde(P)_i$，且對每個 $i$ 與每個座標 $k$ 有 $|tilde(P)_(i,k) - P_(i,k)| <= epsilon$。則對每個 $t in [0, 1]$ 與每個 $k$，
+  $ |tilde(B)_k (t) - B_k (t)| <= epsilon, quad norm(tilde(B)(t) - B(t))_2 <= sqrt(d) epsilon. $
+  將每個座標四捨五入到小數點後 $p$ 位時，$epsilon = 1/2 dot 10^(-p)$。
 ] <prop-rounding>
 
 因此在預設的 `precision=6` 下，匯出的平面曲線處處與原曲線相差不超過 $0.71 times 10^(-6)$，不只在控制點上成立。依#ref(<prop-affine>)，仿射的 `transform` 是精確的；非仿射的變換能正確移動控制點，但一般不能正確移動控制點之間的曲線。
 
 == JSON
 
-#api(("dumps", "loads", "PathDocument"), syntax: [
-  #raw("dumps(")#meta("path")#raw(", *, metadata=None, indent=None)") \
+#api(("dumps",), syntax: [
+  #raw("dumps(")#meta("path")#raw(", *, metadata=None, indent=None)")
+])[
+  位於 `bezierkit.export.json`。以#ref(<tab-json>)的版本化格式寫出路徑，鍵依字母排序，不含 NaN 或無窮大。
+]
+
+#api(("loads",), syntax: [
   #raw("loads(")#meta("str")#raw(")")
 ])[
-  位於 `bezierkit.export.json`。`dumps()` 以#ref(<tab-json>)的版本化格式寫出路徑，鍵依字母排序，不含 NaN 或無窮大；`loads()` 驗證文件並回傳 `PathDocument`，內含 `path` 與 `metadata`。格式或版本不明、線段不是恰好四個點、點的維度不符或數值非有限時，拋出 `ValueError`。
+  驗證文件並回傳 `PathDocument`，內含 `path` 與 `metadata`。格式或版本不明、線段不是恰好四個點、點的維度不符或數值非有限時，拋出 `ValueError`。
+]
+
+#api(("PathDocument",))[
+  路徑與呼叫端的 metadata，即 `loads()` 的回傳值。
 ]
 
 #tbl(caption: [JSON 路徑格式第 1 版])[

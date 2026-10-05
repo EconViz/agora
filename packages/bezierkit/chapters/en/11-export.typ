@@ -8,13 +8,16 @@ gets native `.. controls ..` curves and SVG native `C` commands.
 
 == Sampling
 
-#api(("UniformSampler", "Sample"), syntax: [
+#api(("UniformSampler",), syntax: [
   #raw("UniformSampler(")#meta("int")#raw(").sample(")#meta("curve")#raw(")")
 ])[
   Evaluate any curve or path at `count` equally spaced parameters over its
-  domain, both ends included (`count` $>= 2$), in `bezierkit.sampling`. The
-  `Sample` holds the read-only parameters `t` and the `points`, with the
-  coordinate arrays `x` and `y` and iteration over `(t, point)` pairs.
+  domain, both ends included (`count` $>= 2$), in `bezierkit.sampling`.
+]
+
+#api(("Sample",))[
+  The result of sampling: the read-only parameters `t` and the `points`, with
+  the coordinate arrays `x` and `y` and iteration over `(t, point)` pairs.
 ]
 
 ```python
@@ -32,10 +35,13 @@ places `precision`, and accept a `transform` that maps each control point
 from data to page coordinates.
 
 #proposition(name: [Rounding error])[
-  If every coordinate of every control point is changed by at most
-  $epsilon$, then every coordinate of $B(t)$ changes by at most $epsilon$
-  for every $t in [0, 1]$, and $B(t)$ moves by at most $epsilon sqrt(d)$.
-  Rounding to $p$ decimal places gives $epsilon = 1/2 dot 10^(-p)$.
+  Let $B$ and $tilde(B)$ be Bézier curves of the same degree $n$ in $RR^d$
+  with control points $P_i$ and $tilde(P)_i$, and let
+  $|tilde(P)_(i,k) - P_(i,k)| <= epsilon$ for every $i$ and every
+  coordinate $k$. Then for every $t in [0, 1]$ and every $k$
+  $ |tilde(B)_k (t) - B_k (t)| <= epsilon, quad norm(tilde(B)(t) - B(t))_2 <= sqrt(d) epsilon. $
+  Rounding every coordinate to $p$ decimal places gives
+  $epsilon = 1/2 dot 10^(-p)$.
 ] <prop-rounding>
 
 So with the default `precision=6`, an exported planar curve stays within
@@ -46,16 +52,24 @@ them.
 
 == JSON
 
-#api(("dumps", "loads", "PathDocument"), syntax: [
-  #raw("dumps(")#meta("path")#raw(", *, metadata=None, indent=None)") \
+#api(("dumps",), syntax: [
+  #raw("dumps(")#meta("path")#raw(", *, metadata=None, indent=None)")
+])[
+  In `bezierkit.export.json`. Writes a path in the versioned schema of
+  @tab-json, with sorted keys and no NaN or infinity.
+]
+
+#api(("loads",), syntax: [
   #raw("loads(")#meta("str")#raw(")")
 ])[
-  In `bezierkit.export.json`. `dumps()` writes a path in the versioned
-  schema of @tab-json, with sorted keys and no NaN or infinity; `loads()`
-  validates a document and returns a `PathDocument` holding the `path` and
+  Validates a document and returns a `PathDocument` holding the `path` and
   its `metadata`. An unknown schema or version, a segment without exactly
   four points, a point of the wrong dimension, or a non-finite number raises
   `ValueError`.
+]
+
+#api(("PathDocument",))[
+  A path together with its caller metadata, as returned by `loads()`.
 ]
 
 #tbl(caption: [JSON path schema, version 1])[

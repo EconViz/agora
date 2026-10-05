@@ -16,22 +16,38 @@ cubic control points.
 == Notation
 
 A point or vector lives in $RR^d$ for some dimension $d >= 1$; most figures
-use $d = 2$. A Bézier curve of degree $n$ has $n + 1$ control points
-$P_0, dots, P_n$ and is the map
+use $d = 2$. The Euclidean norm of $x in RR^d$ is
+$ norm(x) = sqrt(x_1^2 + dots + x_d^2), $
+and $norm(x)_oo = max_k |x_k|$ is the maximum norm. A set $S subset.eq RR^d$
+is convex if $lambda p + (1 - lambda) q in S$ whenever $p, q in S$ and
+$lambda in [0, 1]$; the convex hull of a finite set of points is the set of
+all their convex combinations $sum_i lambda_i P_i$ with $lambda_i >= 0$ and
+$sum_i lambda_i = 1$. A map $A: RR^d -> RR^e$ is affine if
+$A(x) = M x + v$ for a matrix $M$ and a vector $v$. A function is
+$C^k$ if it has continuous derivatives up to order $k$.
+
+A Bézier curve of degree $n$ has $n + 1$ control points $P_0, dots, P_n$ and
+is the map
 $ B(t) = sum_(i=0)^n b_(i,n)(t) P_i, quad t in [0, 1], $
-where $b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i)$ are the Bernstein
-polynomials (@sec-curves). The control points, joined in order, form the
-control polygon. Every curve in the package is parameterized over
-$[0, 1]$; a parameter outside it raises `ParameterOutOfDomain`.
+where
+$ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i) $
+are the Bernstein polynomials (@sec-curves). The control points, joined in
+order, form the control polygon. Every curve in the package is parameterized
+over $[0, 1]$; a parameter outside it raises `ParameterOutOfDomain`. The
+letter $d$ always denotes the dimension; tolerances are written $epsilon$.
 
 == Mathematics and proofs
 
-The chapters state the properties the algorithms rely on as numbered
-theorems: what the Bernstein basis guarantees, why de Casteljau's algorithm
-evaluates and subdivides a curve, how far a Hermite interpolant can stray,
-what the exporters lose to rounding. Their proofs are collected in
-@app-proofs, so the chapters can be read for the API alone. The standard
-references are #citet(<farin2002>) and #citet(<prautzsch2002>).
+Each chapter first recalls the standard definitions it uses, with a
+reference, and then states the properties the algorithms rely on as numbered
+lemmas, propositions, theorems and corollaries: what the Bernstein basis
+guarantees, why de Casteljau's algorithm evaluates and subdivides a curve,
+how far a Hermite interpolant can stray, what the exporters lose to rounding.
+Their proofs are collected in @app-proofs, so the chapters can be read for
+the API alone. Conventions that belong to this package, and not to the
+literature, are called package conventions. The standard references are
+#citet(<farin2002>), #citet(<prautzsch2002>) and, for the Bernstein basis,
+#citet(<farouki2012>).
 
 == Reading guide
 
@@ -42,7 +58,7 @@ references are #citet(<farin2002>) and #citet(<prautzsch2002>).
     table.cell(rowspan: 3)[Foundations],
     [Points, vectors, parameters, errors], [#ref(<sec-geometry>)],
     [Bernstein basis, curves, evaluation], [#ref(<sec-curves>)],
-    [Derivatives, subdivision, reversal], [#ref(<sec-operations>)],
+    [Derivatives, reversal, subdivision], [#ref(<sec-operations>)],
     table.cell(rowspan: 2)[Cubics],
     [Cubic segments and piecewise paths], [#ref(<sec-paths>)],
     [Constructions and Hermite interpolation], [#ref(<sec-construction>)],

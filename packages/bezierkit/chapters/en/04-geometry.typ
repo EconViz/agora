@@ -12,15 +12,27 @@ finite; NaN and infinities raise `ValueError` when a value is created.
   #raw("Vector(")#meta("float")#raw(", ...)")
 ])[
   A point or a vector in $RR^d$, given by its $d >= 1$ coordinates. Points
-  and vectors combine as in affine geometry:
+  and vectors combine as in affine geometry (@tab-point-arithmetic).
 ]
 
-#param("point - point")[A `Vector`.]
-#param("point + vector, point - vector")[A `Point`.]
-#param("vector + vector, vector * scalar")[A `Vector`; `scalar * vector` works too.]
-#param("coords, dimension")[The coordinate tuple and $d$.]
-#param("x, y, z")[The first three coordinates, when they exist.]
-#param("dot(other), norm(), normalized()")[Vector inner product, Euclidean length, and the unit vector (a zero vector cannot be normalized).]
+#tbl(caption: [Arithmetic of points and vectors])[
+  #booktabs(
+    columns: (auto, 1fr),
+    header: ([Expression], [Result]),
+    [`point - point`], [A `Vector`],
+    [`point + vector`, `point - vector`], [A `Point`],
+    [`vector + vector`, `vector * scalar`], [A `Vector`; `scalar * vector` works too],
+  )
+] <tab-point-arithmetic>
+
+#param("coords")[The coordinate tuple.]
+#param("dimension")[The dimension $d$.]
+#param("x")[The first coordinate, when it exists.]
+#param("y")[The second coordinate, when it exists.]
+#param("z")[The third coordinate, when it exists.]
+#param("dot()")[The inner product of two vectors.]
+#param("norm()")[The Euclidean length of a vector.]
+#param("normalized()")[The unit vector in the direction of a vector; a zero vector cannot be normalized.]
 
 Mixing dimensions raises `DimensionMismatch`. `point + point` is not
 rejected: it adds the coordinates and returns a `Point`, which is meaningful
@@ -47,11 +59,15 @@ print(v.norm())                # 6.324555320336759
 
 == Parameters
 
-#api(("Interval", "ParameterValues"))[
+#api(("Interval",))[
   `Interval(start, end)` is a closed interval with `contains()`, `clamp()`
-  and `linspace()`. `ParameterValues` validates a scalar or a
-  one-dimensional array of parameters against a domain; every curve uses it,
-  so `at(1.2)` on a curve over $[0, 1]$ raises `ParameterOutOfDomain`.
+  and `linspace()`.
+]
+
+#api(("ParameterValues",))[
+  Validates a scalar or a one-dimensional array of parameters against a
+  domain. Every curve uses it, so `at(1.2)` on a curve over $[0, 1]$ raises
+  `ParameterOutOfDomain`.
 ]
 
 == Errors

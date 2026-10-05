@@ -16,19 +16,19 @@ bezierkit evaluate --points "0,0" --points "1,2" --points "3,2" --points "4,0" \
 
 == 命令
 
-#api(("bezierkit evaluate",), syntax: [
+#api(("evaluate",), syntax: [
   #raw("bezierkit evaluate --t ")#meta("values")#raw(" [--points ...] [--order ")#meta("int")#raw("] [--json]")
 ])[
   在每个 `--t` 计算曲线值，或其 `--order` 阶导数（默认 0）。每个值可为数字或含端点的范围 `start:stop:step`，例如 `0:1:0.25`；`--t` 可重复。
 ]
 
-#api(("bezierkit sample",), syntax: [
+#api(("sample",), syntax: [
   #raw("bezierkit sample [--points ...] [--count ")#meta("int")#raw("] [--format table|csv|json] [--output ")#meta("path")#raw("]")
 ])[
   以 `--count` 个（默认 50）等距参数采样，含两端，每列为 `t`、`x`、`y`（三维另有 `z`，更高维为 `c3`、`c4`……）。`--output` 写入文件而非标准输出。
 ]
 
-#api(("bezierkit construct slopes", "bezierkit construct tangents"), syntax: [
+#api(("construct slopes", "construct tangents"), syntax: [
   #raw("bezierkit construct slopes --start ")#meta("point")#raw(" --end ")#meta("point")#raw(" --start-slope ")#meta("float")#raw(" --end-slope ")#meta("float")#raw(" [--start-handle --end-handle]") \
   #raw("bezierkit construct tangents --start ... --end ... --start-direction ")#meta("vector")#raw(" --end-direction ")#meta("vector")#raw(" [...]")
 ])[

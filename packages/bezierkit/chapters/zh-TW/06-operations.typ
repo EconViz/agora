@@ -1,19 +1,26 @@
 #import "/template/manual.typ": *
 
-= 導數、分割與反轉 <sec-operations>
+= 導數、反轉與分割 <sec-operations>
 
 每項運算只作用於控制點，並回傳沿用原曲線求值策略的新曲線。
 
 == 導數
 
+Bézier 曲線的導數 $B'(t)$ 是其座標函數（$t$ 的多項式）的導數，為 $RR^d$ 中的向量。
+
 #lemma(name: [Bernstein 多項式的導數])[
-  對 $n >= 1$，$b'_(i,n)(t) = n [b_(i-1,n-1)(t) - b_(i,n-1)(t)]$。
+  對 $n >= 1$ 與每個整數 $i$，
+  $ b'_(i,n)(t) = n [b_(i-1,n-1)(t) - b_(i,n-1)(t)]. $
 ] <lem-bernstein-derivative>
+
+此為 #citet(<floater2025>) 的引理 1.4。
 
 #theorem(name: [速端曲線])[
   $n$ 次 Bézier 曲線（$n >= 1$）的導數是 $n - 1$ 次 Bézier 曲線
   $ B'(t) = sum_(i=0)^(n-1) b_(i,n-1)(t) dot n (P_(i+1) - P_i). $
 ] <thm-hodograph>
+
+控制點為 $n(P_(i+1) - P_i)$ 的曲線稱為 $B$ 的速端曲線（#citet(<floater2025>) 的定理 1.8；另見 #citet(<farin2002>)）。
 
 #corollary(name: [端點切線])[
   $B'(0) = n(P_1 - P_0)$，$B'(1) = n(P_n - P_(n-1))$。
@@ -34,15 +41,32 @@ print(list(d.control_points))
 print(d.at(0.5))   # Point(coords=(4.5, 0.0)): the tangent at the top is horizontal
 ```
 
+== 反轉
+
+#lemma(name: [對稱性])[
+  對所有 $i$ 與 $t$，$b_(i,n)(1 - t) = b_(n-i,n)(t)$。
+] <lem-symmetry>
+
+#proposition(name: [反轉])[
+  控制點為 $P_n, dots, P_0$ 的曲線就是 $t |-> B(1 - t)$。
+] <prop-reversal>
+
+#api(("BezierCurve.reversed",))[
+  依#ref(<prop-reversal>)，回傳反向走訪的曲線。
+]
+
 == 分割
 
 在 $t = c$ 執行 de Casteljau 演算法不只得到曲線值：每一輪的第一個點構成 $c$ 之前那段曲線的控制多邊形，最後一個點構成 $c$ 之後那段的控制多邊形（參見#ref(<fig-split>)）。
 
 #theorem(name: [分割])[
-  令 $c in [0, 1]$，並在 $t = c$ 計算 de Casteljau 的各點。令 $L_j = P_0^((j))$、$R_j = P_j^((n-j))$，$j = 0, dots, n$。則對每個 $s in [0, 1]$
-  $ B(c s) = sum_(j=0)^n b_(j,n)(s) L_j, quad
-    B(c + (1 - c) s) = sum_(j=0)^n b_(j,n)(s) R_j. $
+  令 $c in [0, 1]$，並在 $t = c$ 計算#ref(<def-casteljau>)的各點。令 $L_j = P_0^((j))$、$R_j = P_j^((n-j))$，$j = 0, dots, n$。則對每個 $s in [0, 1]$
+  $ B(c s) = sum_(j=0)^n b_(j,n)(s) L_j $
+  且
+  $ B(c + (1 - c) s) = sum_(j=0)^n b_(j,n)(s) R_j. $
 ] <thm-subdivision>
+
+這是經典結果，見 #citet(<floater2025>)（第 8.4 節，由 blossom 導出）與 #citet(<farin2002>)。
 
 #fig("/figures/curves/split.pdf", width: auto, caption: [
   在 $t = 0.4$ 分割三次曲線。
@@ -67,16 +91,3 @@ print(left.at(1.0), right.at(0.0))         # both B(0.4) = (1.552, 1.44)
 print(curve.segment(0.25, 0.75).at(0.5))   # B(0.5) = (2.0, 1.5)
 ```
 
-== 反轉
-
-#lemma(name: [對稱性])[
-  對所有 $i$ 與 $t$，$b_(i,n)(1 - t) = b_(n-i,n)(t)$。
-] <lem-symmetry>
-
-#proposition(name: [反轉])[
-  控制點為 $P_n, dots, P_0$ 的曲線就是 $t |-> B(1 - t)$。
-] <prop-reversal>
-
-#api(("BezierCurve.reversed",))[
-  依#ref(<prop-reversal>)，回傳反向走訪的曲線。
-]

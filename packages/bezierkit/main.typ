@@ -27,6 +27,7 @@
 // Proofs of the theorems stated in the chapters, then the back matter.
 #show: appendix
 #include "chapters/" + edition + "/a-proofs.typ"
+#include "chapters/" + edition + "/a-proofs-b.typ"
 #include "chapters/" + edition + "/changelog.typ"
 
 #command-index()

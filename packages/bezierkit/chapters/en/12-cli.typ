@@ -22,7 +22,7 @@ writes, so commands can be piped together.
 
 == Commands
 
-#api(("bezierkit evaluate",), syntax: [
+#api(("evaluate",), syntax: [
   #raw("bezierkit evaluate --t ")#meta("values")#raw(" [--points ...] [--order ")#meta("int")#raw("] [--json]")
 ])[
   Evaluate the curve, or its derivative of order `--order` (default 0), at
@@ -30,7 +30,7 @@ writes, so commands can be piped together.
   such as `0:1:0.25`; `--t` may be repeated.
 ]
 
-#api(("bezierkit sample",), syntax: [
+#api(("sample",), syntax: [
   #raw("bezierkit sample [--points ...] [--count ")#meta("int")#raw("] [--format table|csv|json] [--output ")#meta("path")#raw("]")
 ])[
   Sample the curve at `--count` (default 50) equally spaced parameters,
@@ -39,7 +39,7 @@ writes, so commands can be piped together.
   output.
 ]
 
-#api(("bezierkit construct slopes", "bezierkit construct tangents"), syntax: [
+#api(("construct slopes", "construct tangents"), syntax: [
   #raw("bezierkit construct slopes --start ")#meta("point")#raw(" --end ")#meta("point")#raw(" --start-slope ")#meta("float")#raw(" --end-slope ")#meta("float")#raw(" [--start-handle --end-handle]") \
   #raw("bezierkit construct tangents --start ... --end ... --start-direction ")#meta("vector")#raw(" --end-direction ")#meta("vector")#raw(" [...]")
 ])[

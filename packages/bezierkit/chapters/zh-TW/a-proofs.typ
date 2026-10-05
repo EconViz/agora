@@ -2,15 +2,29 @@
 
 = 證明 <app-proofs>
 
-本附錄依各章出現的順序，證明其中陳述的引理、命題、定理與推論。以下 $b_(i,n)$ 為#ref(<def-bernstein>)的 Bernstein 多項式，$B$ 為#ref(<def-curve>)的 Bézier 曲線，次數為 $n$，控制點為 $P_0, dots, P_n$。
+本附錄依各章出現的順序，證明其中陳述的引理、命題、定理與推論。以下 $b_(i,n)$ 為#ref(<def-bernstein>)的 Bernstein 多項式，$B$ 為#ref(<def-curve>)的 Bézier 曲線，次數為 $n$，控制點為 $P_0, dots, P_n$。若某個結果在文獻中也有證明，章節中會標明出處；此處的證明寫成自足的形式，使手冊不依賴某一版本的書。
 
 == Bernstein 基底與求值
 
 #proof(of: <lem-binomial>)[
-  指標超出所述範圍時兩邊都為零，因此設 $0 <= j <= n$、$1 <= i <= n$。第一式通分為 $j! (n - j)!$：
-  $ (n-1)! / (j! (n-1-j)!) + (n-1)! / ((j-1)! (n-j)!)
-    = ((n-1)! ((n - j) + j)) / (j! (n-j)!) = binom(n, j). $
-  第二式則為 $i binom(n, i) = n! slash ((i-1)! (n-i)!) = n binom(n-1, i-1)$。
+  _第一式。_ 依 $j$ 的位置分別討論。
+  - 若 $j < 0$ 或 $j > n$，三個係數都為零，因為 $j > n$ 蘊含 $j - 1 > n - 1$。
+  - 若 $j = 0$，左邊為 $1 + 0 = 1 = binom(n, 0)$。
+  - 若 $j = n$，左邊為 $0 + 1 = 1 = binom(n, n)$。
+  - 若 $1 <= j <= n - 1$，通分為 $j! (n - j)!$：
+    $ binom(n-1, j) + binom(n-1, j-1)
+      = ((n-1)! (n - j)) / (j! (n-j)!) + ((n-1)! j) / (j! (n-j)!)
+      = (n-1)! n / (j! (n-j)!) = binom(n, j). $
+
+  _第二式。_ 若 $i < 1$ 或 $i > n$，兩邊都為零：$i = 0$ 時左邊含因子 $i = 0$，且 $binom(n-1, -1) = 0$；$i < 0$ 與 $i > n$ 時每個係數都為零。若 $1 <= i <= n$，
+  $ i binom(n, i) = i n! / (i! (n - i)!) = n (n-1)! / ((i-1)! (n-i)!)
+    = n binom(n-1, i-1). $
+]
+
+#proof(of: <prop-basis>)[
+  次數不超過 $n$ 的實係數多項式空間 $Pi_n$ 的維度為 $n + 1$，一組基底為 $1, t, dots, t^n$。$n + 1$ 個多項式 $b_(0,n), dots, b_(n,n)$ 都屬於 $Pi_n$，因此只需證明它們線性獨立。設對所有 $t$ 有 $sum_(i=0)^n c_i b_(i,n)(t) = 0$。對 $t in (0, 1)$ 除以 $(1 - t)^n > 0$，並令 $u = t slash (1 - t) in (0, oo)$：
+  $ sum_(i=0)^n c_i binom(n, i) u^i = 0. $
+  有無窮多個根的 $u$ 的多項式必為零多項式，所以每個 $i$ 都有 $c_i binom(n, i) = 0$。因 $binom(n, i) != 0$，所有 $c_i = 0$。
 ]
 
 #proof(of: <prop-unity>)[
@@ -19,7 +33,7 @@
 ]
 
 #proof(of: <prop-endpoints>)[
-  在 $t = 0$，除非 $i = 0$，否則因子 $t^i$ 為零，且 $b_(0,n)(0) = (1 - 0)^n = 1$。在 $t = 1$，除非 $i = n$，否則因子 $(1-t)^(n-i)$ 為零，且 $b_(n,n)(1) = 1$。因此 $B(0) = sum_i b_(i,n)(0) P_i = P_0$，同理 $B(1) = P_n$。
+  約定 $0^0 = 1$。$b_(i,n)(0) = binom(n, i) 0^i$ 在 $i = 0$ 時為 $1$，在 $i >= 1$ 時為 $0$。同理 $b_(i,n)(1) = binom(n, i) 0^(n-i)$ 在 $i = n$ 時為 $1$，在 $i < n$ 時為 $0$。因此 $B(0) = sum_i b_(i,n)(0) P_i = P_0$，$B(1) = sum_i b_(i,n)(1) P_i = P_n$。
 ]
 
 #proof(of: <cor-hull>)[
@@ -27,142 +41,101 @@
 ]
 
 #proof(of: <prop-affine>)[
-  由 $M$ 的線性與#ref(<prop-unity>)，
-  $ A(B(t)) = M sum_i b_(i,n)(t) P_i + (sum_i b_(i,n)(t)) v
-            = sum_i b_(i,n)(t) (M P_i + v)
-            = sum_i b_(i,n)(t) A(P_i). $
+  由 $M$ 的線性與#ref(<prop-unity>)（$sum_i b_(i,n)(t) = 1$），
+  $ A(B(t)) &= M sum_i b_(i,n)(t) P_i + v \
+            &= sum_i b_(i,n)(t) M P_i + (sum_i b_(i,n)(t)) v \
+            &= sum_i b_(i,n)(t) (M P_i + v)
+             = sum_i b_(i,n)(t) A(P_i). $
 ]
 
 #proof(of: <thm-casteljau>)[
-  對 $r$ 作歸納。$r = 0$ 時，$P_i^((0)) = P_i = b_(0,0)(t) P_i$。假設 $r - 1$ 時成立，則
+  對 $r$ 作歸納。$r = 0$ 時，$P_i^((0)) = P_i = b_(0,0)(t) P_i$。假設對 $r - 1$ 與每個容許的 $i$ 都成立。對 $0 <= i <= n - r$，$i$ 與 $i + 1$ 對 $r - 1$ 都是容許的，因此
   $ P_i^((r)) &= (1 - t) sum_(j=0)^(r-1) b_(j,r-1)(t) P_(i+j)
                 + t sum_(j=0)^(r-1) b_(j,r-1)(t) P_(i+1+j) \
-              &= sum_(j=0)^r [(1 - t) b_(j,r-1)(t) + t b_(j-1,r-1)(t)] P_(i+j). $
-  由#ref(<lem-binomial>)，方括號等於 $[binom(r-1, j) + binom(r-1, j-1)] t^j (1-t)^(r-j) = b_(j,r)(t)$。取 $r = n$、$i = 0$，即得 $P_0^((n)) = B(t)$。
+              &= sum_(j=0)^r [(1 - t) b_(j,r-1)(t) + t b_(j-1,r-1)(t)] P_(i+j), $
+  其中第二個和式以 $j + 1 -> j$ 重新編號，兩端由約定 $b_(-1,r-1) = b_(r,r-1) = 0$ 涵蓋。對 $0 <= j <= r$，由#ref(<lem-binomial>)，方括號為
+  $ binom(r-1, j) t^j (1-t)^(r-j) + binom(r-1, j-1) t^j (1-t)^(r-j)
+    = binom(r, j) t^j (1-t)^(r-j) = b_(j,r)(t). $
+  取 $r = n$、$i = 0$，結論即為 $P_0^((n)) = B(t)$。
 ]
 
-== 導數、分割與反轉
+#proof(of: <lem-raise-identity>)[
+  把 $b_(i,n)(t)$ 乘以 $1 = (1 - t) + t$：
+  $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n+1-i) + binom(n, i) t^(i+1) (1-t)^(n-i). $
+  對 $0 <= i <= n$，$binom(n+1, i) = (n + 1) slash (n + 1 - i) dot binom(n, i)$ 且 $binom(n+1, i+1) = (n + 1) slash (i + 1) dot binom(n, i)$，所以
+  $ binom(n, i) = (n + 1 - i) / (n + 1) binom(n+1, i) = (i + 1) / (n + 1) binom(n+1, i+1). $
+  因此第一項是 $b_(i,n+1)(t)$ 的 $(n + 1 - i) slash (n + 1)$ 倍，第二項是 $b_(i+1,n+1)(t)$ 的 $(i + 1) slash (n + 1)$ 倍。
+]
+
+#proof(of: <prop-raise-degree>)[
+  由#ref(<lem-raise-identity>)，
+  $ B(t) &= sum_(i=0)^n [(n + 1 - i) / (n + 1) b_(i,n+1)(t) + (i + 1) / (n + 1) b_(i+1,n+1)(t)] P_i \
+         &= sum_(k=0)^n (n + 1 - k) / (n + 1) b_(k,n+1)(t) P_k
+          + sum_(k=1)^(n+1) k / (n + 1) b_(k,n+1)(t) P_(k-1), $
+  其中第一個和式取 $k = i$，第二個取 $k = i + 1$。第一個和式的係數在 $k = n + 1$ 為零，可延伸到 $k = n + 1$；第二個和式同理可延伸到 $k = 0$。合併 $b_(k,n+1)(t)$ 的係數即得 $Q_k$。
+]
+
+== 導數、反轉與分割
 
 #proof(of: <lem-bernstein-derivative>)[
-  由乘積法則，
-  $ b'_(i,n)(t) = binom(n, i) [i t^(i-1) (1-t)^(n-i) - (n - i) t^i (1-t)^(n-i-1)]. $
-  由#ref(<lem-binomial>)，$i binom(n, i) = n binom(n-1, i-1)$；以 $n - i$ 代替 $i$ 並利用 $binom(n, i) = binom(n, n-i)$，又得 $(n - i) binom(n, i) = n binom(n-1, i)$。因此兩項分別為 $n b_(i-1,n-1)(t)$ 與 $n b_(i,n-1)(t)$；$i = 0$ 與 $i = n$ 時消失的那一項，正符合約定 $b_(-1,n-1) = b_(n,n-1) = 0$。
+  依 $i$ 的取值分別討論。
+  - 若 $i < 0$ 或 $i > n$，則 $b_(i,n) = 0$，右邊兩項也為零。
+  - 若 $i = 0$，$b_(0,n)(t) = (1 - t)^n$ 的導數為 $-n (1 - t)^(n-1) = n [b_(-1,n-1)(t) - b_(0,n-1)(t)]$。
+  - 若 $i = n$，$b_(n,n)(t) = t^n$ 的導數為 $n t^(n-1) = n [b_(n-1,n-1)(t) - b_(n,n-1)(t)]$。
+  - 若 $1 <= i <= n - 1$，由乘積法則，
+    $ b'_(i,n)(t) = binom(n, i) [i t^(i-1) (1-t)^(n-i) - (n - i) t^i (1-t)^(n-i-1)]. $
+    由#ref(<lem-binomial>)，$i binom(n, i) = n binom(n-1, i-1)$；以 $n - i$ 代替 $i$ 並利用 $binom(n, n-i) = binom(n, i)$，得 $(n - i) binom(n, i) = n binom(n-1, i)$。因此兩項分別為 $n b_(i-1,n-1)(t)$ 與 $n b_(i,n-1)(t)$。
 ]
 
 #proof(of: <thm-hodograph>)[
-  由#ref(<lem-bernstein-derivative>)，將第一個和式的指標平移後，
-  $ B'(t) = n sum_(i=0)^n [b_(i-1,n-1)(t) - b_(i,n-1)(t)] P_i
-          = n sum_(i=0)^(n-1) b_(i,n-1)(t) (P_(i+1) - P_i). $
+  由線性與#ref(<lem-bernstein-derivative>)，
+  $ B'(t) = n sum_(i=0)^n b_(i-1,n-1)(t) P_i - n sum_(i=0)^n b_(i,n-1)(t) P_i. $
+  第一個和式中 $i = 0$ 的項為零；代入 $k = i - 1$ 得 $sum_(k=0)^(n-1) b_(k,n-1)(t) P_(k+1)$。第二個和式中 $i = n$ 的項為零。因此
+  $ B'(t) = n sum_(k=0)^(n-1) b_(k,n-1)(t) (P_(k+1) - P_k). $
 ]
 
 #proof(of: <cor-end-tangents>)[
-  由#ref(<thm-hodograph>)，$B'$ 是控制點為 $n(P_(i+1) - P_i)$（$i = 0, dots, n - 1$）的 $n - 1$ 次曲線；對它套用#ref(<prop-endpoints>)即得。
+  由#ref(<thm-hodograph>)，$B'$ 是控制點為 $D_k = n(P_(k+1) - P_k)$（$k = 0, dots, n - 1$）的 $n - 1$ 次 Bézier 曲線。對它套用#ref(<prop-endpoints>)，得 $B'(0) = D_0$、$B'(1) = D_(n-1)$。
 ]
 
 #proof(of: <lem-symmetry>)[
-  $ b_(i,n)(1 - t) = binom(n, i) (1-t)^i t^(n-i) = binom(n, n-i) t^(n-i) (1-t)^i = b_(n-i,n)(t). $
+  對 $0 <= i <= n$，由 $binom(n, i) = binom(n, n-i)$，
+  $ b_(i,n)(1 - t) = binom(n, i) (1-t)^i t^(n-i)
+                   = binom(n, n-i) t^(n-i) (1-t)^i = b_(n-i,n)(t). $
+  其他 $i$ 兩邊都為零。
 ]
 
 #proof(of: <prop-reversal>)[
-  令 $j = n - i$ 重新編號，
-  $ sum_(i=0)^n b_(i,n)(t) P_(n-i) = sum_(j=0)^n b_(n-j,n)(t) P_j, $
-  而由#ref(<lem-symmetry>)，$b_(n-j,n)(t) = b_(j,n)(1 - t)$，故此和為 $B(1 - t)$。
+  令 $j = n - i$ 重新編號，並利用#ref(<lem-symmetry>)：
+  $ sum_(i=0)^n b_(i,n)(t) P_(n-i) = sum_(j=0)^n b_(n-j,n)(t) P_j
+    = sum_(j=0)^n b_(j,n)(1 - t) P_j = B(1 - t). $
 ]
 
 #proof(of: <thm-subdivision>)[
-  _左段。_將 $1 - c s$ 寫成 $(1 - s) + s(1 - c)$，並展開兩個冪次：
-  $ B(c s) &= sum_(i=0)^n binom(n, i) (c s)^i [(1 - s) + s(1 - c)]^(n-i) P_i \
-           &= sum_(i=0)^n sum_(k=0)^(n-i) binom(n, i) binom(n-i, k) c^i (1-c)^k s^(i+k) (1-s)^(n-i-k) P_i. $
-  令 $j = i + k$，並利用 $binom(n, i) binom(n-i, j-i) = binom(n, j) binom(j, i)$：
-  $ B(c s) = sum_(j=0)^n binom(n, j) s^j (1-s)^(n-j) sum_(i=0)^j binom(j, i) c^i (1-c)^(j-i) P_i
-           = sum_(j=0)^n b_(j,n)(s) P_0^((j)), $
-  其中內層和由#ref(<thm-casteljau>)即為 $t = c$ 時的 $P_0^((j))$。這就是關於 $L_j$ 的結論。
+  _左段。_ 因 $1 - c s = (1 - s) + s (1 - c)$，由二項式定理，
+  $ B(c s) &= sum_(i=0)^n binom(n, i) (c s)^i [(1 - s) + s (1 - c)]^(n-i) P_i \
+           &= sum_(i=0)^n sum_(k=0)^(n-i) binom(n, i) binom(n-i, k)
+              c^i (1-c)^k s^(i+k) (1-s)^(n-i-k) P_i. $
+  代入 $j = i + k$，則 $0 <= i <= j <= n$ 且 $n - i - k = n - j$。$binom(n, i) binom(n-i, j-i)$ 與 $binom(n, j) binom(j, i)$ 都等於 $n! slash (i! (j-i)! (n-j)!)$，故
+  $ B(c s) &= sum_(j=0)^n binom(n, j) s^j (1-s)^(n-j)
+              sum_(i=0)^j binom(j, i) c^i (1-c)^(j-i) P_i \
+           &= sum_(j=0)^n b_(j,n)(s) P_0^((j)). $
+  最後一步用#ref(<thm-casteljau>)取 $r = j$、$i = 0$：$P_0^((j)) = sum_(i=0)^j b_(i,j)(c) P_i$。這就是 $L_j$ 的結論。
 
-  _右段。_令 $overline(B)$ 為反轉後的曲線，控制點為 $overline(P)_i = P_(n-i)$，由#ref(<prop-reversal>)，$overline(B)(u) = B(1 - u)$。對 $overline(B)$ 在 $overline(c) = 1 - c$ 套用左段的結果，得 $overline(B)(overline(c) s) = sum_j b_(j,n)(s) overline(L)_j$，其中
+  _右段。_ 令 $overline(B)$ 為控制點 $overline(P)_i = P_(n-i)$ 的曲線，由#ref(<prop-reversal>)，$overline(B)(u) = B(1 - u)$；令 $overline(c) = 1 - c$。對 $overline(B)$ 套用左段，
+  $ overline(B)(overline(c) s) = sum_(j=0)^n b_(j,n)(s) overline(L)_j, $
+  其中由#ref(<lem-symmetry>)與代換 $l = j - i$，
   $ overline(L)_j = sum_(i=0)^j b_(i,j)(1 - c) P_(n-i)
-                  = sum_(l=0)^j b_(l,j)(c) P_(n-j+l) = P_(n-j)^((j)) = R_(n-j), $
-  這裡用到#ref(<lem-symmetry>)、代換 $l = j - i$ 與#ref(<thm-casteljau>)。因此，再由#ref(<lem-symmetry>)，
-  $ B(c + (1 - c) s) = overline(B)((1 - c)(1 - s))
-                     = sum_(j=0)^n b_(j,n)(1 - s) R_(n-j)
-                     = sum_(j=0)^n b_(n-j,n)(s) R_(n-j)
-                     = sum_(k=0)^n b_(k,n)(s) R_k. $
+                  = sum_(l=0)^j b_(l,j)(c) P_(n-j+l)
+                  = P_(n-j)^((j)) = R_(n-j). $
+  倒數第二個等號是#ref(<thm-casteljau>)取 $r = j$、$i = n - j$，此指標是容許的，因為 $n - j <= n - r$。因此再用一次#ref(<lem-symmetry>)，
+  $ B(c + (1 - c) s) &= overline(B)(overline(c) (1 - s))
+                      = sum_(j=0)^n b_(j,n)(1 - s) R_(n-j) \
+                     &= sum_(j=0)^n b_(n-j,n)(s) R_(n-j)
+                      = sum_(k=0)^n b_(k,n)(s) R_k. $
 ]
 
 #proof(of: <cor-segment>)[
-  令 $a = t_0$、$e = t_1$，則 $e > a >= 0$。在 $e$ 分割並保留左段，由#ref(<thm-subdivision>)得到曲線 $u |-> B(e u)$。再於 $a slash e in [0, 1)$ 分割該曲線並保留右段，得到
+  令 $a = t_0$、$e = t_1$，則 $0 <= a < e <= 1$。由#ref(<thm-subdivision>)取 $c = e$，左段是控制點為 $L_0, dots, L_n$ 的 Bézier 曲線 $u |-> B(e u)$。對它再套用#ref(<thm-subdivision>)，取 $c' = a slash e in [0, 1)$ 並保留右段：
   $ s |-> B(e (a/e + (1 - a/e) s)) = B(a + (e - a) s). $
-]
-
-== 三次線段與路徑
-
-#proof(of: <prop-bbox>)[
-  展開三次 Bernstein 形式，
-  $ B(t) = (1-t)^3 P_0 + 3t(1-t)^2 P_1 + 3t^2(1-t) P_2 + t^3 P_3
-         = a t^3 + b t^2 + c t + P_0, $
-  其中 $a$、$b$、$c$ 如定理所述。每個座標 $B_k$ 在緊緻區間 $[0, 1]$ 上連續，因此在其上取得最小值與最大值。若極值出現在內點 $t^*$，則它是臨界點，$B'_k(t^*) = 3 a_k t^(*2) + 2 b_k t^* + c_k = 0$；否則就在 $0$ 或 $1$。若 $B'_k$ 恆為零，$B_k$ 為常數，任一候選點都給出極值。求得的最小值與最大值都是曲線上的值，因此沒有更小的方框能包含曲線。
-]
-
-#proof(of: <lem-basis-elevation>)[
-  _1._ $n = 0$ 時兩邊都為零。$n >= 1$ 時，由#ref(<lem-binomial>)得 $i b_(i,n)(t) = n t b_(i-1,n-1)(t)$，故由#ref(<prop-unity>)，$sum_i i b_(i,n)(t) = n t sum_i b_(i-1,n-1)(t) = n t$。
-
-  _2._ 將 $b_(i,n)(t)$ 乘上 $(1 - t) + t = 1$，
-  $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n+1-i) + binom(n, i) t^(i+1) (1-t)^(n-i). $
-  因為 $binom(n, i) slash binom(n+1, i) = (n + 1 - i) slash (n + 1)$、$binom(n, i) slash binom(n+1, i+1) = (i + 1) slash (n + 1)$，兩項分別是 $b_(i,n+1)(t)$ 與 $b_(i+1,n+1)(t)$ 的所述倍數。
-]
-
-#proof(of: <prop-elevation>)[
-  _直線。_令 $Q_i = P_0 + i/3 (P_3 - P_0)$，由#ref(<prop-unity>)與#ref(<lem-basis-elevation>)第 1 式，
-  $ sum_(i=0)^3 b_(i,3)(t) Q_i = P_0 + (P_3 - P_0) sum_i i/3 b_(i,3)(t) = P_0 + t (P_3 - P_0). $
-
-  _二次曲線。_由#ref(<lem-basis-elevation>)第 2 式取 $n = 2$，
-  $ b_(i,2)(t) = (3 - i)/3 b_(i,3)(t) + (i + 1)/3 b_(i+1,3)(t). $
-  對二次控制點 $R_0 = P_0$、$R_1 = C$、$R_2 = P_3$，得
-  $ sum_(i=0)^2 b_(i,2)(t) R_i = sum_(k=0)^3 b_(k,3)(t) [k/3 R_(k-1) + (3 - k)/3 R_k], $
-  其控制點為 $R_0 = P_0$、$1/3 P_0 + 2/3 C$、$2/3 C + 1/3 P_3$、$R_2 = P_3$，與命題所述相同。兩個恆等式對每個 $t$ 都成立，因此參數化不變。
-]
-
-#proof(of: <prop-continuity>)[
-  設接點位於整體參數 $u_0$。在各自的區間上，$S$ 於 $s = (u - u_0 + h_S) slash h_S$ 求值，$T$ 於 $s = (u - u_0) slash h_T$ 求值。由連鎖律與#ref(<cor-end-tangents>)，$u_0$ 處的單邊導數為 $S'(1) slash h_S = 3(P_3 - P_2) slash h_S$ 與 $T'(0) slash h_T = 3(Q_1 - Q_0) slash h_T$。由於 $P_3 = Q_0$，曲線連續；兩個導數相等時，接點處恰為 $C^1$。在均勻參數化下，$m$ 段路徑的 $h_S = h_T = 1 slash m$。
-]
-
-== 建構與插值
-
-#proof(of: <prop-endpoint>)[
-  由#ref(<prop-endpoints>)，$B(0) = P_0$、$B(1) = P_3$；由#ref(<cor-end-tangents>)，$B'(0) = 3(P_1 - P_0) = D_0$、$B'(1) = 3(P_3 - P_2) = D_1$。反之，三次 Bernstein 多項式構成基底，因此三次曲線的控制點唯一，而這四個條件決定了全部控制點：$P_0 = B(0)$、$P_3 = B(1)$、$P_1 = P_0 + B'(0) slash 3$、$P_2 = P_3 - B'(1) slash 3$。
-]
-
-#proof(of: <prop-hermite>)[
-  在 $t = t_0$ 與 $t = t_1$，線段分別於 $s = 0$ 與 $s = 1$ 求值，由#ref(<prop-endpoints>)得 $H(t_0) = P_0$、$H(t_1) = P_3$。由連鎖律，$H'(t) = B'(s) slash h$。由#ref(<cor-end-tangents>)，$B'(0) = 3(P_1 - P_0) = h D_0$、$B'(1) = 3(P_3 - P_2) = h D_1$，故 $H'(t_0) = D_0$、$H'(t_1) = D_1$。證明中不需要 $h > 0$。
-]
-
-#proof(of: <thm-hermite-error>)[
-  `graph_hermite` 線段的 $x$ 座標是線性函數 $x$（導數為 1）的插值，由三次 Hermite 插值的唯一性，它對 $x$ 是線性的；因此線段是三次多項式 $H$ 的圖形，且 $H(x_i) = f(x_i)$、$H'(x_i) = f'(x_i)$。
-
-  固定 $x in (x_0, x_1)$，令 $w(t) = (t - x_0)^2 (t - x_1)^2$，它在 $x$ 處為正。選取 $K$ 使 $g(t) = f(t) - H(t) - K w(t)$ 在 $t = x$ 處為零。則 $g$ 在 $x_0$、$x$、$x_1$ 為零，且 $g'$ 在 $x_0$、$x_1$ 也為零，因為 $f - H$ 與 $w$ 在這兩點都有二重根。由 Rolle 定理，$g'$ 在 $(x_0, x)$ 與 $(x, x_1)$ 各有一個零點，因此在 $[x_0, x_1]$ 上有四個相異零點；依此類推，$g''$ 有三個，$g'''$ 有兩個，$g^((4))$ 至少有一個，記為 $xi$。由於 $H$ 是三次多項式而 $w$ 是首項係數為 1 的四次多項式，$0 = g^((4))(xi) = f^((4))(xi) - 24 K$，故
-  $ f(x) - H(x) = f^((4))(xi) / 24 (x - x_0)^2 (x - x_1)^2. $
-  在區間上 $|(x - x_0)(x - x_1)| <= h^2 slash 4$，於中點取等號，因此 $|f(x) - H(x)| <= M h^4 slash (24 dot 16) = M h^4 slash 384$ #citep(<burden2011>)。
-]
-
-== 擬合與等值線
-
-#proof(of: <cor-depth>)[
-  深度 $k$ 的區間寬度為 $h = H slash 2^k$。在此區間上，Hermite 線段的每個座標都在兩端吻合 $C$ 對應座標的值與導數（詳見#ref(<prop-hermite>)），因此是該座標的三次 Hermite 插值，由#ref(<thm-hermite-error>)，其誤差不超過 $M h^4 slash 384$。所以歐氏誤差處處不超過 $sqrt(d) M h^4 slash 384$，在量測誤差的量測參數上當然也成立。當 $2^(4k) >= sqrt(d) M H^4 slash (384 epsilon)$，亦即 $k$ 滿足定理中的條件時，此值不超過 $epsilon$。
-]
-
-#proof(of: <prop-rdp>)[
-  考慮對指標 $i < j$ 的頂點執行的遞迴步驟。對 $j - i$ 作歸納，證明它回傳的任兩個相鄰指標 $u < v$ 之間的每個頂點，到弦 $P_u P_v$ 的距離都不超過容許誤差。若 $j <= i + 1$，兩者之間沒有頂點。若離弦 $P_i P_j$ 最遠的頂點在容許誤差內，步驟回傳 $(i, j)$，結論成立。否則它回傳 $(i, m)$ 與 $(m, j)$ 兩次呼叫的結果並在 $m$ 接合，$i < m < j$；每一對相鄰指標都來自其中一次呼叫，可套用歸納假設。外層演算法在相鄰的保留頂點之間執行此步驟，每個輸出線段都連接兩個相鄰的回傳指標。距離是到線段形式的弦的距離，與 `fit_error` 回報的距離相同。
-]
-
-#proof(of: <thm-gradient>)[
-  由於 $nabla F(p) != 0$，不妨設 $F_y(p) != 0$；$F_x(p) != 0$ 的情形交換 $x$ 與 $y$ 的角色即可。由隱函數定理，存在 $p_x$ 附近的 $C^1$ 函數 $phi$，滿足 $phi(p_x) = p_y$，使得在 $p$ 附近等值集即為圖形 $gamma(x) = (x, phi(x))$。對 $F(gamma(x)) = c$ 微分得 $F_x + F_y phi' = 0$，故
-  $ gamma'(x) = (1, -F_x / F_y) = 1 / F_y (F_y, -F_x), $
-  在 $p$ 處平行於 $(F_y, -F_x)$。
-]
-
-== 匯出
-
-#proof(of: <prop-rounding>)[
-  令 $tilde(P)_i = P_i + delta_i$，且每個座標 $k$ 都有 $|delta_(i,k)| <= epsilon$。擾動後的曲線與 $B$ 相差 $tilde(B)(t) - B(t) = sum_i b_(i,n)(t) delta_i$。由#ref(<prop-unity>)，在每個座標上
-  $ |sum_i b_(i,n)(t) delta_(i,k)| <= sum_i b_(i,n)(t) |delta_(i,k)| <= epsilon, $
-  因此歐氏距離至多為 $sqrt(d epsilon^2) = epsilon sqrt(d)$。把數值四捨五入到小數點後 $p$ 位，改變量至多 $1/2 dot 10^(-p)$；匯出器把小於此值的數改寫為 $0$，也是同樣大小的捨入。
 ]

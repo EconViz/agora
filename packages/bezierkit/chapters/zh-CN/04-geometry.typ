@@ -10,15 +10,27 @@
   #raw("Point(")#meta("float")#raw(", ...)") \
   #raw("Vector(")#meta("float")#raw(", ...)")
 ])[
-  $RR^d$ 中的点或向量，由 $d >= 1$ 个坐标给定。点与向量按仿射几何的规则运算：
+  $RR^d$ 中的点或向量，由 $d >= 1$ 个坐标给定。点与向量按仿射几何的规则运算（参见#ref(<tab-point-arithmetic>)）。
 ]
 
-#param("point - point")[`Vector`。]
-#param("point + vector, point - vector")[`Point`。]
-#param("vector + vector, vector * scalar")[`Vector`；也可写成 `scalar * vector`。]
-#param("coords, dimension")[坐标 tuple 与 $d$。]
-#param("x, y, z")[前三个坐标（存在时）。]
-#param("dot(other), norm(), normalized()")[向量内积、欧氏长度与单位向量（零向量无法归一化）。]
+#tbl(caption: [点与向量的运算])[
+  #booktabs(
+    columns: (auto, 1fr),
+    header: ([表达式], [结果]),
+    [`point - point`], [`Vector`],
+    [`point + vector`、`point - vector`], [`Point`],
+    [`vector + vector`、`vector * scalar`], [`Vector`；也可写成 `scalar * vector`],
+  )
+] <tab-point-arithmetic>
+
+#param("coords")[坐标 tuple。]
+#param("dimension")[维度 $d$。]
+#param("x")[第一个坐标（存在时）。]
+#param("y")[第二个坐标（存在时）。]
+#param("z")[第三个坐标（存在时）。]
+#param("dot()")[两个向量的内积。]
+#param("norm()")[向量的欧氏长度。]
+#param("normalized()")[与向量同向的单位向量；零向量无法归一化。]
 
 维度不同时抛出 `DimensionMismatch`。`point + point` 不会被拒绝：它把坐标相加并返回 `Point`，只有在权重总和为一的组合中才有意义，例如 de Casteljau 算法中的平均。
 
@@ -39,8 +51,12 @@ print(v.norm())                # 6.324555320336759
 
 == 参数
 
-#api(("Interval", "ParameterValues"))[
-  `Interval(start, end)` 是闭区间，提供 `contains()`、`clamp()` 与 `linspace()`。`ParameterValues` 由定义域检查单一参数或一维参数数组；每条曲线都使用它，因此对定义域为 $[0, 1]$ 的曲线调用 `at(1.2)` 会抛出 `ParameterOutOfDomain`。
+#api(("Interval",))[
+  `Interval(start, end)` 是闭区间，提供 `contains()`、`clamp()` 与 `linspace()`。
+]
+
+#api(("ParameterValues",))[
+  由定义域检查单一参数或一维参数数组。每条曲线都使用它，因此对定义域为 $[0, 1]$ 的曲线调用 `at(1.2)` 会抛出 `ParameterOutOfDomain`。
 ]
 
 == 异常
