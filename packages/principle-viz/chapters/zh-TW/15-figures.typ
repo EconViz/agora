@@ -8,7 +8,7 @@
 #changed("0.10.0", label: "MarketFigure")[均衡與政策標籤由 #pkg("mosaickit") 放在點旁；擁擠處的數量改標在數量軸上]
 #changed("0.10.0", label: "MarketFigure.finalize")[預設不加圖例；`finalize(legend=True)` 才會加入]
 
-本手冊的每張圖都是 `MarketFigure`，或由 `ppf_canvas()` 等函式建立的 #pkg("mosaickit") 畫布。兩者採用同一套視覺語言：正方形繪圖區、帶箭頭且無刻度與格線的座標軸、標在末端的曲線名稱、寫在區塊內的面積名稱、標在座標軸上的數值，所有文字都不遮住線、點、區塊或其他文字。
+本手冊的每張圖都是 `MarketFigure`，或由 `ppf_canvas()` 等函式建立的 #pkg("mosaickit") 畫布。兩者的繪圖區為正方形，座標軸帶箭頭、無刻度與格線；曲線名稱標在末端，面積名稱寫在區塊內，數值標在座標軸上，文字不遮住線、點、區塊或其他文字。
 
 == MarketFigure
 
@@ -23,7 +23,7 @@
       y_label="p",
       title="Market Diagram",
       theme=None,       # PlotTheme
-      palette=None,     # "default", "colorblind", "nord", "monochrome"
+      palette=None,     # "default", "nord", ...
       labels=None,      # {layer id: Label}
       visibility=None,  # {layer id: bool}
   )
@@ -32,8 +32,10 @@
   #pkg("mosaickit") 畫布上的市場圖，座標軸由 0 延伸到 `x_max` 與 `y_max`。座標軸名稱除非是文字，否則以 LaTeX 數學排版；`title` 為空字串時不畫標題。
 ]
 
-#param("theme, palette")[顏色與線寬（詳見#ref(<sec-palettes>)）。`palette` 是 `PlotTheme.from_palette(palette)` 的簡寫；兩者同時給定時以 `theme` 為準。]
-#param("labels, visibility")[依圖層 id 覆寫內建標籤與圖層（詳見#ref(<sec-labels>)）。]
+#param("theme")[顏色與線寬（詳見#ref(<sec-palettes>)）。]
+#param("palette")[`PlotTheme.from_palette(palette)` 的簡寫；與 `theme` 同時給定時以 `theme` 為準。]
+#param("labels")[依圖層 id 覆寫內建標籤（詳見#ref(<sec-labels>)）。]
+#param("visibility")[依圖層 id 顯示或隱藏圖層（詳見#ref(<sec-labels>)）。]
 
 #api(("MarketFigure.add_curves", "MarketFigure.add_equilibrium"), syntax: [
   #raw("add_curves(")#meta("demand")#raw(", ")#meta("supply")#raw(", q_max, demand_label=\"$D$\", supply_label=\"$S$\")") \
@@ -101,6 +103,8 @@
 
 同樣的覆寫也可在建立圖形時以 `labels=` 與 `visibility=` 對應表傳入，之後加入的圖層也會套用。加總圖與各畫布函式（`ppf_canvas()`、`public_good_canvas()` 等）接受同樣的兩個參數。
 
+參見#ref(<fig-labels>)：
+
 ```python
 from principle_viz import Label, MarketFigure
 
@@ -120,7 +124,7 @@ fig.finalize()
 
 #fig("/figures/figures/labels.svg", width: 46%, caption: [
   改名的曲線與均衡點。
-])
+]) <fig-labels>
 
 == 配色與主題 <sec-palettes>
 
@@ -128,7 +132,7 @@ fig.finalize()
 #changed("0.10.0", label: "ColorModel")[`default` 配色改用 #pkg("mosaickit") 的色相：需求藍、供給紅、無謂損失青]
 #changed("0.10.0", label: "PlotTheme")[供需曲線寬 3.5 pt、座標軸 1.0 pt、均衡點直徑 6.5 pt]
 
-`ColorModel` 為每個經濟角色指定顏色；`PlotTheme` 再加上線寬與座標軸選項，並將兩者編譯為 #pkg("mosaickit") 主題。
+`ColorModel` 為每個經濟角色指定顏色；`PlotTheme` 再加上線寬與座標軸選項，並將兩者編譯為 #pkg("mosaickit") 主題。內建的四種配色如#ref(<tab-palettes>)。
 
 #api(("ColorModel",), syntax: [
   #raw("ColorModel(name, axis_color, label_color, demand_color, supply_color, ...)")
@@ -156,13 +160,15 @@ fig.finalize()
   配色加上線寬（`demand_linewidth`、`supply_linewidth`、`shifted_linewidth`、`tax_linewidth`、`arrow_linewidth`、`dashed_linewidth`）、`equilibrium_marker_size`，以及開關 `show_grid`、`show_ticks`、`show_axis_arrows` 與 `show_origin_label`。`from_palette()` 以內建配色為起點，並可設定上述任一欄位。
 ]
 
+以 `palette` 參數選用配色（參見#ref(<fig-monochrome>)）：
+
 ```python
 fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 ```
 
 #fig("/figures/figures/monochrome.svg", width: 46%, caption: [
   `monochrome` 配色。
-])
+]) <fig-monochrome>
 
 == 畫布
 

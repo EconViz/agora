@@ -8,65 +8,87 @@
 #changed("0.10.0")[Project tooling moved from Poetry to #pkg("uv")]
 #changed("0.10.1")[CI tests Python 3.10--3.13]
 
-The #pkg("principle-viz") package is a Python toolkit for the market diagrams
-of a principles-of-economics course: supply and demand, equilibrium and its
+#pkg("principle-viz") is a Python package for the diagrams of a
+principles-of-economics course: supply and demand, equilibrium and its
 shifts, taxes and subsidies, price controls, welfare, international trade,
 market failures, factor markets and the production possibilities frontier.
-Every topic comes as a calculation, which returns plain numbers, and as a
-figure drawn in the conventions of the textbooks: curves named at their
-ends rather than in a legend, welfare areas named inside them, values marked
-on the axes, and labels placed so they cover nothing.
+Each topic has a calculation, which returns numbers, and a figure drawn in
+textbook conventions.
+
+Curves are named at their ends instead of in a legend, areas are named
+inside them, values are marked on the axes, and no text covers a line, a
+point or other text. Figures are written as PNG, SVG or PDF; the
+command-line tool prints calculation results as JSON.
+
+#pkg("principle-viz") belongs to the EconViz family of packages and draws
+with #pkg("mosaickit"), a domain-independent scene and drawing library. Its
+sibling #pkg("utility-viz") is a microeconomics package covering utility
+models, optimal-bundle solving, indifference curves, budget lines, consumer
+equilibrium, demand curves and Edgeworth boxes; #pkg("principle-viz") does
+not include these.
 
 == Scope
 
-Markets are *linear*. A demand or supply curve is a straight line in the
-inverse form
-$ p = a + b Q, $
-where $a$ is the price intercept and $b$ the slope ($b < 0$ for demand,
-$b > 0$ for supply). Price is always on the vertical axis and quantity on the
-horizontal one, as in #citet(<marshall1890>). Two extensions leave the
-straight line: discrete unit schedules (@sec-discrete), and market curves
-summed from individual curves, which are piecewise linear
-(@sec-aggregation).
-
-The package keeps calculation and drawing apart. The solvers in
-`principle_viz.core`, `principle_viz.policy` and `principle_viz.welfare`
-return frozen dataclasses and never import a plotting library; the figures in
-`principle_viz.plot` take those results and turn them into #pkg("mosaickit")
-scenes. A result can therefore be printed, tested, sent to JSON by the
-command-line tool, or drawn.
-
-#pkg("principle-viz") belongs to the EconViz family of packages. Its
-sibling #pkg("utility-viz") covers consumer theory: indifference curves,
-budget constraints and demand derived from utility.
+#pkg("principle-viz") handles linear markets, and its features fall into
+four parts: markets, policy, applications and tools. Calculations and
+figures can be used separately: a result can be printed, written as JSON or
+passed to `MarketFigure` to be drawn.
 
 == Reading guide
 
-@tab-guide groups the chapters by topic.
+The manual is organized in four parts: markets, policy, applications and
+tools (see @tab-guide).
 
 #tbl(caption: [Chapter guide])[
   #booktabs(
-    columns: (auto, 1fr, auto),
-    header: ([Topic], [Contents], [Section]),
+    columns: (auto, auto, 1fr, auto),
+    header: ([Part], [Topic], [Description], [Section]),
     table.cell(rowspan: 4)[Markets],
-    [Lines, equilibrium, shifts], [#ref(<sec-markets>)],
-    [Discrete unit schedules], [#ref(<sec-discrete>)],
-    [Market curves from individuals], [#ref(<sec-aggregation>)],
-    [Elasticity and total revenue], [#ref(<sec-elasticity>)],
+    [Linear markets],
+    [Lines, equilibrium and shifts],
+    [#ref(<sec-markets>)],
+    [Discrete markets],
+    [Unit-by-unit demand and supply schedules],
+    [#ref(<sec-discrete>)],
+    [Market curves from individuals],
+    [Horizontal sum of individual curves],
+    [#ref(<sec-aggregation>)],
+    [Elasticity and total revenue],
+    [Point and arc elasticity, total revenue curve],
+    [#ref(<sec-elasticity>)],
     table.cell(rowspan: 3)[Policy],
-    [Surplus and deadweight loss], [#ref(<sec-welfare>)],
-    [Taxes and subsidies], [#ref(<sec-taxes>)],
-    [Price ceilings and floors], [#ref(<sec-controls>)],
+    [Welfare],
+    [Consumer surplus, producer surplus and deadweight loss],
+    [#ref(<sec-welfare>)],
+    [Taxes and subsidies],
+    [Tax wedge and subsidy cost],
+    [#ref(<sec-taxes>)],
+    [Price controls],
+    [Price ceilings, price floors and shortages],
+    [#ref(<sec-controls>)],
     table.cell(rowspan: 4)[Applications],
-    [International trade], [#ref(<sec-trade>)],
-    [Externalities, public goods, commons], [#ref(<sec-failures>)],
-    [Labor and loanable funds], [#ref(<sec-factor>)],
-    [Production possibilities], [#ref(<sec-ppf>)],
+    [International trade],
+    [Free trade, tariffs and import quotas],
+    [#ref(<sec-trade>)],
+    [Market failures],
+    [Externalities, common resources and public goods],
+    [#ref(<sec-failures>)],
+    [Labor and loanable funds],
+    [Minimum wage and government borrowing],
+    [#ref(<sec-factor>)],
+    [Production possibilities],
+    [Opportunity cost, growth and comparative advantage],
+    [#ref(<sec-ppf>)],
     table.cell(rowspan: 2)[Tools],
-    [Figures, labels, palettes], [#ref(<sec-figures>)],
-    [Command line], [#ref(<sec-cli>)],
+    [Figures],
+    [Labels, layers and palettes],
+    [#ref(<sec-figures>)],
+    [Command line],
+    [Calculation results as JSON],
+    [#ref(<sec-cli>)],
   )
 ] <tab-guide>
 
-On first use, read @sec-quickstart, then @sec-markets and @sec-figures. Each
-later chapter describes one topic: its calculation first, then its figure.
+On first use, read @sec-quickstart, @sec-markets and @sec-figures in that
+order. Each later chapter covers one topic: the calculation first, then the
+figure. For the options of a specific command, go to @sec-cli.

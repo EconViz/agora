@@ -37,6 +37,9 @@ $p = a + b Q$:
 
 == Commands
 
+@tab-cli lists the calculation and options of each command; the calculation
+of each is described in its chapter.
+
 #tbl(caption: [CLI commands])[
   #booktabs(
     columns: (auto, 1fr, auto),
@@ -71,5 +74,5 @@ principle-viz tax \
 ```
 
 The output holds the untaxed equilibrium (`baseline_equilibrium`), the taxed
-one (`post_tax`) and the changes, as `compare_tax_scenario()` returns them:
-here a quantity of 3.5, a consumer price of 6.5 and a producer price of 5.5.
+one (`post_tax`) and the changes, as `compare_tax_scenario()` returns them.
+Here the quantity is 3.5, the consumer price 6.5 and the producer price 5.5.

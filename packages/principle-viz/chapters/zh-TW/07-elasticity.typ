@@ -16,7 +16,9 @@
 ]
 
 ```python
-from principle_viz import compute_arc_elasticity, compute_point_elasticity, line_from_inverse
+from principle_viz import (
+    compute_arc_elasticity, compute_point_elasticity, line_from_inverse,
+)
 
 demand = line_from_inverse(10.0, -1.0)
 print(compute_point_elasticity(demand, 4))   # -1.5
@@ -24,6 +26,7 @@ print(compute_point_elasticity(demand, 5))   # -1.0 (unit elastic)
 print(compute_arc_elasticity(4, 6, 6, 4))    # -1.0
 ```
 
+$Q = 4$ 處彈性為 $-1.5$，絕對值大於 1，需求有彈性；$Q = 5$ 為單位彈性，也是 $p = 10 - Q$ 的中點。弧彈性以兩點的平均值計算，因此由 $(4, 6)$ 到 $(6, 4)$ 與反方向的結果相同。
 `principle_viz.core.elasticity` 中的 `classify_elasticity(value)` 依絕對值分類：大於 1 為 `"elastic"`，等於 1 為 `"unit_elastic"`，小於 1 為 `"inelastic"`。
 
 == 總收益
@@ -31,15 +34,17 @@ print(compute_arc_elasticity(4, 6, 6, 4))    # -1.0
 #api(("elasticity_revenue_schedule",), syntax: [
   #raw("elasticity_revenue_schedule(")#meta("demand")#raw(", *, samples=101)")
 ])[
-  在線性需求上由 $Q = 0$ 取樣到阻絕數量，回傳每一點的價格、總收益 $p Q$、彈性與其分類。總收益在單位彈性處達到最大，也就是直線的中點。
+  在線性需求上由 $Q = 0$ 取樣到阻絕數量，回傳每一點的價格、總收益 $p Q$、彈性與其分類。總收益在單位彈性處（直線的中點）最大。
 ]
 
 #param("points")[`RevenuePoint` 序列，含 `quantity`、`price`、`total_revenue`、`elasticity` 與 `classification`。]
-#param("unit_elastic_quantity, unit_elastic_price")[直線的中點。]
+#param("unit_elastic_quantity")[直線中點的數量。]
+#param("unit_elastic_price")[直線中點的價格。]
 #param("maximum_revenue")[該點的總收益。]
-#param("choke_quantity, choke_price")[兩個截距。]
+#param("choke_quantity")[數量軸截距。]
+#param("choke_price")[價格軸截距。]
 
-以 $p = 12 - Q$ 為例，總收益在 $Q = 6$、$p = 6$ 達到最大值 $36$。
+$p = 12 - Q$ 的總收益最大值為 36，位於 $Q = 6$、$p = 6$。
 
 #api(("elasticity_revenue_canvases",), syntax: [
   #raw("elasticity_revenue_canvases(")#meta("demand")#raw(", ")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
@@ -50,13 +55,19 @@ print(compute_arc_elasticity(4, 6, 6, 4))    # -1.0
 ```python
 from mosaickit import CanvasGrid
 from principle_viz import PlotTheme, elasticity_revenue_schedule
-from principle_viz.visuals.revenue import elasticity_revenue_canvases
+from principle_viz.visuals.revenue import (
+    elasticity_revenue_canvases,
+)
 
 demand = line_from_inverse(12.0, -1.0)
 schedule = elasticity_revenue_schedule(demand)
-canvases = elasticity_revenue_canvases(demand, schedule, theme=PlotTheme())
+canvases = elasticity_revenue_canvases(
+    demand, schedule, theme=PlotTheme(),
+)
 CanvasGrid(canvases, rows=1).save("elasticity_total_revenue.png")
 ```
+
+輸出參見#ref(<fig-revenue>)。
 
 #fig("/figures/elasticity/revenue.svg", width: 100%, caption: [
   需求曲線上的彈性與總收益。

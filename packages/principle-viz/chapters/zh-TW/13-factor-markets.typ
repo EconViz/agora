@@ -17,25 +17,32 @@ from principle_viz import analyze_minimum_wage
 
 labor_demand = line_from_inverse(12, -1)
 labor_supply = line_from_inverse(2, 1)
-labor = analyze_minimum_wage(labor_demand, labor_supply, minimum_wage=9)
-print(labor.employment, labor.unemployment)   # 3.0 4.0
+labor = analyze_minimum_wage(
+    labor_demand, labor_supply, minimum_wage=9,
+)
+print(labor.employment, labor.unemployment)  # 3.0 4.0
 ```
 
 #api(("MarketFigure.add_minimum_wage",), syntax: [
   #raw("add_minimum_wage(")#meta("result")#raw(", *, gap_brace=\"line\")")
 ])[
-  以價格下限的方式繪製工資下限（詳見#ref(<sec-controls>)）："Minimum wage" 線、工資軸上的 $w_min$，有約束時另標出 $L_d$ 與 $L_s$ 及 "Unemployment" 括號。座標軸命名為 $L$ 與 $w$，曲線命名為 $D_L$ 與 $S_L$：
+  以價格下限的方式繪製工資下限（詳見#ref(<sec-controls>)）："Minimum wage" 線、工資軸上的 $w_min$，有約束時另標出 $L_d$ 與 $L_s$ 及 "Unemployment" 括號。座標軸命名為 $L$ 與 $w$，曲線命名為 $D_L$ 與 $S_L$（參見#ref(<fig-minimum-wage>)）：
 ]
 
 ```python
 fig = MarketFigure(x_max=11, y_max=14, x_label="L", y_label="w")
-fig.add_curves(labor_demand, labor_supply, q_max=10, demand_label="$D_L$", supply_label="$S_L$")
+fig.add_curves(
+    labor_demand, labor_supply, q_max=10,
+    demand_label="$D_L$", supply_label="$S_L$",
+)
 fig.add_minimum_wage(labor)
 ```
 
 #fig("/figures/factor/minimum_wage.svg", width: 46%, caption: [
   有約束的最低工資。
-])
+]) <fig-minimum-wage>
+
+`labor_demanded` 為 3，`labor_supplied` 為 7，`employment` 為 3，`unemployment` 為 4。
 
 == 可貸資金
 
@@ -52,22 +59,25 @@ fig.add_minimum_wage(labor)
 ]
 
 ```python
-from principle_viz import LoanableFundsScenario, analyze_loanable_funds
+from principle_viz import (
+    LoanableFundsScenario, analyze_loanable_funds,
+)
 
 savings = line_from_inverse(2, 0.5)
 investment = line_from_inverse(12, -0.5)
-funds = analyze_loanable_funds(savings, investment, LoanableFundsScenario(government_borrowing=4))
-print(funds.interest_rate_change, funds.crowding_out)   # 1.0 2.0
+scenario = LoanableFundsScenario(government_borrowing=4)
+funds = analyze_loanable_funds(savings, investment, scenario)
+print(funds.interest_rate_change, funds.crowding_out)  # 1.0 2.0
 ```
 
-政府借款 4 使利率由 7 升到 8；民間投資由 10 降到 8，借款中有一半排擠了民間投資。
+`interest_rate_change` 為 1.0，`crowding_out` 為 2.0。
 
 #api(("MarketFigure.add_loanable_funds",), syntax: [
   #raw("add_loanable_funds(")#meta("result")#raw(")")
 ])[
-  畫出移動後的曲線並命名為 $D_1$ 或 $S_1$，以及兩個均衡點與其間的移動。價格軸命名為 $r$。
+  畫出移動後的曲線並命名為 $D_1$ 或 $S_1$，以及兩個均衡點與其間的移動。價格軸命名為 $r$（參見#ref(<fig-loanable-funds>)）。
 ]
 
 #fig("/figures/factor/loanable_funds.svg", width: 46%, caption: [
   政府借款排擠民間投資。
-])
+]) <fig-loanable-funds>

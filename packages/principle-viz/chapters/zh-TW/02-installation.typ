@@ -8,9 +8,27 @@
 
 #pkg("principle-viz") 需要 Python #pkg-meta("python") 以上版本#footnote[Python 官方網站提供各作業系統的安裝程式：#url("https://www.python.org/downloads/")。]。唯一的執行期依賴是 #pkg("mosaickit")，它透過 #pkg("matplotlib") 繪製圖形；計算部分只使用標準函式庫。
 
-== 安裝套件
+== 安裝 #pkg("uv")
 
-使用 #pkg("uv")#footnote[#pkg("uv") 是 Astral 開發的 Python 套件與專案管理工具：#url("https://docs.astral.sh/uv/")。] 建立專案並加入套件：
+本手冊的指令以 #pkg("uv")#footnote[#pkg("uv") 是 Astral 開發的 Python 套件與專案管理工具，速度快且可一併管理 Python 版本；安裝方式與完整說明見官方文件：#url("https://docs.astral.sh/uv/")。] 為準。既有專案仍可使用 #pkg("pip")、#pkg("pipx") 或 #pkg("Poetry")；套件 API 不受管理工具影響。
+
+依作業系統執行下列安裝指令。
+
+=== macOS、Linux
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+=== Windows
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+== 安裝 #pkg("principle-viz")
+
+建立專案並加入套件：
 
 ```bash
 uv init my-diagrams
@@ -19,13 +37,15 @@ uv add principle-viz
 uv run python main.py
 ```
 
-固定為本手冊說明的版本：
+將#ref(<sec-quickstart>)的基本範例存為專案目錄下的 `main.py`，再執行上述指令。`uv add` 記錄專案依賴，`uv run` 使用該專案的 Python 環境。安裝與執行必須使用同一個環境。
+
+若要固定本手冊使用的版本，可在加入依賴時指定版本號：
 
 ```bash
 uv add "principle-viz==0.10.1"
 ```
 
-在既有的虛擬環境中，可透過 #pkg("pip") 安裝：
+若使用既有的 Python 虛擬環境，可透過 #pkg("pip") 安裝：
 
 ```bash
 python -m pip install -U principle-viz
@@ -38,17 +58,21 @@ import principle_viz
 from principle_viz import solve_equilibrium, MarketFigure
 ```
 
+`import` 陳述式不得使用連字號。若發生 `ModuleNotFoundError`，檢查執行程式的直譯器是否與安裝套件時使用的環境相同。
+
 0.10.0 版以前，本套件以 `principle-econ` 名稱發布。該發行套件已停止更新；請改裝 `principle-viz`，並將匯入的 `principle_econ` 改為 `principle_viz`。
 
 == 安裝命令列工具 <sec-install-cli>
 
-只使用命令列介面時（詳見#ref(<sec-cli>)），可將其安裝為工具：
+僅使用命令列介面時，可將 #pkg("principle-viz") 安裝為獨立工具（詳見#ref(<sec-cli>)）：
 
 ```bash
 uv tool install principle-viz
 principle-viz equilibrium --demand-intercept 10 --demand-slope -1 \
                           --supply-intercept 2 --supply-slope 1
 ```
+
+此方式將命令列工具安裝在獨立環境。需要在 Python 程式中匯入套件時，仍須在該專案執行 `uv add principle-viz`。在專案內以 `uv run principle-viz` 呼叫工具，可讓命令列與 Python 程式使用同一版本。
 
 == 開發環境設定
 
@@ -65,3 +89,13 @@ uv run ruff check src tests examples/scripts
 ```bash
 uv run python examples/scripts/run_all.py
 ```
+
+== 驗證安裝
+
+以下指令確認 Python 能匯入求解與繪圖介面：
+
+```bash
+uv run python -c "import principle_viz; print('OK')"
+```
+
+命令列工具以 `uv run principle-viz --help` 確認，會列出所有指令。在伺服器或其他沒有圖形介面的環境中，請以 `save()` 輸出檔案。

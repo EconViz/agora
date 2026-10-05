@@ -33,6 +33,8 @@ principle-viz equilibrium \
 
 == 命令
 
+各命令对应的计算与选项如#ref(<tab-cli>)；每个命令的计算说明见对应章节。
+
 #tbl(caption: [命令行命令])[
   #booktabs(
     columns: (auto, 1fr, auto),
@@ -43,7 +45,7 @@ principle-viz equilibrium \
     [`elasticity`], [点弹性：#box[`--intercept`]、#box[`--slope`]、#box[`--quantity`]；加上 #box[`--q1`]、#box[`--p1`] 计算弧弹性], [#ref(<sec-elasticity>)],
     [`revenue`], [弹性与总收益表：#box[`--samples`]], [#ref(<sec-elasticity>)],
     [`welfare`], [剩余：#box[`--policy {baseline,tax,subsidy,control}`] 与该政策的选项], [#ref(<sec-welfare>)],
-    [`report-dwl`], [单行无谓损失报表：#box[`--policy {tax,subsidy,control}`]、#box[`--csv`]], [#ref(<sec-welfare>)],
+    [`report-dwl`], [单列无谓损失报表：#box[`--policy {tax,subsidy,control}`]、#box[`--csv`]], [#ref(<sec-welfare>)],
     [`tax`], [#box[`--tax-type {fixed,per_unit,ad_valorem}`]、#box[`--amount`]、#box[`--tax-on {consumer,producer}`]], [#ref(<sec-taxes>)],
     [`subsidy`], [#box[`--amount`]、#box[`--subsidy-to {consumer,producer}`]], [#ref(<sec-taxes>)],
     [`controls`], [#box[`--control-type {ceiling,floor}`]、#box[`--control-price`]], [#ref(<sec-controls>)],

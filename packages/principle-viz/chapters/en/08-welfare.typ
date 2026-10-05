@@ -6,8 +6,7 @@
 #changed("0.10.0", label: "MarketFigure.add_welfare")[Consumer and producer surplus reuse the demand and supply hues; tax revenue is labelled rather than shaded]
 
 Welfare analysis compares a market outcome with its alternatives: consumer
-surplus, producer surplus, government revenue and the deadweight loss of the
-units that are no longer traded.
+surplus, producer surplus, government revenue and deadweight loss.
 
 == Market outcomes
 
@@ -36,7 +35,8 @@ units that are no longer traded.
   fields:
 ]
 
-#param("consumer_surplus, producer_surplus", type: "float")[Area between demand and the consumer price, and between the producer price and supply.]
+#param("consumer_surplus", type: "float")[Area between demand and the consumer price.]
+#param("producer_surplus", type: "float")[Area between the producer price and supply.]
 #param("tax_revenue", type: "float")[Government revenue (negative for a subsidy).]
 #param("total_surplus", type: "float")[The sum of the three.]
 #param("deadweight_loss", type: "float")[Surplus lost relative to the baseline.]
@@ -47,9 +47,13 @@ from principle_viz import compute_surplus, solve_equilibrium
 from principle_viz.welfare.surplus import outcome_from_equilibrium
 
 eq = solve_equilibrium(demand, supply)
-surplus = compute_surplus(demand, supply, outcome_from_equilibrium(eq))
-print(surplus.consumer_surplus, surplus.producer_surplus)   # 8.0 8.0
+outcome = outcome_from_equilibrium(eq)
+surplus = compute_surplus(demand, supply, outcome)
+print(surplus.consumer_surplus, surplus.producer_surplus)  # 8.0 8.0
 ```
+
+$(10 - 6) times 4 slash 2 = (6 - 2) times 4 slash 2 = 8$; the free market
+has no deadweight loss.
 
 #api(("compare_surplus",), syntax: [
   #raw("compare_surplus(")#meta("demand")#raw(", ")#meta("supply")#raw(", baseline_outcome, policy_outcome)")
@@ -81,6 +85,8 @@ fig.add_welfare(surplus)
 fig.add_equilibrium(eq)
 fig.finalize()
 ```
+
+The output is shown in @fig-welfare.
 
 #fig("/figures/welfare/equilibrium.svg", width: 46%, caption: [
   Consumer and producer surplus at equilibrium.

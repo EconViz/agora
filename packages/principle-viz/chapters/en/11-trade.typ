@@ -27,41 +27,53 @@ imports.
 ]
 
 #param("domestic_price")[Price in the home market.]
-#param("quantity_demanded, quantity_supplied")[Domestic quantities at that price.]
-#param("imports, exports, direction")[Trade volume and `TradeDirection` (`IMPORT`, `EXPORT` or `AUTARKY`).]
-#param("consumer_surplus, producer_surplus, government_revenue")[Welfare components.]
-#param("quota_rent, national_quota_rent")[Rent created by a quota, and the part that stays in the country.]
-#param("total_surplus, gains_from_trade")[National surplus, and its gain over autarky.]
+#param("quantity_demanded")[Domestic quantity demanded at that price.]
+#param("quantity_supplied")[Domestic quantity supplied at that price.]
+#param("imports")[Quantity imported.]
+#param("exports")[Quantity exported.]
+#param("direction")[`TradeDirection`: `IMPORT`, `EXPORT` or `AUTARKY`.]
+#param("consumer_surplus")[Consumer surplus.]
+#param("producer_surplus")[Producer surplus.]
+#param("government_revenue")[Government revenue.]
+#param("quota_rent")[Rent created by a quota.]
+#param("national_quota_rent")[The part of the quota rent that stays in the country.]
+#param("total_surplus")[National surplus.]
+#param("gains_from_trade")[Gain over autarky.]
 #param("is_policy_binding")[Whether the tariff or quota changes the price.]
 
 ```python
 from principle_viz import TradeScenario, analyze_trade
 
 demand = line_from_inverse(12.0, -1.0)   # autarky price 7
-result = analyze_trade(demand, supply, TradeScenario(world_price=4, tariff=2))
-print(result.free_trade.imports, result.policy.imports)   # 6.0 2.0
-print(result.policy.government_revenue, result.deadweight_loss)   # 4.0 4.0
+scenario = TradeScenario(world_price=4, tariff=2)
+result = analyze_trade(demand, supply, scenario)
+print(result.free_trade.imports, result.policy.imports)
+# 6.0 2.0
+print(result.policy.government_revenue, result.deadweight_loss)
+# 4.0 4.0
 ```
 
-A quota of 2 units gives the same price of 6; its rent of 4 goes to whoever
-`quota_rent_recipient` names.
+With the tariff of 2, the domestic price is 6 and government revenue is
+$2 times 2 = 4$. An import quota of 2 units gives the same price; the rent
+of 4 goes to the party named by `quota_rent_recipient`.
 
 #api(("MarketFigure.add_trade",), syntax: [
   #raw("add_trade(")#meta("result")#raw(")")
 ])[
   Draw the world price line, named $p_w$, the policy price ($p_w + t$ or
   $p_q$), $Q_s$ and $Q_d$ on the quantity axis with an "Imports" or "Exports"
-  brace beneath, and the tariff revenue or quota rent as a named rectangle.
+  brace beneath, and the tariff revenue or quota rent as a named rectangle
+  (see @fig-free-trade, @fig-tariff and @fig-quota).
 ]
 
 #fig("/figures/trade/free_trade_import.svg", width: 46%, caption: [
   Free trade with imports.
-])
+]) <fig-free-trade>
 
 #fig("/figures/trade/tariff.svg", width: 46%, caption: [
   An import tariff.
-])
+]) <fig-tariff>
 
 #fig("/figures/trade/quota.svg", width: 46%, caption: [
   A binding import quota.
-])
+]) <fig-quota>
