@@ -758,6 +758,8 @@
     below: 0pt,
     breakable: false,
   ))
+  // A figure is an unbreakable block unless told otherwise; tables may split.
+  show figure.where(kind: table): set block(breakable: true)
   show figure.where(kind: table): it => hanging(
     {
       set text(size: p.caption-size * 1pt)
