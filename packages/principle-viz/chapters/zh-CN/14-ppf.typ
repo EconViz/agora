@@ -12,7 +12,7 @@
 
 #param("y_at(x)")[第一种商品生产 $x$ 单位时 $y$ 的产量。]
 #param("opportunity_cost_x(x)")[多生产一单位 $x$ 所放弃的 $y$，即 $abs(dif y slash dif x)$。]
-#param("assess(x, y)")[返回 `PointStatus`：曲在线为 `EFFICIENT`，曲线内为 `INEFFICIENT`，曲线外为 `UNATTAINABLE`。]
+#param("assess(x, y)")[返回 `PointStatus`：曲线上为 `EFFICIENT`，曲线内为 `INEFFICIENT`，曲线外为 `UNATTAINABLE`。]
 
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
@@ -30,7 +30,7 @@ print(ppf.assess(4, 3), ppf.assess(7, 6))
   #raw("analyze_ppf(")#meta("frontier")#raw(", points=(), *, samples=101)") \
   #raw("ppf_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
 ])[
-  在曲在线采样，并评估以 `(x, y, label)` 三元组给定的点；`principle_viz.visuals.ppf` 中的 `ppf_canvas()` 画出曲线、为可达成的区域填色并标出各点（参见#ref(<fig-ppf>)）。
+  在曲线上采样，并评估以 `(x, y, label)` 三元组给定的点；`principle_viz.visuals.ppf` 中的 `ppf_canvas()` 画出曲线、为可达成的区域填色并标出各点（参见#ref(<fig-ppf>)）。
 ]
 
 ```python

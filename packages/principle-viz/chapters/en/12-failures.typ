@@ -91,7 +91,7 @@ uses 5 units, the efficient level is 3.5 and `corrective_fee` is 3.
 ])[
   Everyone consumes the whole quantity of a public good, so marginal
   benefits add vertically. The efficient quantity sets their sum equal to
-  marginal cost #citep(<samuelson1954>); private provision stops where the
+  marginal cost #citep(<samuelson1954>)\; private provision stops where the
   highest individual benefit meets marginal cost. The result has
   `efficient_quantity`, `efficient_marginal_value`,
   `private_provision_quantity`, `free_rider_gap` and the sampled `points`.

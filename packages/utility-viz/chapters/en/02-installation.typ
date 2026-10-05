@@ -27,7 +27,7 @@ backend-neutral scenes and Bézier curves]#footnote[Ordinary Python plotting nee
 == Installing #pkg("uv")
 
 The commands in this manual use #pkg("uv"). Existing projects can keep using
-#pkg("pip"), #pkg("pipx") or #pkg("Poetry"); the package API does not depend
+#pkg("pip"), #pkg("pipx") or #pkg("Poetry")\; the package API does not depend
 on the tool that installed it.
 
 Run the installer for your operating system.
@@ -181,7 +181,7 @@ window that fails to open does not mean the installation failed.
 #modify[
 == Migrating from #pkg("econ-viz") <sec-migrate>
 
-#changed("2.0.0b1", label: "econ-viz")[#modify[Renamed to #pkg("utility-viz"); the `econ_viz` package, the `econ-viz` command and `econ-viz.toml` lookup remain as a deprecated compatibility layer until 3.0.0]]
+#changed("2.0.0b1", label: "econ-viz")[#modify[Renamed to #pkg("utility-viz")\; the `econ_viz` package, the `econ-viz` command and `econ-viz.toml` lookup remain as a deprecated compatibility layer until 3.0.0]]
 #changed("2.0.0b1", label: "econ-viz")[#modify[The compatibility layer ships as a separate #pkg("econ-viz") distribution, so upgrading a 1.x installation no longer deletes files shared with #pkg("utility-viz")]]
 
 #pkg("econ-viz") was renamed #pkg("utility-viz") in 2.0.0 (@tab-migrate).

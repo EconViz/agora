@@ -9,13 +9,13 @@
 #pkg("principle-viz") requires Python #pkg-meta("python") or
 later#footnote[The Python website provides installers for every operating system: #url("https://www.python.org/downloads/").].
 Its only runtime dependency is #pkg("mosaickit"), which draws the figures
-through #pkg("matplotlib"); the calculations use only the standard library.
+through #pkg("matplotlib")\; the calculations use only the standard library.
 
 == Installing #pkg("uv")
 
 The commands in this manual use
 #pkg("uv")#footnote[#pkg("uv") is a fast Python package and project manager by Astral that also manages Python versions. Installation and full documentation: #url("https://docs.astral.sh/uv/").].
-Existing projects can keep using #pkg("pip"), #pkg("pipx") or #pkg("Poetry");
+Existing projects can keep using #pkg("pip"), #pkg("pipx") or #pkg("Poetry")\;
 the package API does not depend on the tool.
 
 Run the command for the operating system.
