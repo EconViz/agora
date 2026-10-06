@@ -377,18 +377,21 @@
 
 // The proof of a statement, ending in the QED box (amsthm's \qedsymbol).
 // `of` names the theorem it proves: #proof(of: <thm-unity>)[...].
-#let proof(of: none, body) = block(above: 0.6em, below: 1.2em, width: 100%, context {
-  set par(first-line-indent: 0pt)
+#let proof(of: none, body) = context {
+  let p = par-for(edition-state.get())
   let s = strings-for(edition-state.get())
-  if of == none { emph(s.proof) } else {
-    let (before, after) = s.proof-of.split("{}")
-    emph[#before#ref(of)#after]
-  }
-  if is-cjk(edition-state.get()) [：] else [. ]
-  body
-  h(1fr)
-  box($square$)
-})
+  block(above: 0.6em, below: (1 + p.leading) * 1em, width: 100%, {
+    set par(first-line-indent: 0pt)
+    if of == none { emph(s.proof) } else {
+      let (before, after) = s.proof-of.split("{}")
+      emph[#before#ref(of)#after]
+    }
+    if is-cjk(edition-state.get()) [：] else [. ]
+    body
+    h(1fr)
+    box($square$)
+  })
+}
 
 // Chapters after this are appendices, numbered A, B, ...:
 //   #show: appendix
@@ -748,8 +751,8 @@
   // Figures and tables: caption hangs in the left column.
   show figure.where(kind: image): it => _float(hanging(
     align(bottom, {
-      set text(size: p.caption-size * 1pt)
-      set par(justify: false, first-line-indent: 0pt)
+      set text(size: p.caption-size * 1pt, costs: (runt: 800%))
+      set par(justify: false, first-line-indent: 0pt, linebreaks: "optimized")
       strong[#s.figure #context it.counter.display(it.numbering)]
       if it.caption != none { [\ #it.caption.body] }
     }),
@@ -762,8 +765,8 @@
   show figure.where(kind: table): set block(breakable: true)
   show figure.where(kind: table): it => hanging(
     {
-      set text(size: p.caption-size * 1pt)
-      set par(justify: false, first-line-indent: 0pt)
+      set text(size: p.caption-size * 1pt, costs: (runt: 800%))
+      set par(justify: false, first-line-indent: 0pt, linebreaks: "optimized")
       strong[#s.table #context it.counter.display(it.numbering)]
       if it.caption != none { [\ #it.caption.body] }
     },
@@ -805,7 +808,12 @@
 
   // amsthm styles: "plain" (lemma, proposition, theorem, corollary) sets the
   // body in italics, Kai in the CJK editions; "definition" keeps it upright.
-  show figure.where(kind: "theorem"): it => block(above: 1.2em, below: 0.9em, width: 100%, {
+  // A statement sits one blank line away from the body text on both sides:
+  // the figure's own block carries the gap (a spacing set inside the show
+  // rule would only apply within the figure).
+  let statement-gap = (1 + p.leading) * 1em
+  show figure.where(kind: "theorem"): set block(above: statement-gap, below: statement-gap)
+  show figure.where(kind: "theorem"): it => block(width: 100%, {
     set align(left)
     set par(first-line-indent: 0pt)
     let kind = _statement-kind(it)

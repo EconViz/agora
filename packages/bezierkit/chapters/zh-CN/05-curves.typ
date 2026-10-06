@@ -105,7 +105,7 @@
 此叙述见 #citet(<floater2025>) 的定理 1.6 与 1.7。
 
 #fig("/figures/curves/casteljau.pdf", width: auto, caption: [
-  $t = 0.4$ 的 de Casteljau 算法。
+  de Casteljau 算法，$t = 0.4$。
 ]) <fig-casteljau>
 
 每个中间点都是控制点的凸组合，算法不会产生互相抵消的大数，因此在高次数时数值稳定。每个参数的计算量为 $O(n^2)$。
