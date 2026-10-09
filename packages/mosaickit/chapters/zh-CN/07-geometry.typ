@@ -51,7 +51,7 @@
 == 多边形
 
 #definition(name: [简单多边形])[
-  若多边形 $P = (p_0, dots, p_(m-1))$（$m >= 3$）的边 $[p_i, p_(i+1)]$（下标取模 $m$）只在相邻边的共同端点相交，且顶点不全共线，则称 $P$ 为#emph[简单多边形]。其边界 $partial P$ 是各边的联集；由 Jordan 曲线定理，$partial P$ 的补集恰有一个有界连通分量，即#emph[内部] $"int" P$，以及一个无界分量，即#emph[外部]。记 $overline(P) = "int" P union partial P$。
+  若多边形 $P = (p_0, dots, p_(m-1))$（$m >= 3$）的边 $[p_i, p_(i+1)]$（下标取模 $m$）只在相邻边的共同端点相交，且顶点不全共线，则称 $P$ 为#emph[简单多边形]。其边界 $partial P$ 是各边的并集；由 Jordan 曲线定理，$partial P$ 的补集恰有一个有界连通分量，即#emph[内部] $"int" P$，以及一个无界分量，即#emph[外部]。记 $overline(P) = "int" P union partial P$。
 ] <def-polygon>
 
 #api(("polygon_edges", "distance_to_boundary"), syntax: [

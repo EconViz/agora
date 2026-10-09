@@ -99,7 +99,7 @@ position allows.
 ] <lem-segment-distance>
 
 #api(("point_in_polygon",), syntax: [#raw("point_in_polygon(point, polygon) -> bool")])[
-  The even–odd rule: follow the horizontal ray from the point to the right
+  The even-odd rule: follow the horizontal ray from the point to the right
   and count the edges it crosses. An edge counts when exactly one of its
   endpoints lies strictly above the ray's line and the crossing is right of
   the point #citep(<haines1994>).

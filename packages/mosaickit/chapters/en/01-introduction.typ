@@ -35,19 +35,14 @@ Four ideas run through the package.
 
 == Mathematics and proofs
 
-Automatic placement uses several computational-geometry routines. An
-orientation test determines which side of a directed line contains a point,
-and the even-odd rule classifies a point by counting ray crossings of a
-boundary. The package also measures distance to a polygon's boundary and
-uses best-first search, always examining the candidate region with the
-largest upper bound first, to find the point deepest inside a region. Axis
-text is arranged without overlap while minimizing the sum of squared
-displacements. The chapters state what each routine guarantees
-as numbered definitions, lemmas, propositions and theorems; the proofs are
-collected in @app-proofs, so the chapters can be read for the API alone. The
-manual also states and proves the corresponding results for style and theme
-algebra (sparse merging and role resolution) and for parameter binding. The
-standard references are
+Automatic placement uses computational geometry: orientation tests, the
+even-odd rule, distances to a polygon's boundary, a best-first search for the
+point deepest inside a region, and the least-squares packing that keeps axis
+text apart. The chapters state what each routine guarantees as numbered
+definitions, lemmas, propositions and theorems; the proofs are collected in
+@app-proofs, so the chapters can be read for the API alone. The same
+treatment covers the algebra of styles and themes (sparse merging, role
+resolution) and parameter binding. The standard references are
 #citet(<deberg2008>) for the geometry and #citet(<barlow1972>) for the
 order-restricted least squares behind @thm-spread.
 

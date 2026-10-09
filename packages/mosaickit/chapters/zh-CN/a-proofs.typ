@@ -54,7 +54,7 @@
 ]
 
 #proof(of: <lem-rect-segment>)[
-  $R$ 的边都在 $R$ 内，因此任一测试成立都给出共同点（参见#ref(<thm-segments>)）。反之，设 $[a, b]$ 与 $R$ 相交但两端点都不在 $R$ 内。线段是连通的，同时含有 $R$ 内与 $R$ 外的点，因此与 $R$ 的边界相交，而边界是四条边的联集；#ref(<thm-segments>)会检测到该边。
+  $R$ 的边都在 $R$ 内，因此任一测试成立都给出共同点（参见#ref(<thm-segments>)）。反之，设 $[a, b]$ 与 $R$ 相交但两端点都不在 $R$ 内。线段是连通的，同时含有 $R$ 内与 $R$ 外的点，因此与 $R$ 的边界相交，而边界是四条边的并集；#ref(<thm-segments>)会检测到该边。
 ]
 
 #proof(of: <lem-segment-distance>)[

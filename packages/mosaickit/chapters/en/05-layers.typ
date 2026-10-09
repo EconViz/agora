@@ -80,8 +80,7 @@ when the layer is created, not when it is drawn.
 ]
 
 #api(("GroupLayer",), syntax: [#raw("GroupLayer(children, *, ...)")])[
-  Groups several layers without drawing anything of its own. Children are
-  drawn as if they were in the scene,
+  A layer made of layers. Children are drawn as if they were in the scene,
   with the group's `z_index` added to theirs; an invisible group hides them
   all.
 ]
