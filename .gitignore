@@ -15,3 +15,6 @@ __pycache__/
 # Kaiti.ttc is Apple-licensed and over GitHub's 100 MB limit; copy it in
 # locally (see README).
 fonts/Kaiti.ttc
+
+# Scratch output
+tmp/
