@@ -4,7 +4,7 @@
 
 #changed("1.3.1", label: "models.registry")[新增模型註冊表（`models.registry`），供命令列工具建立模型]
 
-內建模型位於 #modify[`utility_viz.models`]，可傳入 `solve()` 與 `Canvas.add_utility()`。本章依偏好特性分組，列出各模型的效用函數、參數、特有行為與圖形。
+內建模型位於 `utility_viz.models`，可傳入 `solve()` 與 `Canvas.add_utility()`。本章依偏好特性分組，列出各模型的效用函數、參數、特有行為與圖形。
 
 == 平滑偏好
 
@@ -77,8 +77,8 @@ Cobb-Douglas、CES 與 Translog 的無異曲線為平滑曲線；最適解取決
   $
   無異曲線呈 L 型。權重與價格為正時，最適點滿足固定比例 $a x = b y$。
 
-  #changed("2.0.0b1", label: "Leontief")[#modify[折角效用函數的無異曲線在 Matplotlib 與 TikZ 輸出中保留精確直角]]
-  #modify[轉角在圖片與 TikZ 輸出中都畫成精確的直角；以 `CustomUtility` 建立的分段 `min`/`max` 函數亦同。]
+  #changed("2.0.0b1", label: "Leontief")[折角效用函數的無異曲線在 Matplotlib 與 TikZ 輸出中保留精確直角]
+  轉角在圖片與 TikZ 輸出中都畫成精確的直角；以 `CustomUtility` 建立的分段 `min`/`max` 函數亦同。
 ]
 
 #param("a", default: "1.0")[商品 $x$ 的權重。]

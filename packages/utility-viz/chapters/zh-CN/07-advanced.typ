@@ -14,7 +14,7 @@
 #param("func")[以 $x$ 与 $y$ 为变量的向量化效用函数。]
 #param("name")[模型的显示名称。]
 
-#modify[```python
+```python
 import numpy as np
 from utility_viz import Canvas, levels, solve
 from utility_viz.models import CustomUtility
@@ -32,7 +32,7 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
     .add_equilibrium(eq)
     .save("custom.png")
 )
-```]
+```
 
 #fig("/figures/models/custom.svg", width: 42%, caption: [
   对数自定义模型。
@@ -52,7 +52,7 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
 #param("shares")[商品名称与指数 $alpha_i$ 的对应。]
 #param("freeze(...)")[$x$、$y$ 以外商品的固定数量。]
 
-#modify[```python
+```python
 from utility_viz import Canvas, levels, solve
 from utility_viz.models import MultiGoodCD
 
@@ -70,16 +70,16 @@ eq = solve(two_good_model, px=2.0, py=3.0, income=30.0)
     .add_equilibrium(eq)
     .save("multigood.png")
 )
-```]
+```
 
 #fig("/figures/models/multigood.svg", width: 42%, caption: [
   三商品固定 $z=10$。
 ])
 
-#modify[
+
 === 与后端无关的场景 <sec-scenes>
 
-#changed("2.0.0b1", label: "core.scenes")[#modify[添加与后端无关的 #pkg("mosaickit") 图层工厂，涵盖预算线、均衡与无差异曲线，并可导出原生 Bézier TikZ]]
+#changed("2.0.0b1", label: "core.scenes")[添加与后端无关的 #pkg("mosaickit") 图层工厂，涵盖预算线、均衡与无差异曲线，并可导出原生 Bézier TikZ]
 
 `utility_viz.core.scenes` 生成与 `Canvas` 相同的经济元素，但输出为不可变的 #pkg("mosaickit") 图层，而非直接绘制在 #pkg("matplotlib") 坐标轴上。每个图层都有固定的 id（`budget`、`budget.fill`、`equilibrium.drop`、`ic.2` 等）与以点分隔的主题角色（`utility.budget`、`utility.indifference.secondary` 等），因此场景可供检查、修改，并交由任何 #pkg("mosaickit") 后端渲染。这是额外添加的高级 API，`Canvas` 与其他图形不受影响。
 
@@ -125,4 +125,4 @@ tex = canvas_to_tikz(canvas)
 ```
 
 TikZ 导出支持路径、填充、标记与文本图层。描绘的效用函数在绘图范围内必须为有限值。
-]
+

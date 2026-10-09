@@ -15,11 +15,11 @@ style objects.
 #changed("1.12.0", label: "Theme")[Colour, width and opacity of secondary indifference curves]
 
 #api(("themes",), updated: "v1.11.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Canvas, themes
 
   cvs = Canvas(theme=themes.paper)
-  ```]
+  ```
 ])[
   The Python API provides the themes below. Theme objects are immutable; to
   change a field, create a new `Theme` or override the field with a
@@ -54,7 +54,7 @@ style objects.
 == Custom themes
 
 #api(("Theme",), updated: "v1.12.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Theme
 
   my_theme = Theme(
@@ -69,7 +69,7 @@ style objects.
       budget_color="#dc2626",
       eq_color="#16a34a",
   )
-  ```]
+  ```
 ])[
   A `Theme` holds default colours, widths and styles for diagram elements.
   Fields not given keep the class defaults; style arguments passed
@@ -102,11 +102,11 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
 
 #changed("1.10.0", label: "Config")[`Config`, `econ-viz.toml`, `econ-viz init` and `plot --config`]
 #changed("1.11.0", label: "Config")[Configuration files accept every built-in theme and keep the same visual meaning across diagram types]
-#changed("2.0.0b1", label: "Config")[#modify[Default file renamed `utility-viz.toml`; legacy `econ-viz.toml` still read with a warning]]
-#changed("2.0.0b1", label: "Config.discover")[#modify[New `Config.discover()`, falling back to the built-in defaults when no file exists]]
+#changed("2.0.0b1", label: "Config")[Default file renamed `utility-viz.toml`; legacy `econ-viz.toml` still read with a warning]
+#changed("2.0.0b1", label: "Config.discover")[New `Config.discover()`, falling back to the built-in defaults when no file exists]
 
 #api(("Config.load", "Config.use", "Config.reset"), added: "v1.10.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Config
 
   Config.load("utility-viz.toml").use()
@@ -114,7 +114,7 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
 
   Config.reset()
   # back to the built-in defaults
-  ```]
+  ```
 ])[
   `Config.load()` reads a TOML file and returns a `Config`; `use()` makes it
   the default for later diagrams, and `reset()` restores the built-in
@@ -125,16 +125,16 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
 
 Figures in one set of lecture notes or one paper usually share their
 colours and line styles. Rather than repeating the same arguments on every
-`Canvas`, write the style once in an #modify[`utility-viz.toml`] at the project root,
+`Canvas`, write the style once in an `utility-viz.toml` at the project root,
 where both Python and the command line read it.
 
 + *Create a template.* Run the following in the project root. It writes a
-  commented #modify[`utility-viz.toml`] listing the names and fields each section
+  commented `utility-viz.toml` listing the names and fields each section
   accepts:
 
-  #modify[```bash
+  ```bash
   utility-viz init
-  ```]
+  ```
 
   Every setting in the template starts commented out; keep only what you
   change and delete the rest.
@@ -173,23 +173,23 @@ where both Python and the command line read it.
 
 + *Use it from Python.* Load it once, before creating any diagram:
 
-  #modify[```python
+  ```python
   from utility_viz import Config
 
   Config.load().use()   # reads ./utility-viz.toml by default
-  ```]
+  ```
 
   Every `Canvas`, `Figure`, `DemandDiagram` and `EdgeworthBox` created
   afterwards uses these settings; `Config.reset()` restores the defaults.
 
-+ *Use it from the command line.* #modify[`utility-viz plot` reads
-  `utility-viz.toml` from the current directory on its own;] pass #modify[another]
++ *Use it from the command line.* `utility-viz plot` reads
+  `utility-viz.toml` from the current directory on its own; pass another
   file with `--config`:
 
-  #modify[```bash
+  ```bash
   utility-viz plot --config utility-viz.toml --model cobb-douglas \
     --px 2 --py 3 --income 30 --output figure.png
-  ```]
+  ```
 
 Settings apply in this order, highest first: arguments passed to `Canvas`
 or a drawing method, then the configuration file, then the base theme. For
@@ -199,11 +199,11 @@ A mistake in the file makes `Config.load()` raise `InvalidParameterError`
 with the valid names. For instance, writing `[stroke.budgt]` for
 `[stroke.budget]` gives:
 
-#modify[```text
+```text
 utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ...)
-```]
+```
 
-#modify[
+
 === Where the file is looked up <sec-config-lookup>
 
 #api(("Config.discover",), added: "v2.0.0b1", syntax: [
@@ -227,4 +227,4 @@ with a warning. The two functions differ only when no file is found:
 as in 1.x, while `Config.discover()` returns the built-in defaults.
 `utility-viz init --migrate` turns a legacy file into `utility-viz.toml`
 (@sec-cli-init).
-]
+

@@ -4,12 +4,12 @@
 
 #changed("1.4.0", label: "WidgetViewer")[`WidgetViewer` provides slider controls in Jupyter notebooks]
 #changed("1.4.0", label: "WidgetViewer")[Numeric input boxes for notebook widgets]
-#changed("2.0.0b1", label: "WidgetViewer")[#modify[Moved to `utility_viz.core.interactive`]]
+#changed("2.0.0b1", label: "WidgetViewer")[Moved to `utility_viz.core.interactive`]
 
 `WidgetViewer` provides sliders and numeric input boxes in Jupyter and
 redraws the figure when a parameter changes. It needs the `interactive`
-extra (@sec-extras). #modify[Import it from `utility_viz.core.interactive`;
-it was `econ_viz.interactive` in 1.x.]
+extra (@sec-extras). Import it from `utility_viz.core.interactive`;
+it was `econ_viz.interactive` in 1.x.
 
 #api(("WidgetViewer",), added: "v1.4.0", syntax: [
   #raw("WidgetViewer(")#meta("draw")#raw(", ")#meta("name")#raw("=(")#meta("min")#raw(", ")#meta("max")#raw(", ")#meta("step")#raw("), ...).show()")
@@ -24,7 +24,7 @@ it was `econ_viz.interactive` in 1.x.]
 take several parameters. Starting from the price-sweep example there, let
 `draw()` also take `alpha`:
 
-#example(modify[```python
+#example([```python
 from utility_viz.core.interactive import WidgetViewer
 
 def draw(alpha: float, px: float) -> Canvas:
@@ -40,7 +40,7 @@ WidgetViewer(
 
 == Notebook setup
 
-In a fresh Jupyter or Colab runtime, run the steps in this order#footnote[The Playground notebook in the #modify[#pkg("utility-viz")] repository, `notebook/econ-viz Playground.ipynb`#modify[ (which keeps its historical name)], follows this flow; open it in Jupyter, VS Code or Colab. It does not reinstall when #modify[#pkg("utility-viz")] is already present.]:
+In a fresh Jupyter or Colab runtime, run the steps in this order#footnote[The Playground notebook in the #pkg("utility-viz") repository, `notebook/econ-viz Playground.ipynb` (which keeps its historical name), follows this flow; open it in Jupyter, VS Code or Colab. It does not reinstall when #pkg("utility-viz") is already present.]:
 
 + Run the install cell.
 + If the install upgraded #pkg("ipywidgets"), #pkg("traitlets") or

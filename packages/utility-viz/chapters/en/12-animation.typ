@@ -5,12 +5,12 @@
 #changed("1.4.0", label: "Animator")[`Animator` produces GIF parameter sweeps with #pkg("Pillow"), without `ffmpeg`]
 #changed("1.4.0", label: "Animator")[GIF examples for utility-parameter, price, income and budget-only sweeps]
 #changed("1.6.0", label: "Animator")[Animation examples moved to `examples/scripts/animation.py`]
-#changed("2.0.0b1", label: "Animator")[#modify[Moved to `utility_viz.core.animation`]]
+#changed("2.0.0b1", label: "Animator")[Moved to `utility_viz.core.animation`]
 
 `Animator` calls a drawing function over a sequence of parameter values and
 exports the returned `Canvas` or `Figure` objects as a GIF. It needs the
-`animation` extra (@sec-extras). #modify[Import it from
-`utility_viz.core.animation`; it was `econ_viz.animation` in 1.x.]
+`animation` extra (@sec-extras). Import it from
+`utility_viz.core.animation`; it was `econ_viz.animation` in 1.x.
 
 #api(("Animator",), added: "v1.4.0", syntax: [
   #raw("Animator(")#meta("draw")#raw(", frames=")#meta("values")#raw(").save(")#meta("path")#raw(", fps=12, dpi=120, loop=0)")
@@ -24,7 +24,7 @@ exports the returned `Canvas` or `Figure` objects as a GIF. It needs the
   - `fps`, `dpi` and `loop` set the frame rate, resolution and loop count.
 ]
 
-#example(modify[```python
+#example([```python
 import numpy as np
 
 from utility_viz import Canvas, levels, solve

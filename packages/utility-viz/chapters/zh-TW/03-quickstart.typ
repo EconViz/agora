@@ -13,7 +13,7 @@ $
 
 程式先求解最適消費組合，再繪製無異曲線、預算集合與均衡點（參見#ref(<fig-quickstart>)）。
 
-#example(modify[```python
+#example([```python
 from utility_viz import Canvas, levels, solve
 from utility_viz.models import CobbDouglas
 
@@ -43,10 +43,10 @@ cvs.save("cobb_douglas.png")
 繪圖流程依序為：建立模型、求解均衡、選取效用水準、建立畫布、加入圖層與匯出。
 
 #api(("utility_viz.models",), syntax: [
-  #modify[```python
+  ```python
   from utility_viz.models import CobbDouglas
   model = CobbDouglas(alpha=0.5, beta=0.5)
-  ```]
+  ```
 ])[
   建立效用模型。內建模型詳見#ref(<sec-models>)；自訂函數使用 `CustomUtility`，詳見#ref(<sec-advanced>)。
 ]
@@ -65,13 +65,13 @@ cvs.save("cobb_douglas.png")
     解的類型：`"interior"` 為內部解、`"boundary"` 為數值解落在數量下界（例如 Stone-Geary 的最低消費限制）、`"kink"` 為完全互補的拗折解、`"corner"` 為完全替代的角解。
   ]
 
-  #modify[```python
+  ```python
   from utility_viz import solve
   eq = solve(model, px=2.0, py=3.0, income=30.0)
   print(eq.x, eq.y, round(eq.utility, 3))
 
   # 7.5 5.0 6.124
-  ```]
+  ```
 ]
 
 #api(("levels.around",), syntax: [
@@ -104,7 +104,7 @@ cvs.save("cobb_douglas.png")
 
 求解未收斂時，`solve()` 拋出 `OptimizationError`，不會回傳無效的均衡點。
 
-#modify[```python
+```python
 from utility_viz import InvalidParameterError, OptimizationError, solve
 
 try:
@@ -113,9 +113,9 @@ except (InvalidParameterError, OptimizationError) as error:
     print(error)
 else:
     print(round(eq.x, 3), round(eq.y, 3), eq.bundle_type)
-```]
+```
 
-#changed("2.0.0b1", label: "UtilityVizError")[#modify[`UtilityVizError` 成為基礎例外類別；`EconVizError` 保留為同一類別的別名]]
-#modify[套件拋出的所有例外都繼承自 `UtilityVizError`，捕捉它即可一併處理。1.x 的名稱 `EconVizError` 是同一個類別。]
+#changed("2.0.0b1", label: "UtilityVizError")[`UtilityVizError` 成為基礎例外類別；`EconVizError` 保留為同一類別的別名]
+套件拋出的所有例外都繼承自 `UtilityVizError`，捕捉它即可一併處理。1.x 的名稱 `EconVizError` 是同一個類別。
 
 數值解可能有微小誤差，例如結果接近但不恰好等於 `7.5`。驗證時應使用適當容許誤差；顯示結果時再用 `round()` 格式化，避免過早四捨五入影響後續計算。

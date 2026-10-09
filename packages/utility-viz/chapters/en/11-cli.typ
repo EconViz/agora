@@ -7,45 +7,45 @@
 #changed("1.2.3", label: "econ-viz models")[CLI supports `QuasiLinear`, `StoneGeary` and `Translog`]
 #changed("1.10.0", label: "econ-viz init")[Configuration-template command and `plot --config`]
 #changed("1.11.0", label: "econ-viz plot")[`--theme` accepts every built-in CLI theme]
-#changed("2.0.0b1", label: "utility-viz")[#modify[The command is now `utility-viz`; `econ-viz` prints a deprecation warning and forwards to it]]
-#changed("2.0.0b1", label: "utility-viz plot")[#modify[Without `--config`, reads `utility-viz.toml` (or legacy `econ-viz.toml`) from the current directory]]
-#changed("2.0.0b1", label: "utility-viz init")[#modify[New `--migrate` option]]
+#changed("2.0.0b1", label: "utility-viz")[The command is now `utility-viz`; `econ-viz` prints a deprecation warning and forwards to it]
+#changed("2.0.0b1", label: "utility-viz plot")[Without `--config`, reads `utility-viz.toml` (or legacy `econ-viz.toml`) from the current directory]
+#changed("2.0.0b1", label: "utility-viz init")[New `--migrate` option]
 
 The command-line interface plots diagrams, runs batches and prints demand
-formulas. Install it as a standalone tool with #modify[`uv tool install utility-viz`],
+formulas. Install it as a standalone tool with `uv tool install utility-viz`,
 or prefix each command with `uv run` inside a #pkg("uv") project
-(@sec-install-cli). #modify[The 1.x command `econ-viz`, installed by the
+(@sec-install-cli). The 1.x command `econ-viz`, installed by the
 #pkg("econ-viz") compatibility distribution, still works in 2.x: it warns
 that it is deprecated and runs `utility-viz` with the same arguments
-(@sec-migrate).]
+(@sec-migrate).
 
 #tbl(caption: [CLI commands])[
   #booktabs(
     columns: (auto, 1fr),
     header: ([Command], [Description]),
-    [#modify[#raw("utility-viz help [")]#meta("command")#raw("]")],
+    [#raw("utility-viz help [")#meta("command")#raw("]")],
     [Show help for the CLI or a specific command],
-    [#modify[`utility-viz models`]],
+    [`utility-viz models`],
     [List all supported utility models],
-    [#modify[`utility-viz plot ...`]],
+    [`utility-viz plot ...`],
     [Generate and export a diagram],
-    [#modify[`utility-viz solve-tex ...`]],
+    [`utility-viz solve-tex ...`],
     [Print a closed-form Marshallian demand as TeX],
-    [#modify[`utility-viz init [path]`]],
-    [Create an #modify[`utility-viz.toml`] configuration template],
+    [`utility-viz init [path]`],
+    [Create an `utility-viz.toml` configuration template],
   )
 ]
 
 == Help and models
 
-#api(("utility-viz help",), syntax: [#modify[#raw("utility-viz help [")]#meta("command")#raw("]")])[
+#api(("utility-viz help",), syntax: [#raw("utility-viz help [")#meta("command")#raw("]")])[
   Without an argument, list all commands; with one, show its options.
 
-  #modify[```bash
+  ```bash
   utility-viz help          # all commands
   utility-viz help plot     # plot options
   utility-viz help models   # models options
-  ```]
+  ```
 ]
 
 #api(("utility-viz models",))[
@@ -72,8 +72,8 @@ that it is deprecated and runs `utility-viz` with the same arguments
 == Plotting <sec-cli-plot>
 
 #api(("utility-viz plot",), syntax: [
-  #modify[#raw("utility-viz plot --model ")]#meta("name")#raw(" ")#meta("options") \
-  #modify[#raw("utility-viz plot --latex ")]#meta("expression")#raw(" ")#meta("options")
+  #raw("utility-viz plot --model ")#meta("name")#raw(" ")#meta("options") \
+  #raw("utility-viz plot --latex ")#meta("expression")#raw(" ")#meta("options")
 ])[
   Give the model with `--model`, or the utility function with `--latex`,
   not both. With `--output` the diagram is written to a file; without it an
@@ -95,16 +95,16 @@ that it is deprecated and runs `utility-viz` with the same arguments
     )
   ] <tab-plot-flags>
 
-  #modify[```bash
+  ```bash
   # named model
   utility-viz plot --model cobb-douglas --alpha 0.5 --beta 0.5 ...
 
   # LaTeX expression
   utility-viz plot --latex "x^{0.4} y^{0.6}" ...
-  ```]
+  ```
 ]
 
-#example(modify[```bash
+#example([```bash
 # Cobb-Douglas, shaded budget set
 utility-viz plot --model cobb-douglas --alpha 0.5 --beta 0.5 \
               --px 2 --py 3 --income 30 \
@@ -141,7 +141,7 @@ utility-viz plot --model cobb-douglas --px 2 --py 3 --income 30
 === Model selection
 
 #param("--model, -m")[
-  Model name; #modify[`utility-viz models`] lists them all.
+  Model name; `utility-viz models` lists them all.
 ]
 #param("--latex, -l")[
   #LaTeX expression for Cobb-Douglas, perfect complements, perfect
@@ -177,11 +177,11 @@ Quasi-linear, Stone-Geary and Translog take these further options:
 #param("--beta-yy", default: "0.0")[Translog curvature in $y$.]
 #param("--beta-xy", default: "0.0")[Translog interaction between $x$ and $y$.]
 
-#modify[```bash
+```bash
 utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
               --px 2 --py 3 --income 30 \
               --x-max 20 --y-max 15 --output stone_geary.png
-```]
+```
 
 Subsistence spending here is $2 times 2 + 3 times 2 = 10$, below the income
 of $30$. With an income of $10$ or less, the solve fails because the budget
@@ -195,7 +195,7 @@ lies outside the model's domain.
 #param("--y-label", default: "y")[Vertical axis label.]
 #param("--title")[Figure title.]
 #param("--theme", default: "default")[Theme name: `default`, `nord`, `paper`, `monochrome`, `presentation` or `dark` (@sec-themes).]
-#param("--config")[Path to a TOML configuration file. Command-line options take precedence over the file. #modify[Without it, `utility-viz.toml` (or the legacy `econ-viz.toml`) in the current directory is used if present (@sec-config-lookup).]]
+#param("--config")[Path to a TOML configuration file. Command-line options take precedence over the file. Without it, `utility-viz.toml` (or the legacy `econ-viz.toml`) in the current directory is used if present (@sec-config-lookup).]
 #param("--n-curves", default: "5")[Number of indifference curves.]
 #param("--dpi", default: "300")[Raster output resolution.]
 #param("--fill")[Shade the feasible set below the budget line.]
@@ -216,31 +216,31 @@ as well.
 == Creating a configuration file <sec-cli-init>
 
 #api(("utility-viz init",), added: "v1.10.0", syntax: [
-  #modify[#raw("utility-viz init [")]#meta("path")#raw("] [--force]")#modify[#raw(" [--migrate]")]
+  #raw("utility-viz init [")#meta("path")#raw("] [--force]")#raw(" [--migrate]")
 ])[
-  Write a commented #modify[`utility-viz.toml`] template. Without a path it goes in the
+  Write a commented `utility-viz.toml` template. Without a path it goes in the
   current directory; an existing file is overwritten only with `--force`.
-  #modify[`--migrate` instead creates `utility-viz.toml` from a legacy
-  `econ-viz.toml` in the same directory and keeps the old file.]
+  `--migrate` instead creates `utility-viz.toml` from a legacy
+  `econ-viz.toml` in the same directory and keeps the old file.
 
-  #modify[```bash
+  ```bash
   utility-viz init
   utility-viz init config/figures.toml
   utility-viz init --migrate
   utility-viz plot --config utility-viz.toml --model cobb-douglas \
                 --px 2 --py 3 --income 30 --output figure.png
-  ```]
+  ```
 ]
 
 == Demand formulas
 
 #api(("utility-viz solve-tex",), syntax: [
-  #modify[#raw("utility-viz solve-tex --model ")]#meta("name")#raw(" ")#meta("options")
+  #raw("utility-viz solve-tex --model ")#meta("name")#raw(" ")#meta("options")
 ])[
   Print the closed-form Marshallian demand as TeX, for any document that
   supports TeX math.
 
-  #modify[```bash
+  ```bash
   # numeric parameters
   utility-viz solve-tex --model cobb-douglas --alpha 0.4 --beta 0.6
 
@@ -250,7 +250,7 @@ as well.
   # custom price and income symbols
   utility-viz solve-tex --model leontief --a 2 --b 3 \
                      --px-symbol p_1 --py-symbol p_2 --income-symbol M
-  ```]
+  ```
 
   Supports `cobb-douglas`, `leontief`, `perfect-substitutes` and their
   #LaTeX expressions. The command prints the formula only and writes no

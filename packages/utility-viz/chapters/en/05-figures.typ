@@ -2,7 +2,7 @@
 
 = Figures and demand diagrams <sec-figures>
 
-On top of `Canvas`, #modify[#pkg("utility-viz")] builds these larger diagrams:
+On top of `Canvas`, #pkg("utility-viz") builds these larger diagrams:
 
 - `Figure` for multi-panel layouts;
 - `PricePath` and `IncomePath` for budget and equilibrium sweeps;
@@ -25,7 +25,7 @@ On top of `Canvas`, #modify[#pkg("utility-viz")] builds these larger diagrams:
   the drawing API is unchanged once the layout exists.
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import Figure, Layout, Legend, levels, solve
 from utility_viz.models import CobbDouglas
 
@@ -74,7 +74,7 @@ fig.save("figure_side_by_side.png")
 
 #changed("1.2.0", label: "PricePath")[`PricePath`, `IncomePath` and `Canvas.add_path()` for PCC/ICC plots]
 #api(("PricePath", "IncomePath"), added: "v1.2.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import IncomePath, LinearBudget, PricePath
   from utility_viz.models import CobbDouglas
 
@@ -94,7 +94,7 @@ fig.save("figure_side_by_side.png")
       income_range=(20.0, 80.0),
       n=30,
   )
-  ```]
+  ```
 ])[
   Sweep one budget parameter while repeatedly solving the consumer's
   problem. Use a path to draw price- and income-consumption curves with
@@ -103,7 +103,7 @@ fig.save("figure_side_by_side.png")
 ]
 
 #api(("Canvas.add_path",), added: "v1.2.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Canvas, levels
 
   eq = price_path.equilibria[len(price_path.equilibria) // 2]
@@ -113,7 +113,7 @@ fig.save("figure_side_by_side.png")
       .add_utility(model, levels=lvls) \
       .add_path(price_path, label="PCC") \
       .save("price_path.png")
-  ```]
+  ```
 ])[
   Draw a path directly on a canvas when a full demand diagram is not
   needed. For Cobb-Douglas preferences the price-consumption curve is
@@ -142,7 +142,7 @@ fig.save("figure_side_by_side.png")
   - `show_pcc=True` overlays the price-consumption curve in goods space.
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import DemandDiagram, LinearBudget, PricePath
 from utility_viz.models import CobbDouglas
 
@@ -223,7 +223,7 @@ fig.save("demand_cobb_douglas.png")
   and `"right"` can also be given. `Legend(visible=False)` hides the legend.
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import (
     Canvas,
     DecompositionMethod,
@@ -286,7 +286,7 @@ result = decompose_price_effect(
   utility functions.
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import EdgeworthBox
 from utility_viz.models import CobbDouglas
 

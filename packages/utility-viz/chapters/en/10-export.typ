@@ -38,17 +38,17 @@ cvs = Canvas(x_max=20, y_max=15, dpi=150)   # lower DPI, faster preview
 
 Export a GIF with `Animator.save()`; @sec-animation has complete examples.
 
-#modify[```python
+```python
 from utility_viz.core.animation import Animator
 
 Animator(draw_frame, frames=frames).save("animation.gif", fps=12, dpi=120)
-```]
+```
 
 == Interactive window
 
 `cvs.show()` opens a live #pkg("matplotlib") window instead of saving. In
 the CLI, omitting `--output` has the same effect (@sec-cli-plot):
 
-#modify[```bash
+```bash
 utility-viz plot --model cobb-douglas --px 2 --py 3 --income 30
-```]
+```

@@ -14,7 +14,7 @@ layers for indifference curves, budget lines, equilibria and more.
 #changed("1.12.0", label: "Canvas.add_utility")[Focal utility level, secondary curve style and ordinal labels]
 
 #api(("Canvas",), updated: "v1.7.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import ArrowStyle, Canvas, Stroke, themes
 
   cvs = Canvas(
@@ -31,7 +31,7 @@ layers for indifference curves, budget lines, equilibria and more.
       axis_stroke=Stroke(width=1.0, arrow=ArrowStyle.TRIANGLE),
       theme=themes.default,
   )
-  ```]
+  ```
 ])[
   Create a canvas and set its axis ranges, axis labels, fonts, line styles and
   theme. Visual settings not passed explicitly come from the active `Config`
@@ -268,7 +268,7 @@ and drop lines.
   the enum or the matching string; other lines use `Stroke(style=...)`.
 ]
 
-#modify[```python
+```python
 import matplotlib.pyplot as plt
 
 from utility_viz import Canvas, LineStyle
@@ -293,7 +293,7 @@ for ax, style in zip(axes, styles):
 # Axis labels sit outside the arrowheads; give four panels more room.
 fig.subplots_adjust(wspace=0.62)
 fig.savefig("line_styles.png", dpi=160, transparent=True)
-```]
+```
 
 #fig("/figures/canvas/line_styles.svg", width: 94%, caption: [
   The four line styles.
@@ -333,7 +333,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
   `y_axis`. When shorthand arguments are passed as well, fields set in the
   `Axis` win.
 
-  #modify[```python
+  ```python
   from utility_viz import Axis, Canvas, Label, Stroke
 
   cvs = Canvas(
@@ -344,7 +344,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
       ),
       y_axis=Axis(label="x_2"),
   )
-  ```]
+  ```
 ]
 
 === Marker and Label
@@ -363,7 +363,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
   Text, position, offset, colour, size, visibility and opacity of a label.
   The position is a side or a corner; `Label(visible=False)` hides the text.
 
-  #modify[```python
+  ```python
   from utility_viz import Label, Marker
 
   cvs.add_equilibrium(
@@ -376,7 +376,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
       marker=Marker(color="black", shape="D"),
       label=Label(text="A", position="left", fontsize=14),
   )
-  ```]
+  ```
 ]
 
 === Fill
@@ -387,14 +387,14 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
   Colour and opacity of a shaded area. `alpha` is a compatible shorthand for
   `opacity`; one call must not pass different values for both.
 
-  #modify[```python
+  ```python
   from utility_viz import Fill
 
   cvs.add_budget(
       2, 3, 30,
       fill=Fill(color="lightgrey", opacity=0.4),
   )
-  ```]
+  ```
 ]
 
 == Method chaining <sec-chaining>

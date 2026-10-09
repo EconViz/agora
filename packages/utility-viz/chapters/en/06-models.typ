@@ -5,7 +5,7 @@
 #changed("1.3.1", label: "models.registry")[Model registry (`models.registry`) used by the command-line tool to build models]
 
 The core models cover smooth, kinked, linear, income-dependent, and
-reference-point preferences. They all live in #modify[`utility_viz.models`]. This chapter
+reference-point preferences. They all live in `utility_viz.models`. This chapter
 gives each model's function, parameters, distinct behaviour, and figure.
 
 == Smooth preferences
@@ -86,10 +86,10 @@ to a kink or a corner.
   The indifference curves are L-shaped, and the optimum lies at the kink
   where the two weighted quantities are equal.
 
-  #changed("2.0.0b1", label: "Leontief")[#modify[Indifference curves of kinked utilities keep exact right-angle corners in Matplotlib and TikZ output]]
-  #modify[The corners are drawn as exact right angles, in image and TikZ
+  #changed("2.0.0b1", label: "Leontief")[Indifference curves of kinked utilities keep exact right-angle corners in Matplotlib and TikZ output]
+  The corners are drawn as exact right angles, in image and TikZ
   output alike; this also holds for piecewise `min`/`max` functions built
-  with `CustomUtility`.]
+  with `CustomUtility`.
 ]
 
 #param("a", default: "1.0")[Weight on good $x$.]

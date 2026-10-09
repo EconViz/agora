@@ -7,39 +7,39 @@
 #changed("1.2.3", label: "econ-viz models")[命令行工具支持 `QuasiLinear`、`StoneGeary` 与 `Translog`]
 #changed("1.10.0", label: "econ-viz init")[添加配置文件模板命令与 `plot --config`]
 #changed("1.11.0", label: "econ-viz plot")[`--theme` 支持所有命令行内置主题]
-#changed("2.0.0b1", label: "utility-viz")[#modify[命令改为 `utility-viz`；`econ-viz` 会打印弃用警告并转交给新命令]]
-#changed("2.0.0b1", label: "utility-viz plot")[#modify[未指定 `--config` 时，读取当前目录的 `utility-viz.toml`（或旧的 `econ-viz.toml`）]]
-#changed("2.0.0b1", label: "utility-viz init")[#modify[添加 `--migrate` 选项]]
+#changed("2.0.0b1", label: "utility-viz")[命令改为 `utility-viz`；`econ-viz` 会打印弃用警告并转交给新命令]
+#changed("2.0.0b1", label: "utility-viz plot")[未指定 `--config` 时，读取当前目录的 `utility-viz.toml`（或旧的 `econ-viz.toml`）]
+#changed("2.0.0b1", label: "utility-viz init")[添加 `--migrate` 选项]
 
-命令行工具可绘图、批量处理及输出需求公式。以 #modify[`uv tool install utility-viz`] 安装为独立工具，或在 #pkg("uv") 项目中于命令前加上 `uv run`（详见#ref(<sec-install-cli>)）。#modify[由 #pkg("econ-viz") 兼容包安装的 1.x 命令 `econ-viz` 在 2.x 仍可使用：它会发出弃用警告，再以相同参数运行 `utility-viz`（详见#ref(<sec-migrate>)）。]
+命令行工具可绘图、批量处理及输出需求公式。以 `uv tool install utility-viz` 安装为独立工具，或在 #pkg("uv") 项目中于命令前加上 `uv run`（详见#ref(<sec-install-cli>)）。由 #pkg("econ-viz") 兼容包安装的 1.x 命令 `econ-viz` 在 2.x 仍可使用：它会发出弃用警告，再以相同参数运行 `utility-viz`（详见#ref(<sec-migrate>)）。
 
 #tbl(caption: [命令行命令])[
   #booktabs(
     columns: (auto, 1fr),
     header: ([命令], [说明]),
-    [#modify[#raw("utility-viz help [")]#meta("command")#raw("]")],
+    [#raw("utility-viz help [")#meta("command")#raw("]")],
     [显示命令行工具或特定命令的说明],
-    [#modify[`utility-viz models`]],
+    [`utility-viz models`],
     [列出所有支持的效用模型],
-    [#modify[`utility-viz plot ...`]],
+    [`utility-viz plot ...`],
     [生成并导出图形],
-    [#modify[`utility-viz solve-tex ...`]],
+    [`utility-viz solve-tex ...`],
     [以 TeX 格式输出 Marshall 需求的闭式解],
-    [#modify[`utility-viz init [path]`]],
-    [创建 #modify[`utility-viz.toml`] 配置模板],
+    [`utility-viz init [path]`],
+    [创建 `utility-viz.toml` 配置模板],
   )
 ]
 
 == 说明与模型
 
-#api(("utility-viz help",), syntax: [#modify[#raw("utility-viz help [")]#meta("command")#raw("]")])[
+#api(("utility-viz help",), syntax: [#raw("utility-viz help [")#meta("command")#raw("]")])[
   未指定参数时列出所有命令；指定命令名称时显示该命令的选项。
 
-  #modify[```bash
+  ```bash
   utility-viz help          # 所有命令
   utility-viz help plot     # plot 选项
   utility-viz help models   # models 选项
-  ```]
+  ```
 ]
 
 #api(("utility-viz models",))[
@@ -64,8 +64,8 @@
 == 绘图 <sec-cli-plot>
 
 #api(("utility-viz plot",), syntax: [
-  #modify[#raw("utility-viz plot --model ")]#meta("name")#raw(" ")#meta("options") \
-  #modify[#raw("utility-viz plot --latex ")]#meta("expression")#raw(" ")#meta("options")
+  #raw("utility-viz plot --model ")#meta("name")#raw(" ")#meta("options") \
+  #raw("utility-viz plot --latex ")#meta("expression")#raw(" ")#meta("options")
 ])[
   使用 `--model` 指定模型，或使用 `--latex` 输入效用函数，两者择一。指定 `--output` 时导出文件，省略时打开交互窗口。
 
@@ -83,16 +83,16 @@
     )
   ] <tab-plot-flags>
 
-  #modify[```bash
+  ```bash
   # 指定模型名称
   utility-viz plot --model cobb-douglas --alpha 0.5 --beta 0.5 ...
 
   # LaTeX 表达式
   utility-viz plot --latex "x^{0.4} y^{0.6}" ...
-  ```]
+  ```
 ]
 
-#example(modify[```bash
+#example([```bash
 # Cobb-Douglas，可行集合加阴影
 utility-viz plot --model cobb-douglas --alpha 0.5 --beta 0.5 \
               --px 2 --py 3 --income 30 \
@@ -129,7 +129,7 @@ utility-viz plot --model cobb-douglas --px 2 --py 3 --income 30
 === 选择模型
 
 #param("--model, -m")[
-  模型名称，完整列表可用 #modify[`utility-viz models`] 查询。
+  模型名称，完整列表可用 `utility-viz models` 查询。
 ]
 #param("--latex, -l")[
   #LaTeX 表达式，支持 Cobb-Douglas、完全互补、完全替代与 CES（详见#ref(<sec-latex>)）。
@@ -164,11 +164,11 @@ utility-viz plot --model cobb-douglas --px 2 --py 3 --income 30
 #param("--beta-yy", default: "0.0")[Translog 中 $y$ 方向的曲率。]
 #param("--beta-xy", default: "0.0")[Translog 中 $x$ 与 $y$ 的交叉项。]
 
-#modify[```bash
+```bash
 utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
               --px 2 --py 3 --income 30 \
               --x-max 20 --y-max 15 --output stone_geary.png
-```]
+```
 
 此例的最低消费支出为 $2 times 2 + 3 times 2 = 10$，收入 $30$ 高于此限制。若将收入改为 $10$ 或更低，求解会因不符合模型定义域而失败。
 
@@ -180,7 +180,7 @@ utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
 #param("--y-label", default: "y")[纵轴标签。]
 #param("--title")[图形标题。]
 #param("--theme", default: "default")[主题名称：`default`、`nord`、`paper`、`monochrome`、`presentation` 或 `dark`（详见#ref(<sec-themes>)）。]
-#param("--config")[TOML 配置文件路径。命令行参数的优先级高于配置文件。#modify[省略时，若当前目录有 `utility-viz.toml`（或旧的 `econ-viz.toml`）则自动使用（详见#ref(<sec-config-lookup>)）。]]
+#param("--config")[TOML 配置文件路径。命令行参数的优先级高于配置文件。省略时，若当前目录有 `utility-viz.toml`（或旧的 `econ-viz.toml`）则自动使用（详见#ref(<sec-config-lookup>)）。]
 #param("--n-curves", default: "5")[无差异曲线的条数。]
 #param("--dpi", default: "300")[位图输出分辨率。]
 #param("--fill")[为预算线下方的可行集合加上阴影。]
@@ -197,27 +197,27 @@ utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
 == 创建配置文件 <sec-cli-init>
 
 #api(("utility-viz init",), added: "v1.10.0", syntax: [
-  #modify[#raw("utility-viz init [")]#meta("path")#raw("] [--force]")#modify[#raw(" [--migrate]")]
+  #raw("utility-viz init [")#meta("path")#raw("] [--force]")#raw(" [--migrate]")
 ])[
-  创建带注释的 #modify[`utility-viz.toml`] 模板。省略路径时写入当前目录；文件已存在时，必须使用 `--force` 才会覆盖。#modify[`--migrate` 则改为从同一目录中旧的 `econ-viz.toml` 创建 `utility-viz.toml`，并保留旧文件。]
+  创建带注释的 `utility-viz.toml` 模板。省略路径时写入当前目录；文件已存在时，必须使用 `--force` 才会覆盖。`--migrate` 则改为从同一目录中旧的 `econ-viz.toml` 创建 `utility-viz.toml`，并保留旧文件。
 
-  #modify[```bash
+  ```bash
   utility-viz init
   utility-viz init config/figures.toml
   utility-viz init --migrate
   utility-viz plot --config utility-viz.toml --model cobb-douglas \
                 --px 2 --py 3 --income 30 --output figure.png
-  ```]
+  ```
 ]
 
 == 需求公式
 
 #api(("utility-viz solve-tex",), syntax: [
-  #modify[#raw("utility-viz solve-tex --model ")]#meta("name")#raw(" ")#meta("options")
+  #raw("utility-viz solve-tex --model ")#meta("name")#raw(" ")#meta("options")
 ])[
   以 TeX 格式输出 Marshall 需求的闭式解，可用于支持 TeX 数学式的文件。
 
-  #modify[```bash
+  ```bash
   # 数值参数
   utility-viz solve-tex --model cobb-douglas --alpha 0.4 --beta 0.6
 
@@ -227,7 +227,7 @@ utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
   # 自定义价格与收入符号
   utility-viz solve-tex --model leontief --a 2 --b 3 \
                      --px-symbol p_1 --py-symbol p_2 --income-symbol M
-  ```]
+  ```
 
   支持 `cobb-douglas`、`leontief`、`perfect-substitutes` 及其 #LaTeX 表达式。此命令只输出公式文字，不生成图像文件。
 ]

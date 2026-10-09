@@ -5,9 +5,9 @@
 #changed("1.4.0", label: "Animator")[`Animator` 以 #pkg("Pillow") 生成 GIF 参数变动动画，不需要 `ffmpeg`]
 #changed("1.4.0", label: "Animator")[添加效用参数、价格、收入与仅显示预算线的 GIF 示例]
 #changed("1.6.0", label: "Animator")[动画示例移到 `examples/scripts/animation.py`]
-#changed("2.0.0b1", label: "Animator")[#modify[移至 `utility_viz.core.animation`]]
+#changed("2.0.0b1", label: "Animator")[移至 `utility_viz.core.animation`]
 
-`Animator` 根据指定的参数序列调用绘图函数，将返回的 `Canvas` 或 `Figure` 导出为 GIF。使用前需安装 `animation` 可选依赖（详见#ref(<sec-extras>)）。#modify[从 `utility_viz.core.animation` 导入；1.x 为 `econ_viz.animation`。]
+`Animator` 根据指定的参数序列调用绘图函数，将返回的 `Canvas` 或 `Figure` 导出为 GIF。使用前需安装 `animation` 可选依赖（详见#ref(<sec-extras>)）。从 `utility_viz.core.animation` 导入；1.x 为 `econ_viz.animation`。
 
 #api(("Animator",), added: "v1.4.0", syntax: [
   #raw("Animator(")#meta("draw")#raw(", frames=")#meta("values")#raw(").save(")#meta("path")#raw(
@@ -21,7 +21,7 @@
   - `fps`、`dpi` 与 `loop` 分别设置帧率、分辨率与循环次数。
 ]
 
-#example(modify[```python
+#example([```python
 import numpy as np
 
 from utility_viz import Canvas, levels, solve

@@ -5,9 +5,9 @@
 #changed("1.4.0", label: "Animator")[`Animator` 以 #pkg("Pillow") 產生 GIF 參數變動動畫，不需要 `ffmpeg`]
 #changed("1.4.0", label: "Animator")[新增效用參數、價格、所得與僅顯示預算線的 GIF 範例]
 #changed("1.6.0", label: "Animator")[動畫範例移到 `examples/scripts/animation.py`]
-#changed("2.0.0b1", label: "Animator")[#modify[移至 `utility_viz.core.animation`]]
+#changed("2.0.0b1", label: "Animator")[移至 `utility_viz.core.animation`]
 
-`Animator` 依指定的參數序列呼叫繪圖函數，將回傳的 `Canvas` 或 `Figure` 匯出為 GIF。使用前需安裝 `animation` 選用依賴（詳見#ref(<sec-extras>)）。#modify[從 `utility_viz.core.animation` 匯入；1.x 為 `econ_viz.animation`。]
+`Animator` 依指定的參數序列呼叫繪圖函數，將回傳的 `Canvas` 或 `Figure` 匯出為 GIF。使用前需安裝 `animation` 選用依賴（詳見#ref(<sec-extras>)）。從 `utility_viz.core.animation` 匯入；1.x 為 `econ_viz.animation`。
 
 #api(("Animator",), added: "v1.4.0", syntax: [
   #raw("Animator(")#meta("draw")#raw(", frames=")#meta("values")#raw(").save(")#meta("path")#raw(
@@ -21,7 +21,7 @@
   - `fps`、`dpi` 與 `loop` 分別設定影格率、解析度與循環次數。
 ]
 
-#example(modify[```python
+#example([```python
 import numpy as np
 
 from utility_viz import Canvas, levels, solve

@@ -14,7 +14,7 @@ $
 The script solves the optimum and draws the indifference map, budget set,
 and equilibrium shown in @fig-quickstart.
 
-#example(modify[```python
+#example([```python
 from utility_viz import Canvas, levels, solve
 from utility_viz.models import CobbDouglas
 
@@ -48,10 +48,10 @@ Every diagram follows the same steps: build a model, solve for the
 equilibrium, pick utility levels, create a canvas, add layers and export.
 
 #api(("utility_viz.models",), syntax: [
-  #modify[```python
+  ```python
   from utility_viz.models import CobbDouglas
   model = CobbDouglas(alpha=0.5, beta=0.5)
-  ```]
+  ```
 ])[
   Pick a utility function. @sec-models lists every built-in model; any
   Python function can also be wrapped as a model (@sec-advanced).
@@ -71,13 +71,13 @@ equilibrium, pick utility levels, create a canvas, add layers and export.
     Solution type: `"interior"` for an interior solution, `"boundary"` when the numerical solution sits at a quantity lower bound (e.g. Stone-Geary subsistence), `"kink"` for a Leontief kink and `"corner"` for a perfect-substitutes corner.
   ]
 
-  #modify[```python
+  ```python
   from utility_viz import solve
   eq = solve(model, px=2.0, py=3.0, income=30.0)
   print(eq.x, eq.y, round(eq.utility, 3))
 
   # 7.5 5.0 6.124
-  ```]
+  ```
 ]
 
 #api(("levels.around",), syntax: [
@@ -126,7 +126,7 @@ Prices and income must be positive; otherwise `solve()` raises
 When the solver does not converge, `solve()` raises `OptimizationError`
 rather than returning an invalid equilibrium.
 
-#modify[```python
+```python
 from utility_viz import InvalidParameterError, OptimizationError, solve
 
 try:
@@ -135,12 +135,12 @@ except (InvalidParameterError, OptimizationError) as error:
     print(error)
 else:
     print(round(eq.x, 3), round(eq.y, 3), eq.bundle_type)
-```]
+```
 
-#changed("2.0.0b1", label: "UtilityVizError")[#modify[`UtilityVizError` is the base exception; `EconVizError` remains as an alias of the same class]]
-#modify[Every exception the package raises derives from `UtilityVizError`;
+#changed("2.0.0b1", label: "UtilityVizError")[`UtilityVizError` is the base exception; `EconVizError` remains as an alias of the same class]
+Every exception the package raises derives from `UtilityVizError`;
 catch it to handle all of them at once. `EconVizError`, its 1.x name, is
-the same class.]
+the same class.
 
 Numerical solutions carry small errors: a result may be close to, but not
 exactly, `7.5`. Compare with a tolerance when checking results, and round
