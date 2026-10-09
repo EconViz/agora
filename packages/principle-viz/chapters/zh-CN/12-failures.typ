@@ -72,7 +72,7 @@ print(result.corrective_tax, result.deadweight_loss)
   #raw("IndividualBenefit(name, marginal_benefit)") \
   #raw("analyze_public_good(")#meta("individuals")#raw(", ")#meta("cost")#raw(", *, samples=101)")
 ])[
-  每个人都消费公共物品的全部数量，因此边际利益*垂直*加总。有效率的数量使边际利益之和等于边际成本 #citep(<samuelson1954>)；私人提供则停在最高的个人边际利益等于边际成本之处。结果包含 `efficient_quantity`、`efficient_marginal_value`、`private_provision_quantity`、`free_rider_gap` 与采样点 `points`。
+  每个人都消费公共物品的全部数量，因此边际利益垂直加总。有效率的数量使边际利益之和等于边际成本 #citep(<samuelson1954>)；私人提供则停在最高的个人边际利益等于边际成本之处。结果包含 `efficient_quantity`、`efficient_marginal_value`、`private_provision_quantity`、`free_rider_gap` 与采样点 `points`。
 ]
 
 ```python

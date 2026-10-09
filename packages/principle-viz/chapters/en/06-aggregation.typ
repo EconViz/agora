@@ -74,9 +74,6 @@ print(round(eq.q_star, 3), round(eq.p_star, 3))  # 3.818 5.273
 cs, ps = piecewise_surplus(demand, supply, eq)
 ```
 
-`piecewise_surplus()` returns the consumer and producer surplus integrated
-along price.
-
 == Summing discrete schedules
 
 `DiscreteDemand.combine(*schedules)` merges every buyer's reservation prices

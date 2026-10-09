@@ -65,8 +65,6 @@ print(round(eq.q_star, 3), round(eq.p_star, 3))  # 3.818 5.273
 cs, ps = piecewise_surplus(demand, supply, eq)
 ```
 
-`piecewise_surplus()` 返回沿价格积分得到的消费者剩余与生产者剩余。
-
 == 加总离散表
 
 `DiscreteDemand.combine(*schedules)` 将所有买方的保留价格合并为一张市场表，由高到低排列；`DiscreteSupply.combine()` 合并单位成本，由低到高排列。相同的数值保留为不同单位，合并结果可直接交给 `solve_discrete_equilibrium()`（详见#ref(<sec-discrete>)）。输出参见#ref(<fig-discrete-market-demand>)。

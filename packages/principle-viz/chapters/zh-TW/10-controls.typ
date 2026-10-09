@@ -4,7 +4,7 @@
 
 #changed("0.10.0", label: "MarketFigure.add_price_control")[有效的管制直接命名管制線，標出 $p_c$、$Q_d$ 與 $Q_s$，並在管制線上以括號標示 "Shortage" 或 "Surplus"；`gap_brace="axis"` 改在數量軸下方標示]
 
-低於均衡價格的價格上限，或高於均衡價格的價格下限，會*產生約束*：市場無法結清，成交量等於管制價格下需求量與供給量中較小者。
+低於均衡價格的價格上限，或高於均衡價格的價格下限，會產生約束：市場無法結清，成交量等於管制價格下需求量與供給量中較小者。
 
 #api(("PriceControlScenario", "PriceControlType"), syntax: [
   #raw("PriceControlScenario(control_type, control_price)") \

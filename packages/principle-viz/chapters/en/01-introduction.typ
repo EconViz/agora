@@ -15,10 +15,8 @@ market failures, factor markets and the production possibilities frontier.
 Each topic has a calculation, which returns numbers, and a figure drawn in
 textbook conventions.
 
-Curves are named at their ends instead of in a legend, areas are named
-inside them, values are marked on the axes, and no text covers a line, a
-point or other text. Figures are written as PNG, SVG or PDF; the
-command-line tool prints calculation results as JSON.
+Figures are written as PNG, SVG or PDF; the command-line tool prints
+calculation results as JSON.
 
 #pkg("principle-viz") belongs to the EconViz family of packages and draws
 with #pkg("mosaickit"), a domain-independent scene and drawing library. Its
