@@ -4,7 +4,7 @@
 
 == 稀疏样式
 
-每个样式都是冻结的 dataclass，所有字段都可以是 `None`。`None` 表示继承：值来自其下层的样式（详见#ref(<sec-themes>)）。假值不等于 `None`，因此 `opacity=0`、`width=0` 与 `LegendStyle(visible=False)` 都是明确的覆盖。
+每个样式都是冻结的 dataclass，且所有字段都可以是 `None`。`None` 表示继承：字段值取自优先级较低的样式（详见#ref(<sec-themes>)）。假值不等于 `None`，因此 `opacity=0`、`width=0` 与 `LegendStyle(visible=False)` 都是明确的覆盖。
 
 #definition(name: [稀疏合并])[
   设 $a$、$b$ 为同类型、字段集合为 $F$ 的样式。样式 $a triangle.r b$（`a.merged_over(b)`）对每个 $phi in F$ 满足
@@ -20,7 +20,7 @@
   逐栏来看，$a_1 triangle.r dots.c triangle.r a_n$ 取第一个不是 `None` 的值。
 ] <prop-monoid>
 
-因此一叠样式可以任意分组合并，结果可视为优先顺序列表：第一个设置某字段的来源胜出。
+因此，多个样式无论如何分组合并，结果都相同。可以将它们视为一份优先级列表：某字段的值取自第一个设置该字段的来源。
 
 #api(("SparseStyle",), syntax: [#raw("style.merged_over(base)")])[
   #ref(<def-merge>)的合并。不同类型的样式引发 `TypeError`。
@@ -31,15 +31,15 @@
 #api(("Stroke", "DashStyle", "ArrowStyle", "ArrowPlacement"), syntax: [
   #raw("Stroke(color=None, width=None, dash=None, arrow=None, opacity=None)")
 ])[
-  线条。`width` 以点为单位；`dash` 为 `DashStyle`（`SOLID`、`DASHED`、`DOTTED`、`DASHDOT`）；`arrow` 为 `ArrowStyle`（`OPEN`、`TRIANGLE`、`FANCY`、`WEDGE`），画在图层的 `ArrowPlacement`（`START`、`END`、`BOTH`）处。
+  线条样式。`width` 以点为单位；`dash` 为 `DashStyle`（`SOLID`、`DASHED`、`DOTTED`、`DASHDOT`）；`arrow` 为 `ArrowStyle`（`OPEN`、`TRIANGLE`、`FANCY`、`WEDGE`），画在图层的 `ArrowPlacement`（`START`、`END`、`BOTH`）处。
 ]
 
 #api(("Fill",), syntax: [#raw("Fill(color=None, opacity=None, hatch=None)")])[
-  区域内部；`hatch` 为 Matplotlib 的填充图案，例如 `"//"`，`""` 表示无填充图案。
+  区域内部的填色样式；`hatch` 为 Matplotlib 的填充图案，例如 `"//"`，`""` 表示无填充图案。
 ]
 
 #api(("Marker",), syntax: [#raw("Marker(color=None, size=None, shape=None, opacity=None, edge_color=None, edge_width=None)")])[
-  点标记。`size` 是以平方点计的面积，与 Matplotlib 的 `scatter` 相同（36 为 6 pt 圆点）；`shape` 为 Matplotlib 标记，例如 `"o"`、`"s"` 或 `"X"`。
+  点标记样式。`size` 是以平方点计的面积，与 Matplotlib 的 `scatter` 相同（36 对应 6 pt 圆点）；`shape` 为 Matplotlib 标记，例如 `"o"`、`"s"` 或 `"X"`。
 ]
 
 #api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, family=None, weight=None, opacity=None, rotation=None)")])[
@@ -73,8 +73,8 @@
   不可变的 RGBA 颜色，各通道在 $[0, 1]$ 内。`channels` 返回四个值，`from_channels()` 创建颜色，`to_hex(include_alpha=None)` 写出 `#RRGGBB`，当 `include_alpha` 为真、或默认情况下 alpha 不为 1 时加上 `AA`。`TRANSPARENT` 为 `Color(0, 0, 0, 0)`。
 ]
 
-#proposition(name: [十六进位往返])[
-  对每个由十六进位数字组成、形如 `#RRGGBB` 或 `#RRGGBBAA` 的字符串 $h$，`Color.from_hex(h).to_hex(include_alpha=len(h) == 9)` 等于 $h$ 的大写形式。三位数的 `#RGB` 读作 `#RRGGBB`。
+#proposition(name: [十六进制往返])[
+  对每个由十六进制数字组成、形如 `#RRGGBB` 或 `#RRGGBBAA` 的字符串 $h$，`Color.from_hex(h).to_hex(include_alpha=len(h) == 9)` 等于 $h$ 的大写形式。三位数的 `#RGB` 读作 `#RRGGBB`。
 ] <prop-hex>
 
 样式的 `color` 或 `edge_color` 接受 `Color`、`"#hex"` 字符串（立即解析），或其他任何字符串，后者保留为#emph[调色板名称]。
@@ -82,7 +82,7 @@
 == 调色板
 
 #api(("Palette", "DEFAULT_PALETTE"), added: "0.2.0", syntax: [#raw("Palette(name, colors)")])[
-  命名的颜色表。值可以是 `Color` 或十六进位字符串；`palette[name]` 查询颜色，名称不存在时引发指出该调色板的 `ConfigurationError`，`name in palette` 检查名称是否存在。
+  命名的颜色表。值可以是 `Color` 或十六进制字符串；`palette[name]` 查询颜色，名称不存在时引发指出该调色板的 `ConfigurationError`，`name in palette` 检查名称是否存在。
 ]
 
 #tbl(caption: [`DEFAULT_PALETTE`])[
@@ -102,7 +102,7 @@
   )
 ] <tab-palette>
 
-主题与样式以名称引用颜色，画布创建渲染计划时才在生效的调色板（`Config.palette`）中查询，因此渲染器只会收到具体颜色。在调色板中改一次颜色，所有引用它的角色都随之改变。调色板缺少的名称在绘制时引发 `ConfigurationError`，信息指明角色、样式字段与调色板。Python 的 `Palette` 会取代默认调色板，因此应从 `DEFAULT_PALETTE.colors` 创建，以保留内建主题所用的名称：
+主题与样式以名称引用颜色，画布创建渲染计划时才在生效的调色板（`Config.palette`）中查询，因此渲染器只会收到具体颜色。在调色板中改一次颜色，所有引用它的角色都随之改变。调色板缺少的名称在绘制时引发 `ConfigurationError`，信息指明角色、样式字段与调色板。Python 的 `Palette` 会取代默认调色板，因此应从 `DEFAULT_PALETTE.colors` 创建，以保留内置主题所用的名称：
 
 ```python
 from mosaickit import DEFAULT_PALETTE, Canvas, Config, Palette, use_config

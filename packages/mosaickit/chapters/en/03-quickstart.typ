@@ -2,7 +2,7 @@
 
 = Quick start <sec-quickstart>
 
-A diagram is a canvas, a list of layers and a save:
+A diagram needs a canvas, its layers and a call to save it:
 
 #example(```python
 from mosaickit import (
@@ -35,17 +35,17 @@ canvas.save("diagram.pdf")
 ]) <fig-quickstart>
 
 `quadrant_axes(10, 10)` returns ordinary layers: two arrowed paths and their
-titles. The fill sits below everything else through `z_index=-1`. The path is
-the straight polyline through its points; #pkg("mosaickit") draws no curves of
-its own, so a smooth curve is passed in as many points, or built by a geometry
-package and sampled. The text is offset 6 pt up and to the right of the
-point. Nothing is drawn until `save()`, which renders the scene with the
-canvas's renderer (Matplotlib unless configured otherwise), writes the file
-and returns the paths it wrote.
+titles. The fill sits below everything else because `z_index=-1`. The path is
+the straight polyline through its points. #pkg("mosaickit") constructs no
+curves of its own, so a smooth curve must be supplied as a sequence of points
+or built and sampled by a geometry package. The text is offset 6 pt up and to the right
+of the point. Nothing is drawn until `save()`. That method renders the scene
+with the canvas's renderer (Matplotlib unless configured otherwise), writes
+the file and returns the paths it wrote.
 
-The same canvas can be changed and saved again: `add()`, `extend()`,
-`remove()` and `clear()` return the canvas, so calls chain, while every
-snapshot taken before stays as it was (@sec-canvas). Labels that must not
-cover anything are layers too: replace the `TextLayer` with
+The same canvas can be changed and saved again. `add()`, `extend()`,
+`remove()` and `clear()` return the canvas, so calls can be chained, while
+every earlier snapshot remains unchanged (@sec-canvas). Labels that must not
+cover anything are also layers: replace the `TextLayer` with
 `PointLabelLayer((4, 3), "A")` and the renderer chooses the side
 (@sec-labels).

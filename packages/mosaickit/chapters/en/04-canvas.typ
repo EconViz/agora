@@ -8,7 +8,7 @@
   #raw("CanvasSpec(x_range=(0, 10), y_range=(0, 10), width=6.0, height=6.0,") \
   #raw("           dpi=300, x_label=\"X\", y_label=\"Y\", title=None)")
 ])[
-  The physical and coordinate dimensions of a diagram. `x_range` and
+  The physical dimensions and coordinate ranges of a diagram. `x_range` and
   `y_range` are the data ranges shown; `width` and `height` are the figure
   size in inches; `dpi` is an integer in $[1, 1200]$. The properties
   `x_min`, `x_max`, `y_min`, `y_max` read the ranges, and `replace(**changes)`
@@ -43,9 +43,9 @@
 #param("render(*, renderer=None, cache=None)")[Render the scene and return the renderer's result (@sec-rendering).]
 #param("save(target, *, renderer=None, cache=None, **options)")[Render, write `.png`, `.pdf` or `.svg`, close the result and return the written paths. The options are those of `SaveOptions`.]
 
-The builder methods change the canvas but never a scene: each call replaces
-the canvas's scene with a new one, so a snapshot, a copy or a bound canvas
-taken earlier keeps exactly what it had.
+The builder methods change the canvas, never an existing scene. Each call
+replaces the canvas's scene with a new one, so an earlier snapshot, copy or
+bound canvas remains unchanged.
 
 ```python
 from mosaickit import Canvas, PathLayer
@@ -60,7 +60,7 @@ assert canvas.snapshot().layers[0].id == "line"
 == Scenes
 
 #api(("Scene",), syntax: [#raw("Scene(layers=(), metadata={})")])[
-  A persistent, ordered collection of layers. `add()`, `extend()`,
+  A persistent, immutable, ordered collection of layers. `add()`, `extend()`,
   `remove()` and `clear()` return new scenes; `Scene.empty()` is the empty
   one. Layer ids must be unique across the whole scene, groups included;
   a duplicate raises `ConfigurationError`. `ordered_layers` sorts the

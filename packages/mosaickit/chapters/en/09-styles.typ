@@ -5,7 +5,7 @@
 == Sparse styles
 
 Every style is a frozen dataclass whose fields may all be `None`. `None`
-means inherit: the value comes from a style below it (@sec-themes). Falsey
+means inherit: the value comes from a style below it (@sec-themes). Falsy
 values are not `None`, so `opacity=0`, `width=0` and
 `LegendStyle(visible=False)` are explicit overrides.
 
@@ -26,7 +26,7 @@ values are not `None`, so `opacity=0`, `width=0` and
   value that is not `None`.
 ] <prop-monoid>
 
-So a stack of styles can be merged in any grouping, and the result reads
+A stack of styles can therefore be merged in any grouping. The result acts
 as a priority list: the first source that sets a field wins.
 
 #api(("SparseStyle",), syntax: [#raw("style.merged_over(base)")])[
@@ -38,31 +38,32 @@ as a priority list: the first source that sets a field wins.
 #api(("Stroke", "DashStyle", "ArrowStyle", "ArrowPlacement"), syntax: [
   #raw("Stroke(color=None, width=None, dash=None, arrow=None, opacity=None)")
 ])[
-  Lines. `width` is in points; `dash` is a `DashStyle` (`SOLID`, `DASHED`,
-  `DOTTED`, `DASHDOT`); `arrow` an `ArrowStyle` (`OPEN`, `TRIANGLE`, `FANCY`,
-  `WEDGE`) drawn at the `ArrowPlacement` (`START`, `END`, `BOTH`) of the
-  layer.
+  Line styles. `width` is in points; `dash` is a `DashStyle` (`SOLID`,
+  `DASHED`, `DOTTED`, `DASHDOT`); `arrow` is an `ArrowStyle` (`OPEN`,
+  `TRIANGLE`, `FANCY`, `WEDGE`) drawn at the layer's `ArrowPlacement`
+  (`START`, `END`, `BOTH`).
 ]
 
 #api(("Fill",), syntax: [#raw("Fill(color=None, opacity=None, hatch=None)")])[
-  Region interiors; `hatch` is a Matplotlib hatch pattern such as `"//"`,
-  and `""` means none.
+  Styles for region interiors. `hatch` is a Matplotlib hatch pattern such as
+  `"//"`; `""` means no hatch.
 ]
 
 #api(("Marker",), syntax: [#raw("Marker(color=None, size=None, shape=None, opacity=None, edge_color=None, edge_width=None)")])[
-  Point markers. `size` is the area in square points, as in Matplotlib's
-  `scatter` (36 is a 6 pt disc); `shape` a Matplotlib marker such as `"o"`,
-  `"s"` or `"X"`.
+  Point-marker styles. As in Matplotlib's `scatter`, `size` is the area in
+  square points (36 is a 6 pt disc). `shape` is a Matplotlib marker such as
+  `"o"`, `"s"` or `"X"`.
 ]
 
 #api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, family=None, weight=None, opacity=None, rotation=None)")])[
-  Text. `size` in points, `family` a font family name, `weight` such as
-  `"bold"`, `rotation` in degrees counter-clockwise.
+  Text styles. `size` is in points, `family` is a font-family name, `weight`
+  may be a value such as `"bold"`, and `rotation` is in degrees
+  counter-clockwise.
 ]
 
 #api(("LegendStyle",), syntax: [#raw("LegendStyle(visible=None, location=None, frame=None, size=None)")])[
-  Legends: Matplotlib location names such as `"best"` or `"upper right"`,
-  a frame, and the font size.
+  Legend styles, including a Matplotlib location such as `"best"` or
+  `"upper right"`, a frame setting and the font size.
 ]
 
 Sizes, widths and opacities are checked when a style is created: sizes must
@@ -105,9 +106,10 @@ at once) or any other string, which is kept as a _palette name_.
 == Palettes
 
 #api(("Palette", "DEFAULT_PALETTE"), added: "0.2.0", syntax: [#raw("Palette(name, colors)")])[
-  A named table of colors. Values may be `Color`s or hex strings;
-  `palette[name]` looks one up and raises `ConfigurationError` naming the
-  palette for an unknown name, and `name in palette` tests for one.
+  A named table of colors. Values may be `Color`s or hex strings.
+  `palette[name]` looks up a color and raises `ConfigurationError`, naming
+  the palette, when the name is unknown. `name in palette` tests whether a
+  name exists.
 ]
 
 #tbl(caption: [`DEFAULT_PALETTE`])[
@@ -129,8 +131,8 @@ at once) or any other string, which is kept as a _palette name_.
 
 Themes and styles name their colors, and the names are looked up in the
 active palette (`Config.palette`) when a canvas builds its render plan, so
-renderers only ever see concrete colors. Changing a color once in the
-palette recolors every role that names it. A name the palette lacks raises
+renderers only ever see concrete colors. Changing a palette entry recolors
+every role that names it. A missing name raises
 `ConfigurationError` at render time, naming the role, the style field and
 the palette. A Python `Palette` replaces the default palette, so build it
 from `DEFAULT_PALETTE.colors` to keep the names the built-in theme uses:

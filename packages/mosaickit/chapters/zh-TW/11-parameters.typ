@@ -4,14 +4,14 @@
 
 == 參數與運算式
 
-圖層座標可以是以具名參數表示的運算式，而不是數字。此時場景描述的是一族圖形，參數的每組值對應一張；綁定就是從中選出一張。
+圖層座標不一定是數字，也可以是由具名參數組成的運算式。此時，場景描述一族圖形，每組參數值對應一張圖；綁定參數就是從中選出一張。
 
 #api(("Parameter",), syntax: [#raw("Parameter(name, value_type=None)")])[
-  具名的佔位符。設定 `value_type` 時，綁定的值必須是該型別的實例；所有綁定的值都必須可雜湊。`values(seq)` 回傳 `ParameterValues`，並立即檢查每個值。
+  具名的佔位符。設定 `value_type` 後，綁定值必須是該型別的實例；所有綁定值都必須可雜湊。`values(seq)` 回傳 `ParameterValues`，並立即檢查每個值。
 ]
 
 #api(("Expression", "Constant"), syntax: [#raw("Constant(value)")])[
-  不可變的運算式樹。參數與常數可用 `+`、`-`、`*`、`/`、`**`、一元 `-`，以及比較運算 `<`、`<=`、`>`、`>=` 與 `equals()` 組合；一般數字會包裝成常數。運算式的相等是結構相等（`==` 比較兩棵樹，因此改用 `equals()` 建立比較運算式），把運算式當成真假值使用會引發 `BindingError`：須先求值。`evaluate(bindings)` 依參數到值的對應計算結果；`free_parameters()` 是樹中所含參數的集合。
+  不可變的運算式樹。參數與常數可以透過 `+`、`-`、`*`、`/`、`**`、一元 `-`，以及比較運算 `<`、`<=`、`>`、`>=` 與 `equals()` 組合；一般數字會包裝成常數。運算式採結構相等：`==` 比較兩棵運算式樹，要建立比較運算式時應改用 `equals()`。把運算式當成真假值使用會引發 `BindingError`；使用前須先求值。`evaluate(bindings)` 根據參數到值的對應計算結果；`free_parameters()` 回傳樹中所有參數的集合。
 ]
 
 #definition(name: [運算式與綁定])[
@@ -28,7 +28,7 @@
   對定義域不相交的綁定 $beta_1, beta_2$，$"bind"("bind"(e, beta_1), beta_2)$ 與 $"bind"(e, beta_1 union beta_2)$ 有相同的自由參數，且在這些參數的每個綁定下有相同的值。特別地，`canvas.bind(p, 1).bind(q, 2)` 與 `canvas.bind({p: 1, q: 2})` 畫出相同的圖。
 ] <cor-stages>
 
-`bind` 會走訪 tuple、mapping 與所有 `mosaickit` dataclass，因此整個場景一次綁定；圖層的 `model` 保持不變。繪製仍含自由參數的場景時，引發指名這些參數的 `BindingError`。
+`bind` 會走訪 tuple、mapping 與所有 `mosaickit` dataclass，因此能一次綁定整個場景；圖層的 `model` 則保持不變。若繪製的場景仍含自由參數，會引發指名這些參數的 `BindingError`。
 
 ```python
 from mosaickit import Canvas, Parameter, TextLayer
@@ -45,7 +45,7 @@ print(frame.snapshot().layers[0].position)    # (3.0, 7.0)
   #raw("CanvasGrid(cells, rows=None, cols=None, shape=None, links=())") \
   #raw("Span(canvas, rows=1, cols=1)")
 ])[
-  在一張圖中放多個畫布。`cells` 可以是畫布、`Span` 與 `None`（空格）組成的平面清單，逐列填入；也可以是列的清單，此時允許跨列，且每列必須涵蓋所有欄。`shape=(rows, cols)` 等同同時傳入兩者。每個畫布都會複製，之後修改它不影響網格。跨格重疊、跨格超出邊界、格子過多，或混用平面與巢狀格子，都引發 `ConfigurationError`。`render()` 與 `save()` 的用法與畫布相同。
+  在同一張圖中放入多個畫布。`cells` 可以是由畫布、`Span` 與 `None`（空格）組成的平面清單，並逐列填入；也可以是列的清單，此時允許跨列，且每列必須涵蓋所有欄。`shape=(rows, cols)` 等同於同時傳入兩者。每個畫布都會複製，因此之後修改原畫布不會影響網格。跨格重疊、跨格超出邊界、格子過多，或混用平面與巢狀格子，都會引發 `ConfigurationError`。`render()` 與 `save()` 的用法與畫布相同。
 ]
 
 #proposition(name: [推斷的網格形狀])[
@@ -63,7 +63,7 @@ print(frame.snapshot().layers[0].position)    # (3.0, 7.0)
 ]
 
 #api(("GridLink",), added: "0.5.0", syntax: [#raw("GridLink(start_cell, start, end_cell, end, role=\"link\", stroke=None)")])[
-  從某格的 `start` 到另一格的 `end` 的直線，兩點各以所在格子的資料座標表示，畫在整張圖上、橫越格子間的空隙。格子依配置順序編號。樣式是在起點格子的主題中解析的 `role`，再疊上 `stroke`。格子編號超出範圍時，在建立網格時引發 `ConfigurationError`。
+  從某格的 `start` 畫到另一格 `end` 的直線；兩點分別以所在格子的資料座標表示。直線畫在整張圖上，會橫越格子間的空隙。格子依配置順序編號。樣式先在起點格子的主題中解析 `role`，再疊上 `stroke`。格子編號超出範圍時，建立網格就會引發 `ConfigurationError`。
   #changed("0.5.0", label: "CanvasGrid")[新增 `links`]
 ]
 
@@ -87,7 +87,7 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
   #raw("Animation(template, parameter, values, fps=30)") \
   #raw("Animation.sweep(canvas, values, *, fps=30)")
 ])[
-  每個值一格畫面：綁定該參數值的範本。`frames()` 以與繪製器無關的場景逐一產生畫面；`save(path)` 寫出 GIF（透過 Pillow）或 MP4（透過 `ffmpeg`）。建立動畫時即依參數檢查各值；值清單為空或 `fps` 非正時引發 `ConfigurationError`。
+  每個值對應一個畫面，由範本綁定該參數值而成。`frames()` 逐一產生與繪製器無關的場景；`save(path)` 寫出 GIF（透過 Pillow）或 MP4（透過 `ffmpeg`）。建立動畫時就會依參數檢查各值；值清單為空或 `fps` 非正時，會引發 `ConfigurationError`。
 ]
 
 ```python

@@ -8,7 +8,7 @@
   #raw("CanvasSpec(x_range=(0, 10), y_range=(0, 10), width=6.0, height=6.0,") \
   #raw("           dpi=300, x_label=\"X\", y_label=\"Y\", title=None)")
 ])[
-  圖形的實體尺寸與座標範圍。`x_range` 與 `y_range` 是顯示的資料範圍；`width` 與 `height` 是以英寸計的圖形大小；`dpi` 是 $[1, 1200]$ 內的整數。屬性 `x_min`、`x_max`、`y_min`、`y_max` 讀取範圍，`replace(**changes)` 回傳修改部分欄位的副本。範圍必須有限且 `lo < hi`，尺寸必須為有限正數，否則引發 `ConfigurationError`。
+  圖形的實體尺寸與座標範圍。`x_range` 與 `y_range` 是顯示的資料範圍；`width` 與 `height` 是以英寸計算的圖形尺寸；`dpi` 是 $[1, 1200]$ 內的整數。屬性 `x_min`、`x_max`、`y_min`、`y_max` 可讀取範圍，`replace(**changes)` 則回傳只修改指定欄位的副本。範圍必須有限且 `lo < hi`，尺寸必須是有限正數，否則會引發 `ConfigurationError`。
 ]
 
 #api(("Interval",), syntax: [#raw("Interval(")#meta("lo")#raw(", ")#meta("hi")#raw(")")])[
@@ -21,7 +21,7 @@
   #raw("Canvas(spec=None, theme=None, config=None, renderer=None, *,") \
   #raw("       role_overrides=None)")
 ])[
-  包住不可變場景的流暢建構器。設為 `None` 的引數取自建立畫布時生效的設定（詳見#ref(<sec-config>)）：其 `canvas_spec`、`theme` 與 `renderer`。`role_overrides` 把角色名稱對應到 `StyleBundle`，套用在主題與設定之上（參見#ref(<thm-resolution>)）。
+  封裝不可變場景的流暢建構器。若引數為 `None`，便採用建立畫布當下生效的設定（詳見#ref(<sec-config>)），分別是其中的 `canvas_spec`、`theme` 與 `renderer`。`role_overrides` 將角色名稱對應至 `StyleBundle`，並套用在主題與設定之上（參見#ref(<thm-resolution>)）。
 ]
 
 #param("add(layer), extend(layers)")[加入一個或多個圖層；回傳畫布。]
@@ -32,7 +32,7 @@
 #param("render(*, renderer=None, cache=None)")[繪製場景並回傳繪製器的結果（詳見#ref(<sec-rendering>)）。]
 #param("save(target, *, renderer=None, cache=None, **options)")[繪製、寫出 `.png`、`.pdf` 或 `.svg`、關閉結果並回傳寫出的路徑。選項即 `SaveOptions` 的欄位。]
 
-建構方法會改變畫布，但從不改變場景：每次呼叫都以新場景取代畫布的場景，因此先前取得的快照、副本或綁定後的畫布維持原有內容。
+建構方法會修改畫布，但不會就地改動場景：每次呼叫都以新場景取代畫布中的場景，因此先前取得的快照、副本或綁定後的畫布都會維持原有內容。
 
 ```python
 from mosaickit import Canvas, PathLayer
@@ -47,7 +47,7 @@ assert canvas.snapshot().layers[0].id == "line"
 == 場景
 
 #api(("Scene",), syntax: [#raw("Scene(layers=(), metadata={})")])[
-  持久且有序的圖層集合。`add()`、`extend()`、`remove()` 與 `clear()` 回傳新場景；`Scene.empty()` 是空場景。圖層 id 在整個場景（含群組）中必須唯一，重複時引發 `ConfigurationError`。`ordered_layers` 依 `z_index` 排序最上層的圖層，相同者維持加入順序，這就是繪製順序。
+  具持久性且有序的圖層集合，也就是每次操作都會保留舊版本。`add()`、`extend()`、`remove()` 與 `clear()` 都會回傳新場景；`Scene.empty()` 是空場景。圖層 id 在整個場景（包括群組）中必須唯一，若有重複便引發 `ConfigurationError`。`ordered_layers` 依 `z_index` 排序頂層圖層；值相同時維持加入順序，而這個順序就是繪製順序。
 ]
 
 == 錯誤與警告

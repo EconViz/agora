@@ -5,7 +5,7 @@
 == 样式组与主题
 
 #api(("StyleBundle",), syntax: [#raw("StyleBundle(stroke=None, fill=None, marker=None, text=None, legend=None)")])[
-  每个槽一个稀疏样式。槽内类型错误时引发 `ConfigurationError`。`merged_over(base)` 逐槽合并（参见#ref(<def-merge>)）。
+  每个槽位包含一个稀疏样式。槽位内类型错误时，会引发 `ConfigurationError`。`merged_over(base)` 会逐槽位合并（参见#ref(<def-merge>)）。
 ]
 
 #api(("Theme",), syntax: [#raw("Theme(name, roles)")])[
@@ -30,7 +30,7 @@
 
 == 角色解析
 
-图层的角色依次经由其上层角色，最后是图层类型的回退类别解析；回退类别是没有任何地方引用该角色时的最后依据。
+解析图层角色时，会依次查看该角色及其上层角色，最后才查看图层类型的回退类别。该过程按字段进行；只有该角色与所有上层角色都未提供某字段的值时，才会使用回退类别的值。
 
 #definition(name: [角色链])[
   对回退类别为 $phi$ 的角色 $rho = rho_1.rho_2 dots.c rho_m$，其#emph[链]为序列
@@ -38,7 +38,7 @@
   由最具体到最一般，重复的键只保留第一次出现。
 ] <def-chain>
 
-例如文字图层的 `"axes.note"` 角色，其链为（`axes.note`, `axes`, `text`）。各回退类别为 `primary`（路径、群组）、`region`（填色）、`point`（标记）、`text`（文字、标签、坐标轴标记、注释、大括号）、`annotation`（箭头）与 `legend`。
+例如，文字图层的 `"axes.note"` 角色链为（`axes.note`, `axes`, `text`）。回退类别包括 `primary`（路径、群组）、`region`（填色）、`point`（标记）、`text`（文字、标签、坐标轴标记、注释、大括号）、`annotation`（箭头）与 `legend`。
 
 #theorem(name: [解析顺序])[
   设某图层的自带样式为 $E$、角色链为 $kappa = (k_1, dots, k_n)$，画在角色覆盖为 $C$ 的画布上，所在配置的角色覆盖为 $G$、主题角色为 $T$，并令 $D$ 为基本默认值。则图层解析后样式的每个字段，是序列
@@ -48,21 +48,21 @@
 ] <thm-resolution>
 
 #corollary(name: [覆盖优先于具体程度])[
-  画布或设置对一般角色的覆盖，优先于主题对较具体角色的设置：若 $G["text"]$ 设置了文字大小，且#ref(<thm-resolution>)序列中在它之前没有来源设置大小，则角色为 `axes.note` 的文字图层采用该大小，而非主题的 9 pt。
+  画布或配置对一般角色的覆盖，优先于主题对较具体角色的设置：若 $G["text"]$ 设置了文字大小，且#ref(<thm-resolution>)序列中在它之前没有来源设置大小，则角色为 `axes.note` 的文字图层采用该大小，而非主题的 9 pt。
 ] <cor-override>
 
 本手册的图就依赖#ref(<cor-override>)：它们同时覆盖 `text`、`axes` 与 `axes.note` 的文字大小，因为只覆盖 `text` 也会放大注释。
 
-#changed("0.2.0", label: "resolve")[`themes.resolve` 接受 `overrides`，在主题之后依次套用]
+#changed("0.2.0", label: "resolve")[`themes.resolve` 接受 `overrides`，在主题之后依次应用]
 
 == 注册领域角色
 
 #api(("ThemeRegistry",), syntax: [#raw("ThemeRegistry()")])[
-  主题注册表，一开始就含有 `default`。`register(theme)` 加入主题（名称已被使用时引发 `ConfigurationError`），`get(name)` 查询主题，`register_roles(name, roles)` 把带点的领域角色合并到已注册的主题并返回它；不带点的角色引发 `ConfigurationError`，因此领域软件包无法遮蔽内建角色。
+  主题注册表，一开始就含有 `default`。`register(theme)` 加入主题（名称已被使用时引发 `ConfigurationError`），`get(name)` 查询主题，`register_roles(name, roles)` 把带点的领域角色合并到已注册的主题并返回它；不带点的角色引发 `ConfigurationError`，因此领域软件包无法遮蔽内置角色。
 ]
 
 #api(("RolePack", "expand_roles"), syntax: [#raw("expand_roles(pack) -> dict[str, StyleBundle]")])[
-  以类型描述领域软件包角色的方式。`RolePack` 是带有类变数 `_namespace` 的 dataclass；每个不为 `None` 的字段成为角色 `namespace.field`，字段名称中的底线转为点。
+  以类型描述领域软件包角色的方式。`RolePack` 是带有类变量 `_namespace` 的 dataclass；每个不为 `None` 的字段成为角色 `namespace.field`，字段名称中的底线转为点。
 ]
 
 ```python
@@ -87,19 +87,19 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
   #raw("Config(theme=default, canvas_spec=CanvasSpec(), renderer=\"matplotlib\",") \
   #raw("       role_overrides={}, palette=DEFAULT_PALETTE)")
 ])[
-  新画布的运行时默认值：主题、规格、渲染器（名称或 `Renderer`）、在主题之后套用的角色覆盖（#ref(<thm-resolution>)中的 $G$），以及调色板。
+  新画布的运行时默认值：主题、规格、渲染器（名称或 `Renderer`）、在主题之后应用的角色覆盖（#ref(<thm-resolution>)中的 $G$），以及调色板。
   #changed("0.3.0")[新增 `Config.palette`，默认为 `DEFAULT_PALETTE`]
 ]
 
 #api(("use_config",), syntax: [#raw("with use_config(config): ...")])[
-  在区块内使 `config` 成为生效的配置。此值存于 context variable，因此每个线程与异步任务各自看到自己的配置，而传给 `Canvas` 的参数一律优先。
+  在块内使 `config` 成为生效的配置。此值存于上下文变量（context variable），因此每个线程与异步任务各自看到自己的配置，而传给 `Canvas` 的参数一律优先。
 ]
 
 #api(("Config.load", "Config.from_dict"), syntax: [
   #raw("Config.load(path)") \
   #raw("Config.from_dict(data, *, source=\"<dict>\")")
 ])[
-  读取严格的 TOML 配置。最上层的键为 `theme`（只能是 `"default"`；自订主题须在 Python 中传入）、`canvas`（`CanvasSpec` 的字段）、`renderer`（只能是 `"matplotlib"`）、`palette` 与 `styles`。其他键、未知的样式、错误的值或无法读取的文件，都引发指明文件与键的 `ConfigurationError`。
+  读取严格的 TOML 配置。最上层的键为 `theme`（只能是 `"default"`；自定义主题须在 Python 中传入）、`canvas`（`CanvasSpec` 的字段）、`renderer`（只能是 `"matplotlib"`）、`palette` 与 `styles`。其他键、未知的样式、错误的值或无法读取的文件，都引发指明文件与键的 `ConfigurationError`。
 ]
 
 ```toml

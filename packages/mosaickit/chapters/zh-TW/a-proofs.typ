@@ -2,14 +2,16 @@
 
 = 證明 <app-proofs>
 
-本附錄依各章出現的順序，證明其中陳述的引理、命題、定理與推論。以下假設精確算術；程式以浮點數計算相同的量，因此與退化情形只差捨入誤差的配置（例如點在邊上，或三點幾乎共線）可能被判定為任一結果。平面向量 $u, v$ 的外積記為 $u times v = u_x v_y - u_y v_x$。
+本附錄依各章出現的順序，證明其中的引理、命題、定理與推論。以下假設精確算術。程式以浮點數計算相同的量，因此若某配置與退化情形的差異僅在捨入誤差範圍內（例如點落在邊上，或三點幾乎共線），程式可能將它判定為任一種結果。平面向量 $u, v$ 的外積記為 $u times v = u_x v_y - u_y v_x$。
 
 == 排列與軌道
 
 #proof(of: <thm-spread>)[
   #emph[變數代換。]令 $o_k = sum_(j < k) (s_j + g) + s_k slash 2$、$y_k = x_k - o_k$、$z_k = c_k - o_k$。由於 $o_(k+1) - o_k = (s_k + s_(k+1)) slash 2 + g$，#ref(<def-packing>)的限制條件即 $y_1 <= dots.c <= y_n$，目標函數為 $sum_k (y_k - z_k)^2$。因此問題是在最小平方意義下，找出最接近 $z$ 的非遞減向量。
 
-  #emph[程式所計算的。]由第 $i$ 項起、起點為 $S_B$ 的連續項目群 $B$，把 $k in B$ 放在 $x_k = S_B + sum_(i <= l < k) (s_l + g) + s_k slash 2 = S_B + o_k - O_i$，其中 $O_i = sum_(l < i) (s_l + g)$。因此 $y_k = S_B - O_i =: Y_B$ 在 $B$ 上為常數，而程式取 $S_B$ 為 $c_k - (o_k - O_i)$ 的平均，使 $Y_B$ 成為 $z_k$ 在 $B$ 上的平均；新加入的單一項目則有 $Y = z_k$。群 $A$ 與其後的群 $B$ 在 $S_A + "length"(A) + g <= S_B$ 時保持分開；由於 $"length"(A) + g = O_(i_B) - O_(i_A)$，此條件即 $Y_A <= Y_B$。因此程式就是相鄰違反者合併演算法：把 $z_k$ 加為一個區塊，只要最後兩個區塊的平均遞減，就以它們的聯集（取其平均）取代。
+  #emph[程式的計算。]考慮從第 $i$ 項開始、起點為 $S_B$ 的連續項目群 $B$。對於 $k in B$，程式將它放在
+  $ x_k = S_B + sum_(i <= l < k) (s_l + g) + s_k slash 2 = S_B + o_k - O_i $
+  其中 $O_i = sum_(l < i) (s_l + g)$。因此 $y_k = S_B - O_i =: Y_B$ 在 $B$ 上為常數。程式取 $S_B$ 為 $c_k - (o_k - O_i)$ 的平均，使 $Y_B$ 成為 $z_k$ 在 $B$ 上的平均；新加入的單一項目則有 $Y = z_k$。群 $A$ 與後續群 $B$ 在 $S_A + "length"(A) + g <= S_B$ 時保持分開。由於 $"length"(A) + g = O_(i_B) - O_(i_A)$，此條件等價於 $Y_A <= Y_B$。因此，程式實作的就是 PAVA：把 $z_k$ 加入為一個區塊；只要最後兩個區塊的平均遞減，就以它們的聯集（取其平均）取代。
 
   #emph[不變式。] (a) 相鄰區塊的平均非遞減：最後一對順序正確時合併即停止，較早的區塊對不受影響。(b) 在平均為 $mu_B$ 的每個區塊 $B$ 中，每個起始片段的平均至少為 $mu_B$。單一項目滿足 (b)。$A$ 與 $B$ 合併時 $mu_A > mu_B$，合併後的平均 $mu$ 嚴格介於兩者之間。$A$ 內的起始片段平均至少為 $mu_A > mu$。其他起始片段是 $A$ 接上 $B$ 的起始片段 $B'$；若 $B'$ 為整個 $B$，其平均為 $mu$；否則 $B$ 的其餘部分 $B''$ 由 $B$ 的 (b) 知平均至多 $mu_B < mu$，而該片段是平均為 $mu$ 的集合中 $B''$ 的補集，平均至少為 $mu$。
 
@@ -17,7 +19,10 @@
 ]
 
 #proof(of: <cor-spread>)[
-  (i) 依排序後的順序編號，並設 $i < j$。把第 $i$ 到第 $j - 1$ 條限制相加，得 $x_j - x_i >= sum_(k=i)^(j-1) ((s_k + s_(k+1)) slash 2 + g) >= (s_i + s_j) slash 2 + g$，因為每項都非負，且首末兩項分別貢獻 $s_i slash 2$ 與 $s_j slash 2$。(ii) 若 $c$ 是排列，它使目標函數為 $0$，因此是#ref(<thm-spread>)的唯一最小解。(iii) 沿用該證明的記號，$sum_(k in B) (x_k - c_k) = sum_(k in B) (y_k - z_k) = |B| Y_B - sum_(k in B) z_k = 0$。
+  (i) 依排序後的順序編號，並設 $i < j$。把第 $i$ 到第 $j - 1$ 條限制相加，得
+  $ x_j - x_i >= sum_(k=i)^(j-1) ((s_k + s_(k+1)) slash 2 + g) >= (s_i + s_j) slash 2 + g $
+  因為每項都非負，且首末兩項分別貢獻 $s_i slash 2$ 與 $s_j slash 2$。(ii) 若 $c$ 是排列，它使目標函數為 $0$，因此是#ref(<thm-spread>)的唯一最小解。(iii) 沿用該證明的記號，
+  $ sum_(k in B) (x_k - c_k) = sum_(k in B) (y_k - z_k) = |B| Y_B - sum_(k in B) z_k = 0 $
 ]
 
 #proof(of: <thm-lanes>)[
@@ -35,7 +40,9 @@
 #proof(of: <lem-orient>)[
   將其他列減去第一列，得
   $ "orient"(a, b, c) = det mat(1, a_x, a_y; 1, b_x, b_y; 1, c_x, c_y). $
-  列的循環置換為偶置換，交換兩列為奇置換，由此得到對稱性。又 $"orient"(a, b, c) = (b - a) times (c - a) = |b - a| |c - a| sin theta$，其中 $theta$ 為從 $b - a$ 到 $c - a$ 的有號角；它為正恰好在 $theta in (0, pi)$，即 $c$ 位於有向直線左側時，位於右側時為負，而在兩向量平行或其一為零，即三點共線時為零。
+  列的循環置換為偶置換，交換兩列為奇置換，由此得到對稱性。又
+  $ "orient"(a, b, c) = (b - a) times (c - a) = |b - a| |c - a| sin theta $
+  其中 $theta$ 為從 $b - a$ 到 $c - a$ 的有號角；它為正恰好在 $theta in (0, pi)$，即 $c$ 位於有向直線左側時，位於右側時為負，而在兩向量平行或其一為零，即三點共線時為零。
 ]
 
 #proof(of: <thm-segments>)[
@@ -55,7 +62,9 @@
 ]
 
 #proof(of: <prop-even-odd>)[
-  記 $p = (x, y)$，取 $epsilon > 0$ 小於所有頂點高度與 $y$ 的正差值 $|y_i - y|$，且小到使 $p_epsilon = (x, y + epsilon)$ 與 $p$ 位於 $RR^2 without partial P$ 的同一連通分量（因 $p in.not partial P$ 且各分量為開集，此為可行）。直線 $Y = y + epsilon$ 上沒有頂點，且對每個頂點，$y_i > y$ 若且唯若 $y_i > y + epsilon$。因此一條邊通過程式的高度測試，恰好等價於它穿過直線 $Y = y + epsilon$，交點橫座標為 $X_epsilon = x_0 + (y + epsilon - y_0)(x_1 - x_0) slash (y_1 - y_0)$。程式比較的是 $x$ 與 $X_0$。若 $x = X_0$，由於高度測試使 $y$ 介於兩端點高度之間，點 $(X_0, y)$ 位於該邊上，即 $p in partial P$，與假設矛盾；所以 $x != X_0$，由連續性，對夠小的 $epsilon$，$x < X_0$ 若且唯若 $x < X_epsilon$。因此程式計算的正是從 $p_epsilon$ 向右、不經過任何頂點的射線所穿過的邊。每次穿越都使射線在內部與外部之間切換，而射線在最右方位於外部，所以計數為奇數恰好在 $p_epsilon in "int" P$，即 $p in "int" P$ 時 #citep(<haines1994>)。
+  記 $p = (x, y)$，取 $epsilon > 0$ 小於所有頂點高度與 $y$ 的正差值 $|y_i - y|$，且小到使 $p_epsilon = (x, y + epsilon)$ 與 $p$ 位於 $RR^2 without partial P$ 的同一連通分量（因 $p in.not partial P$ 且各分量為開集，此為可行）。直線 $Y = y + epsilon$ 上沒有頂點，且對每個頂點，$y_i > y$ 若且唯若 $y_i > y + epsilon$。因此一條邊通過程式的高度測試，恰好等價於它穿過直線 $Y = y + epsilon$，交點橫座標為
+  $ X_epsilon = x_0 + (y + epsilon - y_0)(x_1 - x_0) slash (y_1 - y_0) $
+  程式比較的是 $x$ 與 $X_0$。若 $x = X_0$，由於高度測試使 $y$ 介於兩端點高度之間，點 $(X_0, y)$ 位於該邊上，即 $p in partial P$，與假設矛盾；所以 $x != X_0$，由連續性，對夠小的 $epsilon$，$x < X_0$ 若且唯若 $x < X_epsilon$。因此程式計算的正是從 $p_epsilon$ 向右、不經過任何頂點的射線所穿過的邊。每次穿越都使射線在內部與外部之間切換，而射線在最右方位於外部，所以計數為奇數恰好在 $p_epsilon in "int" P$，即 $p in "int" P$ 時 #citep(<haines1994>)。
 ]
 
 #proof(of: <thm-rect-inside>)[
@@ -73,7 +82,8 @@
 == 不可及極點
 
 #proof(of: <lem-lipschitz>)[
-  對任意集合 $S$，由三角不等式得 $|d(p, S) - d(q, S)| <= |p - q|$，這處理了 $p$、$q$ 在同一側的情形。設 $p in overline(P)$、$q in.not overline(P)$，並令 $z$ 為從 $p$ 到 $q$ 的線段上屬於 $overline(P)$ 的最後一點（$overline(P)$ 為閉集，故存在）。緊接在 $z$ 之後的點都在外面，因此 $z in.not "int" P$，即 $z in partial P$。於是 $|f(p) - f(q)| = d(p, partial P) + d(q, partial P) <= |p - z| + |z - q| = |p - q|$。
+  對任意集合 $S$，由三角不等式得 $|d(p, S) - d(q, S)| <= |p - q|$，這就處理了 $p$、$q$ 在同一側的情形。設 $p in overline(P)$、$q in.not overline(P)$，並令 $z$ 為從 $p$ 到 $q$ 的線段上，屬於 $overline(P)$ 的最後一點（$overline(P)$ 為閉集，故存在）。緊接在 $z$ 之後的點都在外面，因此 $z in.not "int" P$，即 $z in partial P$。於是
+  $ |f(p) - f(q)| = d(p, partial P) + d(q, partial P) <= |p - z| + |z - q| = |p - q| $
 ]
 
 #proof(of: <thm-polylabel>)[
@@ -130,11 +140,16 @@
 ]
 
 #proof(of: <thm-binding>)[
-  對 $e$ 作歸納。若 $"free"(e) subset.eq "dom" beta$（特別是常數，以及屬於 $"dom" beta$ 的參數），$"bind"(e, beta)$ 是一般值 $e(beta)$：它沒有自由參數，符合 (i)，且求值為 $e(beta) = e(beta union gamma)$，因為運算式的值只取決於其自由參數的值。若 $e$ 是參數 $p in.not "dom" beta$，結果為 $p$，$"free" = {p} = "free"(e) without "dom" beta$，值為 $gamma(p) = (beta union gamma)(p)$。否則 $e = e_1 circle.small e_2$，結果為 $"bind"(e_1, beta) circle.small "bind"(e_2, beta)$（一般值包裝為常數）。其自由參數為 $("free"(e_1) without "dom" beta) union ("free"(e_2) without "dom" beta) = "free"(e) without "dom" beta$，而 $gamma$ 綁定了兩部分各自的自由參數，由歸納假設其值為 $e_1(beta union gamma) circle.small e_2(beta union gamma) = e(beta union gamma)$。
+  對 $e$ 作歸納。若 $"free"(e) subset.eq "dom" beta$（特別是常數，以及屬於 $"dom" beta$ 的參數），$"bind"(e, beta)$ 是一般值 $e(beta)$：它沒有自由參數，符合 (i)，且求值為 $e(beta) = e(beta union gamma)$，因為運算式的值只取決於其自由參數的值。若 $e$ 是參數 $p in.not "dom" beta$，結果為 $p$，$"free" = {p} = "free"(e) without "dom" beta$，值為 $gamma(p) = (beta union gamma)(p)$。否則 $e = e_1 circle.small e_2$，結果為 $"bind"(e_1, beta) circle.small "bind"(e_2, beta)$（一般值包裝為常數）。其自由參數為
+  $ ("free"(e_1) without "dom" beta) union ("free"(e_2) without "dom" beta) = "free"(e) without "dom" beta $
+  而 $gamma$ 綁定了兩部分各自的自由參數，由歸納假設其值為
+  $ e_1(beta union gamma) circle.small e_2(beta union gamma) = e(beta union gamma) $
 ]
 
 #proof(of: <cor-stages>)[
-  兩次應用#ref(<thm-binding>) (i)，兩者的自由參數都是 $"free"(e) without "dom" (beta_1 union beta_2)$。對這些參數的綁定 $gamma$（與 $beta_1$、$beta_2$ 不相交），兩次應用 (ii) 得 $"bind"("bind"(e, beta_1), beta_2)(gamma) = "bind"(e, beta_1)(beta_2 union gamma) = e(beta_1 union beta_2 union gamma) = "bind"(e, beta_1 union beta_2)(gamma)$。畫布以這種方式綁定其場景中的每個運算式。
+  兩次應用#ref(<thm-binding>) (i)，兩者的自由參數都是 $"free"(e) without "dom" (beta_1 union beta_2)$。對這些參數的綁定 $gamma$（與 $beta_1$、$beta_2$ 不相交），兩次應用 (ii) 得
+  $ "bind"("bind"(e, beta_1), beta_2)(gamma) = "bind"(e, beta_1)(beta_2 union gamma) = e(beta_1 union beta_2 union gamma) = "bind"(e, beta_1 union beta_2)(gamma) $
+  畫布以這種方式綁定其場景中的每個運算式。
 ]
 
 #proof(of: <prop-grid-shape>)[

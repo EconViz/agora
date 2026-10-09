@@ -2,10 +2,10 @@
 
 = Region and point labels <sec-labels>
 
-A label names something already drawn: a filled region or a point. Label
-layers are drawn in deferred passes, after every other layer, so they can
-see what they must avoid. Point labels are placed before region labels, and
-every label placed becomes an obstacle for the ones after it.
+A label identifies a filled region or point that has already been drawn.
+Deferred passes draw label layers after every other layer, when all
+obstacles are known. Point labels are placed before region labels, and each
+placed label becomes an obstacle for subsequent labels.
 
 #changed("0.3.0", label: "mosaickit")[Point labels are placed before region labels, so region callouts avoid them; label text is measured with its rotation]
 
@@ -15,8 +15,8 @@ every label placed becomes an obstacle for the ones after it.
   #raw("RegionLabelLayer(region, text, short_text=None, placement=\"auto\", style=None,") \
   #raw("                 stroke=Stroke(width=0.8), *, role=\"text\", ...)")
 ])[
-  Names a filled region, given as the id of a `FillLayer` or as a polygon of
-  at least three points. `stroke` styles the callout leader.
+  Labels a filled region, specified by the id of a `FillLayer` or by a
+  polygon with at least three points. `stroke` sets the callout leader style.
 ]
 
 #param("placement=\"auto\"")[Inside the region when the text fits, centred on its pole (@def-pole), trying `short_text` second; otherwise a callout with `text`.]
@@ -34,19 +34,20 @@ line, marker, text or other region. @fig-regions shows both outcomes.
 == Point labels
 
 #api(("PointLabelLayer",), added: "0.3.0", syntax: [#raw("PointLabelLayer(point, text, style=None, *, role=\"text\", ...)")])[
-  Names a point with text right beside it, with no leader. The point's
-  _footprint_ is its marker, if a marker is drawn there, or the bare point.
+  Places text beside a point without a leader. The point's _footprint_ is
+  its marker when one is drawn there, or the bare point otherwise.
   #changed("0.3.1")[A point label may sit inside a filled region that contains its point]
   #changed("0.3.2")[A region counts as the point's own only when the point is strictly inside it; a point on a region's edge keeps its label outside]
 ]
 
-The label tries 16 directions around the footprint, at gaps of 4, 7, 11 and
-16 pt from its edge, nearest gap first. Within a gap the directions are
-tried in the order of @def-candidate-order (@fig-candidates), and the first
-position that covers nothing wins; if none does, the one with the fewest
-violations wins, earliest first, and a `LayoutWarning` names the layer. A
-region the point lies strictly inside, more than 1.5 px from its edge, is
-where the label belongs rather than an obstacle.
+The label tries 16 directions around the footprint at gaps of 4, 7, 11 and
+16 pt from its edge, starting with the nearest gap. Within each gap, it
+tries the directions in the order defined by @def-candidate-order
+(@fig-candidates). It uses the first position that covers nothing. If every
+position has violations, it uses the earliest position among those with the
+fewest and emits a `LayoutWarning` naming the layer. A region is not an
+obstacle when the point lies strictly inside it, more than 1.5 px from its
+edge, because that is where the label belongs.
 
 #definition(name: [Candidate order])[
   Number the directions $k = 0, dots, 15$ counter-clockwise from $+x$, at
@@ -66,21 +67,21 @@ where the label belongs rather than an obstacle.
 
 == Hard constraints
 
-Both kinds of label obey the same rule: cover nothing. Obstacles are
-collected from what is on the axes: line segments of paths, rectangles of
-markers and text, and polygons of filled regions. The searches below are in
-`mosaickit.layout.placement`, and all but `place_beside` are also exported
-from `mosaickit.layout`; like the geometry they work in display pixels, and
-`scale` converts their point-based gaps to pixels.
+Both kinds of label must cover nothing. Obstacles are collected from the
+content on the axes: path segments, marker and text rectangles, and filled
+region polygons. The searches below are defined in
+`mosaickit.layout.placement`; all except `place_beside` are also exported
+from `mosaickit.layout`. Like the geometry functions, they work in display
+pixels. `scale` converts their point-based gaps to pixels.
 
 #api(("Obstacles", "Placement"), syntax: [
   #raw("Obstacles(segments=(), rects=(), polygons=())") \
   #raw("Placement(rect, leader, violations)")
 ])[
-  What a label must avoid, and where it went: its rectangle, its leader
-  segment (`None` for labels drawn without one) and how many constraints it
-  breaks. `Obstacles.extended(segments=..., rects=...)` adds the label just
-  placed.
+  `Obstacles` records what a label must avoid. `Placement` records the
+  resulting rectangle, the leader segment (`None` for a label without one)
+  and the number of violated constraints.
+  `Obstacles.extended(segments=..., rects=...)` adds the label just placed.
   #changed("0.3.0")[`Placement.leader` may be `None`]
 ]
 
@@ -100,16 +101,17 @@ Each term is computed exactly by @lem-rect-segment, by
 == Callouts
 
 #api(("place_callout",), added: "0.2.0", syntax: [#raw("place_callout(polygon, size, obstacles, bounds, *, scale=1.0) -> Placement")])[
-  Searches positions around a region for a callout of the given size. From
-  the pole $o$, along 16 directions $r$, a candidate rectangle is put at
+  Searches around a region for a callout of the given size. For each of 16
+  directions $r$ from the pole $o$, it places a candidate rectangle at
   distance `ray_exit(o, r, P)` plus a gap of 12, 24 or 40 pt (the near
-  ring), anchored by the side or corner facing the pole so that it extends
-  away from the region. Its leader runs from the pole to the rectangle's
-  nearest point (@lem-nearest), stopping 2 pt short. A candidate is charged
-  $V(R)$ (with the region itself among the polygons), plus one if its centre
-  is not in open space, plus one for each line, text or other region its
-  leader crosses after leaving its own region, plus one for each crossing
-  it lies beyond (@def-beyond).
+  ring). The side or corner facing the pole anchors the rectangle, so it
+  extends away from the region. The leader runs from the pole toward the
+  rectangle's nearest point (@lem-nearest) and stops 2 pt short. The charge
+  for a candidate starts at $V(R)$, with the region itself included among
+  the polygons. It increases by one if the centre is not in open space, by
+  one for each line, text or other region crossed by the leader after it
+  leaves its own region, and by one for each crossing beyond which the
+  candidate lies (@def-beyond).
 ]
 
 #definition(name: [Open space and crossings])[
@@ -123,9 +125,9 @@ Each term is computed exactly by @lem-rect-segment, by
   $(p - x) dot (x - o) > 0$.
 ] <def-beyond>
 
-Past a crossing the lines diverge away from the region, and a label there
-would sit next to where they extend instead of next to what it names. The
-crossing point itself is found from the orientation tests.
+Past a crossing, the lines diverge away from the region. A label there would
+appear to describe their extensions instead of the region. Orientation tests
+locate the crossing point.
 
 #lemma(name: [Crossing point])[
   If $[a, b]$ and $[c, d]$ cross properly, they meet at the single point
@@ -153,12 +155,13 @@ shortening the text usually removes it.
   #raw("place_point_label(footprint, size, obstacles, bounds, *, scale=1.0) -> Placement") \
   #raw("place_beside(anchor, size, *, axis, direction, reach, obstacles, bounds, scale=1.0)")
 ])[
-  The other searches: a rectangle centred on the pole if it fits and
-  touches nothing but its own region; the point-label search above; and the
-  search beside a brace tip, which tries gaps of 3 to 45 pt past the tip
-  and slides along the span by up to `reach` in 3 pt steps, smallest shift
-  first. `place_beside` returns the rectangle and its violation count. When
-  a brace label is not free there, the renderer tries a callout from the tip
-  and keeps whichever breaks fewer constraints.
+  `fits_inside` returns a rectangle centred on the pole if it fits and
+  touches nothing except its own region. `place_point_label` performs the
+  point-label search described above. `place_beside` searches beside a brace
+  tip: it tries gaps of 3 to 45 pt beyond the tip and slides along the span
+  by up to `reach` in 3 pt steps, trying the smallest shift first. It returns
+  the rectangle and its violation count. If the brace label has no free
+  position there, the renderer tries a callout from the tip and keeps the
+  result with fewer violations.
   #changed("0.3.0")[`place_point_label` and `place_beside` added]
 ]

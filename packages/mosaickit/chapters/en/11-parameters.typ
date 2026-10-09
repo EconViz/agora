@@ -5,8 +5,8 @@
 == Parameters and expressions
 
 A layer coordinate may be an expression in named parameters instead of a
-number. The scene then describes a family of diagrams, one for each value of
-the parameters; binding picks one.
+number. The resulting scene describes a family of diagrams, one for each
+set of parameter values. Binding selects one diagram from that family.
 
 #api(("Parameter",), syntax: [#raw("Parameter(name, value_type=None)")])[
   A named placeholder. With `value_type` set, a bound value must be an
@@ -17,12 +17,12 @@ the parameters; binding picks one.
 #api(("Expression", "Constant"), syntax: [#raw("Constant(value)")])[
   Immutable expression trees. Parameters and constants combine with `+`,
   `-`, `*`, `/`, `**`, unary `-` and the comparisons `<`, `<=`, `>`, `>=`,
-  and `equals()`; plain numbers are wrapped as constants. Equality of
-  expressions is structural (`==` compares trees, so `equals()` builds the
-  comparison instead), and using an expression as a truth value raises
-  `BindingError`: evaluate it first. `evaluate(bindings)` computes the value
-  from a mapping of parameters to values; `free_parameters()` is the set of
-  parameters the tree contains.
+  and `equals()`; plain numbers are wrapped as constants. Expression
+  equality is structural: `==` compares trees, while `equals()` builds a
+  comparison expression. Using an expression as a truth value raises
+  `BindingError`; evaluate it first. `evaluate(bindings)` computes the value
+  from a mapping of parameters to values, and `free_parameters()` returns
+  the set of parameters in the tree.
 ]
 
 #definition(name: [Expressions and binding])[
@@ -72,8 +72,8 @@ print(frame.snapshot().layers[0].position)    # (3.0, 7.0)
   #raw("CanvasGrid(cells, rows=None, cols=None, shape=None, links=())") \
   #raw("Span(canvas, rows=1, cols=1)")
 ])[
-  Several canvases in one figure. `cells` is either a flat list of canvases,
-  `Span`s and `None`s (empty cells), filled row by row, or a list of rows,
+  Places several canvases in one figure. `cells` is either a flat list of
+  canvases, `Span`s and `None`s (empty cells), filled row by row, or a list of rows,
   where row spans are allowed and every row must account for every column.
   `shape=(rows, cols)` is the same as passing both. Each canvas is copied,
   so changing it afterwards does not change the grid. Overlapping spans,
@@ -98,7 +98,8 @@ $c = ceil(n slash r)$.
 ]
 
 #api(("CanvasGrid.sweep",), syntax: [#raw("CanvasGrid.sweep(template, values, *, cols=None)")])[
-  One cell per value of a `ParameterValues`, each the template bound to it.
+  Creates one cell for each value in the supplied `ParameterValues`, with the
+  template bound to that value.
 ]
 
 #api(("GridLink",), added: "0.5.0", syntax: [#raw("GridLink(start_cell, start, end_cell, end, role=\"link\", stroke=None)")])[
@@ -130,9 +131,9 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
   #raw("Animation(template, parameter, values, fps=30)") \
   #raw("Animation.sweep(canvas, values, *, fps=30)")
 ])[
-  One frame per value: the template bound to the parameter. `frames()`
-  yields the frames as renderer-neutral scenes; `save(path)` writes a GIF
-  (through Pillow) or an MP4 (through `ffmpeg`). The values are checked
+  Creates one frame per value by binding the parameter in the template.
+  `frames()` yields the frames as renderer-neutral scenes; `save(path)`
+  writes a GIF (through Pillow) or an MP4 (through `ffmpeg`). The values are checked
   against the parameter when the animation is created; an empty list or a
   non-positive `fps` raises `ConfigurationError`.
 ]

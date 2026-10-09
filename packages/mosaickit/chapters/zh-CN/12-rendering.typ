@@ -9,25 +9,25 @@
   #raw("render(scene, context) -> Any") \
   #raw("save(result, target, options) -> list[Path]")
 ])[
-  所有后端实作的协议。渲染器接收不可变的场景与私有的渲染上下文（规格、主题、覆盖、调色板、缓存与绑定），返回交给 `save` 写出的结果。网格与动画另需 `render_grid` 与 `save_animation`；缺少它们的渲染器引发 `RenderError`。在内建后端持续演进期间，渲染计划与上下文维持私有。
+  所有后端都必须实现的协议。渲染器接收不可变的场景与私有的渲染上下文（规格、主题、覆盖、调色板、缓存与绑定），并返回由 `save` 写出的结果。网格与动画另需 `render_grid` 与 `save_animation`；渲染器如果没有实现它们，会引发 `RenderError`。内置后端仍在演进，因此渲染计划与上下文维持私有。
 ]
 
 #api(("RendererRegistry",), syntax: [#raw("RendererRegistry()")])[
-  `register(renderer)` 以 `name` 加入后端（缺少 `name`、`render` 或 `save` 的对象，或名称已被使用时，引发 `RenderError`）；`get(name)` 返回已注册的渲染器，或加载内建渲染器。唯一的内建渲染器是 `"matplotlib"`，在第一次使用时导入 #citep(<hunter2007>)。
+  `register(renderer)` 以 `name` 注册后端；如果对象缺少 `name`、`render` 或 `save`，或名称已被使用，会引发 `RenderError`。`get(name)` 返回已注册的渲染器，或加载内置渲染器。唯一的内置渲染器是 `"matplotlib"`，在第一次使用时才导入 #citep(<hunter2007>)。
 ]
 
 == Matplotlib 渲染器
 
 绘制画布时先创建渲染计划：绑定场景（有自由参数时引发 `BindingError`）、展开群组、按 `z_index` 排序图层、解析每个图层的样式（参见#ref(<thm-resolution>)），并把调色板名称换成颜色。图形采用画布的尺寸与 DPI，背景为 `canvas` 角色的填色，坐标轴设为规格的范围并关闭 Matplotlib 自身的轴线；#pkg("mosaickit") 中的坐标轴是图层。
 
-接著由各图层类型的构建函数依次绘制图层。任务取决于其他所有内容的图层类型（图例、点标签、区域标签、边栏文字、跨距大括号）在之后的延后处理阶段绘制，按注册顺序运行，每个阶段一次收到该类型的所有图层。
+接下来由各图层类型的构建函数依次绘制图层。需要参考其他所有内容的图层类型（图例、点标签、区域标签、边栏文字、跨距大括号）会在后续的延后处理阶段绘制；各阶段按注册顺序运行，并一次接收该类型的所有图层。
 
 #api(("register_builder", "register_pass"), added: "0.2.0", syntax: [
   #raw("register_builder(layer_type, builder)") \
   #raw("register_pass(layer_type, run)")
 ])[
-  位于 `mosaickit.rendering.matplotlib`：不修改 #pkg("mosaickit") 就让渲染器认得新的图层类型。构建函数以 `builder(ax, resolved)` 调用并返回 Matplotlib artist；处理阶段以 `run(ax, layers, context)` 调用，`PassContext` 的 `handles` 把图层 id 对应到图例用的 artist。`resolved.layer` 是图层，`resolved.style` 是解析后的 `StyleBundle`。查询按方法解析顺序进行，子类因此继承父类的注册。图层以类变数 `style_slots` 宣告每个槽的自带样式存于哪个字段，以 `fallback_category` 宣告最后依据的角色。
-  #changed("0.2.0", label: "Layer")[图层宣告 `style_slots`；Matplotlib 绘制改由各类型的注册表驱动]
+  位于 `mosaickit.rendering.matplotlib`：不修改 #pkg("mosaickit") 就让渲染器识别新的图层类型。构建函数以 `builder(ax, resolved)` 调用并返回 Matplotlib artist；处理阶段以 `run(ax, layers, context)` 调用，`PassContext` 的 `handles` 把图层 id 对应到图例用的 artist。`resolved.layer` 是图层，`resolved.style` 是解析后的 `StyleBundle`。查询按方法解析顺序进行，子类因此继承父类的注册。图层以类变量 `style_slots` 声明每个槽的自带样式存于哪个字段，以 `fallback_category` 声明最后依据的角色。
+  #changed("0.2.0", label: "Layer")[图层声明 `style_slots`；Matplotlib 绘制改由各类型的注册表驱动]
 ]
 
 区域标签的引线标注会避开坐标轴上的所有内容，包括第三方注册的构建函数所画的东西。

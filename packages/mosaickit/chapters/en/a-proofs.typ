@@ -2,11 +2,12 @@
 
 = Proofs <app-proofs>
 
-This appendix proves the lemmas, propositions, theorems and corollaries
-stated in the chapters, in the order they appear. Arithmetic is taken to be
-exact; the code computes the same quantities in floating point, so
-configurations within rounding error of a degenerate one, such as a point on
-an edge or three nearly collinear points, may be decided either way. For vectors $u, v$ in the plane, $u times v = u_x v_y - u_y v_x$.
+This appendix proves the lemmas, propositions, theorems and corollaries in
+the order they appear in the chapters. The proofs assume exact arithmetic.
+The code computes the same quantities in floating point, so it may decide a
+configuration either way when it is within rounding error of a degenerate
+case, such as a point on an edge or three nearly collinear points. For plane
+vectors $u, v$, define $u times v = u_x v_y - u_y v_x$.
 
 == Packing and lanes
 
@@ -15,12 +16,12 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   $y_k = x_k - o_k$ and $z_k = c_k - o_k$. Since
   $o_(k+1) - o_k = (s_k + s_(k+1)) slash 2 + g$, the constraints of
   @def-packing read $y_1 <= dots.c <= y_n$, and the objective is
-  $sum_k (y_k - z_k)^2$. So the problem is to find the closest
+  $sum_k (y_k - z_k)^2$. The problem is therefore to find the closest
   non-decreasing vector to $z$ in the least-squares sense.
 
   _What the code computes._ A cluster $B$ of consecutive items starting at
   $i$, with start $S_B$, places item $k in B$ at
-  $x_k = S_B + sum_(i <= l < k) (s_l + g) + s_k slash 2 = S_B + o_k - O_i$,
+  $ x_k = S_B + sum_(i <= l < k) (s_l + g) + s_k slash 2 = S_B + o_k - O_i, $
   where $O_i = sum_(l < i) (s_l + g)$. Hence $y_k = S_B - O_i =: Y_B$ is
   constant on $B$, and the code's choice of $S_B$ as the mean of
   $c_k - (o_k - O_i)$ makes $Y_B$ the mean of $z_k$ over $B$; a new item
@@ -59,13 +60,12 @@ an edge or three nearly collinear points, may be decided either way. For vectors
 #proof(of: <cor-spread>)[
   (i) Number the items in sorted order and let $i < j$. Summing the
   constraints from $i$ to $j - 1$,
-  $x_j - x_i >= sum_(k=i)^(j-1) ((s_k + s_(k+1)) slash 2 + g)
-   >= (s_i + s_j) slash 2 + g$,
+  $ x_j - x_i >= sum_(k=i)^(j-1) ((s_k + s_(k+1)) slash 2 + g) >= (s_i + s_j) slash 2 + g $
   since every term is non-negative and the first and last contribute
   $s_i slash 2$ and $s_j slash 2$. (ii) If $c$ is a packing, it attains the
   objective $0$, so it is the unique minimizer of @thm-spread. (iii) With
-  the notation of that proof, $sum_(k in B) (x_k - c_k)
-  = sum_(k in B) (y_k - z_k) = |B| Y_B - sum_(k in B) z_k = 0$.
+  the notation of that proof,
+  $ sum_(k in B) (x_k - c_k) = sum_(k in B) (y_k - z_k) = |B| Y_B - sum_(k in B) z_k = 0. $
 ]
 
 #proof(of: <thm-lanes>)[
@@ -100,8 +100,9 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   Subtracting the first row from the others,
   $ "orient"(a, b, c) = det mat(1, a_x, a_y; 1, b_x, b_y; 1, c_x, c_y). $
   A cyclic permutation of the rows is even and a swap is odd, which gives
-  the symmetries. Also $"orient"(a, b, c) = (b - a) times (c - a)
-  = |b - a| |c - a| sin theta$, where $theta$ is the signed angle from
+  the symmetries. Also
+  $ "orient"(a, b, c) = (b - a) times (c - a) = |b - a| |c - a| sin theta, $
+  where $theta$ is the signed angle from
   $b - a$ to $c - a$; it is positive exactly when $theta in (0, pi)$, that
   is when $c$ is left of the directed line, negative when it is right, and
   zero exactly when the two vectors are parallel or one vanishes, that is
@@ -109,7 +110,7 @@ an edge or three nearly collinear points, may be decided either way. For vectors
 ]
 
 #proof(of: <thm-segments>)[
-  We first note: if $"orient"(c, d, p) = 0$ and $p$ lies in the bounding box
+  First observe that if $"orient"(c, d, p) = 0$ and $p$ lies in the bounding box
   of $[c, d]$, then $p in [c, d]$. Indeed, if $c = d$ the box is the point
   $c$; otherwise $p = c + t (d - c)$ for some real $t$ by collinearity, and
   on a coordinate where $d - c$ is non-zero the box condition forces
@@ -159,7 +160,7 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   and for every vertex $y_i > y$ if and only if $y_i > y + epsilon$. So an
   edge passes the code's height test exactly when it crosses the line
   $Y = y + epsilon$, at the abscissa
-  $X_epsilon = x_0 + (y + epsilon - y_0)(x_1 - x_0) slash (y_1 - y_0)$.
+  $ X_epsilon = x_0 + (y + epsilon - y_0)(x_1 - x_0) slash (y_1 - y_0). $
   The code compares $x$ with $X_0$. If $x = X_0$, the point $(X_0, y)$ lies
   on the edge, because the height test puts $y$ between the endpoint
   heights, and $p in partial P$, which is excluded; so $x != X_0$, and by
@@ -218,8 +219,7 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   point of $overline(P)$ on the segment from $p$ to $q$ (it exists since
   $overline(P)$ is closed). Points just past $z$ are outside, so
   $z in.not "int" P$ and $z in partial P$. Then
-  $|f(p) - f(q)| = d(p, partial P) + d(q, partial P)
-   <= |p - z| + |z - q| = |p - q|$.
+  $ |f(p) - f(q)| = d(p, partial P) + d(q, partial P) <= |p - z| + |z - q| = |p - q|. $
 ]
 
 #proof(of: <thm-polylabel>)[

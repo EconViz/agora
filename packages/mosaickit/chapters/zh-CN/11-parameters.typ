@@ -4,10 +4,10 @@
 
 == 参数与表达式
 
-图层坐标可以是以命名参数表示的表达式，而不是数字。此时场景描述的是一族图形，参数的每组值对应一张；绑定就是从中选出一张。
+图层坐标不一定是数字，也可以是由命名参数组成的表达式。此时，场景描述一族图形，每组参数值对应一张图；绑定参数就是从中选出一张。
 
 #api(("Parameter",), syntax: [#raw("Parameter(name, value_type=None)")])[
-  命名的占位符。设置 `value_type` 时，绑定的值必须是该类型的实例；所有绑定的值都必须可哈希。`values(seq)` 返回 `ParameterValues`，并立即检查每个值。
+  命名的占位符。设置 `value_type` 后，绑定值必须是该类型的实例；所有绑定值都必须可哈希。`values(seq)` 返回 `ParameterValues`，并立即检查每个值。
 ]
 
 #api(("Expression", "Constant"), syntax: [#raw("Constant(value)")])[
@@ -45,7 +45,7 @@ print(frame.snapshot().layers[0].position)    # (3.0, 7.0)
   #raw("CanvasGrid(cells, rows=None, cols=None, shape=None, links=())") \
   #raw("Span(canvas, rows=1, cols=1)")
 ])[
-  在一张图中放多个画布。`cells` 可以是画布、`Span` 与 `None`（空格）组成的平面列表，逐行填入；也可以是行的列表，此时允许跨行，且每行必须覆盖所有列。`shape=(rows, cols)` 等同同时传入两者。每个画布都会复制，之后修改它不影响网格。跨格重叠、跨格超出边界、单元过多，或混用平面与巢状单元，都引发 `ConfigurationError`。`render()` 与 `save()` 的用法与画布相同。
+  在一张图中放多个画布。`cells` 可以是画布、`Span` 与 `None`（空格）组成的平面列表，逐行填入；也可以是行的列表，此时允许跨行，且每行必须覆盖所有列。`shape=(rows, cols)` 等同同时传入两者。每个画布都会复制，之后修改它不影响网格。跨格重叠、跨格超出边界、单元过多，或混用平面与嵌套单元，都引发 `ConfigurationError`。`render()` 与 `save()` 的用法与画布相同。
 ]
 
 #proposition(name: [推断的网格形状])[
@@ -63,7 +63,7 @@ print(frame.snapshot().layers[0].position)    # (3.0, 7.0)
 ]
 
 #api(("GridLink",), added: "0.5.0", syntax: [#raw("GridLink(start_cell, start, end_cell, end, role=\"link\", stroke=None)")])[
-  从某格的 `start` 到另一格的 `end` 的直线，两点各以所在单元的数据坐标表示，画在整张图上、横越单元间的空隙。单元按配置顺序编号。样式是在起点单元的主题中解析的 `role`，再叠上 `stroke`。单元编号超出范围时，在创建网格时引发 `ConfigurationError`。
+  从某格的 `start` 到另一格的 `end` 的直线，两点各以所在单元的数据坐标表示，画在整张图上、横越单元间的空隙。单元按布局顺序编号。样式是在起点单元的主题中解析的 `role`，再叠上 `stroke`。单元编号超出范围时，在创建网格时引发 `ConfigurationError`。
   #changed("0.5.0", label: "CanvasGrid")[新增 `links`]
 ]
 
@@ -87,7 +87,7 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
   #raw("Animation(template, parameter, values, fps=30)") \
   #raw("Animation.sweep(canvas, values, *, fps=30)")
 ])[
-  每个值一格帧：绑定该参数值的模板。`frames()` 以与渲染器无关的场景逐一产生帧；`save(path)` 写出 GIF（通过 Pillow）或 MP4（通过 `ffmpeg`）。创建动画时即按参数检查各值；值列表为空或 `fps` 非正时引发 `ConfigurationError`。
+  每个值对应一帧，由模板绑定该参数值而成。`frames()` 以与渲染器无关的场景逐一产生帧；`save(path)` 写出 GIF（通过 Pillow）或 MP4（通过 `ffmpeg`）。创建动画时即按参数检查各值；值列表为空或 `fps` 非正时引发 `ConfigurationError`。
 ]
 
 ```python

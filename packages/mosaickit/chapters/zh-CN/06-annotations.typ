@@ -4,7 +4,7 @@
 
 #changed("0.3.0", label: "mosaickit")[坐标轴外的文字按栏排列：标记、外侧大括号（每条轨道一栏）、注释；标记与注释会沿轴分散，互不重叠]
 
-y 轴是绘图区的左缘，x 轴是下缘，两轴外侧的空间称为#emph[边栏]。三种图层写在边栏，第四种在绘图区内画大括号。
+y 轴位于绘图区左缘，x 轴位于下缘，两轴外侧的空间称为#emph[边栏]。其中三种图层放置在边栏中，第四种则在绘图区内画出大括号。
 
 == 标记、注释与大括号
 
@@ -13,17 +13,17 @@ y 轴是绘图区的左缘，x 轴是下缘，两轴外侧的空间称为#emph[�
 ]
 
 #api(("AxisNoteLayer",), added: "0.3.0", syntax: [#raw("AxisNoteLayer(axis, value, text, style=None, *, role=\"axes.note\", ...)")])[
-  说明 `value` 的文字，可跨多行，位于边栏最外侧的栏。在默认主题中，`axes.note` 角色使注释比标记小且淡（9 pt、`grey-600`）。
+  用于说明 `value` 的文字，可以分成多行，位于边栏最外侧的一栏。在默认主题中，`axes.note` 角色会让注释比标记更小、更淡（9 pt、`grey-600`）。
   #changed("0.3.0")[默认主题新增 `axes.note` 角色]
 ]
 
 #api(("BraceLayer",), added: "0.3.0", syntax: [#raw("BraceLayer(axis, start, end, label=None, side=\"inside\", *, role=\"axes\", math=False, style=None, stroke=None, ...)")])[
-  覆盖轴上 `start`..`end` 的大括号，可加标签。`side="outside"` 画在边栏、标记之外；`"inside"` 画在绘图区内侧，标签配置在不遮盖任何线、点、区域或文字之处，尖端外没有空位时改以引线拉出。
+  覆盖轴上 `start`..`end` 的大括号，可加上标签。`side="outside"` 会画在边栏中、标记之外；`"inside"` 则画在绘图区内侧，标签会避开所有线、点、区域与文字，尖端外没有空位时便改用引线拉出。
   #changed("0.4.0")[内侧大括号的标签在尖端外没有空位时改以引线拉出（先前会重叠并发出警告）]
 ]
 
 #api(("SpanBraceLayer",), added: "0.4.0", syntax: [#raw("SpanBraceLayer(start, end, label=None, side=\"below\", *, role=\"axes\", math=False, style=None, stroke=None, ...)")])[
-  绘图区内两点之间的大括号。跨距必须是水平（`side` 为 `"above"` 或 `"below"`）或垂直（`"left"` 或 `"right"`）；大括号往 `side` 凸出，离两点 4 pt、深 8 pt，标签位于尖端之外，配置在不遮盖任何东西之处（详见#ref(<sec-labels>)）。
+  绘图区内两点之间的大括号。跨距必须是水平（`side` 为 `"above"` 或 `"below"`）或垂直（`"left"` 或 `"right"`）；大括号会朝 `side` 凸出，与两点相距 4 pt、深 8 pt。标签位于尖端之外，并会避开其他所有内容（详见#ref(<sec-labels>)）。
 ]
 
 ```python
@@ -47,11 +47,11 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 
 == 边栏的字段
 
-各栏从轴线向外排列，与轴线相距 5 pt，彼此相距 8 pt：标记、每条外侧大括号轨道一栏、注释。每栏宽度等于其中最宽的内容，空栏不占空间也不加间距（参见#ref(<fig-gutter>)，图中另加了辅助线）。剩下两个问题：同一栏中相邻的文字不可重叠，以及哪些大括号可以共用一条轨道。
+各栏从轴线向外排列，第一栏与轴线相距 5 pt，各栏彼此相距 8 pt。顺序依次是标记、每条外侧大括号轨道各一栏，以及注释。每栏宽度取其中最宽的内容；空栏不占空间，也不增加间距（参见#ref(<fig-gutter>)，图中另加了辅助线）。随后还要处理两个问题：同一栏中相邻的文字不能重叠，以及哪些大括号可以共用一条轨道。
 
 == 沿轴分散文字
 
-一栏中的每段文字都是沿轴的一个区间，以它所标示的值为中心。区间重叠时将它们分开，保持顺序，并在最小二乘意义下移动最少。
+同一栏中的每段文字都对应轴上的一个区间，并以其标示的值为中心。区间重叠时，系统会在维持顺序的前提下将它们分开，并使各项位移的平方和最小。
 
 #definition(name: [保序排列])[
   设 $c_1, dots, c_n$ 为中心、$s_1, dots, s_n >= 0$ 为大小、$g >= 0$ 为间距，编号使 $c_1 <= dots.c <= c_n$（相等者按输入顺序）。#emph[排列]是满足
@@ -60,14 +60,14 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 ] <def-packing>
 
 #api(("spread",), added: "0.3.0", syntax: [#raw("mosaickit.layout.stack1d.spread(centers, sizes, gap=0.0) -> tuple[float, ...]")])[
-  求解此问题：把重叠的连续项目合并成群，每群紧密排列在其成员目标的平均值周围，只要某群撞上前一群就再合并。结果按输入顺序返回。长度不一致或大小为负时引发 `ValueError`。
+  求解此问题：将连续且重叠的项目合并成组，每组紧密排列在所有成员目标位置的平均值周围；只要某组碰到前一组，就再次合并。结果按输入顺序返回。长度不一致或大小为负时会引发 `ValueError`。
 ]
 
 #theorem(name: [分散为最佳解])[
   `spread` 返回#ref(<def-packing>)保序排列问题的唯一解。
 ] <thm-spread>
 
-这个程序其实是保序回归的相邻违反者合并算法 #citep(<ayer1955>)：扣除紧密排列的位移后，间距限制就变成 $y_1 <= dots.c <= y_n$。
+这个程序采用保序回归的合并相邻违反者算法（pool-adjacent-violators algorithm，PAVA）#citep(<ayer1955>)：扣除紧密排列的位移后，间距限制就会变成 $y_1 <= dots.c <= y_n$。
 
 #corollary(name: [分散结果的性质])[
   设 $x$ 为 `spread` 的结果，则
@@ -80,26 +80,26 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
   目标（上）与分散结果（下）。
 ]) <fig-spread>
 
-#ref(<fig-spread>)中前三项重叠而形成一群，群的位置以它们想要的位置平均为中心；其余两项本来就分开，不会移动。
+#ref(<fig-spread>)中的前三项因重叠而形成一组，该组的位置以各项目标位置的平均值为中心；其余两项原本就已分开，因此不会移动。
 
 == 大括号的轨道
 
 跨距（连同标签）彼此太近的大括号必须放在不同轨道，也就是与轴线不同的距离。
 
 #definition(name: [冲突区间])[
-  对间距 $g >= 0$，若 $b + g <= a'$ 与 $b' + g <= a$ 都不成立，则区间 $[a, b]$ 与 $[a', b']$ #emph[冲突]。#emph[轨道指派]为每个区间指定一个轨道编号，使冲突的区间不共用轨道。
+  对间距 $g >= 0$，若 $b + g <= a'$ 与 $b' + g <= a$ 都不成立，则区间 $[a, b]$ 与 $[a', b']$ #emph[冲突]。#emph[轨道分配]为每个区间指定一个轨道编号，使冲突的区间不共用轨道。
 ] <def-conflict>
 
 #api(("assign_lanes",), added: "0.3.0", syntax: [#raw("mosaickit.layout.stack1d.assign_lanes(intervals, gap=0.0) -> tuple[int, ...]")])[
-  首次适应：按输入顺序处理区间，把每个区间放进与已有区间都不冲突的最低轨道。端点可按任一顺序给出。
+  首次适配：按输入顺序处理区间，把每个区间放进与已有区间都不冲突的最低轨道。端点可按任一顺序给出。
 ]
 
-#theorem(name: [首次适应使用最少轨道])[
-  `assign_lanes` 一定返回轨道指派。若区间按下端递增的顺序给出，且每个都满足 $b - a + g > 0$，则它恰好使用 $omega$ 条轨道，其中 $omega$ 为两两冲突的区间数的最大值；没有任何轨道指派能用得更少。
+#theorem(name: [首次适配使用最少轨道])[
+  `assign_lanes` 一定返回轨道分配。若区间按下端递增的顺序给出，且每个都满足 $b - a + g > 0$，则它恰好使用 $omega$ 条轨道，其中 $omega$ 为两两冲突的区间数的最大值；没有任何轨道分配能用得更少。
 ] <thm-lanes>
 
-其他顺序下，首次适应可能用到多于必要的轨道，因此可能重叠的大括号应按数值由低到高加入。
+如果输入不是上述顺序，首次适配可能使用超过必要数量的轨道。因此，可能重叠的大括号应按数值从低到高加入。
 
 #api(("gutter_columns",), added: "0.3.0", syntax: [#raw("mosaickit.layout.gutter.gutter_columns(mark_width, brace_widths, note_width, *, start, gap)")])[
-  边栏背后的纯字段配置：返回 `GutterColumns`，含 `marks`、`braces`（每条轨道一个 `Band`，由内而外）与 `notes`，各为从轴线向外量的 `Band(near, far)`，以及最远边缘 `extent`。
+  负责边栏分栏布局的纯函数：返回 `GutterColumns`，其中包含 `marks`、`braces`（每条轨道一个 `Band`，由内而外）与 `notes`。每个栏都是从轴线向外量得的 `Band(near, far)`，另有最远边缘 `extent`。
 ]
