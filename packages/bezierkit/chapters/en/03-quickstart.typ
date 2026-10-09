@@ -33,15 +33,15 @@ into a #LaTeX document.
 
 == The pieces
 
-- *Values.* `Point`, `Vector` and `PointSet` are immutable and
+- Values: `Point`, `Vector` and `PointSet` are immutable and
   dimension-checked (@sec-geometry).
-- *Curves.* `BezierCurve` has any degree and dimension;
+- Curves: `BezierCurve` has any degree and dimension;
   `CubicBezierSegment` is the cubic that renderers consume; a
   `PiecewiseBezier` joins cubics into a path (@sec-curves, @sec-paths).
-- *Constructions.* Endpoint conditions, slopes, derivatives or Hermite data
+- Constructions: endpoint conditions, slopes, derivatives or Hermite data
   become control points (@sec-construction).
-- *Approximation.* Smooth functions, sampled points and level sets
+- Approximation: smooth functions, sampled points and level sets
   $F(x, y) = c$ become cubic paths with a stated error (@sec-fitting,
   @sec-implicit).
-- *Output.* Samples, JSON, SVG path data and TikZ, and Matplotlib paths
+- Output: samples, JSON, SVG path data and TikZ, and Matplotlib paths
   (@sec-export).

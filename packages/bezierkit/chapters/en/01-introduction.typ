@@ -9,9 +9,9 @@ The #pkg("bezierkit") package is a small mathematical toolkit for Bézier
 curves. It builds curves from control points or from endpoint conditions,
 evaluates and differentiates them, splits and restricts them, fits them to
 functions, sampled points and level sets, and writes them out as JSON, SVG
-path data or TikZ. It draws nothing: plotting is left to renderers such as
-Matplotlib, #pkg("mosaickit") or a #LaTeX document, which receive exact
-cubic control points.
+path data or TikZ. It does not plot. Renderers such as Matplotlib,
+#pkg("mosaickit") or a #LaTeX document receive exact cubic control points
+and draw them.
 
 == Notation
 
@@ -40,9 +40,9 @@ letter $d$ always denotes the dimension; tolerances are written $epsilon$.
 
 Each chapter first recalls the standard definitions it uses, with a
 reference, and then states the properties the algorithms rely on as numbered
-lemmas, propositions, theorems and corollaries: what the Bernstein basis
-guarantees, why de Casteljau's algorithm evaluates and subdivides a curve,
-how far a Hermite interpolant can stray, what the exporters lose to rounding.
+lemmas, propositions, theorems and corollaries: the Bernstein basis,
+evaluation and subdivision by de Casteljau's algorithm, the Hermite error
+bound and the rounding error of the exporters.
 Their proofs are collected in @app-proofs, so the chapters can be read for
 the API alone. Conventions that belong to this package, and not to the
 literature, are called package conventions. The standard references are

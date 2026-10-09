@@ -24,7 +24,7 @@
   设 $F$ 在开集 $Omega subset RR^2$ 上连续可微，$p in Omega$，$F(p) = c$ 且 $nabla F(p) != 0$。则存在 $p$ 的开邻域 $N$ 与开区间 $I$ 上的连续可微曲线 $gamma : I -> RR^2$，满足 $gamma(I) = L_c inter N$、某个 $u_0 in I$ 使 $gamma(u_0) = p$、对所有 $u in I$ 有 $gamma'(u) != 0$，且 $gamma'(u)$ 平行于 $gamma(u)$ 处的 $(F_y, -F_x)$。矢量 $(F_y, -F_x)$ 与 $nabla F$ 正交。
 ] <thm-gradient>
 
-切线 $(F_y, -F_x)$ 不需除法，因此垂直切线（$F_y = 0$）与其他情况一样容易处理；图形形式的斜率 $dif y slash dif x = -F_x slash F_y$ 在该处则为无穷大。
+切线 $(F_y, -F_x)$ 不需除法，因此垂直切线（$F_y = 0$）不需要另外处理；图形形式的斜率 $dif y slash dif x = -F_x slash F_y$ 在该处则为无穷大。
 
 == 描绘
 
@@ -52,11 +52,11 @@
 
 一条边有交点，若且唯若它的两个角点高低不同。
 
-+ *采样。*在 viewport 的规则网格上计算 $F$。
-+ *行进。*在每个网格单元中找出四条边的交点（详见#ref(<def-crossing>)）。有两个交点的单元格贡献一条线段。有四个交点的单元格是鞍点：两个对角角点为高、另两个为低，由下述规则决定如何连接（参见#ref(<fig-saddle>)）。
-+ *缝合。*把端点相同的线段串成链。回到起点的链是封闭的；抵达 viewport 边界或分支点的链是开放的。互不相连的部分保持为不同的路径。
-+ *简化。*以 `tolerance` 对每条链调用 `fit_polyline`（详见#ref(<sec-fitting>)），不保留转角。
-+ *弯曲*（提供 `gradient` 时）。把每条直线段换成端点切线沿等值集方向的三次曲线（详见#ref(<thm-gradient>)），控制柄长为弦长的三分之一。只有当三次曲线与弦的距离不超过 `tolerance` 时才采用；任一端 $nabla F = 0$ 时维持直线。
++ 采样。在 viewport 的规则网格上计算 $F$。
++ 行进。在每个网格单元中找出四条边的交点（详见#ref(<def-crossing>)）。有两个交点的单元格贡献一条线段。有四个交点的单元格是鞍点：两个对角角点为高、另两个为低，由下述规则决定如何连接（参见#ref(<fig-saddle>)）。
++ 缝合。把端点相同的线段串成链。回到起点的链是封闭的；抵达 viewport 边界或分支点的链是开放的。互不相连的部分保持为不同的路径。
++ 简化。以 `tolerance` 对每条链调用 `fit_polyline`（详见#ref(<sec-fitting>)），不保留转角。
++ 弯曲（提供 `gradient` 时）。把每条直线段换成端点切线沿等值集方向的三次曲线（详见#ref(<thm-gradient>)），控制柄长为弦长的三分之一。只有当三次曲线与弦的距离不超过 `tolerance` 时才采用；任一端 $nabla F = 0$ 时维持直线。
 
 #fig("/figures/implicit/saddle.pdf", width: auto, caption: [
   鞍点单元格：(a) 中心高、(b) 中心低；实心角点的 $F >= c$。
