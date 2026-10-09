@@ -4,14 +4,14 @@
 
 #changed("0.2.0", label: "mosaickit.layout")[Added: the pure geometry behind label placement]
 
-Label placement runs after everything else is drawn, on display
+Label placement runs after everything else is drawn and uses display
 coordinates: pixels, with $y$ increasing upward. The package
-`mosaickit.layout` holds the geometry it uses; it imports nothing from the
-renderers, so it can be tested, and reused, on its own. The functions of this chapter
-are in `mosaickit.layout.geometry`; `Rect` and `polylabel` are also
-exported from `mosaickit.layout`. A point is a pair
-`(x, y)`, a segment a pair of points, and a polygon a sequence of points
-whose last point joins the first.
+`mosaickit.layout` contains this geometry and imports nothing from the
+renderers, so it can be tested and reused independently. The functions in
+this chapter are in `mosaickit.layout.geometry`; `Rect` and `polylabel` are
+also exported from `mosaickit.layout`. A point is a pair `(x, y)`, a segment
+is a pair of points, and a polygon is a sequence of points whose last point
+joins the first.
 
 == Rectangles
 
@@ -25,9 +25,9 @@ whose last point joins the first.
 ]
 
 #lemma(name: [Nearest point of a rectangle])[
-  For a rectangle $R$ and a point $p$, the point
-  $q = (min(max(p_x, x_0), x_1), min(max(p_y, y_0), y_1))$ returned by
-  `nearest_point` is the unique point of $R$ closest to $p$.
+  For a rectangle $R$ and a point $p$, `nearest_point` returns
+  $ q = (min(max(p_x, x_0), x_1), min(max(p_y, y_0), y_1)). $
+  This is the unique point of $R$ closest to $p$.
 ] <lem-nearest>
 
 Callout leaders end at this point, so a leader is as short as the label's
@@ -93,12 +93,13 @@ position allows.
 ]
 
 #lemma(name: [Distance to a segment])[
-  For $a != b$ let $t^* = "clamp"((p - a) dot (b - a) slash |b - a|^2, 0, 1)$.
+  For $a != b$, let
+  $ t^* = "clamp"((p - a) dot (b - a) slash |b - a|^2, 0, 1). $
   Then $a + t^* (b - a)$ is the point of $[a, b]$ nearest to $p$.
 ] <lem-segment-distance>
 
 #api(("point_in_polygon",), syntax: [#raw("point_in_polygon(point, polygon) -> bool")])[
-  The even-odd rule: follow the horizontal ray from the point to the right
+  The even–odd rule: follow the horizontal ray from the point to the right
   and count the edges it crosses. An edge counts when exactly one of its
   endpoints lies strictly above the ray's line and the crossing is right of
   the point #citep(<haines1994>).
@@ -141,8 +142,8 @@ position allows.
 
 == The visual centre of a region
 
-The centroid of a region can lie outside it (@fig-polylabel). A label
-belongs at the point deepest inside, the one farthest from the boundary.
+The centroid of a region can lie outside it (@fig-polylabel). A label belongs
+at the deepest interior point, which is farthest from the boundary.
 
 #definition(name: [Signed distance and pole])[
   For a simple polygon $P$ the _signed distance_ is
@@ -178,7 +179,7 @@ belongs at the point deepest inside, the one farthest from the boundary.
 ]) <fig-polylabel>
 
 For a triangle the pole is the incentre. Placement calls `polylabel` with
-the default precision of one pixel, which is finer than any text is placed.
+the default precision of one pixel, finer than any text-placement increment.
 
 == Brace outlines
 

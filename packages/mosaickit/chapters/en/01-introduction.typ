@@ -6,13 +6,13 @@
 #changed("0.1.1")[Package metadata on PyPI links the homepage, repository, issue tracker, changelog and release notes]
 
 The #pkg("mosaickit") package assembles two-dimensional diagrams from small,
-immutable pieces: a scene is an ordered list of layers (paths, filled regions,
-markers, text, arrows, labels, braces), each layer names a semantic role, a
-theme turns roles into styles, and a renderer turns the result into PNG, SVG,
-PDF, GIF or MP4. It knows nothing about any subject. Domain packages such as
-#pkg("principle-viz") and #pkg("utility-viz") define their own models and
-role names and hand #pkg("mosaickit") the layers to draw; curve construction
-and TikZ export belong to geometry packages such as #pkg("bezierkit").
+immutable pieces. A scene is an ordered list of layers (paths, filled regions,
+markers, text, arrows, labels, braces). Each layer names a semantic role, a
+theme maps roles to styles, and a renderer produces PNG, SVG, PDF, GIF or MP4.
+The package is domain-neutral. Domain packages such as #pkg("principle-viz")
+and #pkg("utility-viz") define their own models and role names, then pass
+#pkg("mosaickit") the layers to draw. Curve construction and TikZ export
+belong to geometry packages such as #pkg("bezierkit").
 
 == Design
 
@@ -35,14 +35,19 @@ Four ideas run through the package.
 
 == Mathematics and proofs
 
-Automatic placement rests on a little computational geometry: orientation
-tests, the even-odd rule, distances to a polygon's boundary, a best-first
-search for the point deepest inside a region, and the least-squares packing
-that keeps axis text apart. The chapters state what each routine guarantees
+Automatic placement uses several computational-geometry routines. An
+orientation test determines which side of a directed line contains a point,
+and the even-odd rule classifies a point by counting ray crossings of a
+boundary. The package also measures distance to a polygon's boundary and
+uses best-first search, always examining the candidate region with the
+largest upper bound first, to find the point deepest inside a region. Axis
+text is arranged without overlap while minimizing the sum of squared
+displacements. The chapters state what each routine guarantees
 as numbered definitions, lemmas, propositions and theorems; the proofs are
 collected in @app-proofs, so the chapters can be read for the API alone. The
-same is done for the algebra of styles and themes (sparse merging, role
-resolution) and for parameter binding. The standard references are
+manual also states and proves the corresponding results for style and theme
+algebra (sparse merging and role resolution) and for parameter binding. The
+standard references are
 #citet(<deberg2008>) for the geometry and #citet(<barlow1972>) for the
 order-restricted least squares behind @thm-spread.
 
@@ -68,6 +73,6 @@ order-restricted least squares behind @thm-spread.
   )
 ] <tab-guide>
 
-On first use, read @sec-quickstart, @sec-canvas and @sec-layers. The figures
-in this manual are themselves #pkg("mosaickit") output: each was drawn by
-the canvas or grid it illustrates and saved as PDF at the size printed here.
+Start with @sec-quickstart, @sec-canvas and @sec-layers. Every
+figure in this manual is #pkg("mosaickit") output, drawn by the canvas or
+grid it illustrates and saved as PDF at the printed size.

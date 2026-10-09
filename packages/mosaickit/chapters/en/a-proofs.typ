@@ -2,11 +2,12 @@
 
 = Proofs <app-proofs>
 
-This appendix proves the lemmas, propositions, theorems and corollaries
-stated in the chapters, in the order they appear. Arithmetic is taken to be
-exact; the code computes the same quantities in floating point, so
-configurations within rounding error of a degenerate one, such as a point on
-an edge or three nearly collinear points, may be decided either way. For vectors $u, v$ in the plane, $u times v = u_x v_y - u_y v_x$.
+This appendix proves the lemmas, propositions, theorems and corollaries in
+the order they appear in the chapters. The proofs assume exact arithmetic.
+The code computes the same quantities in floating point, so it may decide a
+configuration either way when it is within rounding error of a degenerate
+case, such as a point on an edge or three nearly collinear points. For plane
+vectors $u, v$, define $u times v = u_x v_y - u_y v_x$.
 
 == Packing and lanes
 
@@ -15,21 +16,21 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   $y_k = x_k - o_k$ and $z_k = c_k - o_k$. Since
   $o_(k+1) - o_k = (s_k + s_(k+1)) slash 2 + g$, the constraints of
   @def-packing read $y_1 <= dots.c <= y_n$, and the objective is
-  $sum_k (y_k - z_k)^2$. So the problem is to find the closest
+  $sum_k (y_k - z_k)^2$. The problem is therefore to find the closest
   non-decreasing vector to $z$ in the least-squares sense.
 
   _What the code computes._ A cluster $B$ of consecutive items starting at
   $i$, with start $S_B$, places item $k in B$ at
-  $x_k = S_B + sum_(i <= l < k) (s_l + g) + s_k slash 2 = S_B + o_k - O_i$,
+  $ x_k = S_B + sum_(i <= l < k) (s_l + g) + s_k slash 2 = S_B + o_k - O_i, $
   where $O_i = sum_(l < i) (s_l + g)$. Hence $y_k = S_B - O_i =: Y_B$ is
   constant on $B$, and the code's choice of $S_B$ as the mean of
   $c_k - (o_k - O_i)$ makes $Y_B$ the mean of $z_k$ over $B$; a new item
   alone has $Y = z_k$. Clusters $A$ and $B$ (with $B$ after $A$) are left
   apart when $S_A + "length"(A) + g <= S_B$; since
   $"length"(A) + g = O_(i_B) - O_(i_A)$, this says $Y_A <= Y_B$. The code is
-  therefore the pool-adjacent-violators algorithm: append $z_k$ as a block,
-  and while the last two blocks have decreasing means, replace them by
-  their union with its mean.
+  therefore the pool-adjacent-violators algorithm (PAVA): append $z_k$ as a
+  block, and while the last two blocks have decreasing means, replace them
+  by their union with its mean.
 
   _Invariants._ (a) Consecutive blocks have non-decreasing means: merging
   stops exactly when the last pair is in order, and earlier pairs are not
@@ -59,13 +60,12 @@ an edge or three nearly collinear points, may be decided either way. For vectors
 #proof(of: <cor-spread>)[
   (i) Number the items in sorted order and let $i < j$. Summing the
   constraints from $i$ to $j - 1$,
-  $x_j - x_i >= sum_(k=i)^(j-1) ((s_k + s_(k+1)) slash 2 + g)
-   >= (s_i + s_j) slash 2 + g$,
+  $ x_j - x_i >= sum_(k=i)^(j-1) ((s_k + s_(k+1)) slash 2 + g) >= (s_i + s_j) slash 2 + g $
   since every term is non-negative and the first and last contribute
   $s_i slash 2$ and $s_j slash 2$. (ii) If $c$ is a packing, it attains the
   objective $0$, so it is the unique minimizer of @thm-spread. (iii) With
-  the notation of that proof, $sum_(k in B) (x_k - c_k)
-  = sum_(k in B) (y_k - z_k) = |B| Y_B - sum_(k in B) z_k = 0$.
+  the notation of that proof,
+  $ sum_(k in B) (x_k - c_k) = sum_(k in B) (y_k - z_k) = |B| Y_B - sum_(k in B) z_k = 0 $
 ]
 
 #proof(of: <thm-lanes>)[
@@ -100,8 +100,9 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   Subtracting the first row from the others,
   $ "orient"(a, b, c) = det mat(1, a_x, a_y; 1, b_x, b_y; 1, c_x, c_y). $
   A cyclic permutation of the rows is even and a swap is odd, which gives
-  the symmetries. Also $"orient"(a, b, c) = (b - a) times (c - a)
-  = |b - a| |c - a| sin theta$, where $theta$ is the signed angle from
+  the symmetries. Also
+  $ "orient"(a, b, c) = (b - a) times (c - a) = |b - a| |c - a| sin theta, $
+  where $theta$ is the signed angle from
   $b - a$ to $c - a$; it is positive exactly when $theta in (0, pi)$, that
   is when $c$ is left of the directed line, negative when it is right, and
   zero exactly when the two vectors are parallel or one vanishes, that is
@@ -109,7 +110,7 @@ an edge or three nearly collinear points, may be decided either way. For vectors
 ]
 
 #proof(of: <thm-segments>)[
-  We first note: if $"orient"(c, d, p) = 0$ and $p$ lies in the bounding box
+  First observe that if $"orient"(c, d, p) = 0$ and $p$ lies in the bounding box
   of $[c, d]$, then $p in [c, d]$. Indeed, if $c = d$ the box is the point
   $c$; otherwise $p = c + t (d - c)$ for some real $t$ by collinearity, and
   on a coordinate where $d - c$ is non-zero the box condition forces
@@ -159,7 +160,7 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   and for every vertex $y_i > y$ if and only if $y_i > y + epsilon$. So an
   edge passes the code's height test exactly when it crosses the line
   $Y = y + epsilon$, at the abscissa
-  $X_epsilon = x_0 + (y + epsilon - y_0)(x_1 - x_0) slash (y_1 - y_0)$.
+  $ X_epsilon = x_0 + (y + epsilon - y_0)(x_1 - x_0) slash (y_1 - y_0). $
   The code compares $x$ with $X_0$. If $x = X_0$, the point $(X_0, y)$ lies
   on the edge, because the height test puts $y$ between the endpoint
   heights, and $p in partial P$, which is excluded; so $x != X_0$, and by
@@ -218,8 +219,7 @@ an edge or three nearly collinear points, may be decided either way. For vectors
   point of $overline(P)$ on the segment from $p$ to $q$ (it exists since
   $overline(P)$ is closed). Points just past $z$ are outside, so
   $z in.not "int" P$ and $z in partial P$. Then
-  $|f(p) - f(q)| = d(p, partial P) + d(q, partial P)
-   <= |p - z| + |z - q| = |p - q|$.
+  $ |f(p) - f(q)| = d(p, partial P) + d(q, partial P) <= |p - z| + |z - q| = |p - q| $
 ]
 
 #proof(of: <thm-polylabel>)[
@@ -296,92 +296,70 @@ an edge or three nearly collinear points, may be decided either way. For vectors
 ]
 
 #proof(of: <prop-callout>)[
-  The code keeps one best candidate and replaces it only by a candidate
-  with a strictly smaller key, so after any prefix of the enumeration it
-  holds the first candidate with the smallest key seen. After the near ring,
-  if the smallest charge is $0$, the smallest key is $(0, ell_min)$ and the
-  search stops: the result is the first zero-charge candidate with the
-  shortest leader. Otherwise the far ring is enumerated with the same best
-  candidate, and the result is the first candidate with the smallest key
-  over both rings. Every step is a function of the arguments (the pole, the
-  exit distances, the open area, the crossings), with no randomness and a
-  fixed enumeration order.
+  After any enumeration prefix, the retained candidate is the first one with
+  the least lexicographic key seen. If the near ring's least charge is $0$,
+  its least key is $(0, ell_min)$, so stopping returns its first zero-charge,
+  shortest-leader candidate. Otherwise the same invariant over the far ring
+  yields the first global minimum. The key depends only on the stated inputs,
+  and enumeration order is fixed, so the result is deterministic.
 ]
 
 == Styles, themes and binding
 
 #proof(of: <prop-monoid>)[
-  Per field the merge is the operation $x circle.small y = x$ if
-  $x != "None"$ and $y$ otherwise. Both $(x circle.small y) circle.small z$
-  and $x circle.small (y circle.small z)$ equal the first of $x, y, z$ that is
-  not `None` (or `None`), `None` is a two-sided identity, and
-  $x circle.small x = x$. Styles are equal when their fields are, which gives
-  (i)–(iii), and induction gives the first-non-`None` description. For
-  bundles the same holds slot by slot, a `None` slot behaving as the empty
-  style.
+  Per field, $x circle.small y$ selects the first non-`None` value of $x,y$.
+  Thus either association selects the first such value among $x,y,z$;
+  `None` is a two-sided identity and $x circle.small x=x$. This proves
+  (i)–(iii) fieldwise, and induction gives the general rule. Bundles follow
+  slot by slot, with a `None` slot as the empty style.
 ]
 
 #proof(of: <prop-hex>)[
-  A pair of hex digits $k in {0, dots, 255}$ is read as $k slash 255$ and
-  written as the two upper-case digits of $"round"(255 dot k slash 255)$.
-  In double precision the computed product differs from $k$ by at most
-  $255 dot 2^(-52) < 1 slash 2$, so it rounds to $k$. The alpha pair is
-  written exactly when `include_alpha` is true, that is for the nine-character
-  form. A three-digit form doubles each digit before reading.
+  A hex pair $k in {0, dots, 255}$ is read as $k slash 255$ and written as
+  $"round"(255 dot k slash 255)$. Since double-precision error is at most
+  $255 dot 2^(-52) < 1 slash 2$, rounding recovers $k$. Alpha is handled
+  likewise when included; three-digit input first doubles each digit.
 ]
 
 #proof(of: <thm-resolution>)[
-  Write $triangle.r$ for the merge. Resolution starts from $D$ and, for the
-  mappings $T$, $G$, $C$ in that order, merges $M[k_n], dots, M[k_1]$ over
-  the result in that order (least specific first), a missing key giving the
-  empty bundle; the layer's explicit bundle $E$, built from the fields named
-  in `style_slots`, is merged last. Unwinding, and using associativity
-  (@prop-monoid) to drop the brackets, the resolved bundle is
+  Write $triangle.r$ for merge. Starting from $D$, resolution processes
+  $T,G,C$, merging each $M[k_n],dots,M[k_1]$ least-specific first; a missing
+  key is the empty bundle. It merges last the layer bundle $E$ from
+  `style_slots`. By associativity (@prop-monoid), the result is
   $ E triangle.r C[k_1] triangle.r dots.c triangle.r C[k_n] triangle.r
     G[k_1] triangle.r dots.c triangle.r T[k_n] triangle.r D, $
-  whose fields are the first non-`None` values in that order. Binding the
-  palette afterwards replaces color names by colors and leaves the other
-  fields alone.
+  so each field is the first non-`None` value in this order. Palette binding
+  replaces color names and leaves all other fields unchanged.
 ]
 
 #proof(of: <cor-override>)[
-  A text layer with role `axes.note` has the chain (`axes.note`, `axes`,
-  `text`), and in the sequence of @thm-resolution the entry $G["text"]$
-  comes before $T["axes.note"]$. By hypothesis no earlier entry sets the
-  size, so the first non-`None` size is that of $G["text"]$.
+  For role `axes.note`, the chain is (`axes.note`, `axes`, `text`), so
+  $G["text"]$ precedes $T["axes.note"]$ in @thm-resolution. Since no earlier
+  entry sets size, its first non-`None` value is $G["text"]$.
 ]
 
 #proof(of: <thm-binding>)[
-  By induction on $e$. If $"free"(e) subset.eq "dom" beta$ (in particular for
-  constants and for parameters in $"dom" beta$), $"bind"(e, beta)$ is the
-  plain value $e(beta)$: it has no free parameters, as (i) requires, and
-  evaluates to $e(beta) = e(beta union gamma)$, since the value of an
-  expression depends only on the values of its free parameters. If $e$ is a
-  parameter $p in.not "dom" beta$, the result is $p$, with
-  $"free" = {p} = "free"(e) without "dom" beta$ and value
-  $gamma(p) = (beta union gamma)(p)$. Otherwise
-  $e = e_1 circle.small e_2$ and the result is
-  $"bind"(e_1, beta) circle.small "bind"(e_2, beta)$ (plain values wrapped as
-  constants). Its free parameters are
-  $("free"(e_1) without "dom" beta) union ("free"(e_2) without "dom" beta)
-   = "free"(e) without "dom" beta$, and $gamma$ binds those of each part, so
-  by induction its value is
-  $e_1(beta union gamma) circle.small e_2(beta union gamma) = e(beta union gamma)$.
+  Induct on $e$. If $"free"(e) subset.eq "dom" beta$, then
+  $"bind"(e,beta)=e(beta)$ is closed and equals $e(beta union gamma)$ because
+  values depend only on free parameters. If $e=p in.not "dom" beta$, the
+  result is $p$, with free set ${p}="free"(e) without "dom" beta$ and value
+  $gamma(p)=(beta union gamma)(p)$. Otherwise $e=e_1 circle.small e_2$;
+  binding acts on both operands (plain values become constants), giving
+  $ ("free"(e_1) without "dom" beta) union ("free"(e_2) without "dom" beta) = "free"(e) without "dom" beta. $
+  Since $gamma$ binds both parts, induction gives
+  $ e_1(beta union gamma) circle.small e_2(beta union gamma) = e(beta union gamma). $
 ]
 
 #proof(of: <cor-stages>)[
-  By @thm-binding (i) twice, both have the free parameters
-  $"free"(e) without "dom" (beta_1 union beta_2)$. For a binding $gamma$ of
-  them, disjoint from $beta_1$ and $beta_2$, (ii) twice gives
-  $"bind"("bind"(e, beta_1), beta_2)(gamma)
-   = "bind"(e, beta_1)(beta_2 union gamma) = e(beta_1 union beta_2 union gamma)
-   = "bind"(e, beta_1 union beta_2)(gamma)$. A canvas binds every
-  expression in its scene in this way.
+  Applying @thm-binding (i) twice gives free set
+  $"free"(e) without "dom" (beta_1 union beta_2)$. If $gamma$ binds it and is
+  disjoint from $beta_1,beta_2$, part (ii), applied twice, gives
+  $ "bind"("bind"(e, beta_1), beta_2)(gamma) = "bind"(e, beta_1)(beta_2 union gamma) = e(beta_1 union beta_2 union gamma) = "bind"(e, beta_1 union beta_2)(gamma) $
+  A canvas binds every scene expression in this way.
 ]
 
 #proof(of: <prop-grid-shape>)[
   From $r = ceil(n slash c)$, $r c >= n > (r - 1) c$, so the first $r - 1$
-  rows are full and the last holds $n - (r - 1) c in [1, c]$ cells, leaving
-  $r c - n < c$ empty. From $c = ceil(sqrt(n))$, $n <= c^2$, so
-  $n slash c <= c$ and $r <= c$.
+  rows are full; the last holds $n-(r-1)c in [1,c]$ cells and leaves fewer
+  than $c$ empty. Since $c=ceil(sqrt(n))$ gives $n/c <= c$, also $r <= c$.
 ]

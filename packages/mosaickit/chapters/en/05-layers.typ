@@ -50,9 +50,9 @@ when the layer is created, not when it is drawn.
 ]
 
 #api(("MarkerLayer",), syntax: [#raw("MarkerLayer(points, marker=None, *, ...)")])[
-  One marker per point. Markers are drawn whole: one centred on the plot
-  edge, such as a point on an axis, is not cut in half, and one centred
-  outside the plot is left out.
+  One marker per point. Markers are drawn whole. A marker centred on the plot
+  edge, such as a point on an axis, is not cut in half; one centred outside
+  the plot is omitted.
   #changed("0.5.1")[Markers are drawn whole on the plot edge; markers centred outside the plot are left out]
 ]
 
@@ -80,7 +80,8 @@ when the layer is created, not when it is drawn.
 ]
 
 #api(("GroupLayer",), syntax: [#raw("GroupLayer(children, *, ...)")])[
-  A layer made of layers. Children are drawn as if they were in the scene,
+  Groups several layers without drawing anything of its own. Children are
+  drawn as if they were in the scene,
   with the group's `z_index` added to theirs; an invisible group hides them
   all.
 ]
@@ -106,8 +107,9 @@ when the layer is created, not when it is drawn.
   #raw("crosshair_axes(x_range, y_range)") \
   #raw("box_frame(total_x, total_y)")
 ])[
-  Presets: two axes from the origin with heads at the far ends; two axes
-  through the origin with heads at both ends; a frame without heads.
+  Three presets, respectively: two axes from the origin with heads at the far
+  ends; two axes through the origin with heads at both ends; and a frame
+  without heads.
 ]
 
 Every axis is made of `PathLayer` and `TextLayer`, so it can be restyled

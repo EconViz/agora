@@ -5,11 +5,11 @@
 == 樣式組與主題
 
 #api(("StyleBundle",), syntax: [#raw("StyleBundle(stroke=None, fill=None, marker=None, text=None, legend=None)")])[
-  每個槽一個稀疏樣式。槽內型別錯誤時引發 `ConfigurationError`。`merged_over(base)` 逐槽合併（參見#ref(<def-merge>)）。
+  每個槽位包含一個稀疏樣式。槽位內的型別錯誤時，會引發 `ConfigurationError`。`merged_over(base)` 會逐槽位合併（參見#ref(<def-merge>)）。
 ]
 
 #api(("Theme",), syntax: [#raw("Theme(name, roles)")])[
-  名稱，以及從角色名稱到樣式組的不可變對應。角色名稱是非空、以點分隔的字串（`"axes"`、`"axes.note"`、`"mypkg.boundary"`）。`with_roles(**patch)` 回傳新主題，每個修補的角色合併在原樣式組之上；關鍵字名稱不能含點，因此帶點的角色寫成 `with_roles(**{"mypkg.line": bundle})`。`resolve(role, fallback_category=...)` 僅依主題解析角色。
+  包含主題名稱，以及從角色名稱到樣式組的不可變對應。角色名稱必須是非空、以點分隔的字串（`"axes"`、`"axes.note"`、`"mypkg.boundary"`）。`with_roles(**patch)` 回傳新主題，並將每個修補角色合併在原有的樣式組之上。由於關鍵字名稱不能含點，帶點的角色要寫成 `with_roles(**{"mypkg.line": bundle})`。`resolve(role, fallback_category=...)` 僅根據主題解析角色。
 ]
 
 #tbl(caption: [`default` 主題])[
@@ -30,7 +30,7 @@
 
 == 角色解析
 
-圖層的角色依序經由其上層角色，最後是圖層型別的後備類別解析；後備類別是沒有任何地方指名該角色時的最後依據。
+解析圖層角色時，會依序查看該角色及其上層角色，最後才查看圖層型別的後備類別。這個過程逐欄進行；只有該角色與所有上層角色都未提供某欄的值時，才會使用後備類別的值。
 
 #definition(name: [角色鏈])[
   對後備類別為 $phi$ 的角色 $rho = rho_1.rho_2 dots.c rho_m$，其#emph[鏈]為序列
@@ -38,10 +38,10 @@
   由最具體到最一般，重複的鍵只保留第一次出現。
 ] <def-chain>
 
-例如文字圖層的 `"axes.note"` 角色，其鏈為（`axes.note`, `axes`, `text`）。各後備類別為 `primary`（路徑、群組）、`region`（填色）、`point`（標記）、`text`（文字、標籤、座標軸標記、註記、大括號）、`annotation`（箭頭）與 `legend`。
+例如，文字圖層的 `"axes.note"` 角色鏈為（`axes.note`, `axes`, `text`）。後備類別包括 `primary`（路徑、群組）、`region`（填色）、`point`（標記）、`text`（文字、標籤、座標軸標記、註記、大括號）、`annotation`（箭頭）與 `legend`。
 
 #theorem(name: [解析順序])[
-  設某圖層的自帶樣式為 $E$、角色鏈為 $kappa = (k_1, dots, k_n)$，畫在角色覆寫為 $C$ 的畫布上，所在設定的角色覆寫為 $G$、主題角色為 $T$，並令 $D$ 為基本預設值。則圖層解析後樣式的每個欄位，是序列
+  設某圖層的自帶樣式為 $E$、角色鏈為 $kappa = (k_1, dots, k_n)$，畫在角色覆寫為 $C$ 的畫布上。再設生效設定的角色覆寫為 $G$、主題角色為 $T$，並令 $D$ 為基本預設值。則圖層解析後樣式的每個欄位，是序列
   $ E, quad C[k_1], dots, C[k_n], quad G[k_1], dots, G[k_n], quad
     T[k_1], dots, T[k_n], quad D $
   中第一個不是 `None` 的值，其中不存在的角色視為空樣式組。
@@ -51,18 +51,18 @@
   畫布或設定對一般角色的覆寫，優先於主題對較具體角色的設定：若 $G["text"]$ 設定了文字大小，且#ref(<thm-resolution>)序列中在它之前沒有來源設定大小，則角色為 `axes.note` 的文字圖層採用該大小，而非主題的 9 pt。
 ] <cor-override>
 
-本手冊的圖就依賴#ref(<cor-override>)：它們同時覆寫 `text`、`axes` 與 `axes.note` 的文字大小，因為只覆寫 `text` 也會放大註記。
+本手冊的圖便運用了#ref(<cor-override>)：圖中同時覆寫 `text`、`axes` 與 `axes.note` 的文字大小，因為只覆寫 `text` 也會放大註記。
 
 #changed("0.2.0", label: "resolve")[`themes.resolve` 接受 `overrides`，在主題之後依序套用]
 
 == 註冊領域角色
 
 #api(("ThemeRegistry",), syntax: [#raw("ThemeRegistry()")])[
-  主題登錄表，一開始就含有 `default`。`register(theme)` 加入主題（名稱已被使用時引發 `ConfigurationError`），`get(name)` 查詢主題，`register_roles(name, roles)` 把帶點的領域角色合併到已登錄的主題並回傳它；不帶點的角色引發 `ConfigurationError`，因此領域套件無法遮蔽內建角色。
+  主題登錄表，建立時已含有 `default`。`register(theme)` 加入主題（名稱已被使用時引發 `ConfigurationError`），`get(name)` 查詢主題，`register_roles(name, roles)` 則把帶點的領域角色合併到已登錄的主題中，並回傳該主題。不帶點的角色會引發 `ConfigurationError`，因此領域套件無法遮蔽內建角色。
 ]
 
 #api(("RolePack", "expand_roles"), syntax: [#raw("expand_roles(pack) -> dict[str, StyleBundle]")])[
-  以型別描述領域套件角色的方式。`RolePack` 是帶有類別變數 `_namespace` 的 dataclass；每個不為 `None` 的欄位成為角色 `namespace.field`，欄位名稱中的底線轉為點。
+  以型別定義領域套件角色的方式。`RolePack` 是帶有類別變數 `_namespace` 的 dataclass；每個不為 `None` 的欄位都會轉成 `namespace.field` 角色，欄位名稱中的底線則轉為點。
 ]
 
 ```python
@@ -92,7 +92,7 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
 ]
 
 #api(("use_config",), syntax: [#raw("with use_config(config): ...")])[
-  在區塊內使 `config` 成為生效的設定。此值存於 context variable，因此每個執行緒與非同步工作各自看到自己的設定，而傳給 `Canvas` 的引數一律優先。
+  讓 `config` 在區塊內成為生效的設定。此值存於 context variable，因此每個執行緒與非同步工作都有各自的設定；傳給 `Canvas` 的引數一律優先。
 ]
 
 #api(("Config.load", "Config.from_dict"), syntax: [

@@ -4,9 +4,10 @@
 #full-width[
   #heading(numbering: none)[Change history] <sec-changelog>
 
-  Release history of #pkg("mosaickit"). Documentation-only changes are not
-  listed; each entry is tagged where the feature it describes is documented,
-  following l3doc convention, so the page number is the real page.
+  This history lists releases that affect the use of #pkg("mosaickit") and
+  omits documentation-only changes. Following l3doc convention, each entry
+  is tagged where its feature is documented, so its page number points to
+  that documentation.
 ]
 
 #changelog()

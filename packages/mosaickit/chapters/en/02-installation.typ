@@ -5,9 +5,9 @@
 == Requirements
 
 #pkg("mosaickit") requires Python #pkg-meta("python") or later, #pkg("NumPy")
-1.24 or later and #pkg("Matplotlib") 3.6 or later (below 4); on Python 3.10
+1.24 or later and #pkg("Matplotlib") 3.6 or later (below 4). On Python 3.10,
 it also installs #pkg("tomli") to read TOML. GIF output uses #pkg("Pillow"),
-which Matplotlib already depends on; MP4 output needs `ffmpeg` on the
+which Matplotlib already depends on. MP4 output needs `ffmpeg` on the
 `PATH`.
 
 == Installing the package
@@ -39,8 +39,8 @@ uv build
 ```
 
 The lockfile pins every development dependency. The continuous-integration
-workflow runs the same commands on Python 3.10, 3.11, 3.12 and 3.13, then
+workflow runs the same commands on Python 3.10, 3.11, 3.12 and 3.13. It then
 installs the built wheel into a clean environment, checks that #pkg("bezierkit")
-is absent, and runs the test suite against the wheel. Import contracts keep
-the layers honest: scenes, styles, themes and parameters never import the
+is absent, and runs the test suite against the wheel. Import contracts enforce
+the module boundaries: scenes, styles, themes and parameters never import the
 rendering or canvas modules, and the core never imports a domain package.

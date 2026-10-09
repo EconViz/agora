@@ -1,22 +1,24 @@
 #import "/template/manual.typ": *
 
-= 配置几何 <sec-geometry>
+= 布局几何 <sec-geometry>
 
-#changed("0.2.0", label: "mosaickit.layout")[新增：标签配置背后的纯几何模块]
+#changed("0.2.0", label: "mosaickit.layout")[新增：标签布局背后的纯几何模块]
 
-标签配置在其他内容都画完后运行，使用显示坐标：以像素为单位，$y$ 向上递增。`mosaickit.layout` 软件包收录配置所用的几何；它不导入任何渲染器，因此可以单独测试与重复使用。本章的函数位于 `mosaickit.layout.geometry`；`Rect` 与 `polylabel` 也由 `mosaickit.layout` 导出。点是数对 `(x, y)`，线段是一对点，多边形是一串点，最后一点与第一点相连。
+标签会等其他内容全部绘制完毕后再放置，并采用以像素为单位、$y$ 向上递增的显示坐标。`mosaickit.layout` 软件包收录布局所需的几何功能；它不导入任何渲染器，因此可单独测试及重复使用。本章的函数位于 `mosaickit.layout.geometry`；`Rect` 与 `polylabel` 也会从 `mosaickit.layout` 导出。点是数对 `(x, y)`，线段由一对点组成，多边形则是一串首尾相连的点。
 
 == 矩形
 
 #api(("Rect",), syntax: [#raw("Rect(x0, y0, x1, y1)")])[
-  闭合的轴对齐矩形 $[x_0, x_1] times [y_0, y_1]$。`Rect.centered(center, width, height)` 以某点为中心创建矩形。它提供 `width`、`height`、`center`、`inflate(pad)`、`corners()`（从 $(x_0, y_0)$ 起逆时针）、`edges()`、`contains(point)`（含边）、`within(other)`、`intersects(other)`（相切也算）与 `nearest_point(point)`。
+  闭合的轴对齐矩形 $[x_0, x_1] times [y_0, y_1]$。`Rect.centered(center, width, height)` 以指定点为中心创建矩形。它提供 `width`、`height`、`center`、`inflate(pad)`、`corners()`（从 $(x_0, y_0)$ 开始逆时针排列）、`edges()`、`contains(point)`（包含边界）、`within(other)`、`intersects(other)`（相切也算）与 `nearest_point(point)`。
 ]
 
 #lemma(name: [矩形上的最近点])[
-  对矩形 $R$ 与点 $p$，`nearest_point` 返回的点 $q = (min(max(p_x, x_0), x_1), min(max(p_y, y_0), y_1))$ 是 $R$ 上离 $p$ 最近的唯一点。
+  对矩形 $R$ 与点 $p$，`nearest_point` 返回的点
+  $ q = (min(max(p_x, x_0), x_1), min(max(p_y, y_0), y_1)) $
+  是 $R$ 上离 $p$ 最近的唯一点。
 ] <lem-nearest>
 
-引线标注的引线终止于这一点，因此在标签位置给定下，引线已是最短。
+引线标注的引线会终止于这一点，因此标签位置一旦确定，引线便是最短的。
 
 == 方向与线段
 
@@ -31,7 +33,7 @@
 ] <lem-orient>
 
 #api(("segments_intersect",), syntax: [#raw("segments_intersect(a, b, c, d) -> bool")])[
-  闭线段 $[a, b]$ 与 $[c, d]$ 是否有共同点。令 $d_1 = "orient"(c, d, a)$、$d_2 = "orient"(c, d, b)$、$d_3 = "orient"(a, b, c)$、$d_4 = "orient"(a, b, d)$；当 $d_1 d_2 < 0$ 且 $d_3 d_4 < 0$，或某个 $d_i$ 为零且其对应点落在另一线段的外接矩形内时，回答是 #citep(<cormen2009>)。
+  判断闭线段 $[a, b]$ 与 $[c, d]$ 是否有共同点。令 $d_1 = "orient"(c, d, a)$、$d_2 = "orient"(c, d, b)$、$d_3 = "orient"(a, b, c)$、$d_4 = "orient"(a, b, d)$；如果 $d_1 d_2 < 0$ 且 $d_3 d_4 < 0$，或某个 $d_i$ 为零且其对应点落在另一线段的外接矩形（包住该线段的最小轴对齐矩形）内，便判定两者相交 #citep(<cormen2009>)。
 ]
 
 #theorem(name: [线段相交])[
@@ -56,11 +58,13 @@
   #raw("polygon_edges(polygon) -> tuple[Segment, ...]") \
   #raw("distance_to_boundary(point, polygon) -> float")
 ])[
-  多边形的各边（含最后一点到第一点），以及点到最近边的欧氏距离。每条边的距离把点投影到边所在直线，再把参数限制在 $[0, 1]$。
+  前者返回多边形的所有边（包括最后一点到第一点），后者计算指定点到最近边的欧氏距离。计算每条边的距离时，会先将点投影到该边所在的直线，再把参数限制在 $[0, 1]$。
 ]
 
 #lemma(name: [到线段的距离])[
-  设 $a != b$，令 $t^* = "clamp"((p - a) dot (b - a) slash |b - a|^2, 0, 1)$。则 $a + t^* (b - a)$ 是 $[a, b]$ 上离 $p$ 最近的点。
+  设 $a != b$，令
+  $ t^* = "clamp"((p - a) dot (b - a) slash |b - a|^2, 0, 1) $
+  则 $a + t^* (b - a)$ 是 $[a, b]$ 上离 $p$ 最近的点。
 ] <lem-segment-distance>
 
 #api(("point_in_polygon",), syntax: [#raw("point_in_polygon(point, polygon) -> bool")])[
@@ -87,7 +91,7 @@
 ] <cor-rect-overlap>
 
 #api(("ray_exit",), syntax: [#raw("ray_exit(origin, direction, polygon) -> float")])[
-  射线 $o + t r$ 与不平行于它的边相交处的最大 $t >= 0$；没有这样的边时为 $0$。引线标注以它作为搜寻起点，也就是射线离开区域之处。
+  射线 $o + t r$ 与不平行于它的边相交处的最大 $t >= 0$；没有这样的边时为 $0$。引线标注以它作为搜索起点，也就是射线离开区域之处。
 ]
 
 #proposition(name: [永久离开多边形])[
@@ -96,7 +100,7 @@
 
 == 区域的视觉中心
 
-区域的形心可能落在区域外（参见#ref(<fig-polylabel>)）。标签应放在最深处，也就是离边界最远的点。
+区域的形心，也就是将区域视为均匀薄片时的质心，可能落在区域外（参见#ref(<fig-polylabel>)）。标签应放在区域最深处，也就是离边界最远的点。
 
 #definition(name: [有符号距离与不可及极点])[
   对简单多边形 $P$，#emph[有符号距离]定义为：当 $p in overline(P)$ 时 $f(p) = d(p, partial P)$，否则 $f(p) = -d(p, partial P)$。$P$ 的#emph[不可及极点]是 $f$ 获取最大值 $f^*$ 之处；$f^*$ 即 $P$ 内最大圆盘的半径。
@@ -107,7 +111,7 @@
 ] <lem-lipschitz>
 
 #api(("polylabel",), syntax: [#raw("polylabel(polygon, precision=1.0) -> Point")])[
-  在正方形单元上的最佳优先搜寻 #citep(<agafonkin2016>)。外接矩形先以边长等于其短边的正方形覆盖。中心为 $c$、半边长为 $h$ 的单元得到上界 $f(c) + h sqrt(2)$，放入优先队列，上界最大者先取出。程序记住目前最佳的中心，起始值为外接矩形的中心；取出的单元若上界比最佳值多出 `precision` 以上，就分成四格，否则舍弃。外接矩形宽或高为零的多边形返回其第一个顶点。
+  在正方形单元上的最佳优先搜索 #citep(<agafonkin2016>)。外接矩形先以边长等于其短边的正方形覆盖。中心为 $c$、半边长为 $h$ 的单元得到上界 $f(c) + h sqrt(2)$，放入优先队列，上界最大者先取出。程序记住目前最佳的中心，起始值为外接矩形的中心；取出的单元若上界比最佳值多出 `precision` 以上，就分成四格，否则舍弃。外接矩形宽或高为零的多边形返回其第一个顶点。
 ]
 
 #theorem(name: [不可及极点])[
@@ -118,7 +122,7 @@
   极点、最大圆盘与形心。
 ]) <fig-polylabel>
 
-三角形的极点就是内心。配置时以默认精度一像素调用 `polylabel`，比任何文字的摆放精度都细。
+三角形的极点就是内心，也就是三条角平分线的交点。布局时会以默认的一像素精度调用 `polylabel`，这比任何文字的放置精度都更细。
 
 == 大括号外形
 

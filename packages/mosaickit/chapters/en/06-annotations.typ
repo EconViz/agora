@@ -5,8 +5,8 @@
 #changed("0.3.0", label: "mosaickit")[Text outside an axis is laid out in columns: marks, then outside braces (one column per lane), then notes; marks and notes are spread so none overlap]
 
 The y axis is the plot's left edge and the x axis its bottom edge; the space
-outside them is the _gutter_. Three layers write there, and a fourth draws
-braces inside the plot.
+outside them is the _gutter_. Three layer types place text in the gutter, and
+a fourth draws braces inside the plot.
 
 == Marks, notes and braces
 
@@ -58,11 +58,11 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 
 == Gutter columns
 
-Columns run outward from the axis line, 5 pt from it and 8 pt apart: marks,
-then one column per lane of outside braces, then notes. Each column is as
-wide as the widest thing in it, and an empty column takes no space and adds
-no gap (@fig-gutter). Two jobs remain: keep neighbouring texts in a column
-from overlapping, and decide which braces may share a lane.
+Columns run outward from the axis line, starting 5 pt away and separated by
+8 pt: marks, then one column per lane of outside braces, then notes. Each
+column is as wide as its widest item. An empty column takes no space and adds
+no gap (@fig-gutter). The layout must also keep neighbouring texts within a
+column from overlapping and decide which braces may share a lane.
 
 == Spreading text along an axis
 
@@ -92,9 +92,9 @@ moving as little as possible in the least-squares sense.
   problem of @def-packing.
 ] <thm-spread>
 
-The procedure is the pool-adjacent-violators algorithm of isotonic
-regression #citep(<ayer1955>) in disguise: subtracting the packed offsets
-turns the gap constraints into $y_1 <= dots.c <= y_n$.
+The procedure is the pool-adjacent-violators algorithm (PAVA) from isotonic
+regression #citep(<ayer1955>): subtracting the packed offsets turns the gap
+constraints into $y_1 <= dots.c <= y_n$.
 
 #corollary(name: [Properties of a spread])[
   Let $x$ be the result of `spread`. Then
@@ -108,9 +108,8 @@ turns the gap constraints into $y_1 <= dots.c <= y_n$.
   Targets (top) and their spread (bottom).
 ]) <fig-spread>
 
-In @fig-spread the first three items overlap and form one cluster centred
-where they wanted to be on average; the other two are already clear and do
-not move.
+In @fig-spread the first three items overlap and form one cluster centred at
+their mean target. The other two are already clear and do not move.
 
 == Lanes for braces
 
@@ -124,7 +123,7 @@ lanes, that is, at different distances from the axis.
 ] <def-conflict>
 
 #api(("assign_lanes",), added: "0.3.0", syntax: [#raw("mosaickit.layout.stack1d.assign_lanes(intervals, gap=0.0) -> tuple[int, ...]")])[
-  First fit: takes the intervals in input order and gives each the lowest
+  First fit takes the intervals in input order and gives each the lowest
   lane in which it conflicts with nothing already there. Endpoints may be
   given in either order.
 ]

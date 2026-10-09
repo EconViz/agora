@@ -4,7 +4,7 @@
 
 == 稀疏樣式
 
-每個樣式都是凍結的 dataclass，所有欄位都可以是 `None`。`None` 表示繼承：值來自其下層的樣式（詳見#ref(<sec-themes>)）。假值不等於 `None`，因此 `opacity=0`、`width=0` 與 `LegendStyle(visible=False)` 都是明確的覆寫。
+每個樣式都是凍結的 dataclass，且所有欄位都可以是 `None`。`None` 表示繼承：欄位值取自較低優先序的樣式（詳見#ref(<sec-themes>)）。假值不等於 `None`，因此 `opacity=0`、`width=0` 與 `LegendStyle(visible=False)` 都是明確的覆寫。
 
 #definition(name: [稀疏合併])[
   設 $a$、$b$ 為同型別、欄位集合為 $F$ 的樣式。樣式 $a triangle.r b$（`a.merged_over(b)`）對每個 $phi in F$ 滿足
@@ -20,7 +20,7 @@
   逐欄來看，$a_1 triangle.r dots.c triangle.r a_n$ 取第一個不是 `None` 的值。
 ] <prop-monoid>
 
-因此一疊樣式可以任意分組合併，結果可視為優先順序清單：第一個設定某欄位的來源勝出。
+因此，多個樣式無論如何分組合併，結果都一樣。可將它們視為一份優先順序清單：某欄位的值取自第一個設定該欄位的來源。
 
 #api(("SparseStyle",), syntax: [#raw("style.merged_over(base)")])[
   #ref(<def-merge>)的合併。不同型別的樣式引發 `TypeError`。
@@ -31,26 +31,26 @@
 #api(("Stroke", "DashStyle", "ArrowStyle", "ArrowPlacement"), syntax: [
   #raw("Stroke(color=None, width=None, dash=None, arrow=None, opacity=None)")
 ])[
-  線條。`width` 以點為單位；`dash` 為 `DashStyle`（`SOLID`、`DASHED`、`DOTTED`、`DASHDOT`）；`arrow` 為 `ArrowStyle`（`OPEN`、`TRIANGLE`、`FANCY`、`WEDGE`），畫在圖層的 `ArrowPlacement`（`START`、`END`、`BOTH`）處。
+  線條樣式。`width` 以點為單位；`dash` 為 `DashStyle`（`SOLID`、`DASHED`、`DOTTED`、`DASHDOT`）；`arrow` 為 `ArrowStyle`（`OPEN`、`TRIANGLE`、`FANCY`、`WEDGE`），畫在圖層的 `ArrowPlacement`（`START`、`END`、`BOTH`）處。
 ]
 
 #api(("Fill",), syntax: [#raw("Fill(color=None, opacity=None, hatch=None)")])[
-  區域內部；`hatch` 為 Matplotlib 的網紋樣式，例如 `"//"`，`""` 表示無網紋。
+  區域內部的填色樣式；`hatch` 為 Matplotlib 的網紋樣式，例如 `"//"`，`""` 表示無網紋。
 ]
 
 #api(("Marker",), syntax: [#raw("Marker(color=None, size=None, shape=None, opacity=None, edge_color=None, edge_width=None)")])[
-  點標記。`size` 是以平方點計的面積，與 Matplotlib 的 `scatter` 相同（36 為 6 pt 圓點）；`shape` 為 Matplotlib 標記，例如 `"o"`、`"s"` 或 `"X"`。
+  點標記樣式。`size` 是以平方點計的面積，與 Matplotlib 的 `scatter` 相同（36 對應 6 pt 圓點）；`shape` 為 Matplotlib 標記，例如 `"o"`、`"s"` 或 `"X"`。
 ]
 
 #api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, family=None, weight=None, opacity=None, rotation=None)")])[
-  文字。`size` 以點為單位，`family` 為字型家族名稱，`weight` 例如 `"bold"`，`rotation` 為逆時針角度（度）。
+  文字樣式。`size` 以點為單位，`family` 為字型家族名稱，`weight` 例如 `"bold"`，`rotation` 為逆時針旋轉的角度（度）。
 ]
 
 #api(("LegendStyle",), syntax: [#raw("LegendStyle(visible=None, location=None, frame=None, size=None)")])[
-  圖例：Matplotlib 的位置名稱，例如 `"best"` 或 `"upper right"`、外框，以及字級。
+  圖例樣式：包括 Matplotlib 的位置名稱（例如 `"best"` 或 `"upper right"`）、外框與字級。
 ]
 
-大小、寬度與透明度在建立樣式時檢查：大小必須為有限非負數，透明度在 $[0, 1]$ 內，旋轉角度必須有限。
+建立樣式時會檢查大小、寬度與透明度：大小必須是有限的非負數，透明度必須在 $[0, 1]$ 內，旋轉角度也必須是有限值。
 
 #tbl(caption: [基本預設值])[
   #booktabs(
@@ -82,7 +82,7 @@
 == 色盤
 
 #api(("Palette", "DEFAULT_PALETTE"), added: "0.2.0", syntax: [#raw("Palette(name, colors)")])[
-  具名的顏色表。值可以是 `Color` 或十六進位字串；`palette[name]` 查詢顏色，名稱不存在時引發指名該色盤的 `ConfigurationError`，`name in palette` 檢查名稱是否存在。
+  具名的顏色表。值可以是 `Color` 或十六進位字串；`palette[name]` 用來查詢顏色，名稱不存在時會引發指名該色盤的 `ConfigurationError`；`name in palette` 用來檢查名稱是否存在。
 ]
 
 #tbl(caption: [`DEFAULT_PALETTE`])[
@@ -102,7 +102,7 @@
   )
 ] <tab-palette>
 
-主題與樣式以名稱指稱顏色，畫布建立繪製計畫時才在生效的色盤（`Config.palette`）中查詢，因此繪製器只會收到具體顏色。在色盤中改一次顏色，所有指名它的角色都隨之改變。色盤缺少的名稱在繪製時引發 `ConfigurationError`，訊息指明角色、樣式欄位與色盤。Python 的 `Palette` 會取代預設色盤，因此應從 `DEFAULT_PALETTE.colors` 建立，以保留內建主題所用的名稱：
+主題與樣式以名稱指定顏色。畫布建立繪製計畫時，才會從生效的色盤（`Config.palette`）中查詢這些名稱，因此繪製器只會收到具體顏色。只要在色盤中修改一次顏色，所有指定該顏色的角色都會隨之改變。色盤若缺少某個名稱，繪製時會引發 `ConfigurationError`，訊息會指明角色、樣式欄位與色盤。Python 的 `Palette` 會取代預設色盤，因此應以 `DEFAULT_PALETTE.colors` 為基礎建立，才能保留內建主題所用的名稱：
 
 ```python
 from mosaickit import DEFAULT_PALETTE, Canvas, Config, Palette, use_config

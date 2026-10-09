@@ -11,8 +11,9 @@
 ]
 
 #api(("Theme",), syntax: [#raw("Theme(name, roles)")])[
-  A name and an immutable mapping from role names to bundles. Role names are
-  non-empty dotted strings (`"axes"`, `"axes.note"`, `"mypkg.boundary"`).
+  A theme name and an immutable mapping from role names to bundles. Role
+  names are non-empty dotted strings (`"axes"`, `"axes.note"`,
+  `"mypkg.boundary"`).
   `with_roles(**patch)` returns a theme with each patched role merged over
   its old bundle; since keyword names cannot contain dots, pass dotted
   roles as `with_roles(**{"mypkg.line": bundle})`.
@@ -39,8 +40,9 @@ theme is `mosaickit.themes.default`.
 
 == Role resolution
 
-A layer's role is resolved through its ancestors and then the fallback
-category of its layer type, the last resort when nothing names the role.
+A layer's role is resolved through its ancestor roles and then through the
+fallback category for its layer type. For each field, the fallback applies
+only when neither the role nor any ancestor supplies a value.
 
 #definition(name: [Role chain])[
   The _chain_ of a role $rho = rho_1.rho_2 dots.c rho_m$ with fallback
@@ -72,9 +74,9 @@ marks, notes, braces), `annotation` (arrows) and `legend`.
   `axes.note` gets that size, not the theme's 9 pt.
 ] <cor-override>
 
-The figures of this manual depend on @cor-override: they override the text
-size of `text`, `axes` and `axes.note` together, since overriding `text`
-alone would also enlarge the notes.
+The figures in this manual use @cor-override. They override the text size of
+`text`, `axes` and `axes.note` together because overriding `text` alone would
+also enlarge the notes.
 
 #changed("0.2.0", label: "resolve")[`themes.resolve` accepts `overrides`, applied in order after the theme]
 
@@ -89,10 +91,10 @@ alone would also enlarge the notes.
 ]
 
 #api(("RolePack", "expand_roles"), syntax: [#raw("expand_roles(pack) -> dict[str, StyleBundle]")])[
-  A typed way to write a domain package's roles. A `RolePack` is a dataclass
-  with a class variable `_namespace`; each field that is not `None` becomes
-  the role `namespace.field`, with underscores in the field name turned into
-  dots.
+  A typed representation of a domain package's roles. A `RolePack` is a
+  dataclass with a class variable `_namespace`; each field that is not `None`
+  becomes the role `namespace.field`, with underscores in the field name
+  turned into dots.
 ]
 
 ```python
@@ -124,16 +126,16 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
 ]
 
 #api(("use_config",), syntax: [#raw("with use_config(config): ...")])[
-  Makes `config` the active configuration inside the block. The value is
-  held in a context variable, so threads and asynchronous tasks each see
-  their own, and arguments passed to `Canvas` always take precedence.
+  Makes `config` the active configuration inside the block. A context
+  variable stores the value, so each thread and asynchronous task sees its
+  own configuration. Arguments passed to `Canvas` always take precedence.
 ]
 
 #api(("Config.load", "Config.from_dict"), syntax: [
   #raw("Config.load(path)") \
   #raw("Config.from_dict(data, *, source=\"<dict>\")")
 ])[
-  Read a strict TOML configuration. Top-level keys are `theme` (only
+  Reads a strict TOML configuration. Top-level keys are `theme` (only
   `"default"`; custom themes are passed in Python), `canvas` (fields of
   `CanvasSpec`), `renderer` (only `"matplotlib"`), `palette` and `styles`.
   Any other key, unknown style, bad value or unreadable file raises
@@ -155,7 +157,7 @@ width = 2
 dash = "dashed"
 ```
 
-The `[palette]` table is laid over `DEFAULT_PALETTE`, so overriding `blue`
+The `[palette]` table is merged over `DEFAULT_PALETTE`, so overriding `blue`
 there recolors `primary` and everything else that names `blue`. Style
 `color` and `edge_color` values may be palette names; an unknown name
 raises `ConfigurationError` naming the file and key when the file is
