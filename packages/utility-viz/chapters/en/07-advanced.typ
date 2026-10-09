@@ -8,7 +8,7 @@ or more than two goods.
 === Custom utility
 
 #api(("CustomUtility",), syntax: [#raw("CustomUtility(func=")#meta("callable")#raw(", name=")#meta("str")#raw(")")])[
-  Wrap any vectorised Python callable as an #modify[#pkg("utility-viz")] model. The
+  Wrap any vectorised Python callable as an #pkg("utility-viz") model. The
   callable must accept two #pkg("NumPy") arrays and return an array of the
   same shape. The example below uses
   $ u(x, y) = ln x + ln y. $
@@ -17,7 +17,7 @@ or more than two goods.
 #param("func")[Vectorised utility function of $x$ and $y$.]
 #param("name")[Display name of the model.]
 
-#modify[```python
+```python
 import numpy as np
 from utility_viz import Canvas, levels, solve
 from utility_viz.models import CustomUtility
@@ -35,7 +35,7 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
     .add_equilibrium(eq)
     .save("custom.png")
 )
-```]
+```
 
 #fig("/figures/models/custom.svg", width: 42%, caption: [
   A custom model, $ln x + ln y$.
@@ -56,7 +56,7 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
 #param("shares")[Mapping from each good's name to its exponent $alpha_i$.]
 #param("freeze(...)")[Fixed quantities of the goods other than $x$ and $y$.]
 
-#modify[```python
+```python
 from utility_viz import Canvas, levels, solve
 from utility_viz.models import MultiGoodCD
 
@@ -74,16 +74,16 @@ eq = solve(two_good_model, px=2.0, py=3.0, income=30.0)
     .add_equilibrium(eq)
     .save("multigood.png")
 )
-```]
+```
 
 #fig("/figures/models/multigood.svg", width: 42%, caption: [
   A three-good Cobb-Douglas model with $z = 10$ fixed.
 ])
 
-#modify[
+
 === Backend-neutral scenes <sec-scenes>
 
-#changed("2.0.0b1", label: "core.scenes")[#modify[Backend-neutral #pkg("mosaickit") layer factories for budget lines, equilibria and indifference curves, with native Bézier TikZ export]]
+#changed("2.0.0b1", label: "core.scenes")[Backend-neutral #pkg("mosaickit") layer factories for budget lines, equilibria and indifference curves, with native Bézier TikZ export]
 
 `utility_viz.core.scenes` builds the same economic components as `Canvas`,
 but as immutable #pkg("mosaickit") layers instead of drawing on
@@ -144,4 +144,4 @@ tex = canvas_to_tikz(canvas)
 
 The TikZ exporter handles path, fill, marker and text layers. The traced
 utility must be finite on the plotted region.
-]
+

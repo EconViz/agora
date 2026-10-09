@@ -27,7 +27,7 @@
 #param("dy_dpy", type: "float")[$partial y^* slash partial p_y$。]
 #param("dy_dI", type: "float")[$partial y^* slash partial I$。]
 
-#modify[```python
+```python
 from utility_viz import comparative_statics
 from utility_viz.models import CobbDouglas
 
@@ -39,7 +39,7 @@ print(round(cs.dy_dpx, 1), round(cs.dy_dpy, 1), round(cs.dy_dI, 1))
 
 # -6.0 0.0 0.2
 # 0.0 -4.0 0.2
-```]
+```
 
 == Slutsky 矩陣
 
@@ -53,7 +53,7 @@ print(round(cs.dy_dpx, 1), round(cs.dy_dpy, 1), round(cs.dy_dI, 1))
   以 Marshall 需求導數與所得效果計算兩商品的 Slutsky 替代矩陣，並檢查對稱性、負半定性與齊次性；檢查未通過時發出警告。使用 `as_array()` 可轉為 #pkg("NumPy") 陣列。
 ]
 
-#modify[```python
+```python
 from utility_viz import slutsky_matrix
 from utility_viz.models import CobbDouglas
 
@@ -70,7 +70,7 @@ print(S.as_array().round(1))
 # 2.4 -1.6
 # [[-3.6  2.4]
 #  [ 2.4 -1.6]]
-```]
+```
 
 == 齊次性
 
@@ -89,7 +89,7 @@ print(S.as_array().round(1))
   Marshall 需求是否為零次齊次。
 ]
 
-#modify[```python
+```python
 from utility_viz.models import CobbDouglas, HomogeneityAnalyzer
 
 analyzer = HomogeneityAnalyzer(CobbDouglas(alpha=0.4, beta=0.6))
@@ -106,7 +106,7 @@ print(analyzer.demand_degree_zero(px=2.0, py=3.0, income=60.0))
 # 0.0
 # True
 # True
-```]
+```
 
 == 規模報酬 <sec-rts>
 

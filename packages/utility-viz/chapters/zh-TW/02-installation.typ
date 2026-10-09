@@ -9,12 +9,12 @@
 #changed("1.0.1", label: "econ-viz")[放寬 Python 與 NumPy 的版本限制；`pytest` 固定在 8.x]
 #changed("1.7.0", label: "econ-viz")[套件管理與建置改用 #pkg("uv")]
 #changed("1.10.0", label: "econ-viz")[Python 3.10 使用 #pkg("tomli") 讀取 TOML 設定檔]
-#changed("2.0.0b1", label: "utility-viz")[#modify[新增依賴 `mosaickit>=0.5.1,<0.6.0` 與 `bezierkit>=0.5.0rc1,<0.6.0`]]
-#changed("2.0.0b1", label: "utility-viz")[#modify[儲存庫改為 #pkg("uv") workspace，#pkg("utility-viz") 與 #pkg("econ-viz") 同步發布]]
+#changed("2.0.0b1", label: "utility-viz")[新增依賴 `mosaickit>=0.5.1,<0.6.0` 與 `bezierkit>=0.5.0rc1,<0.6.0`]
+#changed("2.0.0b1", label: "utility-viz")[儲存庫改為 #pkg("uv") workspace，#pkg("utility-viz") 與 #pkg("econ-viz") 同步發布]
 
-#modify[#pkg("utility-viz")] 需要 Python #pkg-meta("python") 以上版本#footnote[Python 官方網站提供各作業系統的安裝程式：#url("https://www.python.org/downloads/")。]。本章以 #pkg("uv")#footnote[#pkg("uv") 是 Astral 開發的 Python 套件與專案管理工具，速度快且可一併管理 Python 版本；安裝方式與完整說明見官方文件：#url("https://docs.astral.sh/uv/")。] 管理套件與專案，並附上對應的 #pkg("pip") 指令。
+#pkg("utility-viz") 需要 Python #pkg-meta("python") 以上版本#footnote[Python 官方網站提供各作業系統的安裝程式：#url("https://www.python.org/downloads/")。]。本章以 #pkg("uv")#footnote[#pkg("uv") 是 Astral 開發的 Python 套件與專案管理工具，速度快且可一併管理 Python 版本；安裝方式與完整說明見官方文件：#url("https://docs.astral.sh/uv/")。] 管理套件與專案，並附上對應的 #pkg("pip") 指令。
 
-安裝套件時會一併安裝 #pkg("NumPy")、#pkg("SciPy")、#pkg("matplotlib") 與 #pkg("SymPy")，分別用於陣列運算、數值求解、繪圖與符號運算#modify[，以及用於與後端無關之場景與 Bézier 曲線的 #pkg("mosaickit") 與 #pkg("bezierkit")]#footnote[一般 Python 繪圖不需要另外安裝 #LaTeX；只有要編譯匯出的 TikZ 原始碼時，才需要 #LaTeX 環境。]。
+安裝套件時會一併安裝 #pkg("NumPy")、#pkg("SciPy")、#pkg("matplotlib") 與 #pkg("SymPy")，分別用於陣列運算、數值求解、繪圖與符號運算，以及用於與後端無關之場景與 Bézier 曲線的 #pkg("mosaickit") 與 #pkg("bezierkit")#footnote[一般 Python 繪圖不需要另外安裝 #LaTeX；只有要編譯匯出的 TikZ 原始碼時，才需要 #LaTeX 環境。]。
 
 == 安裝 #pkg("uv")
 
@@ -33,15 +33,15 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-== 安裝 #modify[#pkg("utility-viz")]
+== 安裝 #pkg("utility-viz")
 
-建立專案並加入 #modify[#pkg("utility-viz")]：
+建立專案並加入 #pkg("utility-viz")：
 
-#modify[```bash
+```bash
 uv init my-diagrams
 cd my-diagrams
 uv add utility-viz
-```]
+```
 
 使用 `uv run` 在專案環境中執行程式：
 
@@ -53,23 +53,23 @@ uv run python main.py
 
 若要固定本手冊使用的版本，可在加入依賴時指定版本號：
 
-#modify[```bash
+```bash
 uv add "utility-viz==2.0.0b1"
-```]
+```
 
-#modify[2.0.0b1 是預覽版。在沒有 2.x 正式版之前，`uv add utility-viz` 與 `pip install utility-viz` 會直接安裝此版本；正式版發布後，需以 `uv add --prerelease allow utility-viz` 或 `pip install --pre utility-viz` 才能安裝預覽版。]
+2.0.0b1 是預覽版。在沒有 2.x 正式版之前，`uv add utility-viz` 與 `pip install utility-viz` 會直接安裝此版本；正式版發布後，需以 `uv add --prerelease allow utility-viz` 或 `pip install --pre utility-viz` 才能安裝預覽版。
 
 若使用既有的 Python 虛擬環境，可透過 #pkg("pip") 安裝：
 
-#modify[```bash
+```bash
 python -m pip install -U utility-viz
-```]
+```
 
-套件名稱是 #modify[`utility-viz`]，Python 匯入名稱是 #modify[`utility_viz`]：
+套件名稱是 `utility-viz`，Python 匯入名稱是 `utility_viz`：
 
-#modify[```python
+```python
 from utility_viz import Canvas, solve
-```]
+```
 
 `import` 陳述式不得使用連字號。若發生 `ModuleNotFoundError`，檢查執行程式的直譯器是否與安裝套件時使用的環境相同。
 
@@ -83,64 +83,64 @@ from utility_viz import Canvas, solve
 #param("interactive")[供 `WidgetViewer` 在 Jupyter 顯示控制項（詳見#ref(<sec-widgets>)）；安裝 #pkg("ipywidgets") 與 #pkg("IPython")。]
 #param("all")[全部選用依賴。]
 
-#modify[```bash
+```bash
 uv add "utility-viz[animation]"    # GIF 匯出（Pillow）
 uv add "utility-viz[interactive]"  # 筆記本互動元件
 uv add "utility-viz[all]"          # 全部選用依賴
-```]
+```
 
 安裝選用依賴不會自動執行動畫或開啟筆記本，仍需依各章範例呼叫對應的 API。
 
 == 安裝命令列工具 <sec-install-cli>
 
-僅使用命令列介面時，可將 #modify[#pkg("utility-viz")] 安裝為獨立工具（詳見#ref(<sec-cli>)）：
+僅使用命令列介面時，可將 #pkg("utility-viz") 安裝為獨立工具（詳見#ref(<sec-cli>)）：
 
-#modify[```bash
+```bash
 uv tool install utility-viz
-```]
+```
 
-此方式將命令列工具安裝在獨立環境。需要在 Python 程式中匯入套件時，仍須在該專案執行 #modify[`uv add utility-viz`]。在專案內以 #modify[`uv run utility-viz`] 呼叫工具，可讓命令列與 Python 程式使用同一版本。
+此方式將命令列工具安裝在獨立環境。需要在 Python 程式中匯入套件時，仍須在該專案執行 `uv add utility-viz`。在專案內以 `uv run utility-viz` 呼叫工具，可讓命令列與 Python 程式使用同一版本。
 
 == 開發環境設定
 
-#modify[```bash
+```bash
 git clone https://github.com/EconViz/utility-viz.git
 cd utility-viz
 uv sync --all-packages --all-extras
-```]
+```
 
-#modify[此儲存庫是 #pkg("uv") workspace，包含兩個同步發布的套件：根目錄的 #pkg("utility-viz")，以及 `packages/econ-viz/` 中的 #pkg("econ-viz")，即#ref(<sec-migrate>)所述的相容套件。`uv sync --all-packages --all-extras` 會以可編輯模式安裝兩者，並安裝開發依賴與所有選用依賴。完成後執行完整的品質檢查：]
+此儲存庫是 #pkg("uv") workspace，包含兩個同步發布的套件：根目錄的 #pkg("utility-viz")，以及 `packages/econ-viz/` 中的 #pkg("econ-viz")，即#ref(<sec-migrate>)所述的相容套件。`uv sync --all-packages --all-extras` 會以可編輯模式安裝兩者，並安裝開發依賴與所有選用依賴。完成後執行完整的品質檢查：
 
-#modify[```bash
+```bash
 uv run pytest
 uv run ruff check .
 uv run ruff format --check .
 uv run mypy .
-```]
+```
 
 == 驗證安裝
 
 #changed("1.7.0", label: "econ-viz")[修正範例腳本，使其可在新簽出的原始碼目錄中直接執行]
 #changed("1.5.0", label: "econ-viz")[Colab 上的筆記本安裝流程在重新啟動後也能正常運作]
 
-#modify[```bash
+```bash
 uv run utility-viz --version   # utility-viz 2.0.0b1
 uv run utility-viz help
-```]
+```
 
 註解中的版本號僅為範例，實際輸出依安裝版本而定。也可用以下指令確認 Python 能匯入繪圖與求解介面：
 
-#modify[```bash
+```bash
 uv run python -c "from utility_viz import Canvas, solve; print('OK')"
-```]
+```
 
 在伺服器或其他沒有圖形介面的環境中，請以 `save()` 或命令列的 `--output` 輸出檔案。`show()` 需要可用的互動式繪圖後端，視窗打不開不代表安裝失敗。
 
-#modify[
+
 == 從 #pkg("econ-viz") 遷移 <sec-migrate>
 
-#changed("2.0.0b1", label: "econ-viz")[#modify[更名為 #pkg("utility-viz")；`econ_viz` 套件、`econ-viz` 指令與 `econ-viz.toml` 查找保留為已棄用的相容層，於 3.0.0 移除]]
-#changed("2.0.0b1", label: "econ-viz")[#modify[相容層改由獨立的 #pkg("econ-viz") 發行套件提供，升級 1.x 安裝時不再刪除與 #pkg("utility-viz") 共用的檔案]]
+#changed("2.0.0b1", label: "econ-viz")[更名為 #pkg("utility-viz")；`econ_viz` 套件、`econ-viz` 指令與 `econ-viz.toml` 查找保留為已棄用的相容層，於 3.0.0 移除]
+#changed("2.0.0b1", label: "econ-viz")[相容層改由獨立的 #pkg("econ-viz") 發行套件提供，升級 1.x 安裝時不再刪除與 #pkg("utility-viz") 共用的檔案]
 
 #pkg("econ-viz") 於 2.0.0 更名為 #pkg("utility-viz")（參見#ref(<tab-migrate>)）。
 
@@ -199,4 +199,4 @@ uv run python -c "from utility_viz import Canvas, solve; print('OK')"
 === 3.0.0 的移除範圍
 
 `econ_viz` 套件、`econ-viz` 指令與 `econ-viz.toml` 查找於 3.0.0 移除，而非 2.0.0。相容層只涵蓋文件記載的 1.x API；未記載的深層路徑（例如 `econ_viz.canvas.renderers`）僅盡力對應，隨時可能移除。
-]
+

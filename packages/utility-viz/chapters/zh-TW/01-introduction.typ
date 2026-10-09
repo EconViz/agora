@@ -2,10 +2,10 @@
 
 = 簡介 <sec-intro>
 
-#changed("2.0.0b1")[#modify[由 #pkg("econ-viz") 更名為 #pkg("utility-viz")：發行套件、匯入名稱、指令與設定檔一併更名]]
-#changed("2.0.0b1")[#modify[內部結構重整為 `core` 與 `models`；公開 API 為套件根目錄與 `utility_viz.models`]]
-#changed("2.0.0b1")[#modify[新增依賴 #pkg("mosaickit") 與 #pkg("bezierkit")]]
-#changed("2.0.0b1")[#modify[整個儲存庫通過 `mypy` 檢查；Ruff 限制行長、複雜度與陳述式數量]]
+#changed("2.0.0b1")[由 #pkg("econ-viz") 更名為 #pkg("utility-viz")：發行套件、匯入名稱、指令與設定檔一併更名]
+#changed("2.0.0b1")[內部結構重整為 `core` 與 `models`；公開 API 為套件根目錄與 `utility_viz.models`]
+#changed("2.0.0b1")[新增依賴 #pkg("mosaickit") 與 #pkg("bezierkit")]
+#changed("2.0.0b1")[整個儲存庫通過 `mypy` 檢查；Ruff 限制行長、複雜度與陳述式數量]
 #changed("1.7.0")[CI 測試 Python 3.10–3.13，強制分支覆蓋率，並對可執行的範例做冒煙測試]
 #changed("1.12.0")[新增無異曲線主次層級、焦點曲線及數值或序數標籤]
 #changed("1.11.0")[完成主題系統，統一畫布、多面板圖、需求圖、效果分解與 Edgeworth 箱形圖的視覺設定]
@@ -21,17 +21,17 @@
 #changed("1.3.0")[新增 Edgeworth 測試]
 #changed("1.2.2")[新增 PCC/ICC 範例產生器與測試]
 
-#modify[#pkg("utility-viz")] 是個體經濟學繪圖套件，涵蓋效用模型、最適消費組合求解與視覺化。Python API 與命令列工具均可產生無異曲線、預算線、消費者均衡、需求曲線及 Edgeworth 箱形圖。
+#pkg("utility-viz") 是個體經濟學繪圖套件，涵蓋效用模型、最適消費組合求解與視覺化。Python API 與命令列工具均可產生無異曲線、預算線、消費者均衡、需求曲線及 Edgeworth 箱形圖。
 
 圖形預設顯示第一象限，座標軸以箭頭表示並隱藏數字刻度，標籤支援 TeX 數學語法。輸出格式包括 PNG、PDF、SVG、TikZ 與 GIF。
 
-#modify[本套件在 1.12 版以前名為 #pkg("econ-viz")，2.0.0 起更名為 #pkg("utility-viz")；變更內容與舊程式碼的相容方式詳見#ref(<sec-migrate>)。本手冊說明預覽版 2.0.0b1。]
+本套件在 1.12 版以前名為 #pkg("econ-viz")，2.0.0 起更名為 #pkg("utility-viz")；變更內容與舊程式碼的相容方式詳見#ref(<sec-migrate>)。本手冊說明預覽版 2.0.0b1。
 
-#modify[#pkg("utility-viz") 屬於 EconViz 系列套件：繪圖透過與領域無關的場景與繪製函式庫 #pkg("mosaickit")，曲線則以 #pkg("bezierkit") 描繪。經濟學原理圖形由同系列的 #pkg("principle-viz") 負責。]
+#pkg("utility-viz") 屬於 EconViz 系列套件：繪圖透過與領域無關的場景與繪製函式庫 #pkg("mosaickit")，曲線則以 #pkg("bezierkit") 描繪。經濟學原理圖形由同系列的 #pkg("principle-viz") 負責。
 
 == 功能範圍
 
-#modify[#pkg("utility-viz")] 的功能分為效用模型、均衡求解、效用水準、圖層與匯出格式五個部分。模型與求解結果可分開使用；同一模型也可交由畫布、多面板圖、需求圖或分析 API 處理。
+#pkg("utility-viz") 的功能分為效用模型、均衡求解、效用水準、圖層與匯出格式五個部分。模型與求解結果可分開使用；同一模型也可交由畫布、多面板圖、需求圖或分析 API 處理。
 
 == 閱讀指引
 
@@ -59,7 +59,7 @@
     [常見效用函數],
     [#ref(<sec-models>)],
     [自訂與多商品模型],
-    [自訂函數與多商品#modify[、場景]],
+    [自訂函數與多商品、場景],
     [#ref(<sec-advanced>)],
     [比較靜態與 Slutsky 矩陣],
     [需求導數與齊次性],
@@ -81,4 +81,4 @@
   )
 ] <tab-guide>
 
-初次使用時，依序閱讀#ref(<sec-quickstart>)與#ref(<sec-canvas>)。查詢特定 API 時，可直接前往對應章節或指令索引。#modify[從 #pkg("econ-viz") 1.x 升級時，請先閱讀#ref(<sec-migrate>)。]
+初次使用時，依序閱讀#ref(<sec-quickstart>)與#ref(<sec-canvas>)。查詢特定 API 時，可直接前往對應章節或指令索引。從 #pkg("econ-viz") 1.x 升級時，請先閱讀#ref(<sec-migrate>)。

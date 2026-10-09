@@ -33,7 +33,7 @@ functions.
 #param("dy_dpy", type: "float")[$partial y^* slash partial p_y$.]
 #param("dy_dI", type: "float")[$partial y^* slash partial I$.]
 
-#modify[```python
+```python
 from utility_viz import comparative_statics
 from utility_viz.models import CobbDouglas
 
@@ -45,7 +45,7 @@ print(round(cs.dy_dpx, 1), round(cs.dy_dpy, 1), round(cs.dy_dI, 1))
 
 # -6.0 0.0 0.2
 # 0.0 -4.0 0.2
-```]
+```
 
 == Slutsky matrix
 
@@ -62,7 +62,7 @@ print(round(cs.dy_dpx, 1), round(cs.dy_dpy, 1), round(cs.dy_dI, 1))
   condition fails. `as_array()` returns it as a #pkg("NumPy") array.
 ]
 
-#modify[```python
+```python
 from utility_viz import slutsky_matrix
 from utility_viz.models import CobbDouglas
 
@@ -79,7 +79,7 @@ print(S.as_array().round(1))
 # 2.4 -1.6
 # [[-3.6  2.4]
 #  [ 2.4 -1.6]]
-```]
+```
 
 == Homogeneity
 
@@ -99,7 +99,7 @@ print(S.as_array().round(1))
   Whether Marshallian demand is homogeneous of degree zero.
 ]
 
-#modify[```python
+```python
 from utility_viz.models import CobbDouglas, HomogeneityAnalyzer
 
 analyzer = HomogeneityAnalyzer(CobbDouglas(alpha=0.4, beta=0.6))
@@ -116,7 +116,7 @@ print(analyzer.demand_degree_zero(px=2.0, py=3.0, income=60.0))
 # 0.0
 # True
 # True
-```]
+```
 
 == Returns to scale <sec-rts>
 

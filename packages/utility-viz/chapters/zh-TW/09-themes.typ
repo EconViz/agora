@@ -12,11 +12,11 @@
 #changed("1.12.0", label: "Theme")[新增次要無異曲線的顏色、線寬與透明度設定]
 
 #api(("themes",), updated: "v1.11.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Canvas, themes
 
   cvs = Canvas(theme=themes.paper)
-  ```]
+  ```
 ])[
   Python API 提供下列主題。主題物件不可變；需要調整欄位時，可建立新的 `Theme`，或以 `Config` 覆寫指定欄位。
 
@@ -44,7 +44,7 @@
 == 自訂主題
 
 #api(("Theme",), updated: "v1.12.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Theme
 
   my_theme = Theme(
@@ -59,7 +59,7 @@
       budget_color="#dc2626",
       eq_color="#16a34a",
   )
-  ```]
+  ```
 ])[
   `Theme` 保存圖形元素的顏色、線寬與樣式預設值。未指定的欄位使用類別預設值；繪圖方法明確收到的樣式參數優先於主題。
 ]
@@ -86,11 +86,11 @@
 
 #changed("1.10.0", label: "Config")[新增 `Config`、`econ-viz.toml`、`econ-viz init` 與 `plot --config`]
 #changed("1.11.0", label: "Config")[設定檔可選用所有內建主題，並在各種圖形間保留相同的視覺語意]
-#changed("2.0.0b1", label: "Config")[#modify[預設設定檔更名為 `utility-viz.toml`；舊的 `econ-viz.toml` 仍可讀取，但會發出警告]]
-#changed("2.0.0b1", label: "Config.discover")[#modify[新增 `Config.discover()`，找不到檔案時改用內建預設值]]
+#changed("2.0.0b1", label: "Config")[預設設定檔更名為 `utility-viz.toml`；舊的 `econ-viz.toml` 仍可讀取，但會發出警告]
+#changed("2.0.0b1", label: "Config.discover")[新增 `Config.discover()`，找不到檔案時改用內建預設值]
 
 #api(("Config.load", "Config.use", "Config.reset"), added: "v1.10.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Config
 
   Config.load("utility-viz.toml").use()
@@ -98,20 +98,20 @@
 
   Config.reset()
   # 恢復內建預設值
-  ```]
+  ```
 ])[
   `Config.load()` 讀取 TOML 檔案並回傳 `Config`。`use()` 將其設為後續圖形的預設設定；`reset()` 恢復內建預設值。
 ]
 
 === 教學：以設定檔統一圖形樣式
 
-同一份講義或論文的圖形，通常要共用相同的顏色與線條。與其在每個 `Canvas` 重複傳入參數，不如把樣式寫在專案根目錄的 #modify[`utility-viz.toml`]，讓 Python 與命令列讀取同一份設定。
+同一份講義或論文的圖形，通常要共用相同的顏色與線條。與其在每個 `Canvas` 重複傳入參數，不如把樣式寫在專案根目錄的 `utility-viz.toml`，讓 Python 與命令列讀取同一份設定。
 
-+ *建立範本。*在專案根目錄執行下列指令，會產生含註解的 #modify[`utility-viz.toml`]，列出每個區段可用的名稱與欄位：
++ *建立範本。*在專案根目錄執行下列指令，會產生含註解的 `utility-viz.toml`，列出每個區段可用的名稱與欄位：
 
-  #modify[```bash
+  ```bash
   utility-viz init
-  ```]
+  ```
 
   範本中的設定預設都是註解；只保留需要修改的項目即可，其餘可以刪除。
 
@@ -144,30 +144,30 @@
 
 + *在 Python 中套用。*在建立任何圖形之前載入一次：
 
-  #modify[```python
+  ```python
   from utility_viz import Config
 
   Config.load().use()   # 預設讀取目前目錄的 utility-viz.toml
-  ```]
+  ```
 
   此後建立的 `Canvas`、`Figure`、`DemandDiagram` 與 `EdgeworthBox` 都使用這組設定；呼叫 `Config.reset()` 可恢復內建預設值。
 
-+ *在命令列套用。*#modify[`utility-viz plot` 會自動讀取目前目錄的 `utility-viz.toml`；要使用其他檔案時，]以 `--config` 指定設定檔：
++ *在命令列套用。*`utility-viz plot` 會自動讀取目前目錄的 `utility-viz.toml`；要使用其他檔案時，以 `--config` 指定設定檔：
 
-  #modify[```bash
+  ```bash
   utility-viz plot --config utility-viz.toml --model cobb-douglas \
     --px 2 --py 3 --income 30 --output figure.png
-  ```]
+  ```
 
 設定的優先順序由高到低為：直接傳入 `Canvas` 或繪圖方法的參數、設定檔、基底主題。例如 `Canvas(theme=themes.default)` 會略過設定檔中的主題。
 
 設定檔寫錯時，`Config.load()` 會拋出 `InvalidParameterError`，並列出可用的名稱。例如把 `[stroke.budget]` 誤寫成 `[stroke.budgt]`：
 
-#modify[```text
+```text
 utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ...)
-```]
+```
 
-#modify[
+
 === 設定檔的查找順序 <sec-config-lookup>
 
 #api(("Config.discover",), added: "v2.0.0b1", syntax: [
@@ -184,4 +184,4 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 + 內建預設值。
 
 兩個檔案同時存在時，以 `utility-viz.toml` 為準，舊檔會被略過並發出警告。兩個函式只在找不到檔案時有差異：`Config.load()` 與 1.x 相同，拋出 `InvalidParameterError`（"config file not found"）；`Config.discover()` 則回傳內建預設值。`utility-viz init --migrate` 可將舊檔轉為 `utility-viz.toml`（詳見#ref(<sec-cli-init>)）。
-]
+

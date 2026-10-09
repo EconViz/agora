@@ -35,16 +35,16 @@ cvs = Canvas(x_max=20, y_max=15, dpi=150)   # 降低 DPI，加快預覽
 
 使用 `Animator.save()` 匯出 GIF，完整範例詳見#ref(<sec-animation>)。
 
-#modify[```python
+```python
 from utility_viz.core.animation import Animator
 
 Animator(draw_frame, frames=frames).save("animation.gif", fps=12, dpi=120)
-```]
+```
 
 == 互動視窗
 
 `cvs.show()` 開啟 #pkg("matplotlib") 互動視窗，不會儲存檔案。命令列的 `plot` 省略 `--output` 時也會開啟視窗（詳見#ref(<sec-cli-plot>)）：
 
-#modify[```bash
+```bash
 utility-viz plot --model cobb-douglas --px 2 --py 3 --income 30
-```]
+```

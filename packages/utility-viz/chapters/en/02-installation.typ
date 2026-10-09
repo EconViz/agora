@@ -9,10 +9,10 @@
 #changed("1.0.1", label: "econ-viz")[Relaxed Python and NumPy bounds; `pytest` pinned to 8.x]
 #changed("1.7.0", label: "econ-viz")[Package management and builds migrated to #pkg("uv")]
 #changed("1.10.0", label: "econ-viz")[Python 3.10 reads TOML configuration files with #pkg("tomli")]
-#changed("2.0.0b1", label: "utility-viz")[#modify[New dependencies `mosaickit>=0.5.1,<0.6.0` and `bezierkit>=0.5.0rc1,<0.6.0`]]
-#changed("2.0.0b1", label: "utility-viz")[#modify[The repository is a #pkg("uv") workspace releasing #pkg("utility-viz") and #pkg("econ-viz") in lockstep]]
+#changed("2.0.0b1", label: "utility-viz")[New dependencies `mosaickit>=0.5.1,<0.6.0` and `bezierkit>=0.5.0rc1,<0.6.0`]
+#changed("2.0.0b1", label: "utility-viz")[The repository is a #pkg("uv") workspace releasing #pkg("utility-viz") and #pkg("econ-viz") in lockstep]
 
-#modify[#pkg("utility-viz")] requires Python #pkg-meta("python") or
+#pkg("utility-viz") requires Python #pkg-meta("python") or
 later#footnote[The Python website provides installers for every operating system: #url("https://www.python.org/downloads/").].
 This chapter manages packages and projects with
 #pkg("uv")#footnote[#pkg("uv") is a fast Python package and project manager by Astral that can also manage Python versions; see its documentation for installation and usage: #url("https://docs.astral.sh/uv/").]
@@ -21,8 +21,8 @@ and gives the matching #pkg("pip") command where useful.
 Installing the package also installs #pkg("NumPy"), #pkg("SciPy"),
 #pkg("matplotlib") and #pkg("SymPy"), for array computation, numerical
 solving, plotting and symbolic
-algebra#modify[, together with #pkg("mosaickit") and #pkg("bezierkit"), for
-backend-neutral scenes and Bézier curves]#footnote[Ordinary Python plotting needs no #LaTeX installation; a #LaTeX distribution is only required to compile exported TikZ code.].
+algebra, together with #pkg("mosaickit") and #pkg("bezierkit"), for
+backend-neutral scenes and Bézier curves#footnote[Ordinary Python plotting needs no #LaTeX installation; a #LaTeX distribution is only required to compile exported TikZ code.].
 
 == Installing #pkg("uv")
 
@@ -44,15 +44,15 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-== Installing #modify[#pkg("utility-viz")]
+== Installing #pkg("utility-viz")
 
-Create a project and add #modify[#pkg("utility-viz")] as a dependency:
+Create a project and add #pkg("utility-viz") as a dependency:
 
-#modify[```bash
+```bash
 uv init my-diagrams
 cd my-diagrams
 uv add utility-viz
-```]
+```
 
 Run scripts inside the project environment with `uv run`:
 
@@ -68,26 +68,26 @@ environment.
 To pin the version this manual describes, give it when adding the
 dependency:
 
-#modify[```bash
+```bash
 uv add "utility-viz==2.0.0b1"
-```]
+```
 
-#modify[2.0.0b1 is a pre-release. While no stable 2.x release exists,
+2.0.0b1 is a pre-release. While no stable 2.x release exists,
 `uv add utility-viz` and `pip install utility-viz` pick it up; once a stable
 release is published alongside it, opt in to pre-releases with
-`uv add --prerelease allow utility-viz` or `pip install --pre utility-viz`.]
+`uv add --prerelease allow utility-viz` or `pip install --pre utility-viz`.
 
 In an existing Python virtual environment, install it with #pkg("pip"):
 
-#modify[```bash
+```bash
 python -m pip install -U utility-viz
-```]
+```
 
-The package is named #modify[`utility-viz`]; its Python import name is #modify[`utility_viz`]:
+The package is named `utility-viz`; its Python import name is `utility_viz`:
 
-#modify[```python
+```python
 from utility_viz import Canvas, solve
-```]
+```
 
 An `import` statement cannot contain a hyphen. On `ModuleNotFoundError`,
 check that the interpreter running the script is the one the package was
@@ -111,78 +111,78 @@ you need:
   Every optional dependency.
 ]
 
-#modify[```bash
+```bash
 uv add "utility-viz[animation]"    # GIF export (Pillow)
 uv add "utility-viz[interactive]"  # notebook widgets
 uv add "utility-viz[all]"          # all extras
-```]
+```
 
 Installing an extra does not run an animation or open a notebook by itself;
 call the API as shown in the relevant chapter.
 
 == Installing the command-line tool <sec-install-cli>
 
-To use only the command-line interface, install #modify[#pkg("utility-viz")] as a
+To use only the command-line interface, install #pkg("utility-viz") as a
 standalone tool (@sec-cli):
 
-#modify[```bash
+```bash
 uv tool install utility-viz
-```]
+```
 
 This installs the tool in an environment of its own. To import the package
-in your own Python code, still run #modify[`uv add utility-viz`] in that project; calling
-#modify[`uv run utility-viz`] inside the project keeps the CLI and your code on the same
+in your own Python code, still run `uv add utility-viz` in that project; calling
+`uv run utility-viz` inside the project keeps the CLI and your code on the same
 version.
 
 == Development setup
 
-#modify[```bash
+```bash
 git clone https://github.com/EconViz/utility-viz.git
 cd utility-viz
 uv sync --all-packages --all-extras
-```]
+```
 
-#modify[The repository is a #pkg("uv") workspace with two distributions
+The repository is a #pkg("uv") workspace with two distributions
 released in lockstep: #pkg("utility-viz") at the root and #pkg("econ-viz")
 in `packages/econ-viz/`, the compatibility package of @sec-migrate.
 `uv sync --all-packages --all-extras` installs both in editable mode,
 together with the development dependencies and every optional dependency.
-Then run the full quality gate:]
+Then run the full quality gate:
 
-#modify[```bash
+```bash
 uv run pytest
 uv run ruff check .
 uv run ruff format --check .
 uv run mypy .
-```]
+```
 
 == Verifying the installation
 
 #changed("1.7.0", label: "econ-viz")[All example scripts run from a clean checkout]
 #changed("1.5.0", label: "econ-viz")[Notebook install flow on Colab is restart-safe]
 
-#modify[```bash
+```bash
 uv run utility-viz --version   # utility-viz 2.0.0b1
 uv run utility-viz help
-```]
+```
 
 The version in the comment is only an example; the output reflects the
 installed version. To check that Python can import the drawing and solving
 API:
 
-#modify[```bash
+```bash
 uv run python -c "from utility_viz import Canvas, solve; print('OK')"
-```]
+```
 
 On a server or any environment without a display, write files with `save()`
 or the CLI's `--output`. `show()` needs an interactive plotting backend, so a
 window that fails to open does not mean the installation failed.
 
-#modify[
+
 == Migrating from #pkg("econ-viz") <sec-migrate>
 
-#changed("2.0.0b1", label: "econ-viz")[#modify[Renamed to #pkg("utility-viz")\; the `econ_viz` package, the `econ-viz` command and `econ-viz.toml` lookup remain as a deprecated compatibility layer until 3.0.0]]
-#changed("2.0.0b1", label: "econ-viz")[#modify[The compatibility layer ships as a separate #pkg("econ-viz") distribution, so upgrading a 1.x installation no longer deletes files shared with #pkg("utility-viz")]]
+#changed("2.0.0b1", label: "econ-viz")[Renamed to #pkg("utility-viz")\; the `econ_viz` package, the `econ-viz` command and `econ-viz.toml` lookup remain as a deprecated compatibility layer until 3.0.0]
+#changed("2.0.0b1", label: "econ-viz")[The compatibility layer ships as a separate #pkg("econ-viz") distribution, so upgrading a 1.x installation no longer deletes files shared with #pkg("utility-viz")]
 
 #pkg("econ-viz") was renamed #pkg("utility-viz") in 2.0.0 (@tab-migrate).
 
@@ -265,4 +265,4 @@ The `econ_viz` package, the `econ-viz` command and `econ-viz.toml` lookup
 are removed in 3.0.0, not 2.0.0. Only the documented 1.x API is covered;
 undocumented deep paths such as `econ_viz.canvas.renderers` resolve on a
 best-effort basis and may disappear at any time.
-]
+

@@ -13,7 +13,7 @@
 #changed("1.12.0", label: "Canvas.add_utility")[添加焦点效用层级、次要曲线样式及序数标签]
 
 #api(("Canvas",), updated: "v1.7.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import ArrowStyle, Canvas, Stroke, themes
 
   cvs = Canvas(
@@ -30,7 +30,7 @@
       axis_stroke=Stroke(width=1.0, arrow=ArrowStyle.TRIANGLE),
       theme=themes.default,
   )
-  ```]
+  ```
 ])[
   创建画布，并设置坐标范围、轴标签、字体、线条样式与主题。未明确传入的视觉设置取自当前的 `Config` 与 `Theme`。
 ]
@@ -257,7 +257,7 @@ cvs.add_utility(
   提供实线、虚线、点线与点画线（参见#ref(<fig-line-styles>)）。坐标轴接受枚举值或对应字符串；其他线条通过 `Stroke(style=...)` 设置。
 ]
 
-#modify[```python
+```python
 import matplotlib.pyplot as plt
 
 from utility_viz import Canvas, LineStyle
@@ -282,7 +282,7 @@ for ax, style in zip(axes, styles):
 # 轴标签会放在箭头外侧；四张图并排时要多留一点水平间距。
 fig.subplots_adjust(wspace=0.62)
 fig.savefig("line_styles.png", dpi=160, transparent=True)
-```]
+```
 
 #fig("/figures/canvas/line_styles.svg", width: 94%, caption: [
   四种线条样式。
@@ -317,7 +317,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
 ])[
   集中设置单一坐标轴的标签、标签位置与线条。`Canvas`、`Figure`、`DemandDiagram` 与 `EdgeworthBox` 均接受 `x_axis` 与 `y_axis`。若同时传入简写参数，`Axis` 中已设置的字段优先。
 
-  #modify[```python
+  ```python
   from utility_viz import Axis, Canvas, Label, Stroke
 
   cvs = Canvas(
@@ -328,7 +328,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
       ),
       y_axis=Axis(label="x_2"),
   )
-  ```]
+  ```
 ]
 
 === Marker 与 Label
@@ -344,7 +344,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
 ])[
   设置文字、位置、位移、颜色、字号、可见性与透明度。位置可为上、下、左、右或四个角落；`Label(visible=False)` 隐藏对应文字。
 
-  #modify[```python
+  ```python
   from utility_viz import Label, Marker
 
   cvs.add_equilibrium(
@@ -357,7 +357,7 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
       marker=Marker(color="black", shape="D"),
       label=Label(text="A", position="left", fontsize=14),
   )
-  ```]
+  ```
 ]
 
 === Fill
@@ -367,14 +367,14 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
 ])[
   设置阴影区域的颜色与透明度。`alpha` 是 `opacity` 的兼容简写；同一次调用不得传入不同的 `alpha` 与 `opacity`。
 
-  #modify[```python
+  ```python
   from utility_viz import Fill
 
   cvs.add_budget(
       2, 3, 30,
       fill=Fill(color="lightgrey", opacity=0.4),
   )
-  ```]
+  ```
 ]
 
 == 链式调用 <sec-chaining>

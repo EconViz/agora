@@ -16,7 +16,7 @@
   建立多面板圖，座標範圍與樣式參數與 `Canvas` 相同。使用 `fig[idx]` 取得面板，再呼叫 `add_utility()`、`add_budget()` 等繪圖方法。
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import Figure, Layout, Legend, levels, solve
 from utility_viz.models import CobbDouglas
 
@@ -63,7 +63,7 @@ fig.save("figure_side_by_side.png")
 
 #changed("1.2.0", label: "PricePath")[新增 `PricePath`、`IncomePath` 與 `Canvas.add_path()`，支援 PCC/ICC 繪圖]
 #api(("PricePath", "IncomePath"), added: "v1.2.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import IncomePath, LinearBudget, PricePath
   from utility_viz.models import CobbDouglas
 
@@ -83,13 +83,13 @@ fig.save("figure_side_by_side.png")
       income_range=(20.0, 80.0),
       n=30,
   )
-  ```]
+  ```
 ])[
   `PricePath` 與 `IncomePath` 分別計算價格、所得變動時的最適消費組合。使用 `Canvas.add_path()` 繪製價格消費曲線（PCC）或所得消費曲線（ICC）；`PricePath` 也可用於需求圖。
 ]
 
 #api(("Canvas.add_path",), added: "v1.2.0", syntax: [
-  #modify[```python
+  ```python
   from utility_viz import Canvas, levels
 
   eq = price_path.equilibria[len(price_path.equilibria) // 2]
@@ -99,7 +99,7 @@ fig.save("figure_side_by_side.png")
       .add_utility(model, levels=lvls) \
       .add_path(price_path, label="PCC") \
       .save("price_path.png")
-  ```]
+  ```
 ])[
   將 `PricePath` 或 `IncomePath` 加入畫布。#ref(<fig-price-path>)中，Cobb-Douglas 模型在 $p_x$ 變動時，$y$ 的需求量不變，因此 PCC 為水平線。
 ]
@@ -119,7 +119,7 @@ fig.save("figure_side_by_side.png")
   依 `PricePath` 繪製兩個面板：上方為預算線與最適消費組合，下方為對應的 Marshall 需求曲線（參見#ref(<fig-demand>)）。目前只接受 `PricePath`，並分別處理平滑、拗折與角解。`show_pcc=True` 在上方面板顯示價格消費曲線。
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import DemandDiagram, LinearBudget, PricePath
 from utility_viz.models import CobbDouglas
 
@@ -192,7 +192,7 @@ fig.save("demand_cobb_douglas.png")
   `"auto"` 選擇遮蔽圖形最少的內側角落；四個角落皆與圖形重疊時，圖例移到右側。也可指定 `"upper left"` 等內側角落，或 `"top"`、`"bottom"`、`"left"`、`"right"` 等外側位置。`Legend(visible=False)` 隱藏圖例。
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import (
     Canvas,
     DecompositionMethod,
@@ -252,7 +252,7 @@ result = decompose_price_effect(
   平滑偏好的契約曲線使用 `method="mrs"`；有拗折點、角解或自訂分段效用函數時，使用 `method="pareto"`。
 ]
 
-#example(modify[```python
+#example([```python
 from utility_viz import EdgeworthBox
 from utility_viz.models import CobbDouglas
 

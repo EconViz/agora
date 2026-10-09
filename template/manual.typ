@@ -87,14 +87,6 @@
 // #pkg-meta("version") or #pkg-meta("python").
 #let pkg-meta(key) = context str(_manual.get().package.at(key))
 
-// Mark modified text in alizarin (crimson), the dvips/xcolor `Alizarin` red.
-// Code inside drops its syntax colours so the whole block reads as changed.
-#let modify(body) = {
-  set text(fill: rgb("#e32636"))
-  set raw(theme: none)
-  body
-}
-
 // Introduce a term: the CJK gloss in the heading face, with its English
 // original set in parentheses on first use. In a non-CJK
 // edition there is no separate gloss to add, so `name` alone is shown.
@@ -883,10 +875,10 @@
     // A title that fits on one line across the whole centred width stays on
     // one line; a longer one breaks at the text block's width, as before, so
     // its lines stay balanced instead of leaving one word on the second.
-    let title = text(size: 17.28pt, font: title-face, weight: heading-weight(edition), modify({
+    let title = text(size: 17.28pt, font: title-face, weight: heading-weight(edition), {
       show doc-meta.package.name: pkg
       s.title
-    }))
+    })
     layout(size => {
       let one-line = measure(title).width <= size.width
       block(width: if one-line { 100% } else { 100% - title-extra }, title)
@@ -934,9 +926,9 @@
     // icons in place of a \thanks footnote.
     let icon(path, url) = link(url, box(image(path, height: 0.85em), baseline: 0.1em))
     text(size: 12pt, {
-      modify(s.version-date
+      s.version-date
         .replace("{date}", doc-meta.package.date)
-        .replace("{version}", doc-meta.package.version))
+        .replace("{version}", doc-meta.package.version)
       [ · ]
       // The icon is an image, so the changed repository link is not tinted.
       icon("/template/icons/github.svg", doc-meta.package.repo)

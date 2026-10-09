@@ -6,13 +6,13 @@
   Parse a #LaTeX utility function into a model, usable with `solve()`,
   `Canvas` or any other API that takes a model.
 
-  #modify[```python
+  ```python
   from utility_viz import parse_latex
 
   model = parse_latex(r"x^{0.4} y^{0.6}")  # CobbDouglas(alpha=0.4, beta=0.6)
   model = parse_latex(r"\min(2x, 3y)")     # Leontief(a=2.0, b=3.0)
   model = parse_latex(r"2x + 3y")          # PerfectSubstitutes(a=2.0, b=3.0)
-  ```]
+  ```
 ]
 
 == Supported forms
@@ -57,10 +57,10 @@ x^{0.5} y^{0.5}
 
 == Errors
 
-Unparseable input raises #modify[`utility_viz.ParseError`], whose message
+Unparseable input raises `utility_viz.ParseError`, whose message
 lists the supported forms:
 
-#modify[```python
+```python
 from utility_viz import ParseError, parse_latex
 
 try:
@@ -74,13 +74,13 @@ except ParseError as e:
 #   Leontief           : \min(ax, by)
 #   Perfect Substitutes: ax + by
 #   CES                : (alpha x^{rho} + beta y^{rho})^{1/rho}
-```]
+```
 
 == In the command-line tool
 
-#modify[`utility-viz plot --latex`] uses the same parser and accepts the same input
+`utility-viz plot --latex` uses the same parser and accepts the same input
 (@sec-cli-plot):
 
-#modify[```bash
+```bash
 utility-viz plot --latex "x^{0.4} y^{0.6}" --px 2 --py 3 --income 30 -o out.png
-```]
+```

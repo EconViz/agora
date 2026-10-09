@@ -5,13 +5,13 @@
 #api(("parse_latex",), syntax: [#raw("parse_latex(")#meta("expression")#raw(")")])[
   将 #LaTeX 效用函数解析为模型，返回值可用于 `solve()`、`Canvas` 或其他接受模型的 API。
 
-  #modify[```python
+  ```python
   from utility_viz import parse_latex
 
   model = parse_latex(r"x^{0.4} y^{0.6}")  # CobbDouglas(alpha=0.4, beta=0.6)
   model = parse_latex(r"\min(2x, 3y)")     # Leontief(a=2.0, b=3.0)
   model = parse_latex(r"2x + 3y")          # PerfectSubstitutes(a=2.0, b=3.0)
-  ```]
+  ```
 ]
 
 == 支持的形式
@@ -55,9 +55,9 @@ x^{0.5} y^{0.5}
 
 == 错误处理
 
-无法解析时会抛出 #modify[`utility_viz.ParseError`]，错误信息包含支持的格式：
+无法解析时会抛出 `utility_viz.ParseError`，错误信息包含支持的格式：
 
-#modify[```python
+```python
 from utility_viz import ParseError, parse_latex
 
 try:
@@ -71,12 +71,12 @@ except ParseError as e:
 #   Leontief           : \min(ax, by)
 #   Perfect Substitutes: ax + by
 #   CES                : (alpha x^{rho} + beta y^{rho})^{1/rho}
-```]
+```
 
 == 在命令行工具中使用
 
-#modify[`utility-viz plot --latex`] 使用相同的解析器，接受相同的输入格式（详见#ref(<sec-cli-plot>)）：
+`utility-viz plot --latex` 使用相同的解析器，接受相同的输入格式（详见#ref(<sec-cli-plot>)）：
 
-#modify[```bash
+```bash
 utility-viz plot --latex "x^{0.4} y^{0.6}" --px 2 --py 3 --income 30 -o out.png
-```]
+```
