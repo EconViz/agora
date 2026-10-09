@@ -66,7 +66,7 @@ print(d.at(0.5))   # Point(coords=(4.5, 0.0)): the tangent at the top is horizon
   $ B(c + (1 - c) s) = sum_(j=0)^n b_(j,n)(s) R_j. $
 ] <thm-subdivision>
 
-这是经典结果，见 #citet(<floater2025>)（第 8.4 节，由 blossom 导出）与 #citet(<farin2002>)。
+这是标准结果，见 #citet(<floater2025>)（第 8.4 节，由 blossom 导出）与 #citet(<farin2002>)。
 
 #fig("/figures/curves/split.pdf", width: auto, caption: [
   在 $t = 0.4$ 分割三次曲线。

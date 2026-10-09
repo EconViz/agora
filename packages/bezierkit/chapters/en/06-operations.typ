@@ -77,7 +77,7 @@ before $c$, and the last points that of the part after it (@fig-split).
   $ B(c + (1 - c) s) = sum_(j=0)^n b_(j,n)(s) R_j. $
 ] <thm-subdivision>
 
-The result is classical; see #citet(<floater2025>) (Section 8.4, where it
+This is a standard result; see #citet(<floater2025>) (Section 8.4, where it
 is derived from the blossom) and #citet(<farin2002>).
 
 #fig("/figures/curves/split.pdf", width: auto, caption: [

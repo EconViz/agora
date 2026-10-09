@@ -29,8 +29,8 @@ print(to_tikz(path, precision=2, options="thick"))
 
 == 主要元件
 
-- *数值对象。*`Point`、`Vector` 与 `PointSet` 不可变，并检查维度（详见#ref(<sec-geometry>)）。
-- *曲线。*`BezierCurve` 可为任意次数与维度；`CubicBezierSegment` 是绘图端使用的三次曲线；`PiecewiseBezier` 将三次曲线连接成路径（详见#ref(<sec-curves>)、#ref(<sec-paths>)）。
-- *构造。*把端点条件、斜率、导数或 Hermite 数据转为控制点（详见#ref(<sec-construction>)）。
-- *近似。*把平滑函数、采样点与等值线 $F(x, y) = c$ 转为误差已知的三次路径（详见#ref(<sec-fitting>)、#ref(<sec-implicit>)）。
-- *输出。*采样、JSON、SVG 路径数据、TikZ，以及 Matplotlib 路径（详见#ref(<sec-export>)）。
+- 数值对象：`Point`、`Vector` 与 `PointSet` 不可变，并检查维度（详见#ref(<sec-geometry>)）。
+- 曲线：`BezierCurve` 可为任意次数与维度；`CubicBezierSegment` 是绘图端使用的三次曲线；`PiecewiseBezier` 将三次曲线连接成路径（详见#ref(<sec-curves>)、#ref(<sec-paths>)）。
+- 构造：把端点条件、斜率、导数或 Hermite 数据转为控制点（详见#ref(<sec-construction>)）。
+- 近似：把平滑函数、采样点与等值线 $F(x, y) = c$ 转为误差已知的三次路径（详见#ref(<sec-fitting>)、#ref(<sec-implicit>)）。
+- 输出：采样、JSON、SVG 路径数据、TikZ，以及 Matplotlib 路径（详见#ref(<sec-export>)）。

@@ -5,7 +5,7 @@
 #changed("0.5.0rc1")[首次发布到 PyPI：任意次数的 Bézier 曲线、三次线段与路径、构造、Hermite 插值、拟合、等值线描绘、采样、导出器与命令行界面]
 #changed("1.0.0")[第一个正式版；公开 API 按语义化版本管理]
 
-#pkg("bezierkit") 是处理 Bézier 曲线的小型数学工具软件包。它可由控制点或端点条件构造曲线，计算曲线值与导数，分割与截取曲线，将曲线拟合到函数、采样点与等值线，并输出为 JSON、SVG 路径数据或 TikZ。软件包本身不绘图，绘图交给 Matplotlib、#pkg("mosaickit") 或 #LaTeX 文档等绘图端，它们收到的是精确的三次控制点。
+#pkg("bezierkit") 是处理 Bézier 曲线的小型数学工具软件包。它可由控制点或端点条件构造曲线，计算曲线值与导数，分割与截取曲线，将曲线拟合到函数、采样点与等值线，并输出为 JSON、SVG 路径数据或 TikZ。软件包本身不绘图。Matplotlib、#pkg("mosaickit") 或 #LaTeX 文档等绘图端接收精确的三次控制点，再负责绘制。
 
 == 符号
 
@@ -21,7 +21,7 @@ $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i) $
 
 == 数学与证明
 
-各章先回顾所用的标准定义并附出处，再以编号的引理、命题、定理与推论陈述算法所依据的性质：Bernstein 基底的保证、de Casteljau 算法为何能计算并分割曲线、Hermite 插值最多偏离多少、导出器因四舍五入损失多少精度。证明集中在#ref(<app-proofs>)，只想了解 API 时可略过。属于本软件包而不见于文献的约定，称为软件包约定。标准参考书为 #citet(<farin2002>) 与 #citet(<prautzsch2002>)；Bernstein 基底另见 #citet(<farouki2012>)。
+各章先回顾所用的标准定义并附出处，再以编号的引理、命题、定理与推论陈述算法所依据的性质：Bernstein 基底、de Casteljau 算法的求值与分割、Hermite 误差界，以及导出器的舍入误差。证明集中在#ref(<app-proofs>)，只想了解 API 时可略过。属于本软件包而不见于文献的约定，称为软件包约定。标准参考书为 #citet(<farin2002>) 与 #citet(<prautzsch2002>)；Bernstein 基底另见 #citet(<farouki2012>)。
 
 == 阅读指引
 
