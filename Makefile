@@ -5,11 +5,12 @@
 #
 #   make                          utility-viz, English edition (default)
 #   make utility-viz EDITION=zh-TW
-#   make pdf MANUAL=utility-viz EDITION=zh-CN
+#   make PACKAGE=bezierkit EDITION=zh-CN
+#   make bezierkit-zh-TW
 #   make all                      every edition of every manual
-#   make watch MANUAL=utility-viz EDITION=zh-TW
-#   make figures MANUAL=utility-viz    regenerate packages/<manual>/figures/ (uv)
-#   make publish MANUAL=utility-viz    build every edition, copy to econ-viz-docs
+#   make watch PACKAGE=utility-viz EDITION=zh-TW
+#   make figures PACKAGE=utility-viz    regenerate packages/<package>/figures/ (uv)
+#   make publish PACKAGE=utility-viz    build every edition, copy to econ-viz-docs
 #
 # Output: build/<manual>/<manual>-<edition>.pdf.
 #
@@ -21,11 +22,16 @@
 # CMU comes from the cm-unicode package (tlmgr install cm-unicode).
 # System fonts are ignored, so every machine builds deterministically.
 
-TYPST     ?= typst
-PACKAGES  := packages
-MANUALS   := $(patsubst $(PACKAGES)/%/manual.toml,%,$(wildcard $(PACKAGES)/*/manual.toml))
-MANUAL    ?= utility-viz
-DIR        = $(PACKAGES)/$(MANUAL)
+TYPST        ?= typst
+.DEFAULT_GOAL := pdf
+PACKAGES_DIR := packages
+PACKAGE_NAMES := $(patsubst $(PACKAGES_DIR)/%/manual.toml,%,$(wildcard $(PACKAGES_DIR)/*/manual.toml))
+# PACKAGE is the public name. MANUAL remains accepted by older commands.
+ifeq ($(origin PACKAGE), undefined)
+PACKAGE      := $(if $(MANUAL),$(MANUAL),utility-viz)
+endif
+MANUAL       ?= $(PACKAGE)
+DIR           = $(PACKAGES_DIR)/$(PACKAGE)
 EDITION   ?= en
 OUT       ?= build
 TEXMFDIST ?= $(shell kpsewhich -var-value TEXMFDIST 2>/dev/null)
@@ -40,8 +46,8 @@ KAITI_DIR      ?= $(patsubst %/,%,$(dir $(firstword $(wildcard /System/Library/A
 
 # A manual's editions and published file name, read from its manual.toml
 # (`editions = [...]` and `[publish] name = "..."`).
-editions-of = $(shell sed -n 's/^editions *= *\[\(.*\)\]/\1/p' $(PACKAGES)/$(1)/manual.toml | tr -d '",')
-publish-name-of = $(shell sed -n '/^\[publish\]/,/^\[/s/^name *= *"\(.*\)"/\1/p' $(PACKAGES)/$(1)/manual.toml)
+editions-of = $(shell sed -n 's/^editions *= *\[\(.*\)\]/\1/p' $(PACKAGES_DIR)/$(1)/manual.toml 2>/dev/null | tr -d '",')
+publish-name-of = $(shell sed -n '/^\[publish\]/,/^\[/s/^name *= *"\(.*\)"/\1/p' $(PACKAGES_DIR)/$(1)/manual.toml 2>/dev/null)
 
 # `make publish` copies the PDFs to econ-viz-docs, which serves them at
 # econ-viz.org/assets/manual/<publish name>-<edition>.pdf.
@@ -57,45 +63,62 @@ TYPST_FLAGS = --root . --font-path fonts \
 	$(if $(KAITI_DIR),--font-path "$(KAITI_DIR)") \
 	--ignore-system-fonts
 
-.PHONY: pdf all editions watch figures publish clean $(MANUALS)
+.PHONY: pdf all editions watch figures publish clean validate-package validate-edition $(PACKAGE_NAMES)
 
-pdf:
-	@test -f $(DIR)/manual.toml || { echo "no manual at $(DIR)/ (choose: $(MANUALS))" >&2; exit 1; }
-	@mkdir -p $(OUT)/$(MANUAL)
-	$(TYPST) compile $(TYPST_FLAGS) --input edition=$(EDITION) $(DIR)/main.typ $(OUT)/$(MANUAL)/$(MANUAL)-$(EDITION).pdf
+validate-package:
+	@test -f "$(DIR)/manual.toml" || \
+		{ echo "unknown package '$(PACKAGE)' (choose: $(PACKAGE_NAMES))" >&2; exit 1; }
 
-$(MANUALS):
-	@$(MAKE) --no-print-directory pdf MANUAL=$@
+validate-edition: validate-package
+	@case " $(call editions-of,$(PACKAGE)) " in \
+		*" $(EDITION) "*) ;; \
+		*) echo "unknown edition '$(EDITION)' for $(PACKAGE) (choose: $(call editions-of,$(PACKAGE)))" >&2; exit 1 ;; \
+	esac
 
-# Every edition of $(MANUAL).
-editions:
-	@for e in $(call editions-of,$(MANUAL)); do \
-		$(MAKE) --no-print-directory pdf MANUAL=$(MANUAL) EDITION=$$e || exit 1; \
+pdf: validate-edition
+	@mkdir -p $(OUT)/$(PACKAGE)
+	$(TYPST) compile $(strip $(TYPST_FLAGS)) --input edition=$(EDITION) $(DIR)/main.typ $(OUT)/$(PACKAGE)/$(PACKAGE)-$(EDITION).pdf
+
+$(PACKAGE_NAMES):
+	@$(MAKE) --no-print-directory pdf PACKAGE=$@
+
+define package-edition-rule
+$(1)-$(2):
+	@$$(MAKE) --no-print-directory pdf PACKAGE=$(1) EDITION=$(2)
+endef
+
+$(foreach package,$(PACKAGE_NAMES),$(foreach edition,$(call editions-of,$(package)),$(eval $(call package-edition-rule,$(package),$(edition)))))
+
+# Every edition of $(PACKAGE).
+editions: validate-package
+	@for e in $(call editions-of,$(PACKAGE)); do \
+		$(MAKE) --no-print-directory pdf PACKAGE=$(PACKAGE) EDITION=$$e || exit 1; \
 	done
 
 all:
-	@for m in $(MANUALS); do \
-		$(MAKE) --no-print-directory editions MANUAL=$$m || exit 1; \
+	@for package in $(PACKAGE_NAMES); do \
+		$(MAKE) --no-print-directory editions PACKAGE=$$package || exit 1; \
 	done
 
-watch:
-	$(TYPST) watch $(TYPST_FLAGS) --input edition=$(EDITION) $(DIR)/main.typ $(OUT)/$(MANUAL)/$(MANUAL)-$(EDITION).pdf
+watch: validate-edition
+	@mkdir -p $(OUT)/$(PACKAGE)
+	$(TYPST) watch $(strip $(TYPST_FLAGS)) --input edition=$(EDITION) $(DIR)/main.typ $(OUT)/$(PACKAGE)/$(PACKAGE)-$(EDITION).pdf
 
-figures:
+figures: validate-package
 	cd $(DIR) && uv run python scripts/make_figures.py
 
 # The published PDFs must use the same fonts as a local build, so refuse to
 # publish without Kaiti.
-publish:
+publish: validate-package
 	@test -f fonts/Kaiti.ttc -o -n "$(KAITI_DIR)" || \
 		{ echo "Kaiti not found; see README (Fonts)." >&2; exit 1; }
 	@test -d "$(DOCS)/docs" || { echo "econ-viz-docs not found at $(DOCS); pass DOCS=..." >&2; exit 1; }
-	@test -n "$(call publish-name-of,$(MANUAL))" || { echo "$(DIR)/manual.toml has no [publish] name" >&2; exit 1; }
-	@$(MAKE) --no-print-directory editions MANUAL=$(MANUAL)
+	@test -n "$(call publish-name-of,$(PACKAGE))" || { echo "$(DIR)/manual.toml has no [publish] name" >&2; exit 1; }
+	@$(MAKE) --no-print-directory editions PACKAGE=$(PACKAGE)
 	@mkdir -p "$(MANUAL_DIR)"
-	@for e in $(call editions-of,$(MANUAL)); do \
-		cp $(OUT)/$(MANUAL)/$(MANUAL)-$$e.pdf "$(MANUAL_DIR)/$(call publish-name-of,$(MANUAL))-$$e.pdf"; \
-		echo "published $(MANUAL_DIR)/$(call publish-name-of,$(MANUAL))-$$e.pdf"; \
+	@for e in $(call editions-of,$(PACKAGE)); do \
+		cp $(OUT)/$(PACKAGE)/$(PACKAGE)-$$e.pdf "$(MANUAL_DIR)/$(call publish-name-of,$(PACKAGE))-$$e.pdf"; \
+		echo "published $(MANUAL_DIR)/$(call publish-name-of,$(PACKAGE))-$$e.pdf"; \
 	done
 
 clean:

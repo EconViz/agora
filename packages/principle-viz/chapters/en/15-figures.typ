@@ -9,10 +9,10 @@
 #changed("0.10.0", label: "MarketFigure.finalize")[No legend by default; `finalize(legend=True)` adds one]
 
 Every figure in this manual is a `MarketFigure`, or a #pkg("mosaickit")
-canvas built by a function such as `ppf_canvas()`. Both follow one visual
-language: a square plot, arrowed axes with no ticks or grid, curves named at
-their ends, areas named inside them, values marked on the axes, and labels
-placed so they cover no line, point, area or other text.
+canvas built by a function such as `ppf_canvas()`. Both have a square plot
+area and arrowed axes with no ticks or grid. Curves are named at their ends,
+areas inside them and values on the axes, and no text covers a line, a
+point, an area or other text.
 
 == MarketFigure
 
@@ -27,7 +27,7 @@ placed so they cover no line, point, area or other text.
       y_label="p",
       title="Market Diagram",
       theme=None,       # PlotTheme
-      palette=None,     # "default", "colorblind", "nord", "monochrome"
+      palette=None,     # "default", "nord", ...
       labels=None,      # {layer id: Label}
       visibility=None,  # {layer id: bool}
   )
@@ -38,8 +38,10 @@ placed so they cover no line, point, area or other text.
   empty `title` draws none.
 ]
 
-#param("theme, palette")[Colours and line widths (@sec-palettes). `palette` is a shorthand for `PlotTheme.from_palette(palette)`; `theme` wins when both are given.]
-#param("labels, visibility")[Overrides for built-in labels and layers, by layer id (@sec-labels).]
+#param("theme")[Colours and line widths (@sec-palettes).]
+#param("palette")[Shorthand for `PlotTheme.from_palette(palette)`; `theme` takes precedence when both are given.]
+#param("labels")[Overrides for built-in labels, by layer id (@sec-labels).]
+#param("visibility")[Shows or hides layers, by layer id (@sec-labels).]
 
 #api(("MarketFigure.add_curves", "MarketFigure.add_equilibrium"), syntax: [
   #raw("add_curves(")#meta("demand")#raw(", ")#meta("supply")#raw(", q_max, demand_label=\"$D$\", supply_label=\"$S$\")") \
@@ -49,7 +51,8 @@ placed so they cover no line, point, area or other text.
   mark an equilibrium with a filled point and its label.
 ]
 
-Each topic adds its own methods, described in its chapter (@tab-figure-methods).
+Each topic adds its own methods, described in its chapter (see
+@tab-figure-methods).
 
 #tbl(caption: [Topic methods of `MarketFigure`])[
   #booktabs(
@@ -126,7 +129,9 @@ braces).
 The same overrides can be passed when the figure is created, as `labels=`
 and `visibility=` mappings; they then apply to layers added later as well.
 Aggregation figures and the canvas functions (`ppf_canvas()`,
-`public_good_canvas()`, ...) accept the same two arguments.
+`public_good_canvas()`, ...) accept the same two arguments. See
+@fig-labels:
+
 
 ```python
 from principle_viz import Label, MarketFigure
@@ -146,8 +151,8 @@ fig.finalize()
 ```
 
 #fig("/figures/figures/labels.svg", width: 46%, caption: [
-  Renamed curves and equilibrium; origin label hidden.
-])
+  Renamed curves and equilibrium point.
+]) <fig-labels>
 
 == Palettes and themes <sec-palettes>
 
@@ -157,6 +162,7 @@ fig.finalize()
 
 A `ColorModel` assigns a colour to each economic role; a `PlotTheme` adds line
 widths and axis options and compiles both into a #pkg("mosaickit") theme.
+@tab-palettes lists the four built-in colour models.
 
 #api(("ColorModel",), syntax: [
   #raw("ColorModel(name, axis_color, label_color, demand_color, supply_color, ...)")
@@ -195,13 +201,15 @@ model; the four are also exported as `DEFAULT_COLOR_MODEL`,
   and sets any of these fields.
 ]
 
+The `palette` argument selects a colour model (see @fig-monochrome):
+
 ```python
 fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 ```
 
 #fig("/figures/figures/monochrome.svg", width: 46%, caption: [
   The `monochrome` palette.
-])
+]) <fig-monochrome>
 
 == Canvases
 

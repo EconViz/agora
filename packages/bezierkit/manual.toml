@@ -1,0 +1,44 @@
+editions = ["en", "zh-TW", "zh-CN"]
+
+[package]
+name = "bezierkit"
+version = "1.0.0"
+date = "2026-10-04"
+python = "3.10"
+repo = "https://github.com/EconViz/bezierkit"
+site = "https://econ-viz.org"
+pypi = "https://pypi.org/project/bezierkit/"
+email = "contact@econ-viz.org"
+license = "MIT License"
+
+[title]
+en = "bezierkit: Bézier Curve Output Tools"
+zh-TW = "bezierkit 套件：Bézier 曲線輸出工具"
+zh-CN = "bezierkit 软件包：Bézier 曲线输出工具"
+
+[releases]
+"1.0.0" = "2026-10-04"
+"0.5.0rc1" = "2026-09-28"
+
+[[authors]]
+name = { en = "Pin Yue Sung", zh-TW = "Pin Yue Sung", zh-CN = "Pin Yue Sung" }
+affiliation = { en = "Department of International Business, National Chengchi University, Taipei, Taiwan", zh-TW = "國立政治大學國際經營與貿易學系，臺北，臺灣", zh-CN = "台湾政治大学国际经营与贸易学系，台北，台湾" }
+email = "contact@econ-viz.org"
+corresponding = true
+
+[[authors]]
+name = { en = "Ling Tak Douglas Chung", zh-TW = "Ling Tak Douglas Chung", zh-CN = "Ling Tak Douglas Chung" }
+affiliation = { en = "Department of International Business, National Chengchi University, Taipei, Taiwan", zh-TW = "國立政治大學國際經營與貿易學系，臺北，臺灣", zh-CN = "台湾政治大学国际经营与贸易学系，台北，台湾" }
+
+[meta-terms.zh-TW]
+"curve" = "曲線"
+"points" = "控制點"
+"precision" = "精度"
+
+[meta-terms.zh-CN]
+"curve" = "曲线"
+"points" = "控制点"
+"precision" = "精度"
+
+[publish]
+name = "bezierkit-manual"

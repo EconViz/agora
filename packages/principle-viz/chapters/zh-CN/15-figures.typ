@@ -8,7 +8,7 @@
 #changed("0.10.0", label: "MarketFigure")[均衡与政策标签由 #pkg("mosaickit") 放在点旁；拥挤处的数量改标在数量轴上]
 #changed("0.10.0", label: "MarketFigure.finalize")[默认不加图例；`finalize(legend=True)` 才会加入]
 
-本手册的每张图都是 `MarketFigure`，或由 `ppf_canvas()` 等函数创建的 #pkg("mosaickit") 画布。两者采用同一套视觉语言：正方形绘图区、带箭头且无刻度与格线的坐标轴、标在末端的曲线名称、写在区块内的面积名称、标在坐标轴上的数值，所有文字都不遮住线、点、区块或其他文字。
+本手册的每张图都是 `MarketFigure`，或由 `ppf_canvas()` 等函数创建的 #pkg("mosaickit") 画布。两者的绘图区为正方形，坐标轴带箭头、无刻度与格线；曲线名称标在末端，面积名称写在区块内，数值标在坐标轴上，文字不遮住线、点、区块或其他文字。
 
 == MarketFigure
 
@@ -23,17 +23,19 @@
       y_label="p",
       title="Market Diagram",
       theme=None,       # PlotTheme
-      palette=None,     # "default", "colorblind", "nord", "monochrome"
+      palette=None,     # "default", "nord", ...
       labels=None,      # {layer id: Label}
       visibility=None,  # {layer id: bool}
   )
   ```
 ])[
-  #pkg("mosaickit") 画布上的市场图，坐标轴由 0 延伸到 `x_max` 与 `y_max`。坐标轴名称除非是文字，否则以 LaTeX 数学排版；`title` 为空字串时不画标题。
+  #pkg("mosaickit") 画布上的市场图，坐标轴由 0 延伸到 `x_max` 与 `y_max`。坐标轴名称除非是文字，否则以 LaTeX 数学排版；`title` 为空字符串时不画标题。
 ]
 
-#param("theme, palette")[颜色与线宽（详见#ref(<sec-palettes>)）。`palette` 是 `PlotTheme.from_palette(palette)` 的简写；两者同时给定时以 `theme` 为准。]
-#param("labels, visibility")[按图层 id 覆盖内建标签与图层（详见#ref(<sec-labels>)）。]
+#param("theme")[颜色与线宽（详见#ref(<sec-palettes>)）。]
+#param("palette")[`PlotTheme.from_palette(palette)` 的简写；与 `theme` 同时给定时以 `theme` 为准。]
+#param("labels")[依图层 id 覆盖内建标签（详见#ref(<sec-labels>)）。]
+#param("visibility")[依图层 id 显示或隐藏图层（详见#ref(<sec-labels>)）。]
 
 #api(("MarketFigure.add_curves", "MarketFigure.add_equilibrium"), syntax: [
   #raw("add_curves(")#meta("demand")#raw(", ")#meta("supply")#raw(", q_max, demand_label=\"$D$\", supply_label=\"$S$\")") \
@@ -63,20 +65,20 @@
   #raw("finalize(legend=False)") \
   #raw("save(")#meta("path")#raw(", dpi=150)")
 ])[
-  `finalize()` 隐藏会把福利区块切成两半的辅助线（数值仍标在坐标轴上），只有在 `legend=True` 时才加入图例。`save()` 按扩展名写出 PNG、SVG 或 PDF，并创建不存在的目录。`close()` 不做任何事，仅为相容而保留。
+  `finalize()` 隐藏会把福利区块切成两半的辅助线（数值仍标在坐标轴上），只有在 `legend=True` 时才加入图例。`save()` 依扩展名写出 PNG、SVG 或 PDF，并创建不存在的目录。`close()` 不做任何事，仅为兼容而保留。
 ]
 
 #api(("MarketFigure.add_layer", "MarketFigure.add_layers"), syntax: [
   #raw("add_layer(")#meta("layer")#raw(")") \
   #raw("add_layers(")#meta("layers")#raw(")")
 ])[
-  加入任意 #pkg("mosaickit") 图层，用于主题方法未提供的标注。同一数值的坐标轴标记会取代先前的标记。完成的场景可由 `fig.scene` 获取。
+  加入任意 #pkg("mosaickit") 图层，用于主题方法未提供的注记。同一数值的坐标轴标记会取代先前的标记。完成的场景可由 `fig.scene` 获得。
 ]
 
 #api(("MarketFigure.add_metrics",), syntax: [
   #raw("add_metrics(")#meta("values")#raw(", *, title=None, location=\"upper right\")")
 ])[
-  以名称与数值组成的文本框，供notebook与除错使用。教学用图不放此框，数值应写在正文中。
+  以名称与数值组成的文字框，供笔记本与调试使用。教学用图不放此框，数值应写在正文中。
 ]
 
 == 标签与图层 <sec-labels>
@@ -84,7 +86,7 @@
 #changed("0.10.1", label: "Label")[每个内建标签都可改名、隐藏或移动：新增 `Label`、`labels=`、`configure_label()` 与 `label_ids`]
 #changed("0.10.1", label: "MarketFigure.configure_layer")[每个图层都可隐藏或显示：新增 `visibility=`、`configure_layer()`、`hide()`、`show()` 与 `layer_ids`]
 
-图中的每条线、每个点、每个区块与每段文字都是一个图层，各有固定的 id，例如 `market.demand`、`market.demand.label` 或 `market.welfare.dwl`。id 按图形结构命名：坐标轴为 `axes.*`，各元素为 `market.<部分>`，命名该元素的文字再加上 `.label` 后缀。`fig.layer_ids` 列出所有图层；`fig.label_ids` 列出可设置的文字（标签、坐标轴标记与括号）。
+图中的每条线、每个点、每个区块与每段文字都是一个图层，各有固定的 id，例如 `market.demand`、`market.demand.label` 或 `market.welfare.dwl`。id 依图形结构命名：坐标轴为 `axes.*`，各元素为 `market.<部分>`，命名该元素的文字再加上 `.label` 后缀。`fig.layer_ids` 列出所有图层；`fig.label_ids` 列出可设置的文字（标签、坐标轴标记与括号）。
 
 #api(("Label",), added: "v0.10.1", syntax: [
   #raw("Label(text=None, visible=None, offset=None)")
@@ -99,7 +101,9 @@
   改名、隐藏或移动一个标签（id 可省略结尾的 `.label`），或显示、隐藏任一图层。`hide(*ids)` 与 `show(*ids)` 一次切换多个图层。每个方法都返回图形本身。
 ]
 
-同样的覆盖也可在创建图形时以 `labels=` 与 `visibility=` 映射传入，之后加入的图层也会套用。加总图与各画布函数（`ppf_canvas()`、`public_good_canvas()` 等）接受同样的两个参数。
+同样的覆盖也可在创建图形时以 `labels=` 与 `visibility=` 对应表传入，之后加入的图层也会套用。加总图与各画布函数（`ppf_canvas()`、`public_good_canvas()` 等）接受同样的两个参数。
+
+参见#ref(<fig-labels>)：
 
 ```python
 from principle_viz import Label, MarketFigure
@@ -120,7 +124,7 @@ fig.finalize()
 
 #fig("/figures/figures/labels.svg", width: 46%, caption: [
   改名的曲线与均衡点。
-])
+]) <fig-labels>
 
 == 配色与主题 <sec-palettes>
 
@@ -128,20 +132,20 @@ fig.finalize()
 #changed("0.10.0", label: "ColorModel")[`default` 配色改用 #pkg("mosaickit") 的色相：需求蓝、供给红、无谓损失青]
 #changed("0.10.0", label: "PlotTheme")[供需曲线宽 3.5 pt、坐标轴 1.0 pt、均衡点直径 6.5 pt]
 
-`ColorModel` 为每个经济角色指定颜色；`PlotTheme` 再加上线宽与坐标轴选项，并将两者编译为 #pkg("mosaickit") 主题。
+`ColorModel` 为每个经济角色指定颜色；`PlotTheme` 再加上线宽与坐标轴选项，并将两者编译为 #pkg("mosaickit") 主题。内建的四种配色如#ref(<tab-palettes>)。
 
 #api(("ColorModel",), syntax: [
   #raw("ColorModel(name, axis_color, label_color, demand_color, supply_color, ...)")
 ])[
-  命名的颜色角色：`axis_color`、`label_color`、`demand_color`、`supply_color`、`baseline_color`、`shifted_color`、`tax_color`、`control_color`、`cs_color`、`ps_color`、`tax_revenue_color`、`dwl_color` 与 `arrow_color`。每个值可为 `"#hex"` 或 `"blue"` 等 #pkg("mosaickit") 调色板名称。
+  具名的颜色角色：`axis_color`、`label_color`、`demand_color`、`supply_color`、`baseline_color`、`shifted_color`、`tax_color`、`control_color`、`cs_color`、`ps_color`、`tax_revenue_color`、`dwl_color` 与 `arrow_color`。每个值可为 `"#hex"` 或 `"blue"` 等 #pkg("mosaickit") 调色板名称。
 ]
 
 #tbl(caption: [内建配色])[
   #booktabs(
     columns: (auto, 1fr),
     header: ([名称], [特色]),
-    [`default`], [#pkg("mosaickit") 色相：需求蓝、供给红、无谓损失青；剩余沿用曲线色相，不透明度 15%],
-    [`colorblind`], [色盲友好的定性配色],
+    [`default`], [#pkg("mosaickit") 色相：需求蓝、供给红、无谓损失青；剩余沿用曲线色相，透明度 15%],
+    [`colorblind`], [色盲友善的质性配色],
     [`nord`], [Nord 配色],
     [`monochrome`], [黑、白与灰阶，供印刷使用],
   )
@@ -156,16 +160,18 @@ fig.finalize()
   配色加上线宽（`demand_linewidth`、`supply_linewidth`、`shifted_linewidth`、`tax_linewidth`、`arrow_linewidth`、`dashed_linewidth`）、`equilibrium_marker_size`，以及开关 `show_grid`、`show_ticks`、`show_axis_arrows` 与 `show_origin_label`。`from_palette()` 以内建配色为起点，并可设置上述任一字段。
 ]
 
+以 `palette` 参数选用配色（参见#ref(<fig-monochrome>)）：
+
 ```python
 fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 ```
 
 #fig("/figures/figures/monochrome.svg", width: 46%, caption: [
   `monochrome` 配色。
-])
+]) <fig-monochrome>
 
 == 画布
 
 #api(("Canvas",))[
-  #pkg("mosaickit") 的 `Canvas`，并具备与 `MarketFigure` 相同的 `labels=`、`visibility=`、`configure_label()`、`configure_layer()`、`hide()`、`show()`、`layer_ids` 与 `label_ids`。生产可能性曲线、公共物品与总收益各章的画布函数都返回此类；以 `save()` 保存，或以 `mosaickit.CanvasGrid` 组合多张画布。
+  #pkg("mosaickit") 的 `Canvas`，并具备与 `MarketFigure` 相同的 `labels=`、`visibility=`、`configure_label()`、`configure_layer()`、`hide()`、`show()`、`layer_ids` 与 `label_ids`。生产可能性曲线、公共物品与总收益各章的画布函数都返回此类别；以 `save()` 保存，或以 `mosaickit.CanvasGrid` 组合多张画布。
 ]

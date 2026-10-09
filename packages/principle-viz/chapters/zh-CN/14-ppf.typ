@@ -17,10 +17,13 @@
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
 
-ppf = ProductionPossibilitiesFrontier(10, 8, curvature=2,
-                                      x_good="Consumer goods", y_good="Capital goods")
-print(ppf.y_at(6), ppf.opportunity_cost_x(6))   # 5.12 0.96
-print(ppf.assess(4, 3), ppf.assess(7, 6))       # PointStatus.INEFFICIENT PointStatus.UNATTAINABLE
+ppf = ProductionPossibilitiesFrontier(
+    10, 8, curvature=2,
+    x_good="Consumer goods", y_good="Capital goods",
+)
+print(ppf.y_at(6), ppf.opportunity_cost_x(6))  # 5.12 0.96
+print(ppf.assess(4, 3), ppf.assess(7, 6))
+# PointStatus.INEFFICIENT PointStatus.UNATTAINABLE
 ```
 
 #api(("analyze_ppf", "ppf_canvas"), syntax: [
@@ -34,7 +37,8 @@ print(ppf.assess(4, 3), ppf.assess(7, 6))       # PointStatus.INEFFICIENT PointS
 from principle_viz import analyze_ppf
 from principle_viz.visuals.ppf import ppf_canvas
 
-result = analyze_ppf(ppf, points=((6, ppf.y_at(6), "A"), (4, 3, "B"), (7, 6, "C")))
+points = ((6, ppf.y_at(6), "A"), (4, 3, "B"), (7, 6, "C"))
+result = analyze_ppf(ppf, points=points)
 ppf_canvas(result).save("ppf_points.png")
 ```
 
@@ -44,16 +48,17 @@ ppf_canvas(result).save("ppf_points.png")
 
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
   #raw("PPFGrowthScenario(x_growth_rate=0.0, y_growth_rate=0.0)") \
-  #raw("analyze_ppf_growth(")#meta("frontier")#raw(", ")#meta("scenario")#raw(", *, samples=101)")
+  #raw("analyze_ppf_growth(")#meta("frontier")#raw(", ")#meta("scenario")#raw(", *, samples=101)") \
+  #raw("ppf_growth_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
 ])[
-  经济成长使各截距乘以一加上对应的成长率；结果包含 `baseline` 与 `shifted` 两条曲线及其采样点。`ppf_growth_canvas()` 画出两条曲线并命名为 $P P F_0$ 与 $P P F_1$。
+  经济成长使各截距乘以一加上对应的成长率；结果包含 `baseline` 与 `shifted` 两条曲线及其采样点。`ppf_growth_canvas()` 画出两条曲线并命名为 $P P F_0$ 与 $P P F_1$（参见#ref(<fig-ppf-growth>)）。
 ]
 
 #fig("/figures/ppf/growth.svg", width: 46%, caption: [
-  消费品成长 20%、资本品成长 10%。
-])
+  消费财成长 20%、资本财成长 10%。
+]) <fig-ppf-growth>
 
-== 比较优势
+== 比较优势 <sec-comparative-advantage>
 
 #api(("compare_linear_ppfs",), syntax: [
   #raw("compare_linear_ppfs(name_a, frontier_a, name_b, frontier_b)")
@@ -64,8 +69,11 @@ ppf_canvas(result).save("ppf_points.png")
 ```python
 from principle_viz import compare_linear_ppfs
 
-ann = ProductionPossibilitiesFrontier(10, 5)   # 1 unit of x costs 0.5 y
-bob = ProductionPossibilitiesFrontier(6, 6)    # 1 unit of x costs 1 y
+ann = ProductionPossibilitiesFrontier(10, 5)  # x costs 0.5 y
+bob = ProductionPossibilitiesFrontier(6, 6)   # x costs 1 y
 result = compare_linear_ppfs("Ann", ann, "Bob", bob)
-print(result.comparative_advantage_x, result.comparative_advantage_y)   # Ann Bob
+print(result.comparative_advantage_x, result.comparative_advantage_y)
+# Ann Bob
 ```
+
+$x$ 的比较优势属于 Ann（0.5 对 1），$y$ 属于 Bob（1 对 2）。

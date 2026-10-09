@@ -20,8 +20,10 @@ from principle_viz import analyze_minimum_wage
 
 labor_demand = line_from_inverse(12, -1)
 labor_supply = line_from_inverse(2, 1)
-labor = analyze_minimum_wage(labor_demand, labor_supply, minimum_wage=9)
-print(labor.employment, labor.unemployment)   # 3.0 4.0
+labor = analyze_minimum_wage(
+    labor_demand, labor_supply, minimum_wage=9,
+)
+print(labor.employment, labor.unemployment)  # 3.0 4.0
 ```
 
 #api(("MarketFigure.add_minimum_wage",), syntax: [
@@ -30,18 +32,24 @@ print(labor.employment, labor.unemployment)   # 3.0 4.0
   The wage floor drawn like a price floor (@sec-controls): the "Minimum
   wage" line, $w_min$ on the wage axis, and for a binding floor $L_d$ and
   $L_s$ with an "Unemployment" brace. Title the axes $L$ and $w$ and name
-  the curves $D_L$ and $S_L$:
+  the curves $D_L$ and $S_L$ (see @fig-minimum-wage):
 ]
 
 ```python
 fig = MarketFigure(x_max=11, y_max=14, x_label="L", y_label="w")
-fig.add_curves(labor_demand, labor_supply, q_max=10, demand_label="$D_L$", supply_label="$S_L$")
+fig.add_curves(
+    labor_demand, labor_supply, q_max=10,
+    demand_label="$D_L$", supply_label="$S_L$",
+)
 fig.add_minimum_wage(labor)
 ```
 
 #fig("/figures/factor/minimum_wage.svg", width: 46%, caption: [
   A binding minimum wage.
-])
+]) <fig-minimum-wage>
+
+`labor_demanded` is 3, `labor_supplied` is 7, `employment` is 3 and
+`unemployment` is 4.
 
 == Loanable funds
 
@@ -64,24 +72,27 @@ fig.add_minimum_wage(labor)
 ]
 
 ```python
-from principle_viz import LoanableFundsScenario, analyze_loanable_funds
+from principle_viz import (
+    LoanableFundsScenario, analyze_loanable_funds,
+)
 
 savings = line_from_inverse(2, 0.5)
 investment = line_from_inverse(12, -0.5)
-funds = analyze_loanable_funds(savings, investment, LoanableFundsScenario(government_borrowing=4))
-print(funds.interest_rate_change, funds.crowding_out)   # 1.0 2.0
+scenario = LoanableFundsScenario(government_borrowing=4)
+funds = analyze_loanable_funds(savings, investment, scenario)
+print(funds.interest_rate_change, funds.crowding_out)  # 1.0 2.0
 ```
 
-Borrowing of 4 raises the interest rate from 7 to 8; private investment falls
-from 10 to 8, so half the borrowing crowds out private investment.
+`interest_rate_change` is 1.0 and `crowding_out` is 2.0.
 
 #api(("MarketFigure.add_loanable_funds",), syntax: [
   #raw("add_loanable_funds(")#meta("result")#raw(")")
 ])[
   Draw the shifted curves, named $D_1$ or $S_1$, both equilibria and the
-  movement between them. Title the price axis $r$.
+  movement between them. Title the price axis $r$ (see
+  @fig-loanable-funds).
 ]
 
 #fig("/figures/factor/loanable_funds.svg", width: 46%, caption: [
   Government borrowing crowds out private investment.
-])
+]) <fig-loanable-funds>

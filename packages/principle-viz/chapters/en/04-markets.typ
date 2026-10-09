@@ -4,6 +4,18 @@
 
 == Lines
 
+A demand or supply curve is a straight line in inverse form:
+
+$
+  p = a + b Q
+$
+
+where $a$ is the price intercept and $b$ the slope ($b < 0$ for demand,
+$b > 0$ for supply). Price is always on the vertical axis and quantity on the
+horizontal one, following #citet(<marshall1890>). Discrete unit schedules
+(@sec-discrete) and market curves summed from individual curves
+(@sec-aggregation) are not single straight lines.
+
 #api(("Line",), syntax: [
   #raw("Line.from_inverse(")#meta("float")#raw(", ")#meta("float")#raw(")") \
   #raw("Line.from_standard(")#meta("float")#raw(", ")#meta("float")#raw(", ")#meta("float")#raw(")")
@@ -21,7 +33,7 @@
 #param("q_intercept()")[Quantity at $p = 0$.]
 #param("slope()")[$dif p slash dif Q$.]
 #param("to_inverse()")[`(a, b)` for $p = a + b Q$.]
-#param("shifted(delta_intercept, delta_slope)")[A new line with $a + Delta a$ and $b + Delta b$.]
+#param("shifted()")[A new line with `delta_intercept` ($Delta a$) added to the intercept and `delta_slope` ($Delta b$) added to the slope.]
 
 ```python
 from principle_viz import line_from_inverse, line_from_standard
@@ -32,8 +44,10 @@ print(demand.p_intercept(), demand.q_intercept())  # 10.0 10.0
 print(line_from_standard(1, 1, -10).to_inverse())  # (10.0, -1.0)
 ```
 
-A horizontal line has no $Q(p)$ and a vertical line no $p(Q)$; asking for
-one raises `NonInvertibleLineError`.
+$(A, B, C) = (1, 1, -10)$ is equivalent to $p = 10 - Q$.
+
+A horizontal line has no $Q(p)$ and a vertical line has no $p(Q)$; the
+corresponding methods raise `NonInvertibleLineError`.
 
 == Equilibrium
 
@@ -50,8 +64,12 @@ from principle_viz import solve_equilibrium
 
 eq = solve_equilibrium(demand, line_from_inverse(2.0, 1.0))
 print(eq)
-# EquilibriumResult(q_star=4.0, p_star=6.0, is_valid_market=True, notes=())
+# EquilibriumResult(q_star=4.0, p_star=6.0,
+#                   is_valid_market=True, notes=())
 ```
+
+$10 - Q = 2 + Q$ gives an equilibrium quantity of 4 and an equilibrium price
+of 6; `is_valid_market` is `True` and `notes` is empty.
 
 == Comparative statics <sec-shifts>
 
@@ -67,8 +85,8 @@ print(eq)
   supply or both. Both live in `principle_viz.core.shifts`.
 
   An increase in demand raises the demand intercept; an increase in supply
-  *lowers* the supply intercept, since sellers then accept a lower price for
-  every quantity.
+  lowers the supply intercept, since sellers accept a lower price at every
+  quantity.
 ]
 
 #api(("comparative_statics",), syntax: [
@@ -77,10 +95,13 @@ print(eq)
   Solve the market before and after the shift. The result has these fields:
 ]
 
-#param("baseline_equilibrium, shifted_equilibrium")[The two `EquilibriumResult`s.]
+#param("baseline_equilibrium")[The `EquilibriumResult` before the shift.]
+#param("shifted_equilibrium")[The `EquilibriumResult` after the shift.]
 #param("shifted_market")[The baseline and shifted lines (`baseline_demand`, `shifted_demand`, ...).]
-#param("delta_q, delta_p")[Change in quantity and price.]
-#param("direction_q, direction_p")[`"left"`/`"right"` and `"up"`/`"down"` (`"none"` when unchanged).]
+#param("delta_q")[Change in quantity.]
+#param("delta_p")[Change in price.]
+#param("direction_q")[Direction of the quantity change: `"left"` or `"right"` (`"none"` when unchanged).]
+#param("direction_p")[Direction of the price change: `"up"` or `"down"` (`"none"` when unchanged).]
 
 ```python
 from principle_viz import comparative_statics
@@ -88,8 +109,9 @@ from principle_viz.core.shifts import ShiftScenario, ShiftSpec
 
 up = ShiftScenario(demand_shift=ShiftSpec(delta_intercept=3.0))
 result = comparative_statics(demand, supply, up)
-print(result.shifted_equilibrium.q_star, result.shifted_equilibrium.p_star)  # 5.5 7.5
-print(result.direction_q, result.direction_p)                               # right up
+new = result.shifted_equilibrium
+print(new.q_star, new.p_star)                  # 5.5 7.5
+print(result.direction_q, result.direction_p)  # right up
 ```
 
 #api(("MarketFigure.add_comparative_statics",), syntax: [
@@ -97,12 +119,16 @@ print(result.direction_q, result.direction_p)                               # ri
 ])[
   Draw the curve that moved, both equilibria and dashed arrows from the old
   equilibrium to the new one. Name the original curves $D_0$ and $S_0$ in
-  `add_curves()` so the pair reads as before and after (@fig-shifts).
+  `add_curves()`. An increase in demand is shown in @fig-shifts and a
+  decrease in supply in @fig-shift-supply.
 ]
 
 ```python
 fig = MarketFigure(x_max=12, y_max=14, title="Increase in Demand")
-fig.add_curves(demand, supply, q_max=10, demand_label="$D_0$", supply_label="$S_0$")
+fig.add_curves(
+    demand, supply, q_max=10,
+    demand_label="$D_0$", supply_label="$S_0$",
+)
 fig.add_comparative_statics(result, q_max=10)
 fig.finalize()
 ```
@@ -112,14 +138,15 @@ fig.finalize()
 ]) <fig-shifts>
 
 #fig("/figures/markets/shift_supply_decrease.svg", width: 46%, caption: [
-  A decrease in supply (`ShiftSpec(delta_intercept=3.0)` on supply).
-])
+  A decrease in supply.
+]) <fig-shift-supply>
 
 == Errors <sec-errors>
 
 Every exception the package raises derives from `PrincipleVizError`, in
-`principle_viz.exceptions`; catch it to handle all of them at once.
-`PrincipleEconError`, the name before 0.10.0, is the same class.
+`principle_viz.exceptions`; catching it handles all of them.
+`PrincipleEconError`, the name before 0.10.0, is the same class. @tab-errors
+lists when each exception is raised.
 
 #tbl(caption: [Exceptions])[
   #booktabs(
@@ -134,4 +161,4 @@ Every exception the package raises derives from `PrincipleVizError`, in
     [`AggregationError`, `PiecewiseLinearError`], [Individual curves cannot be summed, or a price is outside a piecewise curve (@sec-aggregation)],
     [`PPFError`], [A production possibilities frontier is invalid (@sec-ppf)],
   )
-]
+] <tab-errors>

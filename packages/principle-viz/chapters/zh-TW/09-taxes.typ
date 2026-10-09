@@ -5,7 +5,7 @@
 #changed("0.1.0", label: "TaxScenario")[`fixed`、`per_unit` 與 `ad_valorem` 三種租稅，法定納稅人可為買方或賣方]
 #changed("0.10.0", label: "MarketFigure.add_tax_transform")[課稅後的曲線命名為 $S + t$ / $D - t$；旋轉標籤移到箭頭尾端]
 
-租稅在買方支付的價格與賣方收到的價格之間形成楔差。法定上由誰納稅不影響結果：無論向買方或賣方課徵，楔差、數量與兩個價格都相同 #citep(<mankiw2021>)。
+租稅在買方支付的價格與賣方收到的價格之間形成楔差。無論向買方或賣方課徵，楔差、數量與兩個價格都相同 #citep(<mankiw2021>)。
 
 == 情境
 
@@ -34,16 +34,17 @@ from principle_viz.policy.tax import TaxOn, TaxScenario, TaxType
 
 tax = TaxScenario(TaxType.PER_UNIT_TAX, 3.0, TaxOn.PRODUCER)
 print(solve_tax_equilibrium(demand, supply, tax))
-# TaxEquilibriumResult(q_star=2.5, consumer_price=7.5, producer_price=4.5,
-#                      tax_wedge=3.0, tax_revenue=7.5)
+# TaxEquilibriumResult(q_star=2.5, consumer_price=7.5,
+#                      producer_price=4.5, tax_wedge=3.0,
+#                      tax_revenue=7.5)
 ```
 
-改用 `TaxOn.CONSUMER` 結果完全相同。稅率為 $r$ 的從價稅使消費者價格等於生產者價格的 $(1 + r)$ 倍。
+`TaxOn.CONSUMER` 的結果相同。稅率為 $r$ 的從價稅使消費者價格等於生產者價格的 $(1 + r)$ 倍。
 
 #api(("compare_tax_scenario",), syntax: [
   #raw("compare_tax_scenario(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
-  並列課稅前後的市場：`baseline_equilibrium`、`post_tax`、變動量 `delta_q`、`delta_p_consumer`、`delta_p_producer`，以及各自的方向（`"left"`／`"right"`、`"up"`／`"down"`）。上例中數量減少 1.5，買方多付 1.5，賣方少收 1.5。
+  並列課稅前後的市場：`baseline_equilibrium`、`post_tax`、變動量 `delta_q`、`delta_p_consumer`、`delta_p_producer`，以及各自的方向（`"left"`／`"right"`、`"up"`／`"down"`）。
 ]
 
 #api(("build_tax_visual_guide",), syntax: [
@@ -57,16 +58,16 @@ print(solve_tax_equilibrium(demand, supply, tax))
 #api(("MarketFigure.add_tax_transform",), syntax: [
   #raw("add_tax_transform(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(", q_max)")
 ])[
-  畫出課稅後的曲線並命名為 $S + t$ 或 $D - t$，以虛線箭頭表示平移或旋轉，並標出未課稅的均衡。
+  畫出課稅後的曲線並命名為 $S + t$ 或 $D - t$，以虛線箭頭表示平移或旋轉，並標出未課稅的均衡（參見#ref(<fig-tax-producer>)、#ref(<fig-tax-consumer>)）。
 ]
 
 #fig("/figures/taxes/per_unit_producer.svg", width: 46%, caption: [
   向賣方課徵從量稅。
-])
+]) <fig-tax-producer>
 
 #fig("/figures/taxes/ad_valorem_consumer.svg", width: 46%, caption: [
   向買方課徵從價稅。
-])
+]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[在價格軸上標出 $p_d$、$p_0$ 與 $p_s$，並加上 "Tax" 括號；新增 `brace_side` 與 `notes`]
 
@@ -79,16 +80,19 @@ print(solve_tax_equilibrium(demand, supply, tax))
 #param("brace_side", type: "str", default: "\"outside\"")[括號在座標軸外側（`"outside"`）或繪圖區內（`"inside"`）。]
 #param("notes", type: "bool", default: "False")[在座標軸旁說明每個標記。]
 
-搭配#ref(<sec-welfare>)的福利區塊，可看出租稅由誰負擔（參見#ref(<fig-tax-welfare>)）：
+搭配#ref(<sec-welfare>)的福利區塊（參見#ref(<fig-tax-welfare>)）：
 
 ```python
 from principle_viz import compare_tax_scenario
-from principle_viz.welfare.surplus import compare_surplus, outcome_from_equilibrium, outcome_from_tax
+from principle_viz.welfare.surplus import (
+    compare_surplus, outcome_from_equilibrium, outcome_from_tax,
+)
 
-baseline = outcome_from_equilibrium(solve_equilibrium(demand, supply))
+eq = solve_equilibrium(demand, supply)
+baseline = outcome_from_equilibrium(eq)
 taxed = outcome_from_tax(solve_tax_equilibrium(demand, supply, tax))
 delta = compare_surplus(demand, supply, baseline, taxed)
-print(delta.policy.tax_revenue, delta.deadweight_loss)   # 7.5 2.25
+print(delta.policy.tax_revenue, delta.deadweight_loss)  # 7.5 2.25
 
 fig = MarketFigure(x_max=12, y_max=12, title="Welfare Under a Tax")
 fig.add_curves(demand, supply, q_max=10)
@@ -115,20 +119,23 @@ fig.finalize()
   #raw("solve_subsidy_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")") \
   #raw("compare_subsidy_scenario(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
-  補貼後的市場（`q_star`、`consumer_price`、`producer_price`、`subsidy_wedge`、`government_expenditure`），以及與自由市場的比較（`baseline_equilibrium`、`post_subsidy`、`delta_q`、`delta_p_consumer`、`delta_p_producer`）。在#ref(<sec-quickstart>)的市場中補貼 2，數量增為 5：買方支付 5，賣方收到 7，政府支出 10。
+  補貼後的市場（`q_star`、`consumer_price`、`producer_price`、`subsidy_wedge`、`government_expenditure`），以及與自由市場的比較（`baseline_equilibrium`、`post_subsidy`、`delta_q`、`delta_p_consumer`、`delta_p_producer`）。在#ref(<sec-quickstart>)的市場中補貼 2：數量 5，買方支付 5，賣方收到 7，政府支出 10。
 ]
 
 #api(("MarketFigure.add_subsidy_comparison",), syntax: [
   #raw("add_subsidy_comparison(")#meta("result")#raw(", *, brace_side=\"outside\", notes=False)")
 ])[
-  以標示稅收楔差的方式標出補貼楔差，加上 "Subsidy" 括號，並標示補貼成本。#ref(<fig-subsidy>)隱藏了部分標籤，且只為無謂損失填色（`regions=("dwl",)`），因為補貼成本與剩餘區塊重疊；所用的 `visibility` 參數詳見#ref(<sec-labels>)。
+  以標示稅收楔差的方式標出補貼楔差，加上 "Subsidy" 括號，並標示補貼成本。#ref(<fig-subsidy>)以 `regions=("dwl",)` 只為無謂損失填色，並以 `visibility` 隱藏部分標籤（詳見#ref(<sec-labels>)）。
 ]
 
 ```python
-from principle_viz import SubsidyScenario, SubsidyTo, compare_subsidy_scenario
+from principle_viz import (
+    SubsidyScenario, SubsidyTo, compare_subsidy_scenario,
+)
 
 demand = line_from_inverse(12.0, -1.0)
-comparison = compare_subsidy_scenario(demand, supply, SubsidyScenario(3.0, SubsidyTo.PRODUCER))
+subsidy = SubsidyScenario(3.0, SubsidyTo.PRODUCER)
+comparison = compare_subsidy_scenario(demand, supply, subsidy)
 fig = MarketFigure(
     x_max=12, y_max=13, title="Per-Unit Subsidy",
     visibility={

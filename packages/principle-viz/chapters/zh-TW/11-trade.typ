@@ -21,38 +21,48 @@
 ]
 
 #param("domestic_price")[國內市場價格。]
-#param("quantity_demanded, quantity_supplied")[該價格下的國內需求量與供給量。]
-#param("imports, exports, direction")[貿易量與 `TradeDirection`（`IMPORT`、`EXPORT` 或 `AUTARKY`）。]
-#param("consumer_surplus, producer_surplus, government_revenue")[福利各項。]
-#param("quota_rent, national_quota_rent")[配額產生的租，以及留在國內的部分。]
-#param("total_surplus, gains_from_trade")[國民剩餘，以及相對於自給自足的增加。]
+#param("quantity_demanded")[該價格下的國內需求量。]
+#param("quantity_supplied")[該價格下的國內供給量。]
+#param("imports")[進口量。]
+#param("exports")[出口量。]
+#param("direction")[`TradeDirection`：`IMPORT`、`EXPORT` 或 `AUTARKY`。]
+#param("consumer_surplus")[消費者剩餘。]
+#param("producer_surplus")[生產者剩餘。]
+#param("government_revenue")[政府收入。]
+#param("quota_rent")[配額產生的租。]
+#param("national_quota_rent")[配額租中留在國內的部分。]
+#param("total_surplus")[國民剩餘。]
+#param("gains_from_trade")[相對於自給自足的增加。]
 #param("is_policy_binding")[關稅或配額是否改變價格。]
 
 ```python
 from principle_viz import TradeScenario, analyze_trade
 
 demand = line_from_inverse(12.0, -1.0)   # autarky price 7
-result = analyze_trade(demand, supply, TradeScenario(world_price=4, tariff=2))
-print(result.free_trade.imports, result.policy.imports)   # 6.0 2.0
-print(result.policy.government_revenue, result.deadweight_loss)   # 4.0 4.0
+scenario = TradeScenario(world_price=4, tariff=2)
+result = analyze_trade(demand, supply, scenario)
+print(result.free_trade.imports, result.policy.imports)
+# 6.0 2.0
+print(result.policy.government_revenue, result.deadweight_loss)
+# 4.0 4.0
 ```
 
-配額 2 單位同樣使價格成為 6；配額租 4 歸 `quota_rent_recipient` 指定的一方。
+關稅 2 時，國內價格為 6，政府收入為 $2 times 2 = 4$。配額 2 單位時價格同為 6，配額租 4 歸 `quota_rent_recipient` 指定的一方。
 
 #api(("MarketFigure.add_trade",), syntax: [
   #raw("add_trade(")#meta("result")#raw(")")
 ])[
-  畫出世界價格線並命名為 $p_w$，標出政策價格（$p_w + t$ 或 $p_q$），在數量軸上標 $Q_s$ 與 $Q_d$ 並於下方加上 "Imports" 或 "Exports" 括號，再以命名的矩形表示關稅收入或配額租。
+  畫出世界價格線並命名為 $p_w$，標出政策價格（$p_w + t$ 或 $p_q$），在數量軸上標 $Q_s$ 與 $Q_d$ 並於下方加上 "Imports" 或 "Exports" 括號，再以命名的矩形表示關稅收入或配額租（參見#ref(<fig-free-trade>)、#ref(<fig-tariff>)、#ref(<fig-quota>)）。
 ]
 
 #fig("/figures/trade/free_trade_import.svg", width: 46%, caption: [
   自由貿易下的進口。
-])
+]) <fig-free-trade>
 
 #fig("/figures/trade/tariff.svg", width: 46%, caption: [
   進口關稅。
-])
+]) <fig-tariff>
 
 #fig("/figures/trade/quota.svg", width: 46%, caption: [
   有約束的進口配額。
-])
+]) <fig-quota>

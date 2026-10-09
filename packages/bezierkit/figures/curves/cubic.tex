@@ -1,0 +1,35 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{newpxtext,newpxmath}
+\definecolor{curve}{HTML}{1f6fb2}
+\definecolor{accent}{HTML}{c0392b}
+\definecolor{polygon}{HTML}{555555}
+\definecolor{muted}{HTML}{dfe6ee}
+\begin{document}
+\begin{tikzpicture}[
+  x=1.4cm, y=1.4cm,
+  line cap=round, line join=round,
+  every node/.style={font=\footnotesize, inner sep=1.5pt},
+  curve/.style={draw=curve, line width=1.1pt},
+  second/.style={draw=accent, line width=1.1pt},
+  polygon/.style={line width=0.5pt, dash pattern=on 2.5pt off 2pt},
+  construction/.style={draw=accent, line width=0.5pt},
+  axis/.style={line width=0.45pt, draw=black!80, >=stealth},
+  ctrl/.style={circle, fill=white, line width=0.6pt, minimum size=4pt, inner sep=0pt},
+]
+\fill[muted] (0,0) -- (1,2) -- (3,2) -- (4,0) -- cycle;
+\draw[polygon, draw=polygon] (0,0) -- (1,2) -- (3,2) -- (4,0);
+\node[ctrl, draw=polygon] at (0,0) {};
+\node[ctrl, draw=polygon] at (1,2) {};
+\node[ctrl, draw=polygon] at (3,2) {};
+\node[ctrl, draw=polygon] at (4,0) {};
+\node[below left] at (0,0) {$P_0$};
+\node[above] at (1,2) {$P_1$};
+\node[above] at (3,2) {$P_2$};
+\node[below right] at (4,0) {$P_3$};
+\draw[curve] (0.0000,0.0000) .. controls (1.0000,2.0000) and (3.0000,2.0000) .. (4.0000,0.0000);
+\node[ctrl, draw=black] at (0,0) {};
+\node[ctrl, draw=black] at (1,2) {};
+\node[ctrl, draw=black] at (3,2) {};
+\node[ctrl, draw=black] at (4,0) {};
+\end{tikzpicture}
+\end{document}

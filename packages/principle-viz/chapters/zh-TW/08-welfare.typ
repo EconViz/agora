@@ -5,7 +5,7 @@
 #changed("0.10.0", label: "MarketFigure.add_welfare")[以文字命名各區塊（"Consumer surplus"、"CS" 等），寫在區塊內、改用縮寫或以引線標示；`labels=False` 只填色]
 #changed("0.10.0", label: "MarketFigure.add_welfare")[消費者剩餘與生產者剩餘沿用需求與供給的色相；稅收只標示文字、不填色]
 
-福利分析比較某個市場結果與其他可能結果：消費者剩餘、生產者剩餘、政府收入，以及不再成交的單位所造成的無謂損失。
+福利分析比較某個市場結果與其他可能結果：消費者剩餘、生產者剩餘、政府收入，以及無謂損失。
 
 == 市場結果
 
@@ -28,7 +28,8 @@
   `outcome` 下的福利分解。傳入 `baseline_outcome` 時，以其為基準衡量無謂損失。回傳的 `SurplusResult` 包含下列欄位：
 ]
 
-#param("consumer_surplus, producer_surplus", type: "float")[需求曲線與消費者價格之間、生產者價格與供給曲線之間的面積。]
+#param("consumer_surplus", type: "float")[需求曲線與消費者價格之間的面積。]
+#param("producer_surplus", type: "float")[生產者價格與供給曲線之間的面積。]
 #param("tax_revenue", type: "float")[政府收入（補貼為負）。]
 #param("total_surplus", type: "float")[三者之和。]
 #param("deadweight_loss", type: "float")[相對於基準損失的剩餘。]
@@ -39,10 +40,12 @@ from principle_viz import compute_surplus, solve_equilibrium
 from principle_viz.welfare.surplus import outcome_from_equilibrium
 
 eq = solve_equilibrium(demand, supply)
-surplus = compute_surplus(demand, supply, outcome_from_equilibrium(eq))
-print(surplus.consumer_surplus, surplus.producer_surplus)   # 8.0 8.0
+outcome = outcome_from_equilibrium(eq)
+surplus = compute_surplus(demand, supply, outcome)
+print(surplus.consumer_surplus, surplus.producer_surplus)  # 8.0 8.0
 ```
 
+$(10 - 6) times 4 slash 2 = (6 - 2) times 4 slash 2 = 8$；自由市場的無謂損失為 0。
 #api(("compare_surplus",), syntax: [
   #raw("compare_surplus(")#meta("demand")#raw(", ")#meta("supply")#raw(", baseline_outcome, policy_outcome)")
 ])[
@@ -67,6 +70,8 @@ fig.add_welfare(surplus)
 fig.add_equilibrium(eq)
 fig.finalize()
 ```
+
+輸出參見#ref(<fig-welfare>)。
 
 #fig("/figures/welfare/equilibrium.svg", width: 46%, caption: [
   均衡下的消費者與生產者剩餘。

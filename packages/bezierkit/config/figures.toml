@@ -1,0 +1,12 @@
+# Standalone TikZ figure output and colours. Read by scripts/make_figures.py.
+
+[output]
+dir = "figures"
+precision = 4
+latexmk = "latexmk"
+
+[style]
+curve = "#1f6fb2"     # the curve or path itself
+accent = "#c0392b"    # a second curve, construction lines, bounds
+polygon = "#555555"   # control polygons and sampled points
+muted = "#dfe6ee"     # hulls and reference functions behind a curve

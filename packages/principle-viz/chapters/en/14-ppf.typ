@@ -20,10 +20,13 @@
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
 
-ppf = ProductionPossibilitiesFrontier(10, 8, curvature=2,
-                                      x_good="Consumer goods", y_good="Capital goods")
-print(ppf.y_at(6), ppf.opportunity_cost_x(6))   # 5.12 0.96
-print(ppf.assess(4, 3), ppf.assess(7, 6))       # PointStatus.INEFFICIENT PointStatus.UNATTAINABLE
+ppf = ProductionPossibilitiesFrontier(
+    10, 8, curvature=2,
+    x_good="Consumer goods", y_good="Capital goods",
+)
+print(ppf.y_at(6), ppf.opportunity_cost_x(6))  # 5.12 0.96
+print(ppf.assess(4, 3), ppf.assess(7, 6))
+# PointStatus.INEFFICIENT PointStatus.UNATTAINABLE
 ```
 
 #api(("analyze_ppf", "ppf_canvas"), syntax: [
@@ -39,28 +42,31 @@ print(ppf.assess(4, 3), ppf.assess(7, 6))       # PointStatus.INEFFICIENT PointS
 from principle_viz import analyze_ppf
 from principle_viz.visuals.ppf import ppf_canvas
 
-result = analyze_ppf(ppf, points=((6, ppf.y_at(6), "A"), (4, 3, "B"), (7, 6, "C")))
+points = ((6, ppf.y_at(6), "A"), (4, 3, "B"), (7, 6, "C"))
+result = analyze_ppf(ppf, points=points)
 ppf_canvas(result).save("ppf_points.png")
 ```
 
 #fig("/figures/ppf/points.svg", width: 46%, caption: [
-  Efficient (A), inefficient (B) and unattainable (C) points.
+  Efficient, inefficient and unattainable points.
 ]) <fig-ppf>
 
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
   #raw("PPFGrowthScenario(x_growth_rate=0.0, y_growth_rate=0.0)") \
-  #raw("analyze_ppf_growth(")#meta("frontier")#raw(", ")#meta("scenario")#raw(", *, samples=101)")
+  #raw("analyze_ppf_growth(")#meta("frontier")#raw(", ")#meta("scenario")#raw(", *, samples=101)") \
+  #raw("ppf_growth_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
 ])[
   Economic growth scales each intercept by one plus its growth rate; the
   result holds the `baseline` and `shifted` frontiers and their sampled
-  points. `ppf_growth_canvas()` draws both, named $P P F_0$ and $P P F_1$.
+  points. `ppf_growth_canvas()` draws both, named $P P F_0$ and $P P F_1$
+  (see @fig-ppf-growth).
 ]
 
 #fig("/figures/ppf/growth.svg", width: 46%, caption: [
   Growth of 20% in consumer goods and 10% in capital goods.
-])
+]) <fig-ppf-growth>
 
-== Comparative advantage
+== Comparative advantage <sec-comparative-advantage>
 
 #api(("compare_linear_ppfs",), syntax: [
   #raw("compare_linear_ppfs(name_a, frontier_a, name_b, frontier_b)")
@@ -73,8 +79,12 @@ ppf_canvas(result).save("ppf_points.png")
 ```python
 from principle_viz import compare_linear_ppfs
 
-ann = ProductionPossibilitiesFrontier(10, 5)   # 1 unit of x costs 0.5 y
-bob = ProductionPossibilitiesFrontier(6, 6)    # 1 unit of x costs 1 y
+ann = ProductionPossibilitiesFrontier(10, 5)  # x costs 0.5 y
+bob = ProductionPossibilitiesFrontier(6, 6)   # x costs 1 y
 result = compare_linear_ppfs("Ann", ann, "Bob", bob)
-print(result.comparative_advantage_x, result.comparative_advantage_y)   # Ann Bob
+print(result.comparative_advantage_x, result.comparative_advantage_y)
+# Ann Bob
 ```
+
+Ann has the comparative advantage in $x$ (0.5 against 1) and Bob in $y$
+(1 against 2).

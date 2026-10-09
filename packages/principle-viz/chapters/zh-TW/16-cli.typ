@@ -33,6 +33,8 @@ principle-viz equilibrium \
 
 == 指令
 
+各指令對應的計算與選項如#ref(<tab-cli>)；每個指令的計算說明見對應章節。
+
 #tbl(caption: [命令列指令])[
   #booktabs(
     columns: (auto, 1fr, auto),
