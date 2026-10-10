@@ -438,7 +438,7 @@
 // so it reads level with the text instead of sitting at its foot.
 #let _leader(color) = text(fill: color, box(width: 1fr, move(dy: -0.25em, repeat[.])))
 
-#let changelog() = context {
+#let changelog(compact: false) = context {
   let key = edition-state.get()
   let p = par-for(key)
   let s = strings-for(key)
@@ -457,9 +457,9 @@
   // hyperref's colorlinks default (never overridden by ctxdoc/l3doc): pure
   // red, used for every \PrintChanges/\PrintIndex page-number link.
   let link-color = rgb("#ff0000")
-  // One pitch everywhere, as in l3doc: the gap between entries equals
-  // the leading inside a wrapped entry, so a leader line stays with its text.
-  let gap = p.leading * 1em
+  // One pitch everywhere, as in l3doc. `compact` reduces only the space
+  // between entries; it leaves wrapped-entry leading and body text unchanged.
+  let gap = p.leading * (if compact { 0.65em } else { 1em })
   full-width({
     columns(2, gutter: 1.8em, {
       for v in versions {

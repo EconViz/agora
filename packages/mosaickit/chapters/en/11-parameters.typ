@@ -28,20 +28,27 @@ set of parameter values. Binding selects one diagram from that family.
 #definition(name: [Expressions and binding])[
   An _expression_ is a constant, a parameter, or $e_1 circle.small e_2$ for
   expressions $e_1, e_2$ and an operation $circle.small$. Its free parameters
-  are $"free"(c) = emptyset$, $"free"(p) = {p}$ and
-  $"free"(e_1 circle.small e_2) = "free"(e_1) union "free"(e_2)$. A
-  _binding_ $beta$ is a finite map from parameters to values, and
-  $"bind"(e, beta)$ is: the value $e(beta)$ if
-  $"free"(e) subset.eq "dom" beta$; otherwise $e$ itself if $e$ is a
-  parameter; otherwise $"bind"(e_1, beta) circle.small "bind"(e_2, beta)$.
+  satisfy
+  $ "free"(c) = emptyset, quad "free"(p) = {p}, $
+  and
+  $ "free"(e_1 circle.small e_2) = "free"(e_1) union "free"(e_2). $
+  A _binding_ $beta$ is a finite map from parameters to values.
+  $"bind"(e, beta)$ is the value $e(beta)$ if
+  $"free"(e) subset.eq "dom" beta$; it is $e$ itself if $e$ is an unbound
+  parameter; otherwise it is
+  $ "bind"(e_1, beta) circle.small "bind"(e_2, beta). $
   A plain value $v$ has no free parameters and evaluates to itself.
 ] <def-binding>
 
 #theorem(name: [Partial binding])[
   For every expression $e$ and binding $beta$,
-  (i) $"free"("bind"(e, beta)) = "free"(e) without "dom" beta$, and
-  (ii) for every binding $gamma$ with $"dom" gamma inter "dom" beta = emptyset$
-  and $"dom" gamma supset.eq "free"(e) without "dom" beta$,
+  (i)
+  $ "free"("bind"(e, beta)) = "free"(e) without "dom" beta; $
+  and (ii), for every binding $gamma$ satisfying
+  $ "dom" gamma inter "dom" beta = emptyset $
+  and
+  $ "dom" gamma supset.eq "free"(e) without "dom" beta, $
+  evaluation obeys
   $"bind"(e, beta)(gamma) = e(beta union gamma)$.
 ] <thm-binding>
 

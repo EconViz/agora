@@ -15,13 +15,25 @@
 ]
 
 #definition(name: [運算式與綁定])[
-  #emph[運算式]是常數、參數，或對運算式 $e_1, e_2$ 與運算 $circle.small$ 而言的 $e_1 circle.small e_2$。其自由參數為 $"free"(c) = emptyset$、$"free"(p) = {p}$、$"free"(e_1 circle.small e_2) = "free"(e_1) union "free"(e_2)$。#emph[綁定] $beta$ 是從參數到值的有限對應，而 $"bind"(e, beta)$ 定義為：若 $"free"(e) subset.eq "dom" beta$，則為值 $e(beta)$；否則若 $e$ 為參數，則為 $e$ 本身；否則為 $"bind"(e_1, beta) circle.small "bind"(e_2, beta)$。一般值 $v$ 沒有自由參數，求值結果為其本身。
+  #emph[運算式]是常數、參數，或對運算式 $e_1, e_2$ 與運算 $circle.small$ 而言的 $e_1 circle.small e_2$。其自由參數滿足
+  $ "free"(c) = emptyset, quad "free"(p) = {p}, $
+  以及
+  $ "free"(e_1 circle.small e_2) = "free"(e_1) union "free"(e_2). $
+  #emph[綁定] $beta$ 是從參數到值的有限對應。若 $"free"(e) subset.eq "dom" beta$，則 $"bind"(e, beta)$ 為值 $e(beta)$；若 $e$ 是未綁定參數，則為 $e$ 本身；其餘情況為
+  $ "bind"(e_1, beta) circle.small "bind"(e_2, beta). $
+  一般值 $v$ 沒有自由參數，求值結果為其本身。
 ] <def-binding>
 
 #theorem(name: [部分綁定])[
   對每個運算式 $e$ 與綁定 $beta$，
-  (i) $"free"("bind"(e, beta)) = "free"(e) without "dom" beta$；
-  (ii) 對每個滿足 $"dom" gamma inter "dom" beta = emptyset$ 且 $"dom" gamma supset.eq "free"(e) without "dom" beta$ 的綁定 $gamma$，$"bind"(e, beta)(gamma) = e(beta union gamma)$。
+  (i)
+  $ "free"("bind"(e, beta)) = "free"(e) without "dom" beta; $
+  (ii) 對每個滿足
+  $ "dom" gamma inter "dom" beta = emptyset $
+  以及
+  $ "dom" gamma supset.eq "free"(e) without "dom" beta $
+  的綁定 $gamma$，都有
+  $ "bind"(e, beta)(gamma) = e(beta union gamma). $
 ] <thm-binding>
 
 #corollary(name: [分階段綁定])[
