@@ -19,9 +19,12 @@ values are not `None`, so `opacity=0`, `width=0` and
 
 #proposition(name: [Merging is a monoid])[
   For styles $a, b, c$ of one type,
-  (i) $(a triangle.r b) triangle.r c = a triangle.r (b triangle.r c)$;
-  (ii) $epsilon triangle.r a = a triangle.r epsilon = a$;
-  (iii) $a triangle.r a = a$.
+  (i) associativity states
+  $ (a triangle.r b) triangle.r c = a triangle.r (b triangle.r c); $
+  (ii) the empty style is an identity,
+  $ epsilon triangle.r a = a triangle.r epsilon = a; $
+  and (iii) merging is idempotent,
+  $ a triangle.r a = a. $
   Field by field, $a_1 triangle.r dots.c triangle.r a_n$ takes the first
   value that is not `None`.
 ] <prop-monoid>

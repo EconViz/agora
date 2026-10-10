@@ -15,7 +15,7 @@ uv add "mosaickit==0.5.1"        # the version this manual describes
 
 如果使用 #pkg("pip")，请运行 `python -m pip install mosaickit`。导入 `mosaickit` 时不会一并导入 Matplotlib：内置渲染器要到画布第一次绘制时，才会按名称加载（详见#ref(<sec-rendering>)）。
 
-#changed("0.2.0", label: "mosaickit")[内建渲染器在第一次使用时按名称加载；核心不再导入 Matplotlib 后端]
+#changed("0.2.0", label: "mosaickit")[内置渲染器在第一次使用时按名称加载；核心不再导入 Matplotlib 后端]
 
 == 开发环境
 

@@ -15,13 +15,25 @@
 ]
 
 #definition(name: [表达式与绑定])[
-  #emph[表达式]是常数、参数，或对表达式 $e_1, e_2$ 与运算 $circle.small$ 而言的 $e_1 circle.small e_2$。其自由参数为 $"free"(c) = emptyset$、$"free"(p) = {p}$、$"free"(e_1 circle.small e_2) = "free"(e_1) union "free"(e_2)$。#emph[绑定] $beta$ 是从参数到值的有限对应，而 $"bind"(e, beta)$ 定义为：若 $"free"(e) subset.eq "dom" beta$，则为值 $e(beta)$；否则若 $e$ 为参数，则为 $e$ 本身；否则为 $"bind"(e_1, beta) circle.small "bind"(e_2, beta)$。一般值 $v$ 没有自由参数，求值结果为其本身。
+  #emph[表达式]是常数、参数，或对表达式 $e_1, e_2$ 与运算 $circle.small$ 而言的 $e_1 circle.small e_2$。其自由参数满足
+  $ "free"(c) = emptyset, quad "free"(p) = {p}, $
+  以及
+  $ "free"(e_1 circle.small e_2) = "free"(e_1) union "free"(e_2). $
+  #emph[绑定] $beta$ 是从参数到值的有限对应。若 $"free"(e) subset.eq "dom" beta$，则 $"bind"(e, beta)$ 为值 $e(beta)$；若 $e$ 是未绑定参数，则为 $e$ 本身；其余情况为
+  $ "bind"(e_1, beta) circle.small "bind"(e_2, beta). $
+  一般值 $v$ 没有自由参数，求值结果为其本身。
 ] <def-binding>
 
 #theorem(name: [部分绑定])[
   对每个表达式 $e$ 与绑定 $beta$，
-  (i) $"free"("bind"(e, beta)) = "free"(e) without "dom" beta$；
-  (ii) 对每个满足 $"dom" gamma inter "dom" beta = emptyset$ 且 $"dom" gamma supset.eq "free"(e) without "dom" beta$ 的绑定 $gamma$，$"bind"(e, beta)(gamma) = e(beta union gamma)$。
+  (i)
+  $ "free"("bind"(e, beta)) = "free"(e) without "dom" beta; $
+  (ii) 对每个满足
+  $ "dom" gamma inter "dom" beta = emptyset $
+  以及
+  $ "dom" gamma supset.eq "free"(e) without "dom" beta $
+  的绑定 $gamma$，都有
+  $ "bind"(e, beta)(gamma) = e(beta union gamma). $
 ] <thm-binding>
 
 #corollary(name: [分阶段绑定])[

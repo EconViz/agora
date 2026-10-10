@@ -14,9 +14,12 @@
 
 #proposition(name: [合并构成幺半群])[
   对同类型的样式 $a, b, c$，
-  (i) $(a triangle.r b) triangle.r c = a triangle.r (b triangle.r c)$；
-  (ii) $epsilon triangle.r a = a triangle.r epsilon = a$；
-  (iii) $a triangle.r a = a$。
+  (i) 结合律为
+  $ (a triangle.r b) triangle.r c = a triangle.r (b triangle.r c); $
+  (ii) 空样式是单位元，
+  $ epsilon triangle.r a = a triangle.r epsilon = a; $
+  (iii) 合并具有幂等性，
+  $ a triangle.r a = a. $
   逐栏来看，$a_1 triangle.r dots.c triangle.r a_n$ 取第一个不是 `None` 的值。
 ] <prop-monoid>
 

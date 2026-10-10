@@ -14,9 +14,12 @@
 
 #proposition(name: [合併構成么半群])[
   對同型別的樣式 $a, b, c$，
-  (i) $(a triangle.r b) triangle.r c = a triangle.r (b triangle.r c)$；
-  (ii) $epsilon triangle.r a = a triangle.r epsilon = a$；
-  (iii) $a triangle.r a = a$。
+  (i) 結合律為
+  $ (a triangle.r b) triangle.r c = a triangle.r (b triangle.r c); $
+  (ii) 空樣式是單位元，
+  $ epsilon triangle.r a = a triangle.r epsilon = a; $
+  (iii) 合併具冪等性，
+  $ a triangle.r a = a. $
   逐欄來看，$a_1 triangle.r dots.c triangle.r a_n$ 取第一個不是 `None` 的值。
 ] <prop-monoid>
 
