@@ -15,7 +15,7 @@ for ax, style, title in zip(axes, styles, titles):
         y_label="$y$",
         x_arrow_style=style,
         y_arrow_style=style,
-        font="PingFang TC",  # 使用有中文字形的字體
+        font="Noto Serif TC",  # 使用有中文字形的字體
         fig=fig,
         ax=ax,
     )

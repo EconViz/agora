@@ -63,7 +63,7 @@ TYPST_FLAGS = --root . --font-path fonts \
 	$(if $(KAITI_DIR),--font-path "$(KAITI_DIR)") \
 	--ignore-system-fonts
 
-.PHONY: pdf all editions watch figures publish clean validate-package validate-edition $(PACKAGE_NAMES)
+.PHONY: pdf all editions watch figures publish test clean validate-package validate-edition $(PACKAGE_NAMES)
 
 validate-package:
 	@test -f "$(DIR)/manual.toml" || \
@@ -106,6 +106,9 @@ watch: validate-edition
 
 figures: validate-package
 	cd $(DIR) && uv run python scripts/make_figures.py
+
+test:
+	uv run --project packages/principle-viz python -m unittest discover -s tests -v
 
 # The published PDFs must use the same fonts as a local build, so refuse to
 # publish without Kaiti.

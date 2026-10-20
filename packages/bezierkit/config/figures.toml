@@ -1,12 +1,7 @@
-# Standalone TikZ figure output and colours. Read by scripts/make_figures.py.
+# Standalone TikZ figure output. Shared colours live in
+# ../../template/config/figures.toml.
 
 [output]
 dir = "figures"
 precision = 4
 latexmk = "latexmk"
-
-[style]
-curve = "#8c8c8c"     # the curve or path itself
-accent = "#1a1a1a"    # a second curve, construction lines, bounds
-polygon = "#8c8c8c"   # control polygons and sampled points
-muted = "#ececec"     # hulls and reference functions behind a curve

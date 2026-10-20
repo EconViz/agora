@@ -8,8 +8,8 @@
 
 base = "default"
 
-# Font is TeX Gyre Pagella but unset
-# Add [font] text = "TeX Gyre Pagella" to use it
+[font]
+text = "TeX Gyre Pagella"
 
 [color]
 background = "#ffffff"
@@ -89,7 +89,6 @@ size = 5
 size = 5
 
 [label.point]               # the text beside a point such as x* at the optimum
-fontsize = 14
 position = "right"
 offset = 10
 

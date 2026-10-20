@@ -23,7 +23,7 @@ from utility_viz.models import CobbDouglas, decompose_price_effect
 INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 同 manual.toml 的颜色
 text = TextStyle(color=INK, size=14)
 effect_name = TextStyle(
-    color=INK, size=13, family="PingFang SC"
+    color=INK, size=13, family="Noto Serif SC"
 )  # 选用中日韩字体
 
 # x 的价格由 2 涨到 4

@@ -8,8 +8,8 @@
 
 base = "default"
 
-# 字體是 TeX Gyre Pagella 但不指定
-# 要用請加上 [font] text = "TeX Gyre Pagella"
+[font]
+text = "TeX Gyre Pagella"
 
 [color]
 background = "#ffffff"
@@ -89,7 +89,6 @@ size = 5
 size = 5
 
 [label.point]               # 點旁的文字 如 x*
-fontsize = 14
 position = "right"
 offset = 10
 

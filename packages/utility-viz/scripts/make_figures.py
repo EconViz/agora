@@ -27,11 +27,9 @@ from __future__ import annotations
 
 import argparse
 import ast
-import dataclasses
 import os
 import re
 import shutil
-import subprocess
 import sys
 import tempfile
 import textwrap
@@ -43,12 +41,14 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from matplotlib import font_manager  # noqa: E402
-
 ROOT = Path(__file__).resolve().parent.parent
+AGORA = ROOT.parents[1]
+sys.path.insert(0, str(AGORA))
+
+from scripts.figure_style import normalize_svg, register_fonts  # noqa: E402
+
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
-FONT = CONFIG["fonts"]["family"]
 EDITIONS = ["en", "zh-TW", "zh-CN"]
 
 # An animation figure shows four frames of the GIF its example saves: these values of `frames`.
@@ -158,37 +158,6 @@ def strip(frames: list[Path], target: Path, gap: float = 12.0) -> None:
     )
 
 
-def register_fonts() -> None:
-    """TeX Gyre Pagella from the TeX distribution, for text and for mathtext."""
-    try:
-        texmf = subprocess.run(
-            ["kpsewhich", "-var-value", "TEXMFDIST"], capture_output=True, text=True, check=True
-        ).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
-        return
-    for rel in CONFIG["fonts"]["texmf_files"]:
-        path = Path(texmf) / rel
-        if path.exists():
-            font_manager.fontManager.addfont(str(path))
-    matplotlib.rcParams.update(
-        {
-            "font.family": [FONT],
-            "mathtext.fontset": "custom",
-            "mathtext.rm": FONT,
-            "mathtext.it": f"{FONT}:italic",
-            "mathtext.bf": f"{FONT}:bold",
-        }
-    )
-    # MosaicKit text layers whose theme role names no family fall back to DejaVu Sans; use the manual's.
-    from mosaickit import TextStyle
-    from mosaickit.themes import resolution
-
-    base = resolution.PRIMITIVE_DEFAULT
-    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
-        base, text=dataclasses.replace(base.text or TextStyle(), family=FONT)
-    )
-
-
 class Recorder:
     """Redirects what an example saves into the figure file, and notes what an Animator was given."""
 
@@ -284,6 +253,7 @@ def main() -> int:
         for suffix, code in figures[name].items():
             target = OUT / f"{name}{suffix}.svg"
             run(code, target, name)
+            normalize_svg(target)
             print(f"  {target.relative_to(ROOT)}")
     # every edition gets the script in its own language; the website offers them as downloads
     for edition in EDITIONS:

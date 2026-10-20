@@ -14,11 +14,6 @@ dpi = 300
 size = 8         # pt: labels, marks and titles, the size of the captions
 note = 7         # pt: axis notes (the axes.note role)
 
-# CJK faces for the zh editions' text.
-[fonts.cjk]
-"zh-TW" = "PingFang TC"
-"zh-CN" = "PingFang SC"
-
 # The figures' words, by edition (English words are the keys).
 [labels."zh-TW"]
 "Span" = "跨度"

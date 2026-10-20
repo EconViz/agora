@@ -14,8 +14,6 @@ surplus", ...) are principle-viz's built-in labels, left as users get them.
 from __future__ import annotations
 
 import argparse
-import dataclasses
-import subprocess
 import sys
 import tomllib
 from collections.abc import Callable
@@ -25,10 +23,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from matplotlib import font_manager
-from mosaickit import CanvasGrid, TextStyle
-from mosaickit.rendering.matplotlib import fonts as mpl_fonts
-from mosaickit.themes import resolution
+from mosaickit import CanvasGrid, use_config
 
 from principle_viz import (
     DiscreteDemand,
@@ -80,10 +75,21 @@ from principle_viz.welfare.surplus import (
 )
 
 ROOT = Path(__file__).resolve().parent.parent
+AGORA = ROOT.parents[1]
+sys.path.insert(0, str(AGORA))
+
+from scripts.figure_style import (  # noqa: E402
+    FIGURE_STYLE,
+    LocalizedMatplotlibRenderer,
+    font_family,
+    normalize_svg,
+    register_fonts,
+    scaled_mosaickit_config,
+)
+
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 FMT = CONFIG["output"]["format"]
-FONT = CONFIG["fonts"]["family"]
 EDITIONS = ("en", "zh-TW", "zh-CN")
 EDITION = "en"  # the language the figures are drawn in; see set_edition()
 
@@ -93,99 +99,21 @@ EDITION = "en"  # the language the figures are drawn in; see set_edition()
 # ---------------------------------------------------------------------------
 
 
-def use_manual_fonts() -> None:
-    """Set text and math in TeX Gyre Pagella, the manual's body face."""
-    try:
-        texmf = subprocess.run(
-            ["kpsewhich", "-var-value", "TEXMFDIST"],
-            capture_output=True, text=True, check=True,
-        ).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
-        texmf = ""
-    for rel in CONFIG["fonts"]["texmf_files"]:
-        path = Path(texmf) / rel
-        if path.exists():
-            font_manager.fontManager.addfont(str(path))
-    matplotlib.rcParams.update({
-        "font.family": [FONT],
-        "mathtext.fontset": "custom",
-        "mathtext.rm": FONT,
-        "mathtext.it": f"{FONT}:italic",
-        "mathtext.bf": f"{FONT}:bold",
-    })
-    # MosaicKit falls back to DejaVu Sans for every text layer whose theme
-    # role sets no family (the primitive default every style resolves over);
-    # use the manual's face there instead.
-    base = resolution.PRIMITIVE_DEFAULT
-    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
-        base, text=dataclasses.replace(base.text or TextStyle(), family=FONT)
-    )
-    # Every label, axis mark and brace text is set through MosaicKit's
-    # font_properties(); scale its size there, in each module that imported it
-    # (placement measures text through the same function, so labels still
-    # avoid each other at the larger size).
-    scale = CONFIG["fonts"].get("text_scale", 1.0)
-    original = mpl_fonts.font_properties
-
-    def font_properties(style):
-        props = original(style)
-        props.set_size(props.get_size_in_points() * scale)
-        return props
-
-    for name, module in list(sys.modules.items()):
-        if name.startswith("mosaickit") and getattr(module, "font_properties", None) is original:
-            module.font_properties = font_properties
-
-
-def localize(value, table):
-    """The same value with every string found in *table* replaced; dataclasses, tuples and dicts are rebuilt."""
-    if isinstance(value, str):
-        return table.get(value, value)
-    if dataclasses.is_dataclass(value) and not isinstance(value, type):
-        changes = {}
-        for field in dataclasses.fields(value):
-            old = getattr(value, field.name)
-            new = localize(old, table)
-            if new is not old and new != old:
-                changes[field.name] = new
-        return dataclasses.replace(value, **changes) if changes else value
-    if isinstance(value, tuple):
-        return type(value)(localize(v, table) for v in value) if not hasattr(value, "_fields") else value
-    if isinstance(value, list):
-        return [localize(v, table) for v in value]
-    if isinstance(value, dict):
-        return {k: localize(v, table) for k, v in value.items()}
-    return value
-
-
-_original_render = None
-
-
-def set_edition(edition: str) -> None:
+def set_edition(edition: str):
     """Draw the following figures in this language: the words in them are translated and set in a CJK face.
 
     principle-viz's built-in labels ("Shortage", "Consumer surplus", ...) are English; the table in
     config/figures.toml gives their translations, applied to a figure just before it is drawn.
     """
-    global EDITION, _original_render
-    from mosaickit.rendering.matplotlib.renderer import MatplotlibRenderer
-
+    global EDITION
     EDITION = edition
     table = CONFIG.get("labels", {}).get(edition, {})
-    if _original_render is None:
-        _original_render = MatplotlibRenderer._draw
-        draw = _original_render
-
-        def translated_draw(self, ax, scene, context):  # canvases and grid cells both come through here
-            table = CONFIG.get("labels", {}).get(EDITION, {})
-            return draw(self, ax, localize(scene, table), localize(context, table))  # the context holds the titles
-
-        MatplotlibRenderer._draw = translated_draw
-    family = CONFIG["fonts"].get("cjk", {}).get(edition, FONT)
-    matplotlib.rcParams["font.family"] = [family]
-    base = resolution.PRIMITIVE_DEFAULT
-    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
-        base, text=dataclasses.replace(base.text or TextStyle(), family=family)
+    renderer = LocalizedMatplotlibRenderer(table, family=font_family(edition))
+    return scaled_mosaickit_config(
+        PlotTheme().to_mosaickit(),
+        scale=CONFIG["text"]["scale"],
+        edition=edition,
+        renderer=renderer,
     )
 
 
@@ -193,21 +121,22 @@ def use_house_colours() -> None:
     """Grey curves, black axes and arrows, grey fills: the EconViz look instead of the colour palette."""
     from principle_viz.visuals import theme
 
+    colors = FIGURE_STYLE["colors"]
     house = theme.ColorModel(
         name="house",
-        axis_color="#1a1a1a",
-        label_color="#1a1a1a",
-        demand_color="#8c8c8c",
-        supply_color="#1a1a1a",
-        baseline_color="#1a1a1a",
+        axis_color=colors["ink"],
+        label_color=colors["ink"],
+        demand_color=colors["curve"],
+        supply_color=colors["ink"],
+        baseline_color=colors["ink"],
         shifted_color="#6e6e6e",
-        tax_color="#595959",
-        control_color="#595959",
-        cs_color="#b8b8b8",
-        ps_color="#8c8c8c",
+        tax_color=colors["dark"],
+        control_color=colors["dark"],
+        cs_color=colors["light"],
+        ps_color=colors["curve"],
         tax_revenue_color="#d9d9d9",
-        dwl_color="#595959",
-        arrow_color="#1a1a1a",
+        dwl_color=colors["dark"],
+        arrow_color=colors["ink"],
     )
     theme.DEFAULT_COLOR_MODEL = house  # every PlotTheme() created from here on starts from it
     theme.BUILTIN_COLOR_MODELS["default"] = house  # and so does the "default" palette by name
@@ -491,14 +420,16 @@ def main() -> int:
     unknown = set(args.groups) - set(FIGURES)
     if unknown:
         parser.error(f"unknown group(s): {', '.join(sorted(unknown))}")
-    use_manual_fonts()
+    register_fonts()
     use_house_colours()
     for group in args.groups or FIGURES:
         for func in FIGURES[group]:
             for edition in EDITIONS:  # the same figure once per language
-                set_edition(edition)
-                func()
+                with use_config(set_edition(edition)):
+                    func()
             print(f"{group}: {func.__name__}")
+    for path in OUT.rglob("*.svg"):
+        normalize_svg(path)
     return 0
 
 

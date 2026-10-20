@@ -1,0 +1,29 @@
+# Shared visual tokens for every generated figure in Agora.
+
+[colors]
+ink = "#1a1a1a"
+dark = "#595959"
+curve = "#8c8c8c"
+light = "#b8b8b8"
+muted = "#ececec"
+white = "#ffffff"
+
+[text]
+size = 8
+note = 7
+
+[fonts]
+latin = "TeX Gyre Pagella"
+texmf_files = [
+  "fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",
+  "fonts/opentype/public/tex-gyre/texgyrepagella-italic.otf",
+  "fonts/opentype/public/tex-gyre/texgyrepagella-bold.otf",
+]
+
+[fonts.cjk]
+"zh-TW" = "Noto Serif TC"
+"zh-CN" = "Noto Serif SC"
+
+[fonts.files]
+"zh-TW" = ["NotoSerifTC-Regular.otf", "NotoSerifTC-Bold.otf"]
+"zh-CN" = ["NotoSerifSC-Regular.ttf", "NotoSerifSC-Bold.ttf"]

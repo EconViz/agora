@@ -61,31 +61,15 @@ from mosaickit.layout.placement.point import ORDER
 from mosaickit.layout.stack1d import spread
 
 ROOT = Path(__file__).resolve().parent.parent
+AGORA = ROOT.parents[1]
+sys.path.insert(0, str(AGORA))
 
-
-def register_font() -> str | None:
-    """TeX Gyre Pagella from the TeX distribution, or None to keep the default typeface."""
-    import subprocess
-
-    from matplotlib import font_manager
-
-    try:
-        texmf = subprocess.run(
-            ["kpsewhich", "-var-value", "TEXMFDIST"], capture_output=True, text=True, check=True
-        ).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
-        return None
-    found = False
-    for style in ("regular", "italic", "bold"):
-        path = Path(texmf) / "fonts/opentype/public/tex-gyre" / f"texgyrepagella-{style}.otf"
-        if path.exists():
-            font_manager.fontManager.addfont(str(path))
-            found = True
-    if not found:
-        return None
-    matplotlib.rcParams.update({"mathtext.fontset": "custom", "mathtext.rm": "TeX Gyre Pagella",
-                                "mathtext.it": "TeX Gyre Pagella:italic", "mathtext.bf": "TeX Gyre Pagella:bold"})
-    return "TeX Gyre Pagella"
+from scripts.figure_style import (  # noqa: E402
+    FIGURE_STYLE,
+    font_family,
+    mosaickit_config,
+    register_fonts,
+)
 
 
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
@@ -98,15 +82,22 @@ TEXT = CONFIG["text"]
 # would otherwise beat the theme's smaller axes.note; each text role is listed.
 # The look is the EconViz one: grey curves, black axes, guides and points, a white page, set in
 # TeX Gyre Pagella when the TeX distribution has it.
-INK, GREY, LIGHT = "#1a1a1a", "#8c8c8c", "#b8b8b8"
-FONT = register_font()
-def figures_config(family: str | None) -> Config:
+INK = FIGURE_STYLE["colors"]["ink"]
+GREY = FIGURE_STYLE["colors"]["curve"]
+LIGHT = FIGURE_STYLE["colors"]["light"]
+
+
+def figures_config(edition: str) -> Config:
+    text_config = mosaickit_config(
+        edition=edition,
+        text_size=TEXT["size"],
+        note_size=TEXT["note"],
+    )
     return Config(
         role_overrides={
-            "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
-            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
-            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family), stroke=Stroke(color=INK, width=0.8)),
-            "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=family)),
+            **text_config.role_overrides,
+            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=font_family(edition))),
+            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=font_family(edition)), stroke=Stroke(color=INK, width=0.8)),
             "point": StyleBundle(marker=Marker(color=INK, size=16)),
             "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
             "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
@@ -115,7 +106,7 @@ def figures_config(family: str | None) -> Config:
     )
 
 
-FIGURES_CONFIG = figures_config(FONT)
+FIGURES_CONFIG = figures_config("en")
 EDITIONS = ("en", "zh-TW", "zh-CN")
 EDITION = "en"  # the language the figures are drawn in; see set_edition()
 
@@ -124,7 +115,7 @@ def set_edition(edition: str) -> None:
     """Draw the following figures in this language: their words come from config/figures.toml, set in a CJK face."""
     global EDITION, FIGURES_CONFIG
     EDITION = edition
-    FIGURES_CONFIG = figures_config(CONFIG["fonts"].get("cjk", {}).get(edition, FONT))
+    FIGURES_CONFIG = figures_config(edition)
 
 
 def tr(text: str) -> str:
@@ -326,6 +317,7 @@ def main() -> int:
     if not selected:
         print(f"no figure matches {args.groups}", file=sys.stderr)
         return 1
+    register_fonts()
     for name in selected:
         for edition in EDITIONS:  # the same figure once per language
             set_edition(edition)

@@ -20,6 +20,7 @@ figure is one size, the size of the captions.
 from __future__ import annotations
 
 import argparse
+import os
 import subprocess
 import sys
 import tomllib
@@ -35,11 +36,21 @@ from bezierkit.implicit import trace_implicit
 from bezierkit.interpolation import graph_hermite
 
 ROOT = Path(__file__).resolve().parent.parent
+AGORA = ROOT.parents[1]
+sys.path.insert(0, str(AGORA))
+
+from scripts.figure_style import FIGURE_STYLE  # noqa: E402
+
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 PRECISION = CONFIG["output"]["precision"]
 LATEXMK = CONFIG["output"]["latexmk"]
-STYLE = CONFIG["style"]
+STYLE = {
+    "curve": FIGURE_STYLE["colors"]["curve"],
+    "accent": FIGURE_STYLE["colors"]["ink"],
+    "polygon": FIGURE_STYLE["colors"]["curve"],
+    "muted": FIGURE_STYLE["colors"]["muted"],
+}
 
 CUBIC = CubicBezierSegment(Point(0, 0), Point(1, 2), Point(3, 2), Point(4, 0))
 
@@ -137,7 +148,11 @@ def write(group: str, name: str, body: list[str], *, unit_x: float, unit_y: floa
     if compile_pdf:
         subprocess.run(
             [LATEXMK, "-pdf", "-interaction=nonstopmode", "-halt-on-error", tex.name],
-            cwd=tex.parent, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            cwd=tex.parent,
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            env={**os.environ, "SOURCE_DATE_EPOCH": "0"},
         )
         for suffix in (".aux", ".fdb_latexmk", ".fls", ".log"):
             tex.with_suffix(suffix).unlink(missing_ok=True)

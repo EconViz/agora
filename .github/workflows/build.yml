@@ -34,6 +34,11 @@ jobs:
             | sudo tar -xJ -C /usr/local/bin --strip-components=1
           typst --version
 
+      - uses: astral-sh/setup-uv@v7
+
+      - name: Test figure style
+        run: make test
+
       # Kaiti is missing by design; any other warning fails the build.
       - name: Build PDFs
         shell: bash
