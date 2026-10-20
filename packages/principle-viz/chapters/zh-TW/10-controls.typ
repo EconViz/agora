@@ -13,6 +13,9 @@
   位於 `control_price` 的上限（`CEILING`）或下限（`FLOOR`），位於 `principle_viz.core.controls`。
 ]
 
+#param("CEILING", type: "PriceControlType")[價格上限。]
+#param("FLOOR", type: "PriceControlType")[價格下限。]
+
 #api(("evaluate_price_control",), syntax: [
   #raw("evaluate_price_control(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[

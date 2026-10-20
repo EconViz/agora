@@ -129,10 +129,16 @@ print(analyzer.demand_degree_zero(px=2.0, py=3.0, income=60.0))
 For Cobb-Douglas utility the degree is $alpha + beta$:
 $ u(lambda x, lambda y) = lambda^(alpha + beta) u(x, y). $
 
-#param("INCREASING")[$alpha + beta > 1$, increasing returns.]
-#param("CONSTANT")[$alpha + beta = 1$, constant returns.]
-#param("DECREASING")[$alpha + beta < 1$, decreasing returns.]
-#param("NOT_HOMOGENEOUS")[No consistent degree of homogeneity.]
+#api(("ReturnsToScale",), syntax: [
+  `ReturnsToScale.INCREASING`, `CONSTANT`, `DECREASING`, `NOT_HOMOGENEOUS`
+])[
+  The returns-to-scale class of a function.
+]
+
+#param("INCREASING", type: "ReturnsToScale")[$alpha + beta > 1$, increasing returns.]
+#param("CONSTANT", type: "ReturnsToScale")[$alpha + beta = 1$, constant returns.]
+#param("DECREASING", type: "ReturnsToScale")[$alpha + beta < 1$, decreasing returns.]
+#param("NOT_HOMOGENEOUS", type: "ReturnsToScale")[No consistent degree of homogeneity.]
 
 ```python
 def shifted_utility(x, y):

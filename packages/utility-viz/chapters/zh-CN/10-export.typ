@@ -17,16 +17,16 @@
 - TeX：TikZ 源代码（`.tex`），可嵌入 #LaTeX 文件。通过关键字参数 `tikz_scale` 与 `tikz_standalone` 调整输出。
 
 ```python
-cvs.save("figure.png")   # PNG，依画布 DPI（默认 300）
-cvs.save("figure.pdf")   # PDF（向量）
-cvs.save("figure.svg")   # SVG（向量）
+cvs.save("figure.png")   # PNG 依画布 DPI 默认 300
+cvs.save("figure.pdf")   # PDF 向量
+cvs.save("figure.svg")   # SVG 向量
 cvs.save("figure.tex")   # TikZ
 ```
 
 `dpi` 仅影响位图。预览时可降低分辨率：
 
 ```python
-cvs = Canvas(x_max=20, y_max=15, dpi=150)   # 降低 DPI，加快预览
+cvs = Canvas(x_max=20, y_max=15, dpi=150)   # 降低 DPI 加快预览
 ```
 
 == GIF 动画

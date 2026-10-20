@@ -41,6 +41,153 @@
   `themes.COLORBLIND_CYCLE_HEX` 与 `themes.COLORBLIND_CYCLE_RGB` 提供这组配色的十六进制与 RGB 值。经济学教学大量依赖图形，因此不应只靠颜色传达含义，以免视觉障碍的学生无法辨识 #citep(<kugler1996>)。
 ]
 
+下列各图以每个内置主题（`dark` 除外）画出同一张 Cobb-Douglas 图，沿用本手册的线宽，底色为白色。
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主题自己的颜色 配上本手册的线宽 放在白底上
+theme = replace(
+    themes.default,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_default.png")
+```])
+
+#fig("/figures/themes/default.svg", width: 56%, caption: [
+  `default` 主题。
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主题自己的颜色 配上本手册的线宽 放在白底上
+theme = replace(
+    themes.nord,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_nord.png")
+```])
+
+#fig("/figures/themes/nord.svg", width: 56%, caption: [
+  `nord` 主题。
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主题自己的颜色 配上本手册的线宽 放在白底上
+theme = replace(
+    themes.paper,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_paper.png")
+```])
+
+#fig("/figures/themes/paper.svg", width: 56%, caption: [
+  `paper` 主题。
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主题自己的颜色 配上本手册的线宽 放在白底上
+theme = replace(
+    themes.monochrome,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_monochrome.png")
+```])
+
+#fig("/figures/themes/monochrome.svg", width: 56%, caption: [
+  `monochrome` 主题。
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主题自己的颜色 配上本手册的线宽 放在白底上
+theme = replace(
+    themes.presentation,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_presentation.png")
+```])
+
+#fig("/figures/themes/presentation.svg", width: 56%, caption: [
+  `presentation` 主题。
+])
+
 == 自定义主题
 
 #api(("Theme",), updated: "v1.12.0", syntax: [
@@ -103,7 +250,7 @@
   `Config.load()` 读取 TOML 文件并返回 `Config`。`use()` 将其设为后续图形的默认配置；`reset()` 恢复内置默认值。
 ]
 
-=== 教程：以配置文件统一图形样式
+=== 教程：统一样式
 
 同一份讲义或论文的图形，通常要共用相同的颜色与线条。与其在每个 `Canvas` 重复传入参数，不如把样式写在项目根目录的 `utility-viz.toml`，让 Python 与命令行读取同一份配置。
 
@@ -168,7 +315,111 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 ```
 
 
-=== 配置文件的查找顺序 <sec-config-lookup>
+=== 手册图形设置 <sec-manual-toml>
+
+本手册的示例都先加载 `manual.toml`，图形的外观由它决定：灰色曲线、黑色坐标轴与辅助线、黑色的点、白色底。文件没有指定字体，所以在任何电脑上都能运行；图形使用 TeX Gyre Pagella，没有这个字体时则用默认字体。
+
+```toml
+# 本手册所有图形的设置
+# 灰色曲线 黑色坐标轴与辅助线 黑色的点 白色背景
+# 画图前先加载
+#
+#     Config.load("manual.toml").use()
+#
+# 各区段对应 Theme 的属性 详见主题与设置一章
+
+base = "default"
+
+# 字体是 TeX Gyre Pagella 这里不指定 文件在任何电脑上都能运行
+# 已安装该字体时可加上 [font] text = "TeX Gyre Pagella"
+
+[color]
+background = "#ffffff"
+axis = "#1a1a1a"
+label = "#1a1a1a"
+ic = "#8c8c8c"              # 无差异曲线
+secondary_ic = "#b8b8b8"    # 强调曲线旁的曲线
+path = "#1a1a1a"            # 价格与收入消费路径
+budget = "#222222"
+eq = "#1a1a1a"              # 均衡点与其他点
+ray = "#8c8c8c"
+kink = "#8c8c8c"
+sub_effect = "#8c8c8c"
+inc_effect = "#8c8c8c"
+compensated_budget = "#1a1a1a"
+subsistence = "#8c8c8c"
+contract = "#8c8c8c"
+core = "#1a1a1a"
+price = "#8c8c8c"
+walrasian = "#1a1a1a"
+
+[stroke.axis]
+width = 1.0
+style = "solid"
+arrow = "-|>"
+
+[stroke.ic]
+width = 2.6
+
+[stroke.secondary_ic]
+width = 1.8
+opacity = 1.0
+
+[stroke.path]
+width = 1.4
+
+[stroke.budget]
+width = 2.6
+
+[stroke.ray]
+width = 0.9
+
+[stroke.substitution]
+width = 1.8
+
+[stroke.income]
+width = 1.8
+
+[stroke.compensated_budget]
+width = 1.0
+
+[stroke.contract]
+width = 2.6
+
+[stroke.price]
+width = 2.6
+
+[stroke.drop]               # 从点到坐标轴的辅助线
+width = 0.8
+style = "dashed"
+color = "#1a1a1a"
+
+[stroke.projection]
+width = 0.8
+style = "dashed"
+color = "#1a1a1a"
+
+[stroke.guide]
+width = 0.8
+style = "dashed"
+color = "#1a1a1a"
+
+[marker.eq]
+size = 5
+
+[marker.point]
+size = 5
+
+[label.point]               # 点旁的文字 例如最优点的 x*
+fontsize = 14
+position = "right"
+offset = 10
+
+[fill.budget]
+opacity = 0.08
+```
+
+=== 配置文件查找顺序 <sec-config-lookup>
 
 #api(("Config.discover",), added: "v2.0.0b1", syntax: [
   #raw("Config.discover(")#oarg("path")#raw(", directory=None)")

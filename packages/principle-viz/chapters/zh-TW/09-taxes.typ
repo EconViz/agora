@@ -22,6 +22,25 @@
 
 == 求解
 
+#api(("TaxType",), syntax: [
+  `TaxType.FIXED_TAX`, `PER_UNIT_TAX`, `AD_VALOREM_TAX`
+])[
+  稅的定義，來自 `principle_viz.policy.tax`。
+]
+
+#param("FIXED_TAX", type: "TaxType")[固定金額，使曲線平移 `amount`。]
+#param("PER_UNIT_TAX", type: "TaxType")[每單位的稅額；均衡與 `FIXED_TAX` 相同。]
+#param("AD_VALOREM_TAX", type: "TaxType")[按價格計的稅率，使曲線旋轉。]
+
+#api(("TaxOn",), syntax: [
+  `TaxOn.CONSUMER`, `PRODUCER`
+])[
+  稅的法律歸宿，來自 `principle_viz.policy.tax`。
+]
+
+#param("CONSUMER", type: "TaxOn")[向買方課徵：需求向下平移。]
+#param("PRODUCER", type: "TaxOn")[向賣方課徵：供給向上平移。]
+
 #api(("solve_tax_equilibrium",), syntax: [
   #raw("solve_tax_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
@@ -114,6 +133,15 @@ fig.finalize()
 ])[
   每單位 `amount` 的補貼（不得為負），發給賣方（`SubsidyTo.PRODUCER`）或買方（`SubsidyTo.CONSUMER`），位於 `principle_viz.policy.subsidy`。
 ]
+
+#api(("SubsidyTo",), syntax: [
+  `SubsidyTo.PRODUCER`, `CONSUMER`
+])[
+  補貼的受領者，來自 `principle_viz.policy.subsidy`。
+]
+
+#param("PRODUCER", type: "SubsidyTo")[補貼給賣方。]
+#param("CONSUMER", type: "SubsidyTo")[補貼給買方。]
 
 #api(("solve_subsidy_equilibrium", "compare_subsidy_scenario"), syntax: [
   #raw("solve_subsidy_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")") \

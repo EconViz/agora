@@ -14,21 +14,19 @@ $
 程序先求解最优消费组合，再绘制无差异曲线、预算集与均衡点（参见#ref(<fig-quickstart>)）。
 
 #example([```python
-from utility_viz import Canvas, levels, solve
+from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-model = CobbDouglas(alpha=0.5, beta=0.5)
-eq    = solve(model, px=2.0, py=3.0, income=30.0)
-lvls  = levels.around(eq.utility, n=5)
+Config.load("manual.toml").use()  # 本手册图形所用的设置
 
-cvs = Canvas(
-    x_max=20, y_max=15,
-    x_label="x", y_label="y",
-    title=r"Cobb-Douglas $x^{0.5} y^{0.5}$"
-)
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+lvls = levels.around(eq.utility, n=5)  # 五条曲线 其中一条通过最优点
 cvs.add_utility(model, levels=lvls)
-cvs.add_budget(2.0, 3.0, 30.0, fill=True)
-cvs.add_equilibrium(eq, show_ray=True)
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # 预算线与可行集合
+cvs.add_equilibrium(eq, show_ray=True)  # 附扩张路径
 cvs.save("cobb_douglas.png")
 ```])
 

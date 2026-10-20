@@ -14,6 +14,16 @@
 #param("opportunity_cost_x(x)")[多生产一单位 $x$ 所放弃的 $y$，即 $abs(dif y slash dif x)$。]
 #param("assess(x, y)")[返回 `PointStatus`：曲线上为 `EFFICIENT`，曲线内为 `INEFFICIENT`，曲线外为 `UNATTAINABLE`。]
 
+#api(("PointStatus",), syntax: [
+  `PointStatus.EFFICIENT`, `INEFFICIENT`, `UNATTAINABLE`
+])[
+  点相对于边界的位置。
+]
+
+#param("EFFICIENT", type: "PointStatus")[在边界上。]
+#param("INEFFICIENT", type: "PointStatus")[在边界内侧。]
+#param("UNATTAINABLE", type: "PointStatus")[在边界外侧。]
+
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
 

@@ -17,27 +17,26 @@ or more than two goods.
 #param("func")[Vectorised utility function of $x$ and $y$.]
 #param("name")[Display name of the model.]
 
-```python
+#example([```python
 import numpy as np
-from utility_viz import Canvas, levels, solve
+
+from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-model = CustomUtility(
-    func=lambda x, y: np.log(x) + np.log(y),
-    name="log+log",
-)
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+# Any function of x and y that works on arrays is a utility function
+model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-(
-    Canvas(x_max=20, y_max=15, title="Custom Utility")
-    .add_utility(model, levels=levels.around(eq.utility, n=5))
-    .add_budget(2.0, 3.0, 30.0)
-    .add_equilibrium(eq)
-    .save("custom.png")
-)
-```
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("custom.png")
+```])
 
-#fig("/figures/models/custom.svg", width: 42%, caption: [
+#fig("/figures/models/custom.svg", width: 56%, caption: [
   A custom model, $ln x + ln y$.
 ])
 
@@ -56,27 +55,25 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
 #param("shares")[Mapping from each good's name to its exponent $alpha_i$.]
 #param("freeze(...)")[Fixed quantities of the goods other than $x$ and $y$.]
 
-```python
-from utility_viz import Canvas, levels, solve
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import MultiGoodCD
 
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+# Three goods x y z with z held at 10 to draw the x y plane
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})
 two_good_model = model.freeze(z=10.0)
 eq = solve(two_good_model, px=2.0, py=3.0, income=30.0)
 
-(
-    Canvas(x_max=20, y_max=15, title="Multi-Good Cobb-Douglas")
-    .add_utility(
-        two_good_model,
-        levels=levels.around(eq.utility, n=5),
-    )
-    .add_budget(2.0, 3.0, 30.0, fill=True)
-    .add_equilibrium(eq)
-    .save("multigood.png")
-)
-```
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(two_good_model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("multigood.png")
+```])
 
-#fig("/figures/models/multigood.svg", width: 42%, caption: [
+#fig("/figures/models/multigood.svg", width: 56%, caption: [
   A three-good Cobb-Douglas model with $z = 10$ fixed.
 ])
 

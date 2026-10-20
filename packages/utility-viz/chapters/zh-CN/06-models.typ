@@ -40,7 +40,23 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("beta", default: "0.5")[商品 $y$ 的权重。]
 #param("rho", default: "0.5")[替代参数，且 $rho != 1$。]
 
-#fig("/figures/models/ces.svg", width: 42%, caption: [CES 曲线。])
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CES
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CES(alpha=0.5, beta=0.5, rho=-0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("ces.png")
+```])
+
+#fig("/figures/models/ces.svg", width: 56%, caption: [CES 曲线。])
 
 === Translog
 
@@ -62,7 +78,23 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("beta_yy", default: "0.0")[$y$ 方向的曲率。]
 #param("beta_xy", default: "0.0")[$x$ 与 $y$ 的交叉效应。]
 
-#fig("/figures/models/translog.svg", width: 42%, caption: [Translog 示例。])
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import Translog
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = Translog(alpha_x=0.6, alpha_y=0.4, beta_xy=0.12)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=18, y_max=12, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=4))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("translog.png")
+```])
+
+#fig("/figures/models/translog.svg", width: 56%, caption: [Translog 示例。])
 
 == 折点与角解
 
@@ -84,7 +116,28 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("a", default: "1.0")[商品 $x$ 的权重。]
 #param("b", default: "1.0")[商品 $y$ 的权重。]
 
-#fig("/figures/models/leontief.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import Leontief
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = Leontief(a=1.0, b=1.0)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(
+    model,
+    levels=levels.around(eq.utility, n=5),
+    show_rays=True,
+    show_kinks=True,  # 每个折点画一条射线与一个标记
+)
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("leontief.png")
+```])
+
+#fig("/figures/models/leontief.svg", width: 56%, caption: [
   完全互补射线。
 ])
 
@@ -99,7 +152,23 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("a", default: "1.0")[商品 $x$ 的边际效用。]
 #param("b", default: "1.0")[商品 $y$ 的边际效用。]
 
-#fig("/figures/models/perfect_substitutes.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import PerfectSubstitutes
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = PerfectSubstitutes(a=1.0, b=2.0)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("perfect_substitutes.png")
+```])
+
+#fig("/figures/models/perfect_substitutes.svg", width: 56%, caption: [
   完全替代角解。
 ])
 
@@ -116,7 +185,25 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("a", default: "1.0")[商品 $x$ 的权重。]
 #param("b", default: "1.0")[商品 $y$ 的权重。]
 
-#fig("/figures/models/maximum.svg", width: 42%, caption: [最大值效用。])
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CustomUtility
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CustomUtility(func=lambda x, y: np.maximum(x, y), name="maximum")
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=25, y_max=20, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("maximum.png")
+```])
+
+#fig("/figures/models/maximum.svg", width: 56%, caption: [最大值效用。])
 
 == 收入与参考点
 
@@ -133,7 +220,25 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("v_func", default: "numpy.log")[递增且凹的函数 $f$。]
 #param("linear_in", default: "\"y\"")[以线性方式进入的商品。]
 
-#fig("/figures/models/quasi_linear.svg", width: 42%, caption: [
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import QuasiLinear
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = QuasiLinear(v_func=np.log, linear_in="y")
+eq = solve(model, px=1.0, py=2.0, income=20.0)
+
+cvs = Canvas(x_max=15, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(1.0, 2.0, 20.0)
+cvs.add_equilibrium(eq)
+cvs.save("quasi_linear.png")
+```])
+
+#fig("/figures/models/quasi_linear.svg", width: 56%, caption: [
   准线性偏好。
 ])
 
@@ -160,7 +265,23 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("demand(px, py, income)")[返回闭式内部解。]
 #param("is_giffen(px, py, income)")[检查指定预算下商品 $x$ 是否为季芬财。]
 
-#fig("/figures/models/haagsma.svg", width: 42%, caption: [$gamma_y = 10$ 的 Haagsma。])
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import Haagsma
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = Haagsma(gamma_y=10.0)
+eq = solve(model, px=1.0, py=1.0, income=11.0)
+
+cvs = Canvas(x_max=9, y_max=12, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=4))
+cvs.add_budget(1.0, 1.0, 11.0)
+cvs.add_equilibrium(eq)
+cvs.save("haagsma.png")
+```])
+
+#fig("/figures/models/haagsma.svg", width: 56%, caption: [$gamma_y = 10$ 的 Haagsma。])
 
 === Stone-Geary
 
@@ -175,7 +296,23 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("bar_x", default: "1.0")[基本需求量 $overline(x)$。]
 #param("bar_y", default: "1.0")[基本需求量 $overline(y)$。]
 
-#fig("/figures/models/stone_geary.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import StoneGeary
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = StoneGeary(alpha=0.5, beta=0.5, bar_x=2.0, bar_y=2.0)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("stone_geary.png")
+```])
+
+#fig("/figures/models/stone_geary.svg", width: 56%, caption: [
   Stone-Geary。
 ])
 
@@ -192,6 +329,24 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 #param("a", default: "1.0")[$x$ 轴方向的曲率。]
 #param("b", default: "1.0")[$y$ 轴方向的曲率。]
 
-#fig("/figures/models/satiation.svg", width: 42%, caption: [
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels
+from utility_viz.models import Satiation
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = Satiation(bliss_x=6.0, bliss_y=4.0)
+
+# 曲线取自网格上的效用值 这张图没有预算线与最优点
+X, Y = np.meshgrid(np.linspace(0.1, 12.0, 300), np.linspace(0.1, 10.0, 300))
+
+cvs = Canvas(x_max=12, y_max=10, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.percentile(model(X, Y), n=5))  # u 的五个百分位数
+cvs.save("satiation.png")
+```])
+
+#fig("/figures/models/satiation.svg", width: 56%, caption: [
   饱和偏好。
 ])

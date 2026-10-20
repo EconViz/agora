@@ -24,8 +24,8 @@ layers for indifference curves, budget lines, equilibria and more.
       y_label="y",
       title=r"Cobb-Douglas $x^{0.5} y^{0.5}$",
       dpi=300,
-      x_label_pos="right",   # "top", "right" or "bottom"
-      y_label_pos="top",     # "left", "top" or "right"
+      x_label_pos="right",   # top / right / bottom
+      y_label_pos="top",     # left / top / right
       font="DejaVu Sans",
       math_font="stix",
       axis_stroke=Stroke(width=1.0, arrow=ArrowStyle.TRIANGLE),
@@ -94,12 +94,12 @@ so calls can be chained (@sec-chaining).
   cvs.add_utility(
       func,
       levels=3,          # count or list of levels
-      color=None,        # default: theme.ic_color
-      linewidth=None,    # default: theme.ic_linewidth
+      color=None,        # default theme.ic_color
+      linewidth=None,    # default theme.ic_linewidth
       show_rays=False,
       show_kinks=False,
       kink_radius=1.0,
-      show_bliss=True,   # star at the bliss point (Satiation)
+      show_bliss=True,   # star at the bliss point of Satiation
       show_ic_labels=False,
       stroke=None,
       ray_stroke=None,
@@ -116,7 +116,7 @@ so calls can be chained (@sec-chaining).
 #param("levels", type: "int | list", default: "3")[A number of curves, or a list of utility values such as `levels.around(eq.utility, n=5)` to place them around the optimum.]
 #param("highlight_level", type: "float | None", default: "None")[Focal utility level. The closest curve is drawn in the main style.]
 #param("secondary_stroke", type: "Stroke | None", default: "None")[Style of the other curves; defaults to `theme.secondary_ic_stroke`.]
-#param("show_ic_labels", type: "bool", default: "False")[Label the curves. Labels follow the curve's tangent and stay inside the plotting area (@fig-ic-hierarchy).]
+#param("show_ic_labels", type: "bool", default: "False")[Label the curves. Labels follow the curve's tangent and stay inside the plotting area.]
 #param("label_style", type: "str", default: "\"numeric\"")[`"numeric"` shows utility values; `"ordinal"` numbers the curves $u_1, u_2, dots$ in increasing utility.]
 
 ```python
@@ -130,13 +130,23 @@ cvs.add_utility(
 )
 ```
 
-#fig("/figures/canvas/add_utility.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))  # three curves around the optimum
+cvs.save("add_utility.png")
+```])
+
+#fig("/figures/canvas/add_utility.svg", width: 56%, caption: [
   Three indifference curves.
 ]) <fig-add-utility>
-
-#fig("/figures/canvas/ic_hierarchy.svg", width: 82%, caption: [
-  Focal and secondary curves.
-]) <fig-ic-hierarchy>
 
 #api(("add_budget",), syntax: [
   ```python
@@ -145,9 +155,9 @@ cvs.add_utility(
       color=None,
       linewidth=None,
       linestyle="-",
-      label=None,        # legend label (LaTeX)
+      label=None,        # legend label in LaTeX
       fill=False,        # shade feasible set
-      fill_alpha=None,   # default: theme.budget_fill_alpha
+      fill_alpha=None,   # default theme.budget_fill_alpha
       stroke=None,
   )
   ```
@@ -159,7 +169,17 @@ cvs.add_utility(
 #param("stroke", type: "Stroke | None", default: "None")[Colour, width, style and opacity of the line in one object; takes precedence over `color`, `linewidth` and `linestyle` (@sec-styles).]
 #param("label", type: "str | None", default: "None")[Legend text, shown once `show_legend()` is called.]
 
-#fig("/figures/canvas/add_budget.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # the line and its feasible set
+cvs.save("add_budget.png")
+```])
+
+#fig("/figures/canvas/add_budget.svg", width: 56%, caption: [
   Budget line and shading.
 ])
 
@@ -185,7 +205,23 @@ cvs.add_utility(
 #param("show_ray", type: "bool", default: "False")[Draw the expansion path through the origin and the optimum.]
 #param("marker", type: "Marker | None", default: "None")[Style of the equilibrium marker (@sec-styles).]
 
-#fig("/figures/canvas/add_equilibrium.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)  # the optimum with dashed guides to the axes
+cvs.save("add_equilibrium.png")
+```])
+
+#fig("/figures/canvas/add_equilibrium.svg", width: 56%, caption: [
   Equilibrium and drop lines.
 ])
 
@@ -203,7 +239,24 @@ cvs.add_utility(
   expansion path or a fixed consumption ratio.
 ]
 
-#fig("/figures/canvas/add_ray.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.add_ray(eq.y / eq.x)  # a ray through the origin and the optimum
+cvs.save("add_ray.png")
+```])
+
+#fig("/figures/canvas/add_ray.svg", width: 56%, caption: [
   Expansion-path ray.
 ])
 
@@ -214,7 +267,7 @@ cvs.add_utility(
       label=None,
       color=None,
       markersize=None,
-      offset=None,       # label offset (pt)
+      offset=None,       # label offset in pt
       marker=None,
   )
   ```
@@ -226,8 +279,27 @@ cvs.add_utility(
 #param("offset", type: "tuple | None", default: "None")[Offset of the text from the point, in points.]
 #param("marker", type: "Marker | None", default: "None")[Style of the point marker.]
 
-#fig("/figures/canvas/add_point.svg", width: 42%, caption: [
-  A labelled point $A$.
+#example([```python
+from utility_viz import Canvas, Config, Label, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
+cvs.add_utility(model, levels=[5.0])  # one indifference curve u = 5
+cvs.add_budget(2.0, 3.0, 30.0)
+# it cuts the budget line twice at 2x^2 - 30x + 75 = 0
+# a Label places the text beside the point
+cvs.add_point(3.17, 7.89, label=Label(text="A", position="top-right"))
+cvs.add_point(11.83, 2.11, label=Label(text="B", position="top-right"))
+cvs.save("add_point.png")
+```])
+
+#fig("/figures/canvas/add_point.svg", width: 56%, caption: [
+  An indifference curve meets the budget line at two points, $A$ and $B$.
 ])
 
 #api(("show", "save"), syntax: [
@@ -241,7 +313,23 @@ cvs.add_utility(
   #pkg("matplotlib") figure, so call it last.
 ]
 
-#fig("/figures/canvas/show_save.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq, show_ray=True)  # equilibrium with the expansion path
+cvs.save("show_save.png")
+```])
+
+#fig("/figures/canvas/show_save.svg", width: 56%, caption: [
   The complete canvas.
 ]) <fig-show-save>
 
@@ -266,36 +354,41 @@ and drop lines.
 ])[
   Solid, dashed, dotted and dash-dot lines (@fig-line-styles). Axes accept
   the enum or the matching string; other lines use `Stroke(style=...)`.
+  `LineStyle` is MosaicKit's `DashStyle` under its old name.
 ]
 
-```python
+#param("SOLID", type: "LineStyle")[Solid line.]
+#param("DASHED", type: "LineStyle")[Dashed line.]
+#param("DOTTED", type: "LineStyle")[Dotted line.]
+#param("DASHDOT", type: "LineStyle")[Dash-dot line.]
+
+#example([```python
 import matplotlib.pyplot as plt
 
-from utility_viz import Canvas, LineStyle
+from utility_viz import Canvas, Config, LineStyle
 
-styles = [
-    LineStyle.SOLID,
-    LineStyle.DASHED,
-    LineStyle.DOTTED,
-    LineStyle.DASHDOT,
-]
+Config.load("manual.toml").use()  # the settings behind this manual's figures
 
-fig, axes = plt.subplots(1, 4, figsize=(8.5, 2.2))
+styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
+
+fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
 for ax, style in zip(axes, styles):
     Canvas(
         title=style.value,
+        x_label="$x$",
+        y_label="$y$",
         x_line_style=style,
         y_line_style=style,
         fig=fig,
         ax=ax,
     )
 
-# Axis labels sit outside the arrowheads; give four panels more room.
+# Axis labels sit outside the arrowheads so four panels need more room
 fig.subplots_adjust(wspace=0.62)
-fig.savefig("line_styles.png", dpi=160, transparent=True)
-```
+fig.savefig("line_styles.png", dpi=160)
+```])
 
-#fig("/figures/canvas/line_styles.svg", width: 94%, caption: [
+#fig("/figures/canvas/line_styles.svg", width: 56%, caption: [
   The four line styles.
 ]) <fig-line-styles>
 
@@ -306,9 +399,41 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
 ])[
   Four arrowhead styles (@fig-arrow-styles). Axes use `x_arrow_style` and
   `y_arrow_style`; other lines use `Stroke(arrow=...)`.
+  `ArrowStyle` is MosaicKit's; `SIMPLE` is its `OPEN`, and `"->"` and `"-|>"` are still accepted.
 ]
 
-#fig("/figures/canvas/arrow_styles.svg", width: 94%, caption: [
+#param("SIMPLE", type: "ArrowStyle")[Open arrowhead (`->`).]
+#param("TRIANGLE", type: "ArrowStyle")[Filled triangle (`-|>`), the default.]
+#param("FANCY", type: "ArrowStyle")[Curved, tapering arrowhead.]
+#param("WEDGE", type: "ArrowStyle")[Thin wedge-shaped arrowhead.]
+
+#example([```python
+import matplotlib.pyplot as plt
+
+from utility_viz import ArrowStyle, Canvas, Config
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
+
+fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
+for ax, style in zip(axes, styles):
+    Canvas(
+        title=style.name,
+        x_label="$x$",
+        y_label="$y$",
+        x_arrow_style=style,
+        y_arrow_style=style,
+        fig=fig,
+        ax=ax,
+    )
+
+# Axis labels sit outside the arrowheads so four panels need more room
+fig.subplots_adjust(wspace=0.62)
+fig.savefig("arrow_styles.png", dpi=160)
+```])
+
+#fig("/figures/canvas/arrow_styles.svg", width: 56%, caption: [
   The four arrow styles.
 ]) <fig-arrow-styles>
 

@@ -46,7 +46,23 @@ interior optimum when prices and income are positive.
 #param("beta", default: "0.5")[Weight on good $y$.]
 #param("rho", default: "0.5")[Substitution parameter, $rho != 1$.]
 
-#fig("/figures/models/ces.svg", width: 42%, caption: [CES with $rho = -0.5$.])
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CES
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CES(alpha=0.5, beta=0.5, rho=-0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("ces.png")
+```])
+
+#fig("/figures/models/ces.svg", width: 56%, caption: [CES with $rho = -0.5$.])
 
 === Translog
 
@@ -71,7 +87,23 @@ interior optimum when prices and income are positive.
 #param("beta_yy", default: "0.0")[Curvature in $y$.]
 #param("beta_xy", default: "0.0")[Interaction between $x$ and $y$.]
 
-#fig("/figures/models/translog.svg", width: 42%, caption: [Translog with $beta_(x y) = 0.12$.])
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import Translog
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = Translog(alpha_x=0.6, alpha_y=0.4, beta_xy=0.12)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=18, y_max=12, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=4))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("translog.png")
+```])
+
+#fig("/figures/models/translog.svg", width: 56%, caption: [Translog with $beta_(x y) = 0.12$.])
 
 == Kinks and corners
 
@@ -95,7 +127,28 @@ to a kink or a corner.
 #param("a", default: "1.0")[Weight on good $x$.]
 #param("b", default: "1.0")[Weight on good $y$.]
 
-#fig("/figures/models/leontief.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import Leontief
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = Leontief(a=1.0, b=1.0)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(
+    model,
+    levels=levels.around(eq.utility, n=5),
+    show_rays=True,
+    show_kinks=True,  # a ray and a marker at each kink
+)
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("leontief.png")
+```])
+
+#fig("/figures/models/leontief.svg", width: 56%, caption: [
   Leontief, with the ray through the kinks.
 ])
 
@@ -112,7 +165,23 @@ to a kink or a corner.
 #param("a", default: "1.0")[Marginal utility of good $x$.]
 #param("b", default: "1.0")[Marginal utility of good $y$.]
 
-#fig("/figures/models/perfect_substitutes.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import PerfectSubstitutes
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = PerfectSubstitutes(a=1.0, b=2.0)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("perfect_substitutes.png")
+```])
+
+#fig("/figures/models/perfect_substitutes.svg", width: 56%, caption: [
   Perfect substitutes: a corner solution on the $y$-axis.
 ])
 
@@ -131,7 +200,25 @@ to a kink or a corner.
 #param("a", default: "1.0")[Weight on good $x$.]
 #param("b", default: "1.0")[Weight on good $y$.]
 
-#fig("/figures/models/maximum.svg", width: 42%, caption: [Maximum utility.])
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CustomUtility
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CustomUtility(func=lambda x, y: np.maximum(x, y), name="maximum")
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=25, y_max=20, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.save("maximum.png")
+```])
+
+#fig("/figures/models/maximum.svg", width: 56%, caption: [Maximum utility.])
 
 == Income and reference points
 
@@ -150,7 +237,25 @@ preferred consumption point.
 #param("v_func", default: "numpy.log")[Increasing, concave function $f$.]
 #param("linear_in", default: "\"y\"")[Good that enters linearly.]
 
-#fig("/figures/models/quasi_linear.svg", width: 42%, caption: [
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import QuasiLinear
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = QuasiLinear(v_func=np.log, linear_in="y")
+eq = solve(model, px=1.0, py=2.0, income=20.0)
+
+cvs = Canvas(x_max=15, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(1.0, 2.0, 20.0)
+cvs.add_equilibrium(eq)
+cvs.save("quasi_linear.png")
+```])
+
+#fig("/figures/models/quasi_linear.svg", width: 56%, caption: [
   Quasi-linear preferences: vertically parallel indifference curves.
 ])
 
@@ -180,7 +285,23 @@ preferred consumption point.
 #param("demand(px, py, income)")[Closed-form interior solution.]
 #param("is_giffen(px, py, income)")[Whether $x$ is a Giffen good at the given budget.]
 
-#fig("/figures/models/haagsma.svg", width: 42%, caption: [Haagsma with $gamma_y = 10$.])
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import Haagsma
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = Haagsma(gamma_y=10.0)
+eq = solve(model, px=1.0, py=1.0, income=11.0)
+
+cvs = Canvas(x_max=9, y_max=12, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=4))
+cvs.add_budget(1.0, 1.0, 11.0)
+cvs.add_equilibrium(eq)
+cvs.save("haagsma.png")
+```])
+
+#fig("/figures/models/haagsma.svg", width: 56%, caption: [Haagsma with $gamma_y = 10$.])
 
 === Stone-Geary
 
@@ -198,7 +319,23 @@ preferred consumption point.
 #param("bar_x", default: "1.0")[Subsistence quantity $overline(x)$.]
 #param("bar_y", default: "1.0")[Subsistence quantity $overline(y)$.]
 
-#fig("/figures/models/stone_geary.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import StoneGeary
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = StoneGeary(alpha=0.5, beta=0.5, bar_x=2.0, bar_y=2.0)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("stone_geary.png")
+```])
+
+#fig("/figures/models/stone_geary.svg", width: 56%, caption: [
   Stone-Geary with $overline(x) = overline(y) = 2$.
 ])
 
@@ -216,6 +353,24 @@ preferred consumption point.
 #param("a", default: "1.0")[Curvature along the $x$-axis.]
 #param("b", default: "1.0")[Curvature along the $y$-axis.]
 
-#fig("/figures/models/satiation.svg", width: 42%, caption: [
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels
+from utility_viz.models import Satiation
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = Satiation(bliss_x=6.0, bliss_y=4.0)
+
+# Curves are picked from the utility values on a grid so there is no budget line or optimum here
+X, Y = np.meshgrid(np.linspace(0.1, 12.0, 300), np.linspace(0.1, 10.0, 300))
+
+cvs = Canvas(x_max=12, y_max=10, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.percentile(model(X, Y), n=5))  # five percentiles of u
+cvs.save("satiation.png")
+```])
+
+#fig("/figures/models/satiation.svg", width: 56%, caption: [
   Satiation around the bliss point $(6, 4)$.
 ])

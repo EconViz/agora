@@ -17,16 +17,16 @@
 - TeX：TikZ 原始碼（`.tex`），可嵌入 #LaTeX 文件。透過關鍵字參數 `tikz_scale` 與 `tikz_standalone` 調整輸出。
 
 ```python
-cvs.save("figure.png")   # PNG，依畫布 DPI（預設 300）
-cvs.save("figure.pdf")   # PDF（向量）
-cvs.save("figure.svg")   # SVG（向量）
+cvs.save("figure.png")   # PNG 依畫布 DPI 預設 300
+cvs.save("figure.pdf")   # PDF 向量
+cvs.save("figure.svg")   # SVG 向量
 cvs.save("figure.tex")   # TikZ
 ```
 
 `dpi` 僅影響點陣圖。預覽時可降低解析度：
 
 ```python
-cvs = Canvas(x_max=20, y_max=15, dpi=150)   # 降低 DPI，加快預覽
+cvs = Canvas(x_max=20, y_max=15, dpi=150)   # 降低 DPI 加快預覽
 ```
 
 == GIF 動畫

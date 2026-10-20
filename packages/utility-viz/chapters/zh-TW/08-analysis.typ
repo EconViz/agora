@@ -119,10 +119,16 @@ print(analyzer.demand_degree_zero(px=2.0, py=3.0, income=60.0))
 Cobb-Douglas 的齊次次數為 $alpha + beta$：
 $ u(lambda x, lambda y) = lambda^(alpha + beta) u(x, y). $
 
-#param("INCREASING")[$alpha + beta > 1$，規模報酬遞增。]
-#param("CONSTANT")[$alpha + beta = 1$，規模報酬固定。]
-#param("DECREASING")[$alpha + beta < 1$，規模報酬遞減。]
-#param("NOT_HOMOGENEOUS")[沒有一致的齊次次數。]
+#api(("ReturnsToScale",), syntax: [
+  `ReturnsToScale.INCREASING`, `CONSTANT`, `DECREASING`, `NOT_HOMOGENEOUS`
+])[
+  函數的規模報酬分類。
+]
+
+#param("INCREASING", type: "ReturnsToScale")[$alpha + beta > 1$，規模報酬遞增。]
+#param("CONSTANT", type: "ReturnsToScale")[$alpha + beta = 1$，規模報酬固定。]
+#param("DECREASING", type: "ReturnsToScale")[$alpha + beta < 1$，規模報酬遞減。]
+#param("NOT_HOMOGENEOUS", type: "ReturnsToScale")[沒有一致的齊次次數。]
 
 ```python
 def shifted_utility(x, y):

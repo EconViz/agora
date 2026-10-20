@@ -16,6 +16,9 @@ quantities demanded and supplied at the controlled price.
   `principle_viz.core.controls`.
 ]
 
+#param("CEILING", type: "PriceControlType")[A maximum price.]
+#param("FLOOR", type: "PriceControlType")[A minimum price.]
+
 #api(("evaluate_price_control",), syntax: [
   #raw("evaluate_price_control(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[

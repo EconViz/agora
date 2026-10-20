@@ -23,8 +23,8 @@
       y_label="y",
       title=r"Cobb-Douglas $x^{0.5} y^{0.5}$",
       dpi=300,
-      x_label_pos="right",   # "top"、"right" 或 "bottom"
-      y_label_pos="top",     # "left"、"top" 或 "right"
+      x_label_pos="right",   # top / right / bottom
+      y_label_pos="top",     # left / top / right
       font="DejaVu Sans",
       math_font="stix",
       axis_stroke=Stroke(width=1.0, arrow=ArrowStyle.TRIANGLE),
@@ -94,7 +94,7 @@
       show_rays=False,
       show_kinks=False,
       kink_radius=1.0,
-      show_bliss=True,   # 标出饱和点（Satiation）
+      show_bliss=True,   # 标出饱和点 Satiation
       show_ic_labels=False,
       stroke=None,
       ray_stroke=None,
@@ -111,7 +111,7 @@
 #param("levels", type: "int | list", default: "3")[曲线条数或效用值列表；例如 `levels.around(eq.utility, n=5)` 会在均衡效用附近选取五个水平。]
 #param("highlight_level", type: "float | None", default: "None")[焦点效用值。绘制时选择最接近的曲线，以主要样式显示。]
 #param("secondary_stroke", type: "Stroke | None", default: "None")[其他曲线的样式；省略时使用 `theme.secondary_ic_stroke`。]
-#param("show_ic_labels", type: "bool", default: "False")[显示曲线标签。标签沿曲线切线旋转，并保持在可见绘图区内（参见#ref(<fig-ic-hierarchy>)）。]
+#param("show_ic_labels", type: "bool", default: "False")[显示曲线标签。标签沿曲线切线旋转，并保持在可见绘图区内。]
 #param("label_style", type: "str", default: "\"numeric\"")[`"numeric"` 显示效用值；`"ordinal"` 按效用递增顺序显示 $u_1, u_2, dots$。]
 
 ```python
@@ -125,13 +125,23 @@ cvs.add_utility(
 )
 ```
 
-#fig("/figures/canvas/add_utility.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))  # 围绕最优点的三条曲线
+cvs.save("add_utility.png")
+```])
+
+#fig("/figures/canvas/add_utility.svg", width: 56%, caption: [
   三条无差异曲线。
 ]) <fig-add-utility>
-
-#fig("/figures/canvas/ic_hierarchy.svg", width: 82%, caption: [
-  无差异曲线主次层级。
-]) <fig-ic-hierarchy>
 
 #api(("add_budget",), syntax: [
   ```python
@@ -140,7 +150,7 @@ cvs.add_utility(
       color=None,
       linewidth=None,
       linestyle="-",
-      label=None,        # 图例标签（LaTeX）
+      label=None,        # 图例标签 LaTeX
       fill=False,        # 可行集合阴影
       fill_alpha=None,   # 默认 theme.budget_fill_alpha
       stroke=None,
@@ -154,7 +164,17 @@ cvs.add_utility(
 #param("stroke", type: "Stroke | None", default: "None")[统一设置预算线的颜色、线宽、线型与透明度，优先于 `color`、`linewidth`、`linestyle` 等简写参数（详见#ref(<sec-styles>)）。]
 #param("label", type: "str | None", default: "None")[图例文字；调用 `show_legend()` 后才会显示图例。]
 
-#fig("/figures/canvas/add_budget.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # 预算线与可行集合
+cvs.save("add_budget.png")
+```])
+
+#fig("/figures/canvas/add_budget.svg", width: 56%, caption: [
   预算线与阴影。
 ])
 
@@ -180,7 +200,23 @@ cvs.add_utility(
 #param("show_ray", type: "bool", default: "False")[显示通过原点与均衡点的射线。]
 #param("marker", type: "Marker | None", default: "None")[均衡点的标记样式（详见#ref(<sec-styles>)）。]
 
-#fig("/figures/canvas/add_equilibrium.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)  # 最优点与通往坐标轴的虚线
+cvs.save("add_equilibrium.png")
+```])
+
+#fig("/figures/canvas/add_equilibrium.svg", width: 56%, caption: [
   均衡点与虚线。
 ])
 
@@ -197,7 +233,24 @@ cvs.add_utility(
   绘制通过原点、斜率为 `slope`（$dif y slash dif x$）的射线，用于标记扩张路径或固定比例。
 ]
 
-#fig("/figures/canvas/add_ray.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0)
+cvs.add_equilibrium(eq)
+cvs.add_ray(eq.y / eq.x)  # 通过原点与最优点的射线
+cvs.save("add_ray.png")
+```])
+
+#fig("/figures/canvas/add_ray.svg", width: 56%, caption: [
   扩张路径射线。
 ])
 
@@ -208,7 +261,7 @@ cvs.add_utility(
       label=None,
       color=None,
       markersize=None,
-      offset=None,       # 标签位移（pt）
+      offset=None,       # 标签位移 pt
       marker=None,
   )
   ```
@@ -220,8 +273,27 @@ cvs.add_utility(
 #param("offset", type: "tuple | None", default: "None")[文字相对标记点的位移，单位为 pt。]
 #param("marker", type: "Marker | None", default: "None")[标记样式。]
 
-#fig("/figures/canvas/add_point.svg", width: 42%, caption: [
-  标记点 $A$。
+#example([```python
+from utility_viz import Canvas, Config, Label, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+cvs.add_utility(model, levels=[5.0])  # 一条无差异曲线 u = 5
+cvs.add_budget(2.0, 3.0, 30.0)
+# 它与预算线交于两点 即 2x^2 - 30x + 75 = 0 的根
+# 以 Label 把文字放在点的旁边
+cvs.add_point(3.17, 7.89, label=Label(text="A", position="top-right"))
+cvs.add_point(11.83, 2.11, label=Label(text="B", position="top-right"))
+cvs.save("add_point.png")
+```])
+
+#fig("/figures/canvas/add_point.svg", width: 56%, caption: [
+  一条无差异曲线与预算线交于两点 $A$ 与 $B$。
 ])
 
 #api(("show", "save"), syntax: [
@@ -233,7 +305,23 @@ cvs.add_utility(
   `show()` 打开交互窗口；`save()` 根据扩展名导出文件（详见#ref(<sec-export>)），并释放对应的 #pkg("matplotlib") 图形，因此应最后调用。
 ]
 
-#fig("/figures/canvas/show_save.svg", width: 42%, caption: [
+#example([```python
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq, show_ray=True)  # 均衡点与扩张路径
+cvs.save("show_save.png")
+```])
+
+#fig("/figures/canvas/show_save.svg", width: 56%, caption: [
   完整画布。
 ]) <fig-show-save>
 
@@ -255,36 +343,43 @@ cvs.add_utility(
   `LineStyle.SOLID`、`DASHED`、`DOTTED`、`DASHDOT`
 ])[
   提供实线、虚线、点线与点画线（参见#ref(<fig-line-styles>)）。坐标轴接受枚举值或对应字符串；其他线条通过 `Stroke(style=...)` 设置。
+  `LineStyle` 就是 MosaicKit 的 `DashStyle`，沿用旧名称。
 ]
 
-```python
+#param("SOLID", type: "LineStyle")[实线。]
+#param("DASHED", type: "LineStyle")[虚线。]
+#param("DOTTED", type: "LineStyle")[点线。]
+#param("DASHDOT", type: "LineStyle")[点划线。]
+
+#example([```python
 import matplotlib.pyplot as plt
 
-from utility_viz import Canvas, LineStyle
+from utility_viz import Canvas, Config, LineStyle
 
-styles = [
-    LineStyle.SOLID,
-    LineStyle.DASHED,
-    LineStyle.DOTTED,
-    LineStyle.DASHDOT,
-]
+Config.load("manual.toml").use()  # 本手册图形所用的设置
 
-fig, axes = plt.subplots(1, 4, figsize=(8.5, 2.2))
-for ax, style in zip(axes, styles):
+styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
+titles = ["实线", "虚线", "点线", "点划线"]
+
+fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
+for ax, style, title in zip(axes, styles, titles):
     Canvas(
-        title=style.value,
+        title=title,
+        x_label="$x$",
+        y_label="$y$",
         x_line_style=style,
         y_line_style=style,
+        font="PingFang SC",  # 使用有中文字形的字体
         fig=fig,
         ax=ax,
     )
 
-# 轴标签会放在箭头外侧；四张图并排时要多留一点水平间距。
+# 轴标签会放在箭头外侧 四张图并排时要多留一点水平间距
 fig.subplots_adjust(wspace=0.62)
-fig.savefig("line_styles.png", dpi=160, transparent=True)
-```
+fig.savefig("line_styles.png", dpi=160)
+```])
 
-#fig("/figures/canvas/line_styles.svg", width: 94%, caption: [
+#fig("/figures/canvas/line_styles.zh-CN.svg", width: 56%, caption: [
   四种线条样式。
 ]) <fig-line-styles>
 
@@ -294,9 +389,43 @@ fig.savefig("line_styles.png", dpi=160, transparent=True)
   `ArrowStyle.SIMPLE`、`TRIANGLE`、`FANCY`、`WEDGE`
 ])[
   提供四种箭头样式（参见#ref(<fig-arrow-styles>)）。坐标轴通过 `x_arrow_style`、`y_arrow_style` 设置；其他线条通过 `Stroke(arrow=...)` 设置。
+  `ArrowStyle` 是 MosaicKit 的；`SIMPLE` 即 `OPEN`，仍接受 `"->"` 与 `"-|>"`。
 ]
 
-#fig("/figures/canvas/arrow_styles.svg", width: 94%, caption: [
+#param("SIMPLE", type: "ArrowStyle")[开口箭头（`->`）。]
+#param("TRIANGLE", type: "ArrowStyle")[实心三角形（`-|>`），默认值。]
+#param("FANCY", type: "ArrowStyle")[弯曲、渐细的箭头。]
+#param("WEDGE", type: "ArrowStyle")[细楔形箭头。]
+
+#example([```python
+import matplotlib.pyplot as plt
+
+from utility_viz import ArrowStyle, Canvas, Config
+
+Config.load("manual.toml").use()  # 本手册图形所用的设置
+
+styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
+titles = ["简单", "三角形", "花式", "楔形"]
+
+fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
+for ax, style, title in zip(axes, styles, titles):
+    Canvas(
+        title=title,
+        x_label="$x$",
+        y_label="$y$",
+        x_arrow_style=style,
+        y_arrow_style=style,
+        font="PingFang SC",  # 使用有中文字形的字体
+        fig=fig,
+        ax=ax,
+    )
+
+# 轴标签会放在箭头外侧 四张图并排时要多留一点水平间距
+fig.subplots_adjust(wspace=0.62)
+fig.savefig("arrow_styles.png", dpi=160)
+```])
+
+#fig("/figures/canvas/arrow_styles.zh-CN.svg", width: 56%, caption: [
   四种箭头样式。
 ]) <fig-arrow-styles>
 

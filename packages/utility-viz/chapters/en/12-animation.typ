@@ -83,13 +83,93 @@ For the income sweep, `draw()` takes `income` and passes it to
 
 #ref(<fig-sweep-param>) to #ref(<fig-sweep-income>) each show four frames.
 
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.core.animation import Animator
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+
+def draw(alpha: float) -> Canvas:
+    """One frame: the weight on x is alpha, the weight on y is 1 - alpha."""
+    model = CobbDouglas(alpha=alpha, beta=1.0 - alpha)
+    eq = solve(model, px=2.0, py=2.0, income=20.0)
+    cvs = Canvas(x_max=14, y_max=12, x_label="$x_1$", y_label="$x_2$")
+    cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+    cvs.add_budget(2.0, 2.0, 20.0, fill=True)
+    cvs.add_equilibrium(eq, show_ray=True)
+    return cvs
+
+
+Animator(draw, frames=np.linspace(0.1, 0.9, 45)).save("parameter_sweep.gif", fps=12, dpi=120)
+```])
+
 #fig("/figures/animation/parameter_sweep.svg", width: 94%, caption: [
   Parameter sweep: $alpha$ varies with $beta = 1 - alpha$.
 ]) <fig-sweep-param>
 
+Each figure below shows four frames of its GIF, which has 45.
+
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.core.animation import Animator
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+# One set of curves for every frame so that only the budget line and the optimum move
+fixed = levels.around(solve(model, px=2.0, py=2.0, income=20.0).utility, n=5)
+
+
+def draw(px: float) -> Canvas:
+    """One frame: the price of x is px."""
+    eq = solve(model, px=px, py=2.0, income=20.0)
+    cvs = Canvas(x_max=14, y_max=12, x_label="$x_1$", y_label="$x_2$")
+    cvs.add_utility(model, levels=fixed)
+    cvs.add_budget(px, 2.0, 20.0, fill=True)
+    cvs.add_equilibrium(eq, show_ray=True)
+    return cvs
+
+
+Animator(draw, frames=np.linspace(1.0, 6.0, 45)).save("price_sweep.gif", fps=12, dpi=120)
+```])
+
 #fig("/figures/animation/price_sweep.svg", width: 94%, caption: [
   Price sweep with $p_y = 2$ and $I = 20$ fixed.
 ]) <fig-sweep-price>
+
+#example([```python
+import numpy as np
+
+from utility_viz import Canvas, Config, levels, solve
+from utility_viz.core.animation import Animator
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # the settings behind this manual's figures
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+# One set of curves for every frame so that only the budget line and the optimum move
+fixed = levels.around(solve(model, px=2.0, py=2.0, income=20.0).utility, n=5)
+
+
+def draw(income: float) -> Canvas:
+    """One frame: income is `income`."""
+    eq = solve(model, px=2.0, py=2.0, income=income)
+    cvs = Canvas(x_max=14, y_max=12, x_label="$x_1$", y_label="$x_2$")
+    cvs.add_utility(model, levels=fixed)
+    cvs.add_budget(2.0, 2.0, income, fill=True)
+    cvs.add_equilibrium(eq, show_ray=True)
+    return cvs
+
+
+Animator(draw, frames=np.linspace(8.0, 36.0, 45)).save("income_sweep.gif", fps=12, dpi=120)
+```])
 
 #fig("/figures/animation/income_sweep.svg", width: 94%, caption: [
   Income sweep with $p_x = p_y = 2$ fixed.

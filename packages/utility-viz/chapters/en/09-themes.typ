@@ -51,6 +51,153 @@ style objects.
   impaired students cannot follow it #citep(<kugler1996>).
 ]
 
+The figures below show the same Cobb-Douglas diagram in each built-in theme except `dark`, with the manual's line weights on a white page.
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# The theme's own colours and the manual's line weights on a white page
+theme = replace(
+    themes.default,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_default.png")
+```])
+
+#fig("/figures/themes/default.svg", width: 56%, caption: [
+  The `default` theme.
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# The theme's own colours and the manual's line weights on a white page
+theme = replace(
+    themes.nord,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_nord.png")
+```])
+
+#fig("/figures/themes/nord.svg", width: 56%, caption: [
+  The `nord` theme.
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# The theme's own colours and the manual's line weights on a white page
+theme = replace(
+    themes.paper,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_paper.png")
+```])
+
+#fig("/figures/themes/paper.svg", width: 56%, caption: [
+  The `paper` theme.
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# The theme's own colours and the manual's line weights on a white page
+theme = replace(
+    themes.monochrome,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_monochrome.png")
+```])
+
+#fig("/figures/themes/monochrome.svg", width: 56%, caption: [
+  The `monochrome` theme.
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# The theme's own colours and the manual's line weights on a white page
+theme = replace(
+    themes.presentation,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_presentation.png")
+```])
+
+#fig("/figures/themes/presentation.svg", width: 56%, caption: [
+  The `presentation` theme.
+])
+
 == Custom themes
 
 #api(("Theme",), updated: "v1.12.0", syntax: [
@@ -121,7 +268,7 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
   defaults.
 ]
 
-=== Tutorial: one style for every diagram
+=== Tutorial: one shared style
 
 Figures in one set of lecture notes or one paper usually share their
 colours and line styles. Rather than repeating the same arguments on every
@@ -204,7 +351,111 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 ```
 
 
-=== Where the file is looked up <sec-config-lookup>
+=== This manual's settings <sec-manual-toml>
+
+Every example in this manual loads `manual.toml` first. It sets the look of the figures: grey curves, black axes and guides, black points and a white page. It leaves the font out so that it runs anywhere; the figures use TeX Gyre Pagella, and without that font you get the default typeface.
+
+```toml
+# Settings for every figure in this manual
+# Grey curves and black axes and guides and black points on a white background
+# Load them before drawing
+#
+#     Config.load("manual.toml").use()
+#
+# Each section maps to a Theme property as described in the Themes chapter
+
+base = "default"
+
+# The font is TeX Gyre Pagella and it is not set here so the file runs on any machine
+# Add [font] text = "TeX Gyre Pagella" if the font is installed
+
+[color]
+background = "#ffffff"
+axis = "#1a1a1a"
+label = "#1a1a1a"
+ic = "#8c8c8c"              # indifference curves
+secondary_ic = "#b8b8b8"    # the curves beside a highlighted one
+path = "#1a1a1a"            # price- and income-consumption paths
+budget = "#222222"
+eq = "#1a1a1a"              # equilibrium and other points
+ray = "#8c8c8c"
+kink = "#8c8c8c"
+sub_effect = "#8c8c8c"
+inc_effect = "#8c8c8c"
+compensated_budget = "#1a1a1a"
+subsistence = "#8c8c8c"
+contract = "#8c8c8c"
+core = "#1a1a1a"
+price = "#8c8c8c"
+walrasian = "#1a1a1a"
+
+[stroke.axis]
+width = 1.0
+style = "solid"
+arrow = "-|>"
+
+[stroke.ic]
+width = 2.6
+
+[stroke.secondary_ic]
+width = 1.8
+opacity = 1.0
+
+[stroke.path]
+width = 1.4
+
+[stroke.budget]
+width = 2.6
+
+[stroke.ray]
+width = 0.9
+
+[stroke.substitution]
+width = 1.8
+
+[stroke.income]
+width = 1.8
+
+[stroke.compensated_budget]
+width = 1.0
+
+[stroke.contract]
+width = 2.6
+
+[stroke.price]
+width = 2.6
+
+[stroke.drop]               # guides from a point to the axes
+width = 0.8
+style = "dashed"
+color = "#1a1a1a"
+
+[stroke.projection]
+width = 0.8
+style = "dashed"
+color = "#1a1a1a"
+
+[stroke.guide]
+width = 0.8
+style = "dashed"
+color = "#1a1a1a"
+
+[marker.eq]
+size = 5
+
+[marker.point]
+size = 5
+
+[label.point]               # the text beside a point such as x* at the optimum
+fontsize = 14
+position = "right"
+offset = 10
+
+[fill.budget]
+opacity = 0.08
+```
+
+=== File lookup <sec-config-lookup>
 
 #api(("Config.discover",), added: "v2.0.0b1", syntax: [
   #raw("Config.discover(")#oarg("path")#raw(", directory=None)")

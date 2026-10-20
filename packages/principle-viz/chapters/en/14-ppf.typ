@@ -17,6 +17,16 @@
 #param("opportunity_cost_x(x)")[Units of $y$ given up for one more unit of $x$, $abs(dif y slash dif x)$.]
 #param("assess(x, y)")[A `PointStatus`: `EFFICIENT` on the frontier, `INEFFICIENT` inside it, `UNATTAINABLE` outside.]
 
+#api(("PointStatus",), syntax: [
+  `PointStatus.EFFICIENT`, `INEFFICIENT`, `UNATTAINABLE`
+])[
+  Where a point lies relative to the frontier.
+]
+
+#param("EFFICIENT", type: "PointStatus")[On the frontier.]
+#param("INEFFICIENT", type: "PointStatus")[Inside the frontier.]
+#param("UNATTAINABLE", type: "PointStatus")[Outside the frontier.]
+
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
 
