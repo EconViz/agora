@@ -89,7 +89,7 @@ fig.finalize()
 The output is shown in @fig-welfare.
 
 #fig("/figures/welfare/equilibrium.svg", width: 46%, caption: [
-  Consumer and producer surplus at equilibrium.
+  Surplus at equilibrium
 ]) <fig-welfare>
 
 #api(("MarketFigure.add_welfare_transition",), syntax: [

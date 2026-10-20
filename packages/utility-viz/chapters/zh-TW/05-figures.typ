@@ -17,44 +17,43 @@
 ]
 
 #example([```python
-from utility_viz import Figure, Layout, Legend, levels, solve
+from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-fig = Figure(
-    Layout.SIDE_BY_SIDE,
-    x_max=20,
-    y_max=15,
-    x_label="x",
-    y_label="y",
-    title="Before / After Price Change",
-    shared_y=True,
-)
+Config.load("manual.toml").use()  # 圖形設定
 
+fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+
+# 價格上漲前後
 cases = [
-    (CobbDouglas(alpha=0.5, beta=0.5), 2.0, 3.0, 30.0, r"Before: $p_x=2$"),
-    (CobbDouglas(alpha=0.3, beta=0.7), 4.0, 3.0, 30.0, r"After: $p_x=4$"),
+    (CobbDouglas(alpha=0.5, beta=0.5), 2.0, 3.0, 30.0),
+    (CobbDouglas(alpha=0.3, beta=0.7), 4.0, 3.0, 30.0),
 ]
-
-for idx, (model, px, py, income, title) in enumerate(cases):
+for idx, (model, px, py, income) in enumerate(cases):
     eq = solve(model, px=px, py=py, income=income)
-    panel = fig[idx]
-    panel.ax.set_title(title)
-    panel.add_utility(model, levels=levels.around(eq.utility, n=5), label="IC")
-    panel.add_budget(px, py, income, fill=True, label="BC")
+    panel = fig[idx]  # 面板都是 Canvas
+    panel.add_utility(model, levels=levels.around(eq.utility, n=5))
+    panel.add_budget(px, py, income, fill=True)
     panel.add_equilibrium(eq, show_ray=True)
-
-fig[0].show_legend(legend=Legend(position="upper right"))
-fig.save("figure_side_by_side.png")
+fig.save("side_by_side.png")
 ```])
 
 #fig("/figures/consumer/side_by_side.svg", width: 100%, caption: [
-  價格變動前後比較。
+  價格變動前後比較
 ])
 
 #changed("1.2.0", label: "Layout")[多面板 `Figure` 版面與 `Layout` 列舉]
 #api(("Layout",), added: "v1.2.0")[
   內建版面有 `SINGLE`、`STACKED`、`SIDE_BY_SIDE`、`TOP_TWO_BOTTOM_ONE`、`TOP_ONE_BOTTOM_TWO`、`GRID_2X2` 和 `GRID_3X3`。
 ]
+
+#param("SINGLE", type: "Layout")[單一面板。]
+#param("STACKED", type: "Layout")[上下兩個面板。]
+#param("SIDE_BY_SIDE", type: "Layout")[左右兩個面板。]
+#param("TOP_TWO_BOTTOM_ONE", type: "Layout")[上方兩個、下方一個面板。]
+#param("TOP_ONE_BOTTOM_TWO", type: "Layout")[上方一個、下方兩個面板。]
+#param("GRID_2X2", type: "Layout")[2 × 2 格四個面板。]
+#param("GRID_3X3", type: "Layout")[3 × 3 格九個面板。]
 
 == 路徑
 
@@ -104,8 +103,27 @@ fig.save("figure_side_by_side.png")
   將 `PricePath` 或 `IncomePath` 加入畫布。#ref(<fig-price-path>)中，Cobb-Douglas 模型在 $p_x$ 變動時，$y$ 的需求量不變，因此 PCC 為水平線。
 ]
 
-#fig("/figures/consumer/price_path.svg", width: 42%, caption: [
-  價格消費曲線。
+#example([```python
+from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # 圖形設定
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+budget = LinearBudget(px=2.0, py=2.0, income=40.0)
+path = PricePath(model, budget=budget, price="px", price_range=(0.8, 6.0), n=40)
+
+# 圍繞路徑中段最適點的曲線
+eq = path.equilibria[len(path.equilibria) // 2]
+
+cvs = Canvas(x_max=25, y_max=20, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_path(path)  # 價格消費曲線
+cvs.save("price_path.png")
+```])
+
+#fig("/figures/consumer/price_path.svg", width: 56%, caption: [
+  價格消費曲線
 ]) <fig-price-path>
 
 == 需求圖
@@ -142,8 +160,10 @@ fig.add_marshallian_panel(
 fig.save("demand_cobb_douglas.png")
 ```])
 
-#fig("/figures/consumer/demand.svg", width: 46%, caption: [
-  需求曲線最適點。
+下圖由 MosaicKit 圖層畫成，標籤可逐一手動擺放。
+
+#fig("/figures/consumer/demand.svg", width: 62%, caption: [
+  需求曲線最適點
 ]) <fig-demand>
 
 == 價格效果分解
@@ -167,6 +187,15 @@ fig.save("demand_cobb_douglas.png")
 #param("income_effect")[所得效果。]
 #param("total_effect")[總效果。]
 #param("compensated_income")[補償後的所得。]
+
+#api(("DecompositionMethod",), added: "v1.5.0", syntax: [
+  `DecompositionMethod.HICKS`, `SLUTSKY`
+])[
+  決定補償組合 B 的方式。
+]
+
+#param("HICKS", type: "DecompositionMethod")[維持原本的效用水準：B 在原本的無異曲線上。]
+#param("SLUTSKY", type: "DecompositionMethod")[讓原本的組合仍買得起：B 是新價格下通過 A 的預算線上的最適組合。]
 
 #api(("Canvas.add_decomposition",), added: "v1.5.0", updated: "v1.9.0")[
   在畫布上標示 A、B、C 三個消費組合、預算線、無異曲線與效果箭頭。Hicks 分解繪製通過 A 與 C 的曲線；Slutsky 分解另繪製通過 B 的曲線。
@@ -228,8 +257,10 @@ result = decompose_price_effect(
 )
 ```])
 
-#fig("/figures/consumer/hicks.svg", width: 48%, caption: [
-  Hicks 分解。
+下圖同樣由 MosaicKit 圖層畫成，兩個效果的名稱標在座標軸下方。
+
+#fig("/figures/consumer/hicks.zh-TW.svg", width: 72%, caption: [
+  Hicks 分解
 ])
 
 == Edgeworth 箱形圖
@@ -275,6 +306,8 @@ box = EdgeworthBox(
 )
 ```])
 
-#fig("/figures/consumer/edgeworth.svg", width: 52%, caption: [
-  契約曲線與均衡。
+下圖同樣由 MosaicKit 圖層畫成，以教科書的圖為藍本，畫出兩人的無異曲線。
+
+#fig("/figures/consumer/edgeworth.svg", width: 86%, caption: [
+  Edgeworth 箱形圖
 ])

@@ -14,26 +14,24 @@ $
 程序先求解最优消费组合，再绘制无差异曲线、预算集与均衡点（参见#ref(<fig-quickstart>)）。
 
 #example([```python
-from utility_viz import Canvas, levels, solve
+from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-model = CobbDouglas(alpha=0.5, beta=0.5)
-eq    = solve(model, px=2.0, py=3.0, income=30.0)
-lvls  = levels.around(eq.utility, n=5)
+Config.load("manual.toml").use()  # 图形设置
 
-cvs = Canvas(
-    x_max=20, y_max=15,
-    x_label="x", y_label="y",
-    title=r"Cobb-Douglas $x^{0.5} y^{0.5}$"
-)
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
+lvls = levels.around(eq.utility, n=5)  # 五条曲线 一条过最优点
 cvs.add_utility(model, levels=lvls)
-cvs.add_budget(2.0, 3.0, 30.0, fill=True)
-cvs.add_equilibrium(eq, show_ray=True)
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # 预算线与可行集合
+cvs.add_equilibrium(eq, show_ray=True)  # 附扩张路径
 cvs.save("cobb_douglas.png")
 ```])
 
 #fig("/figures/models/cobb_douglas.svg", caption: [
-  消费者均衡。
+  消费者均衡
 ]) <fig-quickstart>
 
 运行主程序 `main.py` 后，会在当前工作目录创建 `cobb_douglas.png`。本例的最优消费量为 $x^* = 7.5$、$y^* = 5$，支出为 $2 times 7.5 + 3 times 5 = 30$，恰好等于收入。预算线的两个轴截距则为 $I / p_x = 15$ 与 $I / p_y = 10$。

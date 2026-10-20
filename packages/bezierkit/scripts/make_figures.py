@@ -108,7 +108,8 @@ def document(body: list[str], *, unit_x: float, unit_y: float | None = None) -> 
     )
     unit_y = unit_x if unit_y is None else unit_y
     return rf"""\documentclass[tikz,border=2pt]{{standalone}}
-\usepackage{{newpxtext,newpxmath}}
+\usepackage{{tgpagella}}
+\usepackage{{newpxmath}}
 {colors}
 \begin{{document}}
 \begin{{tikzpicture}}[

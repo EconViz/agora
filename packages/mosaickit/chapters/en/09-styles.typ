@@ -38,7 +38,7 @@ as a priority list: the first source that sets a field wins.
 
 == Style types
 
-#api(("Stroke", "DashStyle", "ArrowStyle", "ArrowPlacement"), syntax: [
+#api(("Stroke",), syntax: [
   #raw("Stroke(color=None, width=None, dash=None, arrow=None, opacity=None)")
 ])[
   Line styles. `width` is in points; `dash` is a `DashStyle` (`SOLID`,
@@ -46,6 +46,39 @@ as a priority list: the first source that sets a field wins.
   `TRIANGLE`, `FANCY`, `WEDGE`) drawn at the layer's `ArrowPlacement`
   (`START`, `END`, `BOTH`).
 ]
+
+#changed("0.8.0", label: "DashStyle")[`DashStyle` and `ArrowStyle` accept short forms, so a package can use them as its own line and arrow style enums]
+#api(("DashStyle",), syntax: [
+  `DashStyle.SOLID`, `DASHED`, `DOTTED`, `DASHDOT`
+])[
+  Line patterns of a `Stroke`. The short forms `-`, `--`, `:` and `-.` are accepted too.
+]
+
+#param("SOLID", type: "DashStyle")[Solid line.]
+#param("DASHED", type: "DashStyle")[Dashed line.]
+#param("DOTTED", type: "DashStyle")[Dotted line.]
+#param("DASHDOT", type: "DashStyle")[Dash-dot line.]
+
+#api(("ArrowStyle",), syntax: [
+  `ArrowStyle.OPEN`, `TRIANGLE`, `FANCY`, `WEDGE`
+])[
+  Arrowheads of a `Stroke`. `SIMPLE` is another name for `OPEN`, and the Matplotlib spellings `->` and `-|>` are accepted.
+]
+
+#param("OPEN", type: "ArrowStyle")[Open arrowhead.]
+#param("TRIANGLE", type: "ArrowStyle")[Filled triangle.]
+#param("FANCY", type: "ArrowStyle")[Curved, tapering arrowhead.]
+#param("WEDGE", type: "ArrowStyle")[Thin wedge-shaped arrowhead.]
+
+#api(("ArrowPlacement",), syntax: [
+  `ArrowPlacement.START`, `END`, `BOTH`
+])[
+  Where a layer's arrowhead is drawn.
+]
+
+#param("START", type: "ArrowPlacement")[At the first point.]
+#param("END", type: "ArrowPlacement")[At the last point.]
+#param("BOTH", type: "ArrowPlacement")[At both ends.]
 
 #api(("Fill",), syntax: [#raw("Fill(color=None, opacity=None, hatch=None)")])[
   Styles for region interiors. `hatch` is a Matplotlib hatch pattern such as

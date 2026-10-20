@@ -43,3 +43,5 @@
 ] <tab-guide>
 
 初次使用请先读#ref(<sec-quickstart>)、#ref(<sec-canvas>)与#ref(<sec-layers>)。本手册的图都是 #pkg("mosaickit") 自己的输出：每张图由它所示范的画布或网格绘制，并以印在此处的尺寸存成 PDF。
+
+绘制本手册各图的脚本按主题分类，可一次下载：#link("https://econ-viz.org/assets/mosaickit/agora/mosaickit-examples.zip")[mosaickit-examples.zip]。

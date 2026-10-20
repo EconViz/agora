@@ -89,8 +89,8 @@ link = GridLink(0, (5, 2.5), 2, (5, 6.5), stroke=Stroke(dash="dashed"))
 CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
 ```
 
-#fig("/figures/grids/sweep.pdf", width: auto, caption: [
-  三個值的掃描與跨格連線。
+#fig("/figures/grids/sweep.zh-TW.pdf", width: auto, caption: [
+  三個值的掃描
 ]) <fig-sweep>
 
 == 動畫

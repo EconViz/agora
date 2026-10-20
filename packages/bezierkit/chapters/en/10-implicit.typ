@@ -94,7 +94,7 @@ An edge has a crossing exactly when its two corners differ in being high.
   the chord; where $nabla F = 0$ at either end, the piece stays straight.
 
 #fig("/figures/implicit/saddle.pdf", width: auto, caption: [
-  Saddle cell, centre (a) high, (b) low; filled corners have $F >= c$.
+  Saddle cell with two centres
 ]) <fig-saddle>
 
 The saddle rule uses the bilinear interpolant of the four corner values,
@@ -133,7 +133,7 @@ print(len(contours.for_level(4)[0].segments))    # 15
 ```
 
 #fig("/figures/implicit/contours.pdf", width: auto, caption: [
-  $x^2 y = c$ for $c = 1, 2, 4$, inner to outer.
+  $x^2 y = c$ for three values of $c$
 ]) <fig-contours>
 
 == Results

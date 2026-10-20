@@ -19,9 +19,9 @@
   the keyword arguments `tikz_scale` and `tikz_standalone`.
 
 ```python
-cvs.save("figure.png")   # PNG, canvas DPI (default 300)
-cvs.save("figure.pdf")   # PDF (vector)
-cvs.save("figure.svg")   # SVG (vector)
+cvs.save("figure.png")   # PNG with canvas DPI default 300
+cvs.save("figure.pdf")   # PDF vector
+cvs.save("figure.svg")   # SVG vector
 cvs.save("figure.tex")   # TikZ
 ```
 
@@ -29,7 +29,7 @@ The `dpi` parameter of `Canvas` only affects raster output; lower it for
 faster previews:
 
 ```python
-cvs = Canvas(x_max=20, y_max=15, dpi=150)   # lower DPI, faster preview
+cvs = Canvas(x_max=20, y_max=15, dpi=150)   # lower DPI for a faster preview
 ```
 
 == Animated GIFs

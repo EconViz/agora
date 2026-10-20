@@ -117,13 +117,13 @@ fig = MarketFigure(
 )
 fig.add_curves(demand, supply, q_max=10)
 fig.add_equilibrium(eq)
-fig.configure_label("market.equilibrium", text="$E$")
+fig.configure_label("market.equilibrium", text="$e^*$")
 fig.hide("axes.origin.label")
 fig.finalize()
 ```
 
-#fig("/figures/figures/labels.svg", width: 46%, caption: [
-  改名的曲线与均衡点。
+#fig("/figures/figures/labels.zh-CN.svg", width: 46%, caption: [
+  改名的曲线与均衡点
 ]) <fig-labels>
 
 == 配色与主题 <sec-palettes>
@@ -166,8 +166,8 @@ fig.finalize()
 fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 ```
 
-#fig("/figures/figures/monochrome.svg", width: 46%, caption: [
-  `monochrome` 配色。
+#fig("/figures/figures/monochrome.zh-CN.svg", width: 46%, caption: [
+  `monochrome` 配色
 ]) <fig-monochrome>
 
 == 画布

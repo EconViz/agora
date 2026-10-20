@@ -37,12 +37,12 @@ canvas.add(BraceLayer("y", 5, 7, "Span", side="outside"))
 canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 ```
 
-#fig("/figures/annotations/gutter.pdf", width: auto, caption: [
-  y 軸邊欄的標記、註記與大括號。
+#fig("/figures/annotations/gutter.zh-TW.pdf", width: auto, caption: [
+  y 軸邊欄的標記與註記
 ]) <fig-gutter>
 
-#fig("/figures/annotations/span.pdf", width: auto, caption: [
-  兩點之間的跨距大括號。
+#fig("/figures/annotations/span.zh-TW.pdf", width: auto, caption: [
+  兩點之間的跨距大括號
 ]) <fig-span>
 
 == 邊欄的欄位
@@ -76,8 +76,8 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
   (iii) 每群的位移總和為零，因此群的平均位置等於其成員的平均目標。
 ] <cor-spread>
 
-#fig("/figures/geometry/spread.pdf", width: auto, caption: [
-  目標（上）與分散結果（下）。
+#fig("/figures/geometry/spread.zh-TW.pdf", width: auto, caption: [
+  目標與分散結果
 ]) <fig-spread>
 
 #ref(<fig-spread>)中的前三項因重疊而形成一群，群的位置以各項目標位置的平均值為中心；其餘兩項原本就已分開，因此不會移動。

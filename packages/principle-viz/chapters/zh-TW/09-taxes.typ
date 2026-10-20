@@ -22,6 +22,25 @@
 
 == 求解
 
+#api(("TaxType",), syntax: [
+  `TaxType.FIXED_TAX`, `PER_UNIT_TAX`, `AD_VALOREM_TAX`
+])[
+  稅的定義，來自 `principle_viz.policy.tax`。
+]
+
+#param("FIXED_TAX", type: "TaxType")[固定金額，使曲線平移 `amount`。]
+#param("PER_UNIT_TAX", type: "TaxType")[每單位的稅額；均衡與 `FIXED_TAX` 相同。]
+#param("AD_VALOREM_TAX", type: "TaxType")[按價格計的稅率，使曲線旋轉。]
+
+#api(("TaxOn",), syntax: [
+  `TaxOn.CONSUMER`, `PRODUCER`
+])[
+  稅的法律歸宿，來自 `principle_viz.policy.tax`。
+]
+
+#param("CONSUMER", type: "TaxOn")[向買方課徵：需求向下平移。]
+#param("PRODUCER", type: "TaxOn")[向賣方課徵：供給向上平移。]
+
 #api(("solve_tax_equilibrium",), syntax: [
   #raw("solve_tax_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
@@ -61,12 +80,12 @@ print(solve_tax_equilibrium(demand, supply, tax))
   畫出課稅後的曲線並命名為 $S + t$ 或 $D - t$，以虛線箭頭表示平移或旋轉，並標出未課稅的均衡（參見#ref(<fig-tax-producer>)、#ref(<fig-tax-consumer>)）。
 ]
 
-#fig("/figures/taxes/per_unit_producer.svg", width: 46%, caption: [
-  向賣方課徵從量稅。
+#fig("/figures/taxes/per_unit_producer.zh-TW.svg", width: 46%, caption: [
+  向賣方課從量稅
 ]) <fig-tax-producer>
 
-#fig("/figures/taxes/ad_valorem_consumer.svg", width: 46%, caption: [
-  向買方課徵從價稅。
+#fig("/figures/taxes/ad_valorem_consumer.zh-TW.svg", width: 46%, caption: [
+  向買方課從價稅
 ]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[在價格軸上標出 $p_d$、$p_0$ 與 $p_s$，並加上 "Tax" 括號；新增 `brace_side` 與 `notes`]
@@ -101,8 +120,8 @@ fig.add_tax_comparison(compare_tax_scenario(demand, supply, tax))
 fig.finalize()
 ```
 
-#fig("/figures/taxes/welfare.svg", width: 46%, caption: [
-  課稅下的剩餘與無謂損失。
+#fig("/figures/taxes/welfare.zh-TW.svg", width: 46%, caption: [
+  課稅下的剩餘與損失
 ]) <fig-tax-welfare>
 
 == 補貼
@@ -114,6 +133,15 @@ fig.finalize()
 ])[
   每單位 `amount` 的補貼（不得為負），發給賣方（`SubsidyTo.PRODUCER`）或買方（`SubsidyTo.CONSUMER`），位於 `principle_viz.policy.subsidy`。
 ]
+
+#api(("SubsidyTo",), syntax: [
+  `SubsidyTo.PRODUCER`, `CONSUMER`
+])[
+  補貼的受領者，來自 `principle_viz.policy.subsidy`。
+]
+
+#param("PRODUCER", type: "SubsidyTo")[補貼給賣方。]
+#param("CONSUMER", type: "SubsidyTo")[補貼給買方。]
 
 #api(("solve_subsidy_equilibrium", "compare_subsidy_scenario"), syntax: [
   #raw("solve_subsidy_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")") \
@@ -147,6 +175,6 @@ fig = MarketFigure(
 )
 ```
 
-#fig("/figures/taxes/subsidy.svg", width: 46%, caption: [
-  從量補貼與無謂損失。
+#fig("/figures/taxes/subsidy.zh-TW.svg", width: 46%, caption: [
+  從量補貼與無謂損失
 ]) <fig-subsidy>

@@ -82,6 +82,6 @@ fig.finalize()
 
 上例的图形参见#ref(<fig-discrete>)。
 
-#fig("/figures/discrete/market.svg", width: 46%, caption: [
-  离散需求与供给。
+#fig("/figures/discrete/market.zh-CN.svg", width: 46%, caption: [
+  离散需求与供给
 ]) <fig-discrete>

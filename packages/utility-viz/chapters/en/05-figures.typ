@@ -26,38 +26,29 @@ On top of `Canvas`, #pkg("utility-viz") builds these larger diagrams:
 ]
 
 #example([```python
-from utility_viz import Figure, Layout, Legend, levels, solve
+from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-fig = Figure(
-    Layout.SIDE_BY_SIDE,
-    x_max=20,
-    y_max=15,
-    x_label="x",
-    y_label="y",
-    title="Before / After Price Change",
-    shared_y=True,
-)
+Config.load("manual.toml").use()  # figure settings
 
+fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$")
+
+# before and after x doubles
 cases = [
-    (CobbDouglas(alpha=0.5, beta=0.5), 2.0, 3.0, 30.0, r"Before: $p_x=2$"),
-    (CobbDouglas(alpha=0.3, beta=0.7), 4.0, 3.0, 30.0, r"After: $p_x=4$"),
+    (CobbDouglas(alpha=0.5, beta=0.5), 2.0, 3.0, 30.0),
+    (CobbDouglas(alpha=0.3, beta=0.7), 4.0, 3.0, 30.0),
 ]
-
-for idx, (model, px, py, income, title) in enumerate(cases):
+for idx, (model, px, py, income) in enumerate(cases):
     eq = solve(model, px=px, py=py, income=income)
-    panel = fig[idx]
-    panel.ax.set_title(title)
-    panel.add_utility(model, levels=levels.around(eq.utility, n=5), label="IC")
-    panel.add_budget(px, py, income, fill=True, label="BC")
+    panel = fig[idx]  # each panel is a Canvas
+    panel.add_utility(model, levels=levels.around(eq.utility, n=5))
+    panel.add_budget(px, py, income, fill=True)
     panel.add_equilibrium(eq, show_ray=True)
-
-fig[0].show_legend(legend=Legend(position="upper right"))
-fig.save("figure_side_by_side.png")
+fig.save("side_by_side.png")
 ```])
 
 #fig("/figures/consumer/side_by_side.svg", width: 100%, caption: [
-  Price change, before and after.
+  Price change before and after
 ])
 
 #changed("1.2.0", label: "Layout")[Multi-panel `Figure` layouts and the `Layout` enum]
@@ -66,6 +57,14 @@ fig.save("figure_side_by_side.png")
   `SINGLE`, `STACKED`, `SIDE_BY_SIDE`, `TOP_TWO_BOTTOM_ONE`,
   `TOP_ONE_BOTTOM_TWO`, `GRID_2X2` and `GRID_3X3`.
 ]
+
+#param("SINGLE", type: "Layout")[One panel.]
+#param("STACKED", type: "Layout")[Two panels, one above the other.]
+#param("SIDE_BY_SIDE", type: "Layout")[Two panels, side by side.]
+#param("TOP_TWO_BOTTOM_ONE", type: "Layout")[Two panels on top, one below.]
+#param("TOP_ONE_BOTTOM_TWO", type: "Layout")[One panel on top, two below.]
+#param("GRID_2X2", type: "Layout")[Four panels in a 2 × 2 grid.]
+#param("GRID_3X3", type: "Layout")[Nine panels in a 3 × 3 grid.]
 
 == Paths
 
@@ -120,8 +119,27 @@ fig.save("figure_side_by_side.png")
   horizontal (@fig-price-path): spending on $y$ does not depend on $p_x$.
 ]
 
-#fig("/figures/consumer/price_path.svg", width: 42%, caption: [
-  The price-consumption curve as $p_x$ varies.
+#example([```python
+from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
+from utility_viz.models import CobbDouglas
+
+Config.load("manual.toml").use()  # figure settings
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+budget = LinearBudget(px=2.0, py=2.0, income=40.0)
+path = PricePath(model, budget=budget, price="px", price_range=(0.8, 6.0), n=40)
+
+# curves around the middle optimum
+eq = path.equilibria[len(path.equilibria) // 2]
+
+cvs = Canvas(x_max=25, y_max=20, x_label="$x$", y_label="$y$")
+cvs.add_utility(model, levels=levels.around(eq.utility, n=5))
+cvs.add_path(path)  # the price-consumption curve
+cvs.save("price_path.png")
+```])
+
+#fig("/figures/consumer/price_path.svg", width: 56%, caption: [
+  The price-consumption curve as $p_x$ varies
 ]) <fig-price-path>
 
 == Demand diagrams
@@ -165,8 +183,10 @@ fig.add_marshallian_panel(
 fig.save("demand_cobb_douglas.png")
 ```])
 
-#fig("/figures/consumer/demand.svg", width: 46%, caption: [
-  Demand curve at the optima.
+The figure below is drawn from MosaicKit layers, so each label can be placed by hand.
+
+#fig("/figures/consumer/demand.svg", width: 62%, caption: [
+  Demand curve at the optima
 ]) <fig-demand>
 
 == Price-effect decomposition
@@ -191,6 +211,15 @@ fig.save("demand_cobb_douglas.png")
 #param("income_effect")[Income effect.]
 #param("total_effect")[Total effect.]
 #param("compensated_income")[Income after compensation.]
+
+#api(("DecompositionMethod",), added: "v1.5.0", syntax: [
+  `DecompositionMethod.HICKS`, `SLUTSKY`
+])[
+  How the compensated bundle B is chosen.
+]
+
+#param("HICKS", type: "DecompositionMethod")[Hold the original utility fixed: B lies on the original indifference curve.]
+#param("SLUTSKY", type: "DecompositionMethod")[Keep the original bundle affordable: B is the optimum on the budget line through A at the new prices.]
 
 #api(("Canvas.add_decomposition",), added: "v1.5.0", updated: "v1.9.0")[
   Draw the three bundles A, B and C, the budget lines, the indifference
@@ -259,8 +288,10 @@ result = decompose_price_effect(
 )
 ```])
 
-#fig("/figures/consumer/hicks.svg", width: 48%, caption: [
-  Hicks decomposition.
+The figure below is also drawn from MosaicKit layers; the two effects are named under the axis.
+
+#fig("/figures/consumer/hicks.svg", width: 72%, caption: [
+  Hicks decomposition
 ])
 
 == Edgeworth box
@@ -309,6 +340,8 @@ box = EdgeworthBox(
 )
 ```])
 
-#fig("/figures/consumer/edgeworth.svg", width: 52%, caption: [
-  Contract curve and equilibrium.
+The figure below is drawn from MosaicKit layers after a textbook figure, with both consumers' indifference curves.
+
+#fig("/figures/consumer/edgeworth.svg", width: 86%, caption: [
+  Edgeworth box indifference curves
 ])

@@ -175,7 +175,7 @@ at the deepest interior point, which is farthest from the boundary.
 ] <thm-polylabel>
 
 #fig("/figures/geometry/polylabel.pdf", width: auto, caption: [
-  Pole, largest disc and centroid.
+  Pole largest disc and centroid
 ]) <fig-polylabel>
 
 For a triangle the pole is the incentre. Placement calls `polylabel` with
@@ -211,5 +211,5 @@ so a short span gets small arcs but the tip still reaches the full depth
 ] <prop-brace>
 
 #fig("/figures/geometry/brace.pdf", width: auto, caption: [
-  Brace outlines; the right span is under $2 delta$.
+  Brace outlines
 ]) <fig-brace>

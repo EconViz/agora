@@ -24,6 +24,25 @@ tax is charged to buyers or to sellers #citep(<mankiw2021>).
 
 == Solving
 
+#api(("TaxType",), syntax: [
+  `TaxType.FIXED_TAX`, `PER_UNIT_TAX`, `AD_VALOREM_TAX`
+])[
+  The tax's definition, from `principle_viz.policy.tax`.
+]
+
+#param("FIXED_TAX", type: "TaxType")[A fixed amount, which shifts a curve by `amount`.]
+#param("PER_UNIT_TAX", type: "TaxType")[An amount per unit; the same equilibrium as `FIXED_TAX`.]
+#param("AD_VALOREM_TAX", type: "TaxType")[A rate on the price, which rotates a curve.]
+
+#api(("TaxOn",), syntax: [
+  `TaxOn.CONSUMER`, `PRODUCER`
+])[
+  The legal incidence of a tax, from `principle_viz.policy.tax`.
+]
+
+#param("CONSUMER", type: "TaxOn")[Charged to buyers: demand shifts down.]
+#param("PRODUCER", type: "TaxOn")[Charged to sellers: supply shifts up.]
+
 #api(("solve_tax_equilibrium",), syntax: [
   #raw("solve_tax_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
@@ -73,11 +92,11 @@ the consumer price to $(1 + r)$ times the producer price.
 ]
 
 #fig("/figures/taxes/per_unit_producer.svg", width: 46%, caption: [
-  A per-unit tax on sellers.
+  Per-unit tax on sellers
 ]) <fig-tax-producer>
 
 #fig("/figures/taxes/ad_valorem_consumer.svg", width: 46%, caption: [
-  An ad valorem tax on buyers.
+  Ad valorem tax on buyers
 ]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[Marks $p_d$, $p_0$ and $p_s$ on the price axis with a "Tax" brace; `brace_side` and `notes`]
@@ -116,7 +135,7 @@ fig.finalize()
 ```
 
 #fig("/figures/taxes/welfare.svg", width: 46%, caption: [
-  Surplus and deadweight loss under a tax.
+  Surplus and loss under a tax
 ]) <fig-tax-welfare>
 
 == Subsidies
@@ -130,6 +149,15 @@ fig.finalize()
   (`SubsidyTo.PRODUCER`) or buyers (`SubsidyTo.CONSUMER`), from
   `principle_viz.policy.subsidy`.
 ]
+
+#api(("SubsidyTo",), syntax: [
+  `SubsidyTo.PRODUCER`, `CONSUMER`
+])[
+  Who receives a subsidy, from `principle_viz.policy.subsidy`.
+]
+
+#param("PRODUCER", type: "SubsidyTo")[Paid to sellers.]
+#param("CONSUMER", type: "SubsidyTo")[Paid to buyers.]
 
 #api(("solve_subsidy_equilibrium", "compare_subsidy_scenario"), syntax: [
   #raw("solve_subsidy_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")") \
@@ -172,5 +200,5 @@ fig = MarketFigure(
 ```
 
 #fig("/figures/taxes/subsidy.svg", width: 46%, caption: [
-  A per-unit subsidy and its deadweight loss.
+  Per-unit subsidy and its loss
 ]) <fig-subsidy>

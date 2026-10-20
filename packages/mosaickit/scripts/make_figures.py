@@ -61,6 +61,33 @@ from mosaickit.layout.placement.point import ORDER
 from mosaickit.layout.stack1d import spread
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def register_font() -> str | None:
+    """TeX Gyre Pagella from the TeX distribution, or None to keep the default typeface."""
+    import subprocess
+
+    from matplotlib import font_manager
+
+    try:
+        texmf = subprocess.run(
+            ["kpsewhich", "-var-value", "TEXMFDIST"], capture_output=True, text=True, check=True
+        ).stdout.strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
+    found = False
+    for style in ("regular", "italic", "bold"):
+        path = Path(texmf) / "fonts/opentype/public/tex-gyre" / f"texgyrepagella-{style}.otf"
+        if path.exists():
+            font_manager.fontManager.addfont(str(path))
+            found = True
+    if not found:
+        return None
+    matplotlib.rcParams.update({"mathtext.fontset": "custom", "mathtext.rm": "TeX Gyre Pagella",
+                                "mathtext.it": "TeX Gyre Pagella:italic", "mathtext.bf": "TeX Gyre Pagella:bold"})
+    return "TeX Gyre Pagella"
+
+
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 SIZE = CONFIG["size"]
@@ -69,15 +96,40 @@ TEXT = CONFIG["text"]
 # Every figure shares one configuration: the default theme with its text set to
 # the caption size. Overrides apply after the theme, so the general "text" role
 # would otherwise beat the theme's smaller axes.note; each text role is listed.
-FIGURES_CONFIG = Config(
-    role_overrides={
-        "text": StyleBundle(text=TextStyle(size=TEXT["size"])),
-        "title": StyleBundle(text=TextStyle(size=TEXT["size"])),
-        "axes": StyleBundle(text=TextStyle(size=TEXT["size"]), stroke=Stroke(width=0.8)),
-        "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"])),
-        "point": StyleBundle(marker=Marker(size=16)),
-    }
-)
+# The look is the EconViz one: grey curves, black axes, guides and points, a white page, set in
+# TeX Gyre Pagella when the TeX distribution has it.
+INK, GREY, LIGHT = "#1a1a1a", "#8c8c8c", "#b8b8b8"
+FONT = register_font()
+def figures_config(family: str | None) -> Config:
+    return Config(
+        role_overrides={
+            "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
+            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
+            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family), stroke=Stroke(color=INK, width=0.8)),
+            "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=family)),
+            "point": StyleBundle(marker=Marker(color=INK, size=16)),
+            "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
+            "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
+            "guide": StyleBundle(stroke=Stroke(color=INK, width=0.6, dash=DashStyle.DASHED)),
+        }
+    )
+
+
+FIGURES_CONFIG = figures_config(FONT)
+EDITIONS = ("en", "zh-TW", "zh-CN")
+EDITION = "en"  # the language the figures are drawn in; see set_edition()
+
+
+def set_edition(edition: str) -> None:
+    """Draw the following figures in this language: their words come from config/figures.toml, set in a CJK face."""
+    global EDITION, FIGURES_CONFIG
+    EDITION = edition
+    FIGURES_CONFIG = figures_config(CONFIG["fonts"].get("cjk", {}).get(edition, FONT))
+
+
+def tr(text: str) -> str:
+    """The word in the current edition's language (English words are the table's keys)."""
+    return CONFIG.get("labels", {}).get(EDITION, {}).get(text, text)
 
 
 def canvas(x: float = 10, y: float = 10, *, width: float | None = None, height: float | None = None) -> Canvas:
@@ -92,7 +144,7 @@ def canvas(x: float = 10, y: float = 10, *, width: float | None = None, height: 
 
 
 def save(target: Canvas | CanvasGrid, name: str) -> None:
-    path = OUT / f"{name}.{CONFIG['output']['format']}"
+    path = OUT / f"{name}{'' if EDITION == 'en' else '.' + EDITION}.{CONFIG['output']['format']}"
     path.parent.mkdir(parents=True, exist_ok=True)
     target.save(path)
     print(f"  {path.relative_to(ROOT)}")
@@ -114,8 +166,8 @@ def circle(center: tuple[float, float], radius: float, samples: int = 72) -> lis
 def quickstart_diagram() -> None:
     """The README example: axes, a shaded region, a curve, a marked point."""
     c = canvas().extend(quadrant_axes(10, 10))
-    c.add(FillLayer([(1, 1), (1, 7), (8, 1)], fill=Fill(color="#377EB8", opacity=0.12), z_index=-1))
-    c.add(PathLayer([(1, 8), (2, 5), (4, 3), (7, 1.5), (9, 1)], stroke=Stroke(color="#984EA3", width=2), id="curve"))
+    c.add(FillLayer([(1, 1), (1, 7), (8, 1)], fill=Fill(color=GREY, opacity=0.12), z_index=-1))
+    c.add(PathLayer([(1, 8), (2, 5), (4, 3), (7, 1.5), (9, 1)], stroke=Stroke(color=GREY, width=2), id="curve"))
     c.add(MarkerLayer([(4, 3)], id="point"))
     c.add(TextLayer((4, 3), "A", offset=(6, 6)))
     save(c, "quickstart/diagram")
@@ -126,10 +178,10 @@ def annotations_gutter() -> None:
     c = canvas().extend(quadrant_axes(10, 10))
     c.add(PathLayer([(0, 7), (9, 7)], role="guide"))
     c.add(PathLayer([(0, 5), (9, 5)], role="guide"))
-    for value, symbol, note in [(7, "a_1", "Upper\nvalue"), (5, "a_0", "Lower\nvalue")]:
+    for value, symbol, note in [(7, "a_1", tr("Upper\nvalue")), (5, "a_0", tr("Lower\nvalue"))]:
         c.add(AxisMarkLayer("y", value, symbol, math=True))
         c.add(AxisNoteLayer("y", value, note))
-    c.add(BraceLayer("y", 5, 7, "Span", side="outside"))
+    c.add(BraceLayer("y", 5, 7, tr("Span"), side="outside"))
     c.add(AxisMarkLayer("x", 6, "b", math=True))
     save(c, "annotations/gutter")
 
@@ -140,19 +192,19 @@ def annotations_span() -> None:
     c.add(PathLayer([(1, 8.5), (3, 5), (5, 3.6), (8, 2.6)], role="primary"))
     c.add(PathLayer([(1, 1.5), (4, 3.2), (8, 6)], role="secondary"))
     c.add(MarkerLayer([(3, 5), (3, 2.7)]))
-    c.add(SpanBraceLayer((3, 2.7), (3, 5), "gap", side="left"))
+    c.add(SpanBraceLayer((3, 2.7), (3, 5), tr("gap"), side="left"))
     save(c, "annotations/span")
 
 
 def labels_regions() -> None:
     """A region labelled inside, and a thin one labelled by a callout."""
     c = canvas().extend(quadrant_axes(10, 10))
-    c.add(FillLayer([(0, 0), (0, 8), (6, 0)], id="wide", fill=Fill(color="blue", opacity=0.18), z_index=-1))
-    c.add(FillLayer([(6, 0), (0, 8), (0, 8.8), (6.6, 0)], id="thin", fill=Fill(color="red", opacity=0.35), z_index=-1))
+    c.add(FillLayer([(0, 0), (0, 8), (6, 0)], id="wide", fill=Fill(color=GREY, opacity=0.18), z_index=-1))
+    c.add(FillLayer([(6, 0), (0, 8), (0, 8.8), (6.6, 0)], id="thin", fill=Fill(color=INK, opacity=0.25), z_index=-1))
     c.add(PathLayer([(0, 8), (6, 0)], role="primary"))
     c.add(PathLayer([(0, 8.8), (6.6, 0)], role="secondary"))
-    c.add(RegionLabelLayer("wide", "Feasible"))
-    c.add(RegionLabelLayer("thin", "Slack"))
+    c.add(RegionLabelLayer("wide", tr("Feasible")))
+    c.add(RegionLabelLayer("thin", tr("Slack")))
     save(c, "labels/regions")
 
 
@@ -178,7 +230,7 @@ def grids_sweep() -> None:
     template.add(MarkerLayer([(5, 2.5 + shift)]))
     values = shift.values([0.0, 2.0, 4.0])
     cells = [template.bind(values.parameter, value) for value in values.values]
-    link = GridLink(0, (5, 2.5), 2, (5, 6.5), stroke=Stroke(color="red", width=0.8, dash=DashStyle.DASHED))
+    link = GridLink(0, (5, 2.5), 2, (5, 6.5), stroke=Stroke(color=INK, width=0.8, dash=DashStyle.DASHED))
     save(CanvasGrid(cells, cols=3, links=[link]), "grids/sweep")
 
 
@@ -197,12 +249,12 @@ def geometry_polylabel() -> None:
         cy += (y0 + y1) * cross
     centroid = (cx / (6 * area), cy / (6 * area))
     c = canvas(10, 10, width=SIZE["height"], height=SIZE["height"])
-    c.add(FillLayer(u, fill=Fill(color="blue", opacity=0.15), stroke=Stroke(color="grey-600", width=0.8), z_index=-1))
+    c.add(FillLayer(u, fill=Fill(color=GREY, opacity=0.15), stroke=Stroke(color=INK, width=0.8), z_index=-1))
     c.add(PathLayer(circle(pole, radius), role="guide"))
-    c.add(MarkerLayer([pole], marker=Marker(color="blue")))
-    c.add(MarkerLayer([centroid], marker=Marker(color="red", shape="X", size=30)))
-    c.add(TextLayer(pole, "pole", anchor="left", offset=(4, 0)))
-    c.add(TextLayer(centroid, "centroid", anchor="bottom", offset=(0, 4)))
+    c.add(MarkerLayer([pole], marker=Marker(color=INK)))
+    c.add(MarkerLayer([centroid], marker=Marker(color=INK, shape="X", size=30)))
+    c.add(TextLayer(pole, tr("pole"), anchor="left", offset=(4, 0)))
+    c.add(TextLayer(centroid, tr("centroid"), anchor="bottom", offset=(0, 4)))
     save(c, "geometry/polylabel")
 
 
@@ -213,7 +265,7 @@ def geometry_brace() -> None:
         brace = brace_outline(start, end, base=1, depth=1.6, direction=1, axis="x")
         c.add(PathLayer([(start, 1), (end, 1)], role="guide"))
         c.add(PathLayer(list(brace.points), role="primary"))
-        c.add(MarkerLayer([brace.tip], marker=Marker(color="red")))
+        c.add(MarkerLayer([brace.tip], marker=Marker(color=INK)))
     save(c, "geometry/brace")
 
 
@@ -228,7 +280,7 @@ def geometry_spread() -> None:
             role = "primary" if k % 2 == 0 else "secondary"
             c.add(PathLayer([(center - size / 2, row), (center + size / 2, row)], role=role, stroke=Stroke(width=5)))
     for before, after in zip(centers, placed, strict=True):
-        c.add(ArrowLayer((before, 1.8), (after, 1.2), stroke=Stroke(color="grey-400", width=0.6)))
+        c.add(ArrowLayer((before, 1.8), (after, 1.2), stroke=Stroke(color=LIGHT, width=0.6)))
     save(c, "geometry/spread")
 
 
@@ -242,7 +294,7 @@ def geometry_candidates() -> None:
         unit = (math.cos(angle), math.sin(angle))
         c.add(PathLayer([(0.18 * unit[0], 0.18 * unit[1]), (0.85 * unit[0], 0.85 * unit[1])], role="guide"))
         c.add(TextLayer((1.05 * unit[0], 1.05 * unit[1]), str(rank)))
-    c.add(MarkerLayer([(0, 0)], marker=Marker(color="blue", size=36)))
+    c.add(MarkerLayer([(0, 0)], marker=Marker(color=INK, size=36)))
     save(c, "geometry/candidates")
 
 
@@ -275,7 +327,9 @@ def main() -> int:
         print(f"no figure matches {args.groups}", file=sys.stderr)
         return 1
     for name in selected:
-        FIGURES[name]()
+        for edition in EDITIONS:  # the same figure once per language
+            set_edition(edition)
+            FIGURES[name]()
     return 0
 
 

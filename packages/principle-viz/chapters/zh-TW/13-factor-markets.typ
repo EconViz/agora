@@ -38,8 +38,8 @@ fig.add_curves(
 fig.add_minimum_wage(labor)
 ```
 
-#fig("/figures/factor/minimum_wage.svg", width: 46%, caption: [
-  有約束的最低工資。
+#fig("/figures/factor/minimum_wage.zh-TW.svg", width: 46%, caption: [
+  有約束的最低工資
 ]) <fig-minimum-wage>
 
 `labor_demanded` 為 3，`labor_supplied` 為 7，`employment` 為 3，`unemployment` 為 4。
@@ -78,6 +78,6 @@ print(funds.interest_rate_change, funds.crowding_out)  # 1.0 2.0
   畫出移動後的曲線並命名為 $D_1$ 或 $S_1$，以及兩個均衡點與其間的移動。價格軸命名為 $r$（參見#ref(<fig-loanable-funds>)）。
 ]
 
-#fig("/figures/factor/loanable_funds.svg", width: 46%, caption: [
-  政府借款排擠民間投資。
+#fig("/figures/factor/loanable_funds.zh-TW.svg", width: 46%, caption: [
+  政府借款排擠投資
 ]) <fig-loanable-funds>

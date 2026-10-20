@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:51:49.379894</dc:date>
+    <dc:date>2026-10-20T15:28:50.983820</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -32,36 +32,36 @@ z
    <g id="axes.x">
     <path d="M 54 384.48 
 L 388.8 384.48 
-" style="fill: none; stroke: #333333; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="patch_2">
     <path d="M 388.4652 384.48 
 Q 388.6326 384.48 387.681966 384.48 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
     <path d="M 382.881966 382.08 
 L 387.681966 384.48 
 L 382.881966 386.88 
 z
-" style="fill: #333333; stroke: #333333; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="axes.y">
     <path d="M 54 384.48 
 L 54 51.84 
-" style="fill: none; stroke: #333333; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 54 52.17264 
 Q 54 52.00632 54 52.958034 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
     <path d="M 51.6 57.758034 
 L 54 52.958034 
 L 56.4 57.758034 
 z
-" style="fill: #333333; stroke: #333333; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(49.875 41.2035) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(49.875 41.2035) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-51" d="M -45 -1728 
 L 0 -1766 
@@ -103,7 +103,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(394.8 388.15125) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(394.8 388.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-32" d="M 339 1741 
 C 339 531 941 -115 2067 -115 
@@ -143,7 +143,7 @@ z
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(38.75 395.15125) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(38.75 395.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -166,111 +166,111 @@ z
    <g id="market.discrete.demand.connector.0">
     <path d="M 114.872727 79.56 
 L 114.872727 135 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.connector.1">
     <path d="M 175.745455 135 
 L 175.745455 190.44 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.connector.2">
     <path d="M 236.618182 190.44 
 L 236.618182 245.88 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.connector.3">
     <path d="M 297.490909 245.88 
 L 297.490909 301.32 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #01a2d9; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.connector.0">
     <path d="M 114.872727 356.76 
 L 114.872727 301.32 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #e3120b; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.connector.1">
     <path d="M 175.745455 301.32 
 L 175.745455 245.88 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #e3120b; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.connector.2">
     <path d="M 236.618182 245.88 
 L 236.618182 162.72 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #e3120b; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.connector.3">
     <path d="M 297.490909 162.72 
 L 297.490909 107.28 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #e3120b; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.equilibrium.price_interval.lower">
     <path d="M 54 245.88 
 L 236.618182 245.88 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.equilibrium.price_interval.upper">
     <path d="M 54 190.44 
 L 236.618182 190.44 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.step.0">
     <path d="M 54 79.56 
 L 114.872727 79.56 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.step.1">
     <path d="M 114.872727 135 
 L 175.745455 135 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.step.2">
     <path d="M 175.745455 190.44 
 L 236.618182 190.44 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.step.3">
     <path d="M 236.618182 245.88 
 L 297.490909 245.88 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.step.4">
     <path d="M 297.490909 301.32 
 L 358.363636 301.32 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.step.0">
     <path d="M 54 356.76 
 L 114.872727 356.76 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.step.1">
     <path d="M 114.872727 301.32 
 L 175.745455 301.32 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.step.2">
     <path d="M 175.745455 245.88 
 L 236.618182 245.88 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.step.3">
     <path d="M 236.618182 162.72 
 L 297.490909 162.72 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.supply.step.4">
     <path d="M 297.490909 107.28 
 L 358.363636 107.28 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.equilibrium.price">
     <path d="M 54 218.16 
 L 236.618182 218.16 
-" clip-path="url(#pa2a89e7cad)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#paf1d3cb55f)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.discrete.demand.closed">
     <defs>
-     <path id="m4622d04eaa" d="M 0 2.915476 
+     <path id="maebccd5ca2" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -280,19 +280,19 @@ C -2.608283 -1.514823 -2.915476 -0.773193 -2.915476 0
 C -2.915476 0.773193 -2.608283 1.514823 -2.061553 2.061553 
 C -1.514823 2.608283 -0.773193 2.915476 0 2.915476 
 z
-" style="stroke: #01a2d9; stroke-width: 1.5"/>
+" style="stroke: #8c8c8c; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m4622d04eaa" x="54" y="79.56" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4622d04eaa" x="114.872727" y="135" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4622d04eaa" x="175.745455" y="190.44" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4622d04eaa" x="236.618182" y="245.88" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m4622d04eaa" x="297.490909" y="301.32" style="fill: #01a2d9; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#maebccd5ca2" x="54" y="79.56" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#maebccd5ca2" x="114.872727" y="135" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#maebccd5ca2" x="175.745455" y="190.44" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#maebccd5ca2" x="236.618182" y="245.88" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#maebccd5ca2" x="297.490909" y="301.32" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="market.discrete.demand.open">
     <defs>
-     <path id="m33b6bfb9d0" d="M 0 2.915476 
+     <path id="m0a1d1eaad4" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -302,19 +302,19 @@ C -2.608283 -1.514823 -2.915476 -0.773193 -2.915476 0
 C -2.915476 0.773193 -2.608283 1.514823 -2.061553 2.061553 
 C -1.514823 2.608283 -0.773193 2.915476 0 2.915476 
 z
-" style="stroke: #01a2d9; stroke-width: 1.5"/>
+" style="stroke: #8c8c8c; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m33b6bfb9d0" x="114.872727" y="79.56" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m33b6bfb9d0" x="175.745455" y="135" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m33b6bfb9d0" x="236.618182" y="190.44" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m33b6bfb9d0" x="297.490909" y="245.88" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
-     <use xlink:href="#m33b6bfb9d0" x="358.363636" y="301.32" style="fill: #ffffff; stroke: #01a2d9; stroke-width: 1.5"/>
+     <use xlink:href="#m0a1d1eaad4" x="114.872727" y="79.56" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m0a1d1eaad4" x="175.745455" y="135" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m0a1d1eaad4" x="236.618182" y="190.44" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m0a1d1eaad4" x="297.490909" y="245.88" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m0a1d1eaad4" x="358.363636" y="301.32" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="market.discrete.supply.closed">
     <defs>
-     <path id="m64034be6fd" d="M 0 2.915476 
+     <path id="m10ef540159" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -324,19 +324,19 @@ C -2.608283 -1.514823 -2.915476 -0.773193 -2.915476 0
 C -2.915476 0.773193 -2.608283 1.514823 -2.061553 2.061553 
 C -1.514823 2.608283 -0.773193 2.915476 0 2.915476 
 z
-" style="stroke: #e3120b; stroke-width: 1.5"/>
+" style="stroke: #1a1a1a; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m64034be6fd" x="54" y="356.76" style="fill: #e3120b; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m64034be6fd" x="114.872727" y="301.32" style="fill: #e3120b; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m64034be6fd" x="175.745455" y="245.88" style="fill: #e3120b; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m64034be6fd" x="236.618182" y="162.72" style="fill: #e3120b; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m64034be6fd" x="297.490909" y="107.28" style="fill: #e3120b; stroke: #e3120b; stroke-width: 1.5"/>
+     <use xlink:href="#m10ef540159" x="54" y="356.76" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#m10ef540159" x="114.872727" y="301.32" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#m10ef540159" x="175.745455" y="245.88" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#m10ef540159" x="236.618182" y="162.72" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#m10ef540159" x="297.490909" y="107.28" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="market.discrete.supply.open">
     <defs>
-     <path id="m3299d2d5d2" d="M 0 2.915476 
+     <path id="mb6476ec949" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -346,14 +346,14 @@ C -2.608283 -1.514823 -2.915476 -0.773193 -2.915476 0
 C -2.915476 0.773193 -2.608283 1.514823 -2.061553 2.061553 
 C -1.514823 2.608283 -0.773193 2.915476 0 2.915476 
 z
-" style="stroke: #e3120b; stroke-width: 1.5"/>
+" style="stroke: #1a1a1a; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m3299d2d5d2" x="114.872727" y="356.76" style="fill: #ffffff; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m3299d2d5d2" x="175.745455" y="301.32" style="fill: #ffffff; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m3299d2d5d2" x="236.618182" y="245.88" style="fill: #ffffff; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m3299d2d5d2" x="297.490909" y="162.72" style="fill: #ffffff; stroke: #e3120b; stroke-width: 1.5"/>
-     <use xlink:href="#m3299d2d5d2" x="358.363636" y="107.28" style="fill: #ffffff; stroke: #e3120b; stroke-width: 1.5"/>
+     <use xlink:href="#mb6476ec949" x="114.872727" y="356.76" style="fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#mb6476ec949" x="175.745455" y="301.32" style="fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#mb6476ec949" x="236.618182" y="245.88" style="fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#mb6476ec949" x="297.490909" y="162.72" style="fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5"/>
+     <use xlink:href="#mb6476ec949" x="358.363636" y="107.28" style="fill: #ffffff; stroke: #1a1a1a; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="market.discrete.equilibrium.price_interval.label">
@@ -412,7 +412,7 @@ L 57 190.44
    </g>
    <g id="market.discrete.equilibrium.price_interval.label.label">
     <!-- $p \in [5, 7]$ -->
-    <g style="fill: #222222" transform="translate(68.09 212.6775) scale(0.15 -0.15)">
+    <g style="fill: #1a1a1a" transform="translate(68.09 212.6775) scale(0.15 -0.15)">
      <defs>
       <path id="TeXGyrePagella-Regular-5a6" d="M 512 1600 
 C 512 352 1184 -320 2432 -320 
@@ -527,7 +527,7 @@ z
    </g>
    <g id="market.discrete.equilibrium">
     <defs>
-     <path id="md88b8c6093" d="M 0 3.24037 
+     <path id="m4af46fcd6f" d="M 0 3.24037 
 C 0.859356 3.24037 1.683631 2.898944 2.291288 2.291288 
 C 2.898944 1.683631 3.24037 0.859356 3.24037 0 
 C 3.24037 -0.859356 2.898944 -1.683631 2.291288 -2.291288 
@@ -540,12 +540,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#md88b8c6093" x="236.618182" y="218.16" style="fill: #222222"/>
+     <use xlink:href="#m4af46fcd6f" x="236.618182" y="218.16" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="market.discrete.demand.label">
     <!-- $D$ -->
-    <g style="fill: #01a2d9" transform="translate(365.152539 289.939597) scale(0.165 -0.165)">
+    <g style="fill: #8c8c8c" transform="translate(365.152539 289.939597) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-25" d="M 179 -19 
 C 378 -6 576 0 774 0 
@@ -580,7 +580,7 @@ z
    </g>
    <g id="market.discrete.supply.label">
     <!-- $S$ -->
-    <g style="fill: #e3120b" transform="translate(365.287539 95.889097) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(365.287539 95.889097) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-34" d="M 269 128 
 C 589 -32 922 -115 1261 -115 
@@ -612,7 +612,7 @@ z
    </g>
    <g id="market.discrete.equilibrium.label">
     <!-- $Q^* = 3,\ p^* = 6$ -->
-    <g style="fill: #222222" transform="translate(243.649479 206.260453) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(243.649479 206.260453) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-b" d="M 205 2874 
 L 448 2541 
@@ -720,7 +720,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pa2a89e7cad">
+  <clipPath id="paf1d3cb55f">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

@@ -14,6 +14,16 @@
 #param("opportunity_cost_x(x)")[多生产一单位 $x$ 所放弃的 $y$，即 $abs(dif y slash dif x)$。]
 #param("assess(x, y)")[返回 `PointStatus`：曲线上为 `EFFICIENT`，曲线内为 `INEFFICIENT`，曲线外为 `UNATTAINABLE`。]
 
+#api(("PointStatus",), syntax: [
+  `PointStatus.EFFICIENT`, `INEFFICIENT`, `UNATTAINABLE`
+])[
+  点相对于边界的位置。
+]
+
+#param("EFFICIENT", type: "PointStatus")[在边界上。]
+#param("INEFFICIENT", type: "PointStatus")[在边界内侧。]
+#param("UNATTAINABLE", type: "PointStatus")[在边界外侧。]
+
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
 
@@ -42,8 +52,8 @@ result = analyze_ppf(ppf, points=points)
 ppf_canvas(result).save("ppf_points.png")
 ```
 
-#fig("/figures/ppf/points.svg", width: 46%, caption: [
-  有效率、无效率与无法达成的点。
+#fig("/figures/ppf/points.zh-CN.svg", width: 46%, caption: [
+  有效率与无效率的点
 ]) <fig-ppf>
 
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
@@ -54,8 +64,8 @@ ppf_canvas(result).save("ppf_points.png")
   经济成长使各截距乘以一加上对应的成长率；结果包含 `baseline` 与 `shifted` 两条曲线及其采样点。`ppf_growth_canvas()` 画出两条曲线并命名为 $P P F_0$ 与 $P P F_1$（参见#ref(<fig-ppf-growth>)）。
 ]
 
-#fig("/figures/ppf/growth.svg", width: 46%, caption: [
-  消费财成长 20%、资本财成长 10%。
+#fig("/figures/ppf/growth.zh-CN.svg", width: 46%, caption: [
+  消费品与资本品增长
 ]) <fig-ppf-growth>
 
 == 比较优势 <sec-comparative-advantage>

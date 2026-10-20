@@ -75,3 +75,5 @@
 ] <tab-guide>
 
 初次使用时，依序阅读#ref(<sec-quickstart>)、#ref(<sec-markets>)与#ref(<sec-figures>)。之后每章说明一个主题，先介绍计算，再介绍图形。查找特定命令的选项时，可直接前往#ref(<sec-cli>)。
+
+绘制本手册各图的脚本按主题分类，可一次下载：#link("https://econ-viz.org/assets/principle-viz/agora/principle-viz-examples.zip")[principle-viz-examples.zip]。

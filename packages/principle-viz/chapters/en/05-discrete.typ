@@ -99,5 +99,5 @@ fig.finalize()
 The figure for this example is shown in @fig-discrete.
 
 #fig("/figures/discrete/market.svg", width: 46%, caption: [
-  Discrete demand and supply.
+  Discrete demand and supply
 ]) <fig-discrete>

@@ -43,7 +43,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 ```
 
 #fig("/figures/fitting/adaptive.pdf", width: auto, caption: [
-  $4 slash x^2$ 的自适应拟合。
+  $4 slash x^2$ 的自适应拟合
 ]) <fig-adaptive>
 
 曲线弯曲剧烈处线段较短，接近直线处线段较长（参见#ref(<fig-adaptive>)，相邻线段以不同颜色区分）。Hermite 误差界限可预估二分需要的深度：
@@ -92,7 +92,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 ] <cor-rdp-path>
 
 #fig("/figures/fitting/polyline.pdf", width: auto, caption: [
-  以容许误差 $0.08$ 简化 41 个噪声样本。
+  简化后的噪声样本
 ]) <fig-polyline>
 
 #api(("maximum_polyline_deviation",), syntax: [

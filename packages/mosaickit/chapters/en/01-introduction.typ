@@ -71,3 +71,5 @@ order-restricted least squares behind @thm-spread.
 Start with @sec-quickstart, @sec-canvas and @sec-layers. Every
 figure in this manual is #pkg("mosaickit") output, drawn by the canvas or
 grid it illustrates and saved as PDF at the printed size.
+
+The scripts that draw the figures of this manual come as one zip, sorted by topic: #link("https://econ-viz.org/assets/mosaickit/agora/mosaickit-examples.zip")[mosaickit-examples.zip].

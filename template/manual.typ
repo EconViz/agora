@@ -304,9 +304,21 @@
 // Figure with its caption hanging in the left column. A path string is
 // taken from the manual's directory ("/figures/x.svg" is
 // <root>/figures/x.svg); an image() can be passed as well.
+// The utility-viz website offers the script behind each figure; the caption links to it.
+#let script-site = "https://econ-viz.org/assets/utility-viz/agora/"
+#let script-label = (en: "source", "zh-TW": "生圖檔", "zh-CN": "生图文件")
+
 #let fig(path, caption: none, width: 55%) = figure(
   if type(path) == str { context image(_root.get() + path, width: width) } else { path },
-  caption: caption,
+  caption: if type(path) == str and caption != none {
+    context {
+      let edition = edition-state.get()
+      if _root.get() != "/packages/utility-viz" or not path.starts-with("/figures/") { return caption }
+      let name = path.slice("/figures/".len()).replace(regex("(\\.zh-[A-Z]+)?\\.svg$"), "")
+      let suffix = if edition == "en" { "" } else { "." + edition }
+      [#caption #h(0.6em) #link(script-site + name + suffix + ".py")[#text(size: 0.85em)[↓ #script-label.at(edition)]]]
+    }
+  } else { caption },
   kind: image,
 )
 

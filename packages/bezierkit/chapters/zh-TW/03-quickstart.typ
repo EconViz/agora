@@ -22,7 +22,7 @@ print(to_tikz(path, precision=2, options="thick"))
 ```)
 
 #fig("/figures/curves/cubic.pdf", width: auto, caption: [
-  三次曲線及其控制凸包。
+  三次曲線及其控制凸包
 ]) <fig-quickstart>
 
 曲線由 $P_0$ 出發、在 $P_3$ 結束，離開 $P_0$ 時朝向 $P_1$，抵達 $P_3$ 時來自 $P_2$ 的方向，且始終位於控制點的凸包內（詳見#ref(<cor-hull>)）。最後一行是這條曲線的 TikZ 路徑，可直接貼進 #LaTeX 文件。

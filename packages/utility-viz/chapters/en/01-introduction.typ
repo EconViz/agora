@@ -38,6 +38,8 @@ draws through #pkg("mosaickit"), a domain-neutral scene and rendering
 library, and traces curves with #pkg("bezierkit"). The sibling package
 #pkg("principle-viz") covers principles-of-economics diagrams.
 
+The script behind every figure is linked from its caption, and all of them, sorted into folders by topic, come as one zip: #link("https://econ-viz.org/assets/utility-viz/agora/utility-viz-examples-en.zip")[utility-viz-examples-en.zip].
+
 == Scope
 
 #pkg("utility-viz") is organised in five parts: utility models, equilibrium solving, utility levels, drawing layers, and output formats. Models and solutions remain usable on their own, and the same model can be passed to a canvas, multi-panel figure, demand diagram, or analysis API.

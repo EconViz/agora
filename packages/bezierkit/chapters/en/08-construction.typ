@@ -122,7 +122,7 @@ segment = graph_hermite(x0=1, x1=1.5, y0=4, y1=16 / 9, m0=-8, m1=-64 / 27)
 ```
 
 #fig("/figures/construction/hermite.pdf", width: auto, caption: [
-  Hermite interpolant of $4 slash x^2$ on $[1, 1.5]$.
+  Hermite interpolant of $4 slash x^2$
 ]) <fig-hermite>
 
 == Interpolation error

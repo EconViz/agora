@@ -23,7 +23,7 @@ print(to_tikz(path, precision=2, options="thick"))
 ```)
 
 #fig("/figures/curves/cubic.pdf", width: auto, caption: [
-  The cubic of @sec-quickstart, its control polygon and convex hull.
+  Cubic with control polygon and hull
 ]) <fig-quickstart>
 
 The curve starts at $P_0$ and ends at $P_3$, leaves $P_0$ towards $P_1$ and

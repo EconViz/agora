@@ -46,3 +46,5 @@ $ b_(i,n)(t) = binom(n, i) t^i (1-t)^(n-i) $
 ] <tab-guide>
 
 初次使用时，先读#ref(<sec-quickstart>)与#ref(<sec-curves>)。本手册的图本身就是 #pkg("bezierkit") 的输出：每条曲线都由#ref(<sec-export>)的 TikZ 导出器写出，再以 #LaTeX 编译。
+
+绘制本手册各图的脚本按主题分类，可一次下载：#link("https://econ-viz.org/assets/bezierkit/agora/bezierkit-examples.zip")[bezierkit-examples.zip]。

@@ -67,6 +67,6 @@ canvases = elasticity_revenue_canvases(
 CanvasGrid(canvases, rows=1).save("elasticity_total_revenue.png")
 ```
 
-#fig("/figures/elasticity/revenue.svg", width: 100%, caption: [
-  需求曲線上的彈性與總收益。
+#fig("/figures/elasticity/revenue.zh-TW.svg", width: 100%, caption: [
+  彈性與總收益
 ]) <fig-revenue>

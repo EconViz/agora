@@ -42,7 +42,7 @@
 ]
 
 #fig("/figures/paths/bbox.pdf", width: auto, caption: [
-  三次曲線的緊密邊界框。
+  三次曲線的緊密邊界框
 ]) <fig-bbox>
 
 == 升階

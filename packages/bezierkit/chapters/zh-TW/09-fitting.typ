@@ -43,7 +43,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 ```
 
 #fig("/figures/fitting/adaptive.pdf", width: auto, caption: [
-  $4 slash x^2$ 的自適應擬合。
+  $4 slash x^2$ 的自適應擬合
 ]) <fig-adaptive>
 
 曲線彎曲劇烈處線段較短，接近直線處線段較長（參見#ref(<fig-adaptive>)，相鄰線段以不同顏色區分）。Hermite 誤差界限可預估二分需要的深度：
@@ -92,7 +92,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 ] <cor-rdp-path>
 
 #fig("/figures/fitting/polyline.pdf", width: auto, caption: [
-  以容許誤差 $0.08$ 簡化 41 個雜訊樣本。
+  簡化後的雜訊樣本
 ]) <fig-polyline>
 
 #api(("maximum_polyline_deviation",), syntax: [

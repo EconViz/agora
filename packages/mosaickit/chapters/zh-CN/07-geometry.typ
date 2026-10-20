@@ -118,8 +118,8 @@
   设 $P$ 为简单多边形，外接矩形的宽与高皆为正，并设精度 $epsilon > 0$。则 `polylabel` 必定结束，且返回的点 $q$ 满足 $f(q) >= f^* - epsilon$。特别地，当 $f^* > epsilon$ 时，$q$ 位于 $"int" P$。
 ] <thm-polylabel>
 
-#fig("/figures/geometry/polylabel.pdf", width: auto, caption: [
-  极点、最大圆盘与形心。
+#fig("/figures/geometry/polylabel.zh-CN.pdf", width: auto, caption: [
+  极点最大圆盘与形心
 ]) <fig-polylabel>
 
 三角形的极点就是内心，也就是三条角平分线的交点。布局时会以默认的一像素精度调用 `polylabel`，这比任何文字的放置精度都更细。
@@ -139,6 +139,6 @@
   (i) 位于带状区 $0 <= u <= delta$ 内；(ii) 在 $v |-> ell + h - v$ 下对称；(iii) 除尖端外处处切线连续，尖端处曲线折返（尖点）。
 ] <prop-brace>
 
-#fig("/figures/geometry/brace.pdf", width: auto, caption: [
-  大括号外形；右侧跨距小于 $2 delta$。
+#fig("/figures/geometry/brace.zh-CN.pdf", width: auto, caption: [
+  大括号外形
 ]) <fig-brace>

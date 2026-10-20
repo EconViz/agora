@@ -17,6 +17,16 @@
 #param("opportunity_cost_x(x)")[Units of $y$ given up for one more unit of $x$, $abs(dif y slash dif x)$.]
 #param("assess(x, y)")[A `PointStatus`: `EFFICIENT` on the frontier, `INEFFICIENT` inside it, `UNATTAINABLE` outside.]
 
+#api(("PointStatus",), syntax: [
+  `PointStatus.EFFICIENT`, `INEFFICIENT`, `UNATTAINABLE`
+])[
+  Where a point lies relative to the frontier.
+]
+
+#param("EFFICIENT", type: "PointStatus")[On the frontier.]
+#param("INEFFICIENT", type: "PointStatus")[Inside the frontier.]
+#param("UNATTAINABLE", type: "PointStatus")[Outside the frontier.]
+
 ```python
 from principle_viz import ProductionPossibilitiesFrontier
 
@@ -48,7 +58,7 @@ ppf_canvas(result).save("ppf_points.png")
 ```
 
 #fig("/figures/ppf/points.svg", width: 46%, caption: [
-  Efficient, inefficient and unattainable points.
+  Efficient and inefficient points
 ]) <fig-ppf>
 
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
@@ -63,7 +73,7 @@ ppf_canvas(result).save("ppf_points.png")
 ]
 
 #fig("/figures/ppf/growth.svg", width: 46%, caption: [
-  Growth of 20% in consumer goods and 10% in capital goods.
+  Growth in consumer and capital goods
 ]) <fig-ppf-growth>
 
 == Comparative advantage <sec-comparative-advantage>

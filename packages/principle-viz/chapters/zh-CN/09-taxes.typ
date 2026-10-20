@@ -22,6 +22,25 @@
 
 == 求解
 
+#api(("TaxType",), syntax: [
+  `TaxType.FIXED_TAX`, `PER_UNIT_TAX`, `AD_VALOREM_TAX`
+])[
+  税的定义，来自 `principle_viz.policy.tax`。
+]
+
+#param("FIXED_TAX", type: "TaxType")[固定金额，使曲线平移 `amount`。]
+#param("PER_UNIT_TAX", type: "TaxType")[每单位的税额；均衡与 `FIXED_TAX` 相同。]
+#param("AD_VALOREM_TAX", type: "TaxType")[按价格计的税率，使曲线旋转。]
+
+#api(("TaxOn",), syntax: [
+  `TaxOn.CONSUMER`, `PRODUCER`
+])[
+  税的法律归宿，来自 `principle_viz.policy.tax`。
+]
+
+#param("CONSUMER", type: "TaxOn")[向买方征收：需求向下平移。]
+#param("PRODUCER", type: "TaxOn")[向卖方征收：供给向上平移。]
+
 #api(("solve_tax_equilibrium",), syntax: [
   #raw("solve_tax_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
@@ -61,12 +80,12 @@ print(solve_tax_equilibrium(demand, supply, tax))
   画出征税后的曲线并命名为 $S + t$ 或 $D - t$，以虚线箭头表示平移或旋转，并标出未征税的均衡（参见#ref(<fig-tax-producer>)、#ref(<fig-tax-consumer>)）。
 ]
 
-#fig("/figures/taxes/per_unit_producer.svg", width: 46%, caption: [
-  向卖方征收从量税。
+#fig("/figures/taxes/per_unit_producer.zh-CN.svg", width: 46%, caption: [
+  向卖方征从量税
 ]) <fig-tax-producer>
 
-#fig("/figures/taxes/ad_valorem_consumer.svg", width: 46%, caption: [
-  向买方征收从价税。
+#fig("/figures/taxes/ad_valorem_consumer.zh-CN.svg", width: 46%, caption: [
+  向买方征从价税
 ]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[在价格轴上标出 $p_d$、$p_0$ 与 $p_s$，并加上 "Tax" 括号；新增 `brace_side` 与 `notes`]
@@ -101,8 +120,8 @@ fig.add_tax_comparison(compare_tax_scenario(demand, supply, tax))
 fig.finalize()
 ```
 
-#fig("/figures/taxes/welfare.svg", width: 46%, caption: [
-  征税下的剩余与无谓损失。
+#fig("/figures/taxes/welfare.zh-CN.svg", width: 46%, caption: [
+  征税下的剩余与损失
 ]) <fig-tax-welfare>
 
 == 补贴
@@ -114,6 +133,15 @@ fig.finalize()
 ])[
   每单位 `amount` 的补贴（不得为负），发给卖方（`SubsidyTo.PRODUCER`）或买方（`SubsidyTo.CONSUMER`），位于 `principle_viz.policy.subsidy`。
 ]
+
+#api(("SubsidyTo",), syntax: [
+  `SubsidyTo.PRODUCER`, `CONSUMER`
+])[
+  补贴的受领者，来自 `principle_viz.policy.subsidy`。
+]
+
+#param("PRODUCER", type: "SubsidyTo")[补贴给卖方。]
+#param("CONSUMER", type: "SubsidyTo")[补贴给买方。]
 
 #api(("solve_subsidy_equilibrium", "compare_subsidy_scenario"), syntax: [
   #raw("solve_subsidy_equilibrium(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")") \
@@ -147,6 +175,6 @@ fig = MarketFigure(
 )
 ```
 
-#fig("/figures/taxes/subsidy.svg", width: 46%, caption: [
-  从量补贴与无谓损失。
+#fig("/figures/taxes/subsidy.zh-CN.svg", width: 46%, caption: [
+  从量补贴与无谓损失
 ]) <fig-subsidy>

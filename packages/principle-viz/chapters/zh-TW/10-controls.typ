@@ -13,6 +13,9 @@
   位於 `control_price` 的上限（`CEILING`）或下限（`FLOOR`），位於 `principle_viz.core.controls`。
 ]
 
+#param("CEILING", type: "PriceControlType")[價格上限。]
+#param("FLOOR", type: "PriceControlType")[價格下限。]
+
 #api(("evaluate_price_control",), syntax: [
   #raw("evaluate_price_control(")#meta("demand")#raw(", ")#meta("supply")#raw(", ")#meta("scenario")#raw(")")
 ])[
@@ -47,12 +50,12 @@ print(ceiling.is_binding, ceiling.traded_quantity, ceiling.shortage)
   畫出管制線並命名為 "Price ceiling" 或 "Price floor"，在價格軸上標出 $p_c$。有約束時另標出 $Q_d$ 與 $Q_s$，並以括號標示差額：上限下方為 "Shortage"，下限上方為 "Surplus"。`gap_brace="axis"` 改在數量軸下方標示（參見#ref(<fig-ceiling>)、#ref(<fig-floor>)）。
 ]
 
-#fig("/figures/controls/ceiling.svg", width: 46%, caption: [
-  有約束的價格上限。
+#fig("/figures/controls/ceiling.zh-TW.svg", width: 46%, caption: [
+  有約束的價格上限
 ]) <fig-ceiling>
 
-#fig("/figures/controls/floor.svg", width: 46%, caption: [
-  有約束的價格下限。
+#fig("/figures/controls/floor.zh-TW.svg", width: 46%, caption: [
+  有約束的價格下限
 ]) <fig-floor>
 
 `outcome_from_control()` 將結果轉為市場結果，可交給#ref(<sec-welfare>)的福利函式（參見#ref(<fig-ceiling-welfare>)）：
@@ -70,8 +73,8 @@ fig.add_price_control(ceiling)
 fig.add_welfare(delta.policy)
 ```
 
-#fig("/figures/controls/ceiling_welfare.svg", width: 46%, caption: [
-  上限為 3.5 時的福利。
+#fig("/figures/controls/ceiling_welfare.zh-TW.svg", width: 46%, caption: [
+  上限 3.5 時的福利
 ]) <fig-ceiling-welfare>
 
 價格上限下，無謂損失為未成交的交易利益；部分剩餘由賣方轉移給買方。

@@ -31,11 +31,44 @@
 
 == 樣式型別
 
-#api(("Stroke", "DashStyle", "ArrowStyle", "ArrowPlacement"), syntax: [
+#api(("Stroke",), syntax: [
   #raw("Stroke(color=None, width=None, dash=None, arrow=None, opacity=None)")
 ])[
   線條樣式。`width` 以點為單位；`dash` 為 `DashStyle`（`SOLID`、`DASHED`、`DOTTED`、`DASHDOT`）；`arrow` 為 `ArrowStyle`（`OPEN`、`TRIANGLE`、`FANCY`、`WEDGE`），畫在圖層的 `ArrowPlacement`（`START`、`END`、`BOTH`）處。
 ]
+
+#changed("0.8.0", label: "DashStyle")[`DashStyle` 與 `ArrowStyle` 接受簡寫，讓其他套件可直接當作自己的線型與箭頭列舉]
+#api(("DashStyle",), syntax: [
+  `DashStyle.SOLID`, `DASHED`, `DOTTED`, `DASHDOT`
+])[
+  `Stroke` 的線條型態；也接受簡寫 `-`、`--`、`:` 與 `-.`。
+]
+
+#param("SOLID", type: "DashStyle")[實線。]
+#param("DASHED", type: "DashStyle")[虛線。]
+#param("DOTTED", type: "DashStyle")[點線。]
+#param("DASHDOT", type: "DashStyle")[點劃線。]
+
+#api(("ArrowStyle",), syntax: [
+  `ArrowStyle.OPEN`, `TRIANGLE`, `FANCY`, `WEDGE`
+])[
+  `Stroke` 的箭頭樣式。`SIMPLE` 是 `OPEN` 的另一個名稱，也接受 Matplotlib 寫法 `->` 與 `-|>`。
+]
+
+#param("OPEN", type: "ArrowStyle")[開口箭頭。]
+#param("TRIANGLE", type: "ArrowStyle")[實心三角形。]
+#param("FANCY", type: "ArrowStyle")[彎曲、漸細的箭頭。]
+#param("WEDGE", type: "ArrowStyle")[細楔形箭頭。]
+
+#api(("ArrowPlacement",), syntax: [
+  `ArrowPlacement.START`, `END`, `BOTH`
+])[
+  圖層的箭頭畫在哪裡。
+]
+
+#param("START", type: "ArrowPlacement")[在第一個點。]
+#param("END", type: "ArrowPlacement")[在最後一個點。]
+#param("BOTH", type: "ArrowPlacement")[兩端都畫。]
 
 #api(("Fill",), syntax: [#raw("Fill(color=None, opacity=None, hatch=None)")])[
   區域內部的填色樣式；`hatch` 為 Matplotlib 的網紋樣式，例如 `"//"`，`""` 表示無網紋。

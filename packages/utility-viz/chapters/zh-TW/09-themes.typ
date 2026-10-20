@@ -41,6 +41,153 @@
   `themes.COLORBLIND_CYCLE_HEX` 與 `themes.COLORBLIND_CYCLE_RGB` 提供這組配色的十六進位與 RGB 值。經濟學教學大量依賴圖形，因此不應只靠顏色傳達意義，以免視覺障礙的學生無法辨識 #citep(<kugler1996>)。
 ]
 
+下列各圖用內建主題（`dark` 除外）畫出同一張 Cobb-Douglas 圖，線寬沿用本手冊，底色為白色。
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主題配色 本手冊線寬
+theme = replace(
+    themes.default,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_default.png")
+```])
+
+#fig("/figures/themes/default.svg", width: 56%, caption: [
+  `default` 主題
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主題配色 本手冊線寬
+theme = replace(
+    themes.nord,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_nord.png")
+```])
+
+#fig("/figures/themes/nord.svg", width: 56%, caption: [
+  `nord` 主題
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主題配色 本手冊線寬
+theme = replace(
+    themes.paper,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_paper.png")
+```])
+
+#fig("/figures/themes/paper.svg", width: 56%, caption: [
+  `paper` 主題
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主題配色 本手冊線寬
+theme = replace(
+    themes.monochrome,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_monochrome.png")
+```])
+
+#fig("/figures/themes/monochrome.svg", width: 56%, caption: [
+  `monochrome` 主題
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# 主題配色 本手冊線寬
+theme = replace(
+    themes.presentation,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_presentation.png")
+```])
+
+#fig("/figures/themes/presentation.svg", width: 56%, caption: [
+  `presentation` 主題
+])
+
 == 自訂主題
 
 #api(("Theme",), updated: "v1.12.0", syntax: [
@@ -103,7 +250,7 @@
   `Config.load()` 讀取 TOML 檔案並回傳 `Config`。`use()` 將其設為後續圖形的預設設定；`reset()` 恢復內建預設值。
 ]
 
-=== 教學：以設定檔統一圖形樣式
+=== 教學：統一樣式
 
 同一份講義或論文的圖形，通常要共用相同的顏色與線條。與其在每個 `Canvas` 重複傳入參數，不如把樣式寫在專案根目錄的 `utility-viz.toml`，讓 Python 與命令列讀取同一份設定。
 
@@ -147,7 +294,7 @@
   ```python
   from utility_viz import Config
 
-  Config.load().use()   # 預設讀取目前目錄的 utility-viz.toml
+  Config.load().use()   # 預設讀 ./utility-viz.toml
   ```
 
   此後建立的 `Canvas`、`Figure`、`DemandDiagram` 與 `EdgeworthBox` 都使用這組設定；呼叫 `Config.reset()` 可恢復內建預設值。
@@ -168,7 +315,7 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 ```
 
 
-=== 設定檔的查找順序 <sec-config-lookup>
+=== 設定檔查找順序 <sec-config-lookup>
 
 #api(("Config.discover",), added: "v2.0.0b1", syntax: [
   #raw("Config.discover(")#oarg("path")#raw(", directory=None)")

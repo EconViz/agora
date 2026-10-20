@@ -70,3 +70,6 @@ affiliation = { en = "Department of International Business, National Chengchi Un
 "individuals" = "个人曲线"
 "outcome" = "市场结果"
 "rate" = "比率"
+
+[publish]
+name = "principle-viz-manual"

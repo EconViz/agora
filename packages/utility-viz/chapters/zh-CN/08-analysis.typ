@@ -119,10 +119,16 @@ print(analyzer.demand_degree_zero(px=2.0, py=3.0, income=60.0))
 Cobb-Douglas 的齐次次数为 $alpha + beta$：
 $ u(lambda x, lambda y) = lambda^(alpha + beta) u(x, y). $
 
-#param("INCREASING")[$alpha + beta > 1$，规模报酬递增。]
-#param("CONSTANT")[$alpha + beta = 1$，规模报酬不变。]
-#param("DECREASING")[$alpha + beta < 1$，规模报酬递减。]
-#param("NOT_HOMOGENEOUS")[没有一致的齐次次数。]
+#api(("ReturnsToScale",), syntax: [
+  `ReturnsToScale.INCREASING`, `CONSTANT`, `DECREASING`, `NOT_HOMOGENEOUS`
+])[
+  函数的规模报酬分类。
+]
+
+#param("INCREASING", type: "ReturnsToScale")[$alpha + beta > 1$，规模报酬递增。]
+#param("CONSTANT", type: "ReturnsToScale")[$alpha + beta = 1$，规模报酬不变。]
+#param("DECREASING", type: "ReturnsToScale")[$alpha + beta < 1$，规模报酬递减。]
+#param("NOT_HOMOGENEOUS", type: "ReturnsToScale")[没有一致的齐次次数。]
 
 ```python
 def shifted_utility(x, y):

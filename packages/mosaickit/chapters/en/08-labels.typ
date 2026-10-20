@@ -28,7 +28,7 @@ centred on the pole, lies in the region (@thm-rect-inside) and touches no
 line, marker, text or other region. @fig-regions shows both outcomes.
 
 #fig("/figures/labels/regions.pdf", width: auto, caption: [
-  An inside label and a callout.
+  Inside label and callout
 ]) <fig-regions>
 
 == Point labels
@@ -58,11 +58,11 @@ edge, because that is where the label belongs.
 ] <def-candidate-order>
 
 #fig("/figures/geometry/candidates.pdf", width: auto, caption: [
-  The order in which directions are tried.
+  Order of directions tried
 ]) <fig-candidates>
 
 #fig("/figures/labels/points.pdf", width: auto, caption: [
-  Point labels beside their points.
+  Point labels beside points
 ]) <fig-points>
 
 == Hard constraints

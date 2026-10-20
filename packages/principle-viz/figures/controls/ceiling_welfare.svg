@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:51:50.150406</dc:date>
+    <dc:date>2026-10-20T15:28:53.334296</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -32,36 +32,36 @@ z
    <g id="axes.x">
     <path d="M 132.031554 384.48 
 L 466.831554 384.48 
-" style="fill: none; stroke: #333333; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="patch_2">
     <path d="M 466.496754 384.48 
 Q 466.664154 384.48 465.71352 384.48 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
     <path d="M 460.91352 382.08 
 L 465.71352 384.48 
 L 460.91352 386.88 
 z
-" style="fill: #333333; stroke: #333333; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="axes.y">
     <path d="M 132.031554 384.48 
 L 132.031554 51.84 
-" style="fill: none; stroke: #333333; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 132.031554 52.17264 
 Q 132.031554 52.00632 132.031554 52.958034 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
     <path d="M 129.631554 57.758034 
 L 132.031554 52.958034 
 L 134.431554 57.758034 
 z
-" style="fill: #333333; stroke: #333333; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="axes.y.label">
     <!-- $p$ -->
-    <g style="fill: #222222" transform="translate(127.906554 41.2035) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(127.906554 41.2035) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-51" d="M -45 -1728 
 L 0 -1766 
@@ -103,7 +103,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- $Q$ -->
-    <g style="fill: #222222" transform="translate(472.831554 388.15125) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(472.831554 388.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-32" d="M 339 1741 
 C 339 531 941 -115 2067 -115 
@@ -143,7 +143,7 @@ z
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(116.781554 395.15125) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(116.781554 395.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -165,7 +165,7 @@ z
    </g>
    <g id="market.control.mark.q_d">
     <!-- $Q_d$ -->
-    <g style="fill: #222222" transform="translate(303.811554 401.459) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(303.811554 401.459) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-45" d="M 109 550 
 C 109 134 205 -70 390 -70 
@@ -210,7 +210,7 @@ z
    </g>
    <g id="market.control.mark.q_s">
     <!-- $Q_s$ -->
-    <g style="fill: #222222" transform="translate(164.971554 401.459) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(164.971554 401.459) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-54" d="M 58 102 
 C 301 -19 518 -70 742 -70 
@@ -244,7 +244,7 @@ z
    </g>
    <g id="market.control.mark.p_c">
     <!-- $p_c$ -->
-    <g style="fill: #222222" transform="translate(113.666554 291.13125) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(113.666554 291.13125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-44" d="M 160 870 
 C 160 256 429 -70 941 -70 
@@ -322,11 +322,11 @@ L 313.077073 292.990734
 L 313.245258 292.495276 
 L 313.347334 291.982105 
 L 313.381554 291.46 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="market.control.gap.label">
     <!-- Shortage -->
-    <g style="fill: #222222" transform="translate(211.548078 316.515008) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(211.548078 316.515008) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-34" d="M 154 3098 
 C 154 2784 237 2554 422 2381 
@@ -560,7 +560,7 @@ L 132.031554 107.28
 L 173.881554 148.86 
 L 173.881554 287.46 
 z
-" clip-path="url(#pdc1bb1ce99)" style="fill: #01a2d9; fill-opacity: 0.15"/>
+" clip-path="url(#pdd8110a09c)" style="fill: #b8b8b8; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.ps">
     <path d="M 132.031554 329.04 
@@ -568,7 +568,7 @@ L 132.031554 287.46
 L 173.881554 287.46 
 L 173.881554 287.46 
 z
-" clip-path="url(#pdc1bb1ce99)" style="fill: #e3120b; fill-opacity: 0.15"/>
+" clip-path="url(#pdd8110a09c)" style="fill: #8c8c8c; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.dwl">
     <path d="M 173.881554 287.46 
@@ -576,43 +576,43 @@ L 173.881554 148.86
 L 243.631554 218.16 
 L 243.631554 218.16 
 z
-" clip-path="url(#pdc1bb1ce99)" style="fill: #00887d; fill-opacity: 0.45"/>
+" clip-path="url(#pdd8110a09c)" style="fill: #595959; fill-opacity: 0.45"/>
    </g>
    <g id="market.demand">
     <path d="M 132.031554 107.28 
 L 411.031554 384.48 
-" clip-path="url(#pdc1bb1ce99)" style="fill: none; stroke: #01a2d9; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pdd8110a09c)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 132.031554 329.04 
 L 384.247554 78.4512 
-" clip-path="url(#pdc1bb1ce99)" style="fill: none; stroke: #e3120b; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pdd8110a09c)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.guide.q_d">
     <path d="M 313.381554 384.48 
 L 313.381554 287.46 
-" clip-path="url(#pdc1bb1ce99)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#pdd8110a09c)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.guide.q_s">
     <path d="M 173.881554 384.48 
 L 173.881554 287.46 
-" clip-path="url(#pdc1bb1ce99)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #333333; stroke-linejoin: miter"/>
+" clip-path="url(#pdd8110a09c)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.price">
     <path d="M 132.031554 287.46 
 L 466.831554 287.46 
-" clip-path="url(#pdc1bb1ce99)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #00887d; stroke-linejoin: miter"/>
+" clip-path="url(#pdd8110a09c)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.price.label">
     <!-- $p_c$ -->
-    <g style="fill: #00887d" transform="translate(451.985821 278.496982) scale(0.15 -0.15)">
+    <g style="fill: #595959" transform="translate(451.985821 278.496982) scale(0.15 -0.15)">
      <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
      <use xlink:href="#TeXGyrePagella-Italic-44" transform="translate(49.999954 -13.664062) scale(0.7)"/>
     </g>
    </g>
    <g id="market.demand.label">
     <!-- $D$ -->
-    <g style="fill: #01a2d9" transform="translate(414.904982 376.015073) scale(0.165 -0.165)">
+    <g style="fill: #8c8c8c" transform="translate(414.904982 376.015073) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-25" d="M 179 -19 
 C 378 -6 576 0 774 0 
@@ -647,7 +647,7 @@ z
    </g>
    <g id="market.supply.label">
     <!-- $S$ -->
-    <g style="fill: #e3120b" transform="translate(388.255982 69.975773) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(388.255982 69.975773) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-34" d="M 269 128 
 C 589 -32 922 -115 1261 -115 
@@ -679,7 +679,7 @@ z
    </g>
    <g id="market.welfare.cs.label">
     <!-- CS -->
-    <g style="fill: #222222" transform="translate(143.701086 200.7075) scale(0.15 -0.15)">
+    <g style="fill: #1a1a1a" transform="translate(143.701086 200.7075) scale(0.15 -0.15)">
      <defs>
       <path id="TeXGyrePagella-Regular-24" d="M 141 2189 
 C 141 806 1152 -128 2656 -128 
@@ -705,7 +705,7 @@ z
    </g>
    <g id="market.welfare.ps.label">
     <!-- Producer surplus -->
-    <g style="fill: #222222" transform="translate(3.850234 322.526842) scale(0.15 -0.15)">
+    <g style="fill: #1a1a1a" transform="translate(3.850234 322.526842) scale(0.15 -0.15)">
      <defs>
       <path id="TeXGyrePagella-Regular-31" d="M 141 -19 
 C 454 -6 762 0 1075 0 
@@ -916,7 +916,7 @@ L 122.792759 308.743975
    </g>
    <g id="market.welfare.dwl.label">
     <!-- DWL -->
-    <g style="fill: #222222" transform="translate(185.212414 221.592422) scale(0.15 -0.15)">
+    <g style="fill: #1a1a1a" transform="translate(185.212414 221.592422) scale(0.15 -0.15)">
      <defs>
       <path id="TeXGyrePagella-Regular-25" d="M 141 4237 
 L 397 4218 
@@ -1013,7 +1013,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pdc1bb1ce99">
+  <clipPath id="pdd8110a09c">
    <rect x="132.031554" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

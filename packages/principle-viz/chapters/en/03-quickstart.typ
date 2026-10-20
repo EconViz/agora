@@ -26,7 +26,7 @@ fig.save("basic_equilibrium.png")
 ```)
 
 #fig("/figures/quickstart/equilibrium.svg", width: 46%, caption: [
-  The market of this chapter (title omitted).
+  The market of this chapter
 ]) <fig-quickstart>
 
 $10 - Q = 2 + Q$ gives $Q^* = 4$ and $p^* = 6$. The output is shown in

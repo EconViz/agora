@@ -51,6 +51,153 @@ style objects.
   impaired students cannot follow it #citep(<kugler1996>).
 ]
 
+The figures below show the same Cobb-Douglas diagram in each built-in theme except `dark`, with the manual's line weights on a white page.
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# theme colours with manual line weights
+theme = replace(
+    themes.default,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_default.png")
+```])
+
+#fig("/figures/themes/default.svg", width: 56%, caption: [
+  The `default` theme
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# theme colours with manual line weights
+theme = replace(
+    themes.nord,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_nord.png")
+```])
+
+#fig("/figures/themes/nord.svg", width: 56%, caption: [
+  The `nord` theme
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# theme colours with manual line weights
+theme = replace(
+    themes.paper,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_paper.png")
+```])
+
+#fig("/figures/themes/paper.svg", width: 56%, caption: [
+  The `paper` theme
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# theme colours with manual line weights
+theme = replace(
+    themes.monochrome,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_monochrome.png")
+```])
+
+#fig("/figures/themes/monochrome.svg", width: 56%, caption: [
+  The `monochrome` theme
+])
+
+#example([```python
+from dataclasses import replace
+
+from utility_viz import Canvas, levels, solve, themes
+from utility_viz.models import CobbDouglas
+
+model = CobbDouglas(alpha=0.5, beta=0.5)
+eq = solve(model, px=2.0, py=3.0, income=30.0)
+
+# theme colours with manual line weights
+theme = replace(
+    themes.presentation,
+    background_color="#ffffff",
+    ic_linewidth=2.6,
+    budget_linewidth=2.6,
+    eq_markersize=5.0,
+)
+
+cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$", theme=theme)
+cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
+cvs.add_budget(2.0, 3.0, 30.0, fill=True)
+cvs.add_equilibrium(eq)
+cvs.save("theme_presentation.png")
+```])
+
+#fig("/figures/themes/presentation.svg", width: 56%, caption: [
+  The `presentation` theme
+])
+
 == Custom themes
 
 #api(("Theme",), updated: "v1.12.0", syntax: [
@@ -110,7 +257,7 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
   from utility_viz import Config
 
   Config.load("utility-viz.toml").use()
-  # diagrams created from here on use these settings
+  # later diagrams use these settings
 
   Config.reset()
   # back to the built-in defaults
@@ -121,7 +268,7 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
   defaults.
 ]
 
-=== Tutorial: one style for every diagram
+=== Tutorial: one shared style
 
 Figures in one set of lecture notes or one paper usually share their
 colours and line styles. Rather than repeating the same arguments on every
@@ -204,7 +351,7 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 ```
 
 
-=== Where the file is looked up <sec-config-lookup>
+=== File lookup <sec-config-lookup>
 
 #api(("Config.discover",), added: "v2.0.0b1", syntax: [
   #raw("Config.discover(")#oarg("path")#raw(", directory=None)")

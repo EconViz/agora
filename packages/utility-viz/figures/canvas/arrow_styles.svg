@@ -24,9 +24,8 @@
 L 453.011058 158.7624 
 L 453.011058 0 
 L 0 0 
-L 0 158.7624 
 z
-" style="fill: none; opacity: 0"/>
+" style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
@@ -34,27 +33,26 @@ z
 L 83.419659 140.472 
 L 83.419659 29.592 
 L 11.051058 29.592 
-L 11.051058 140.472 
 z
-" style="fill: none; opacity: 0"/>
+" style="fill: #ffffff"/>
    </g>
    <g id="patch_3">
     <path d="M 83.34729 140.472 
-Q 83.383474 140.472 82.525232 140.472 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
-    <path d="M 77.725232 138.072 
-L 82.525232 140.472 
-L 77.725232 142.872 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+Q 83.383474 140.472 82.301625 140.472 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 77.501625 138.072 
+L 82.301625 140.472 
+L 77.501625 142.872 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="patch_4">
     <path d="M 11.051058 29.70288 
-Q 11.051058 29.64744 11.051058 30.486427 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
-    <path d="M 8.651058 35.286427 
-L 11.051058 30.486427 
-L 13.451058 35.286427 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+Q 11.051058 29.64744 11.051058 30.710034 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 8.651058 35.510034 
+L 11.051058 30.710034 
+L 13.451058 35.510034 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
@@ -90,16 +88,16 @@ L 13.451058 35.286427
    <g id="patch_5">
     <path d="M 11.051058 140.472 
 L 11.051058 29.592 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_6">
     <path d="M 11.051058 140.472 
 L 83.419659 140.472 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <!-- $x$ -->
-    <g style="fill: #222222" transform="translate(91.419659 143.587) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(91.419659 143.587) scale(0.14 -0.14)">
      <defs>
       <path id="TeXGyrePagella-Italic-59" d="M 58 6 
 C 154 -45 256 -70 333 -70 
@@ -145,7 +143,7 @@ z
    </g>
    <g id="text_2">
     <!-- $y$ -->
-    <g style="fill: #222222" transform="translate(7.551058 17.658) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(7.551058 17.658) scale(0.14 -0.14)">
      <defs>
       <path id="TeXGyrePagella-Italic-5a" d="M -51 -1267 
 C -51 -1542 186 -1766 474 -1766 
@@ -185,7 +183,7 @@ z
    </g>
    <g id="text_3">
     <!-- $0$ -->
-    <g style="fill: #222222" transform="translate(2.88 152.5104) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(2.88 152.5104) scale(0.12 -0.12)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -207,7 +205,7 @@ z
    </g>
    <g id="text_4">
     <!-- SIMPLE -->
-    <g style="fill: #222222" transform="translate(25.431921 11.592) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(25.431921 11.592) scale(0.12 -0.12)">
      <defs>
       <path id="TeXGyrePagella-Regular-34" d="M 154 3098 
 C 154 2784 237 2554 422 2381 
@@ -403,29 +401,28 @@ z
 L 200.656792 140.472 
 L 200.656792 29.592 
 L 128.288191 29.592 
-L 128.288191 140.472 
 z
-" style="fill: none; opacity: 0"/>
+" style="fill: #ffffff"/>
    </g>
    <g id="patch_8">
     <path d="M 200.584423 140.472 
-Q 200.620608 140.472 199.762365 140.472 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
-    <path d="M 194.962365 138.072 
-L 199.762365 140.472 
-L 194.962365 142.872 
+Q 200.620608 140.472 199.538758 140.472 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 194.738758 138.072 
+L 199.538758 140.472 
+L 194.738758 142.872 
 z
-" style="fill: #222222; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="patch_9">
     <path d="M 128.288191 29.70288 
-Q 128.288191 29.64744 128.288191 30.486427 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
-    <path d="M 125.888191 35.286427 
-L 128.288191 30.486427 
-L 130.688191 35.286427 
+Q 128.288191 29.64744 128.288191 30.710034 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 125.888191 35.510034 
+L 128.288191 30.710034 
+L 130.688191 35.510034 
 z
-" style="fill: #222222; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="matplotlib.axis_3">
     <g id="xtick_4">
@@ -461,34 +458,34 @@ z
    <g id="patch_10">
     <path d="M 128.288191 140.472 
 L 128.288191 29.592 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_11">
     <path d="M 128.288191 140.472 
 L 200.656792 140.472 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_5">
     <!-- $x$ -->
-    <g style="fill: #222222" transform="translate(208.656792 143.587) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(208.656792 143.587) scale(0.14 -0.14)">
      <use xlink:href="#TeXGyrePagella-Italic-59" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="text_6">
     <!-- $y$ -->
-    <g style="fill: #222222" transform="translate(124.788191 17.658) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(124.788191 17.658) scale(0.14 -0.14)">
      <use xlink:href="#TeXGyrePagella-Italic-5a" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="text_7">
     <!-- $0$ -->
-    <g style="fill: #222222" transform="translate(120.117133 152.5104) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(120.117133 152.5104) scale(0.12 -0.12)">
      <use xlink:href="#TeXGyrePagella-Regular-11" transform="translate(0 0.09375)"/>
     </g>
    </g>
    <g id="text_8">
     <!-- TRIANGLE -->
-    <g style="fill: #222222" transform="translate(133.382179 11.592) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(133.382179 11.592) scale(0.12 -0.12)">
      <defs>
       <path id="TeXGyrePagella-Regular-35" d="M 115 4429 
 C 147 4064 160 3814 160 3398 
@@ -662,9 +659,8 @@ z
 L 317.893925 140.472 
 L 317.893925 29.592 
 L 245.525324 29.592 
-L 245.525324 140.472 
 z
-" style="fill: none; opacity: 0"/>
+" style="fill: #ffffff"/>
    </g>
    <g id="patch_13">
     <path d="M 314.532987 140.472 
@@ -677,7 +673,7 @@ L 314.054862 141.192
 Q 313.574394 141.792 313.093925 142.872 
 L 314.532987 140.472 
 z
-" style="fill: #222222; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="patch_14">
     <path d="M 245.525324 32.952937 
@@ -690,7 +686,7 @@ L 246.245324 33.431062
 Q 246.845324 33.911531 247.925324 34.392 
 L 245.525324 32.952937 
 z
-" style="fill: #222222; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="matplotlib.axis_5">
     <g id="xtick_7">
@@ -726,34 +722,34 @@ z
    <g id="patch_15">
     <path d="M 245.525324 140.472 
 L 245.525324 29.592 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_16">
     <path d="M 245.525324 140.472 
 L 317.893925 140.472 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_9">
     <!-- $x$ -->
-    <g style="fill: #222222" transform="translate(325.893925 143.587) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(325.893925 143.587) scale(0.14 -0.14)">
      <use xlink:href="#TeXGyrePagella-Italic-59" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="text_10">
     <!-- $y$ -->
-    <g style="fill: #222222" transform="translate(242.025324 17.658) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(242.025324 17.658) scale(0.14 -0.14)">
      <use xlink:href="#TeXGyrePagella-Italic-5a" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="text_11">
     <!-- $0$ -->
-    <g style="fill: #222222" transform="translate(237.354266 152.5104) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(237.354266 152.5104) scale(0.12 -0.12)">
      <use xlink:href="#TeXGyrePagella-Regular-11" transform="translate(0 0.09375)"/>
     </g>
    </g>
    <g id="text_12">
     <!-- FANCY -->
-    <g style="fill: #222222" transform="translate(261.214 11.592) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(261.214 11.592) scale(0.12 -0.12)">
      <defs>
       <path id="TeXGyrePagella-Regular-27" d="M 141 -19 
 C 454 -6 762 0 1075 0 
@@ -850,9 +846,8 @@ z
 L 435.131058 140.472 
 L 435.131058 29.592 
 L 362.762457 29.592 
-L 362.762457 140.472 
 z
-" style="fill: none; opacity: 0"/>
+" style="fill: #ffffff"/>
    </g>
    <g id="patch_18">
     <path d="M 432.236314 142.272 
@@ -860,7 +855,7 @@ Q 433.683686 141.372 435.131058 140.472
 L 435.131058 140.472 
 Q 433.683686 139.572 432.236314 138.672 
 z
-" style="fill: #222222; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="patch_19">
     <path d="M 364.562457 34.0272 
@@ -868,7 +863,7 @@ Q 363.662457 31.8096 362.762457 29.592
 L 362.762457 29.592 
 Q 361.862457 31.8096 360.962457 34.0272 
 z
-" style="fill: #222222; stroke: #222222; stroke-width: 0.8; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="matplotlib.axis_7">
     <g id="xtick_10">
@@ -904,34 +899,34 @@ z
    <g id="patch_20">
     <path d="M 362.762457 140.472 
 L 362.762457 29.592 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="patch_21">
     <path d="M 362.762457 140.472 
 L 435.131058 140.472 
-" style="fill: none; stroke: #222222; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_13">
     <!-- $x$ -->
-    <g style="fill: #222222" transform="translate(443.131058 143.587) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(443.131058 143.587) scale(0.14 -0.14)">
      <use xlink:href="#TeXGyrePagella-Italic-59" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="text_14">
     <!-- $y$ -->
-    <g style="fill: #222222" transform="translate(359.262457 17.658) scale(0.14 -0.14)">
+    <g style="fill: #1a1a1a" transform="translate(359.262457 17.658) scale(0.14 -0.14)">
      <use xlink:href="#TeXGyrePagella-Italic-5a" transform="translate(0 0.796875)"/>
     </g>
    </g>
    <g id="text_15">
     <!-- $0$ -->
-    <g style="fill: #222222" transform="translate(354.591399 152.5104) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(354.591399 152.5104) scale(0.12 -0.12)">
      <use xlink:href="#TeXGyrePagella-Regular-11" transform="translate(0 0.09375)"/>
     </g>
    </g>
    <g id="text_16">
     <!-- WEDGE -->
-    <g style="fill: #222222" transform="translate(376.39332 11.592) scale(0.12 -0.12)">
+    <g style="fill: #1a1a1a" transform="translate(376.39332 11.592) scale(0.12 -0.12)">
      <defs>
       <path id="TeXGyrePagella-Regular-38" d="M 51 4237 
 L 230 4218 

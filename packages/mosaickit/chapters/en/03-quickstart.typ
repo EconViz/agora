@@ -31,7 +31,7 @@ canvas.save("diagram.pdf")
 ```)
 
 #fig("/figures/quickstart/diagram.pdf", width: auto, caption: [
-  The quick-start diagram.
+  Quick-start diagram
 ]) <fig-quickstart>
 
 `quadrant_axes(10, 10)` returns ordinary layers: two arrowed paths and their

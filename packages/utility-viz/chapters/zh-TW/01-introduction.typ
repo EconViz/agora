@@ -29,6 +29,8 @@
 
 #pkg("utility-viz") 屬於 EconViz 系列套件：繪圖透過與領域無關的場景與繪製函式庫 #pkg("mosaickit")，曲線則以 #pkg("bezierkit") 描繪。經濟學原理圖形由同系列的 #pkg("principle-viz") 負責。
 
+每張圖的圖說都連到畫出它的腳本；全部腳本依主題分資料夾，可一次下載：#link("https://econ-viz.org/assets/utility-viz/agora/utility-viz-examples-zh-TW.zip")[utility-viz-examples-zh-TW.zip]。
+
 == 功能範圍
 
 #pkg("utility-viz") 的功能分為效用模型、均衡求解、效用水準、圖層與匯出格式五個部分。模型與求解結果可分開使用；同一模型也可交由畫布、多面板圖、需求圖或分析 API 處理。
