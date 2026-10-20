@@ -44,4 +44,4 @@
 
 初次使用請先讀#ref(<sec-quickstart>)、#ref(<sec-canvas>)與#ref(<sec-layers>)。本手冊的圖都是 #pkg("mosaickit") 自己的輸出：每張圖由它所示範的畫布或網格繪製，並以印在此處的尺寸存成 PDF。
 
-本手冊的圖依主題分資料夾，連同繪製它們的腳本，可一次下載：#link("https://econ-viz.org/assets/mosaickit/agora/mosaickit-figures.zip")[mosaickit-figures.zip]。
+繪製本手冊各圖的腳本依主題分類，可一次下載：#link("https://econ-viz.org/assets/mosaickit/agora/mosaickit-examples.zip")[mosaickit-examples.zip]。

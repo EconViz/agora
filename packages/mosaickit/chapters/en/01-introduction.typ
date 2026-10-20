@@ -72,4 +72,4 @@ Start with @sec-quickstart, @sec-canvas and @sec-layers. Every
 figure in this manual is #pkg("mosaickit") output, drawn by the canvas or
 grid it illustrates and saved as PDF at the printed size.
 
-The figures of this manual come as one zip, sorted into folders by topic, with the script that draws them: #link("https://econ-viz.org/assets/mosaickit/agora/mosaickit-figures.zip")[mosaickit-figures.zip].
+The scripts that draw the figures of this manual come as one zip, sorted by topic: #link("https://econ-viz.org/assets/mosaickit/agora/mosaickit-examples.zip")[mosaickit-examples.zip].
