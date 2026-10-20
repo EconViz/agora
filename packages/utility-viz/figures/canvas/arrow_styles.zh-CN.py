@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 titles = ["简单", "三角形", "花式", "楔形"]

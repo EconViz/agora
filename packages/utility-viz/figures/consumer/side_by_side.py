@@ -1,7 +1,7 @@
 from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$", shared_y=True)
 

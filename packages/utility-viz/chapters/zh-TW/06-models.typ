@@ -44,7 +44,7 @@ Cobb-Douglas、CES 與 Translog 的無異曲線為平滑曲線；最適解取決
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CES
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = CES(alpha=0.5, beta=0.5, rho=-0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -56,7 +56,7 @@ cvs.add_equilibrium(eq)
 cvs.save("ces.png")
 ```])
 
-#fig("/figures/models/ces.svg", width: 56%, caption: [CES 曲線。])
+#fig("/figures/models/ces.svg", width: 56%, caption: [CES 曲線])
 
 === Translog
 
@@ -82,7 +82,7 @@ cvs.save("ces.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Translog
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = Translog(alpha_x=0.6, alpha_y=0.4, beta_xy=0.12)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -94,7 +94,7 @@ cvs.add_equilibrium(eq)
 cvs.save("translog.png")
 ```])
 
-#fig("/figures/models/translog.svg", width: 56%, caption: [Translog 範例。])
+#fig("/figures/models/translog.svg", width: 56%, caption: [Translog 範例])
 
 == 拗折點與角解
 
@@ -120,7 +120,7 @@ cvs.save("translog.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Leontief
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = Leontief(a=1.0, b=1.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -138,7 +138,7 @@ cvs.save("leontief.png")
 ```])
 
 #fig("/figures/models/leontief.svg", width: 56%, caption: [
-  完全互補射線。
+  完全互補射線
 ])
 
 === 完全替代
@@ -156,7 +156,7 @@ cvs.save("leontief.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import PerfectSubstitutes
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = PerfectSubstitutes(a=1.0, b=2.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -169,7 +169,7 @@ cvs.save("perfect_substitutes.png")
 ```])
 
 #fig("/figures/models/perfect_substitutes.svg", width: 56%, caption: [
-  完全替代角解。
+  完全替代角解
 ])
 
 === 最大值效用
@@ -191,7 +191,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = CustomUtility(func=lambda x, y: np.maximum(x, y), name="maximum")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -203,7 +203,7 @@ cvs.add_equilibrium(eq)
 cvs.save("maximum.png")
 ```])
 
-#fig("/figures/models/maximum.svg", width: 56%, caption: [最大值效用。])
+#fig("/figures/models/maximum.svg", width: 56%, caption: [最大值效用])
 
 == 所得與參考點
 
@@ -226,7 +226,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import QuasiLinear
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = QuasiLinear(v_func=np.log, linear_in="y")
 eq = solve(model, px=1.0, py=2.0, income=20.0)
@@ -239,7 +239,7 @@ cvs.save("quasi_linear.png")
 ```])
 
 #fig("/figures/models/quasi_linear.svg", width: 56%, caption: [
-  準線性偏好。
+  準線性偏好
 ])
 
 #changed("1.9.0", label: "Haagsma")[新增具有閉式解的 Haagsma 效用模型，用於劣等財與季芬財分析]
@@ -269,7 +269,7 @@ cvs.save("quasi_linear.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Haagsma
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = Haagsma(gamma_y=10.0)
 eq = solve(model, px=1.0, py=1.0, income=11.0)
@@ -281,7 +281,7 @@ cvs.add_equilibrium(eq)
 cvs.save("haagsma.png")
 ```])
 
-#fig("/figures/models/haagsma.svg", width: 56%, caption: [$gamma_y = 10$ 的 Haagsma。])
+#fig("/figures/models/haagsma.svg", width: 56%, caption: [$gamma_y = 10$ 的 Haagsma])
 
 === Stone-Geary
 
@@ -300,7 +300,7 @@ cvs.save("haagsma.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import StoneGeary
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = StoneGeary(alpha=0.5, beta=0.5, bar_x=2.0, bar_y=2.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -313,7 +313,7 @@ cvs.save("stone_geary.png")
 ```])
 
 #fig("/figures/models/stone_geary.svg", width: 56%, caption: [
-  Stone-Geary。
+  Stone-Geary
 ])
 
 === 飽和偏好
@@ -335,7 +335,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels
 from utility_viz.models import Satiation
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = Satiation(bliss_x=6.0, bliss_y=4.0)
 
@@ -348,5 +348,5 @@ cvs.save("satiation.png")
 ```])
 
 #fig("/figures/models/satiation.svg", width: 56%, caption: [
-  極樂點飽和偏好。
+  極樂點飽和偏好
 ])

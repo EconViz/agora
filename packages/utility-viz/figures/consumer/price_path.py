@@ -1,7 +1,7 @@
 from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 budget = LinearBudget(px=2.0, py=2.0, income=40.0)

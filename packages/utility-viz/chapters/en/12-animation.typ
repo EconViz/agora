@@ -90,7 +90,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 
 def draw(alpha: float) -> Canvas:
@@ -108,7 +108,7 @@ Animator(draw, frames=np.linspace(0.1, 0.9, 45)).save("parameter_sweep.gif", fps
 ```])
 
 #fig("/figures/animation/parameter_sweep.svg", width: 94%, caption: [
-  Parameter sweep: $alpha$ varies with $beta = 1 - alpha$.
+  Parameter sweep $alpha$ varies with $beta = 1 - alpha$
 ]) <fig-sweep-param>
 
 Each figure below shows four frames of its GIF, which has 45.
@@ -120,7 +120,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # same curves in every frame
@@ -141,7 +141,7 @@ Animator(draw, frames=np.linspace(1.0, 6.0, 45)).save("price_sweep.gif", fps=12,
 ```])
 
 #fig("/figures/animation/price_sweep.svg", width: 94%, caption: [
-  Price sweep with $p_y = 2$ and $I = 20$ fixed.
+  Price sweep with $p_y = 2$ and $I = 20$ fixed
 ]) <fig-sweep-price>
 
 #example([```python
@@ -151,7 +151,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # same curves in every frame
@@ -172,5 +172,5 @@ Animator(draw, frames=np.linspace(8.0, 36.0, 45)).save("income_sweep.gif", fps=1
 ```])
 
 #fig("/figures/animation/income_sweep.svg", width: 94%, caption: [
-  Income sweep with $p_x = p_y = 2$ fixed.
+  Income sweep with $p_x = p_y = 2$ fixed
 ]) <fig-sweep-income>

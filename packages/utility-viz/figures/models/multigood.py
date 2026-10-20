@@ -1,7 +1,7 @@
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import MultiGoodCD
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 # three goods with z held at 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})

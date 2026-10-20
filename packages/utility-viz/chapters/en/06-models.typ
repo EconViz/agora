@@ -50,7 +50,7 @@ interior optimum when prices and income are positive.
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CES
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CES(alpha=0.5, beta=0.5, rho=-0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -62,7 +62,7 @@ cvs.add_equilibrium(eq)
 cvs.save("ces.png")
 ```])
 
-#fig("/figures/models/ces.svg", width: 56%, caption: [CES with $rho = -0.5$.])
+#fig("/figures/models/ces.svg", width: 56%, caption: [CES with $rho = -0.5$])
 
 === Translog
 
@@ -91,7 +91,7 @@ cvs.save("ces.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Translog
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = Translog(alpha_x=0.6, alpha_y=0.4, beta_xy=0.12)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -103,7 +103,7 @@ cvs.add_equilibrium(eq)
 cvs.save("translog.png")
 ```])
 
-#fig("/figures/models/translog.svg", width: 56%, caption: [Translog with $beta_(x y) = 0.12$.])
+#fig("/figures/models/translog.svg", width: 56%, caption: [Translog with $beta_(x y) = 0.12$])
 
 == Kinks and corners
 
@@ -131,7 +131,7 @@ to a kink or a corner.
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Leontief
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = Leontief(a=1.0, b=1.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -149,7 +149,7 @@ cvs.save("leontief.png")
 ```])
 
 #fig("/figures/models/leontief.svg", width: 56%, caption: [
-  Leontief, with the ray through the kinks.
+  Leontief with the ray through the kinks
 ])
 
 === Perfect substitutes
@@ -169,7 +169,7 @@ cvs.save("leontief.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import PerfectSubstitutes
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = PerfectSubstitutes(a=1.0, b=2.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -182,7 +182,7 @@ cvs.save("perfect_substitutes.png")
 ```])
 
 #fig("/figures/models/perfect_substitutes.svg", width: 56%, caption: [
-  Perfect substitutes: a corner solution on the $y$-axis.
+  Perfect substitutes a corner solution on the $y$-axis
 ])
 
 === Maximum utility
@@ -206,7 +206,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CustomUtility(func=lambda x, y: np.maximum(x, y), name="maximum")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -218,7 +218,7 @@ cvs.add_equilibrium(eq)
 cvs.save("maximum.png")
 ```])
 
-#fig("/figures/models/maximum.svg", width: 56%, caption: [Maximum utility.])
+#fig("/figures/models/maximum.svg", width: 56%, caption: [Maximum utility])
 
 == Income and reference points
 
@@ -243,7 +243,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import QuasiLinear
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = QuasiLinear(v_func=np.log, linear_in="y")
 eq = solve(model, px=1.0, py=2.0, income=20.0)
@@ -256,7 +256,7 @@ cvs.save("quasi_linear.png")
 ```])
 
 #fig("/figures/models/quasi_linear.svg", width: 56%, caption: [
-  Quasi-linear preferences: vertically parallel indifference curves.
+  Quasi-linear preferences vertically parallel indifference curves
 ])
 
 #changed("1.9.0", label: "Haagsma")[Haagsma utility model with a closed-form solution, for inferior- and Giffen-good analysis]
@@ -289,7 +289,7 @@ cvs.save("quasi_linear.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Haagsma
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = Haagsma(gamma_y=10.0)
 eq = solve(model, px=1.0, py=1.0, income=11.0)
@@ -301,7 +301,7 @@ cvs.add_equilibrium(eq)
 cvs.save("haagsma.png")
 ```])
 
-#fig("/figures/models/haagsma.svg", width: 56%, caption: [Haagsma with $gamma_y = 10$.])
+#fig("/figures/models/haagsma.svg", width: 56%, caption: [Haagsma with $gamma_y = 10$])
 
 === Stone-Geary
 
@@ -323,7 +323,7 @@ cvs.save("haagsma.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import StoneGeary
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = StoneGeary(alpha=0.5, beta=0.5, bar_x=2.0, bar_y=2.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -336,7 +336,7 @@ cvs.save("stone_geary.png")
 ```])
 
 #fig("/figures/models/stone_geary.svg", width: 56%, caption: [
-  Stone-Geary with $overline(x) = overline(y) = 2$.
+  Stone-Geary with $overline(x) = overline(y) = 2$
 ])
 
 === Satiation
@@ -359,7 +359,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels
 from utility_viz.models import Satiation
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = Satiation(bliss_x=6.0, bliss_y=4.0)
 
@@ -372,5 +372,5 @@ cvs.save("satiation.png")
 ```])
 
 #fig("/figures/models/satiation.svg", width: 56%, caption: [
-  Satiation around the bliss point $(6, 4)$.
+  Satiation around the bliss point $(6, 4)$
 ])

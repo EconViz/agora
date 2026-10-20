@@ -80,7 +80,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 
 def draw(alpha: float) -> Canvas:
@@ -98,7 +98,7 @@ Animator(draw, frames=np.linspace(0.1, 0.9, 45)).save("parameter_sweep.gif", fps
 ```])
 
 #fig("/figures/animation/parameter_sweep.svg", width: 94%, caption: [
-  参数变动。
+  参数变动
 ]) <fig-sweep-param>
 
 下面每张图取 GIF 的四个帧，GIF 共 45 帧。
@@ -110,7 +110,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # 每帧用同一组曲线
@@ -131,7 +131,7 @@ Animator(draw, frames=np.linspace(1.0, 6.0, 45)).save("price_sweep.gif", fps=12,
 ```])
 
 #fig("/figures/animation/price_sweep.svg", width: 94%, caption: [
-  价格变动。
+  价格变动
 ]) <fig-sweep-price>
 
 #example([```python
@@ -141,7 +141,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # 每帧用同一组曲线
@@ -162,6 +162,6 @@ Animator(draw, frames=np.linspace(8.0, 36.0, 45)).save("income_sweep.gif", fps=1
 ```])
 
 #fig("/figures/animation/income_sweep.svg", width: 94%, caption: [
-  收入变动。
+  收入变动
 ]) <fig-sweep-income>
 

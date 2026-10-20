@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 titles = ["實線", "虛線", "點線", "點劃線"]

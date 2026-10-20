@@ -29,7 +29,7 @@ On top of `Canvas`, #pkg("utility-viz") builds these larger diagrams:
 from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$", shared_y=True)
 
@@ -48,7 +48,7 @@ fig.save("side_by_side.png")
 ```])
 
 #fig("/figures/consumer/side_by_side.svg", width: 100%, caption: [
-  Price change, before and after.
+  Price change before and after
 ])
 
 #changed("1.2.0", label: "Layout")[Multi-panel `Figure` layouts and the `Layout` enum]
@@ -123,7 +123,7 @@ fig.save("side_by_side.png")
 from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 budget = LinearBudget(px=2.0, py=2.0, income=40.0)
@@ -139,7 +139,7 @@ cvs.save("price_path.png")
 ```])
 
 #fig("/figures/consumer/price_path.svg", width: 56%, caption: [
-  The price-consumption curve as $p_x$ varies.
+  The price-consumption curve as $p_x$ varies
 ]) <fig-price-path>
 
 == Demand diagrams
@@ -186,7 +186,7 @@ fig.save("demand_cobb_douglas.png")
 The figure below is drawn from MosaicKit layers, so each label can be placed by hand.
 
 #fig("/figures/consumer/demand.svg", width: 62%, caption: [
-  Demand curve at the optima.
+  Demand curve at the optima
 ]) <fig-demand>
 
 == Price-effect decomposition
@@ -291,7 +291,7 @@ result = decompose_price_effect(
 The figure below is also drawn from MosaicKit layers; the two effects are named under the axis.
 
 #fig("/figures/consumer/hicks.svg", width: 72%, caption: [
-  Hicks decomposition.
+  Hicks decomposition
 ])
 
 == Edgeworth box
@@ -343,5 +343,5 @@ box = EdgeworthBox(
 The figure below is drawn from MosaicKit layers after a textbook figure, with both consumers' indifference curves.
 
 #fig("/figures/consumer/edgeworth.svg", width: 86%, caption: [
-  Both consumers' indifference curves through allocations A to D; the shaded lens holds the allocations both prefer to A.
+  Both consumers' indifference curves through allocations A to D the shaded lens holds the allocations both prefer to A
 ])

@@ -48,7 +48,7 @@ x^{0.5} y^{0.5}
 #example([```python
 from utility_viz import Canvas, Config, levels, parse_latex, solve
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = parse_latex(r"\min(2x, 3y)")  # Leontief(a=2.0, b=3.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -61,13 +61,13 @@ cvs.save("leontief.png")
 ```])
 
 #fig("/figures/latex/leontief.svg", width: 56%, caption: [
-  Leontief 示例。
+  Leontief 示例
 ])
 
 #example([```python
 from utility_viz import Canvas, Config, levels, parse_latex, solve
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = parse_latex(r"2x + 3y")  # PerfectSubstitutes(a=2.0, b=3.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -80,7 +80,7 @@ cvs.save("perfect_substitutes.png")
 ```])
 
 #fig("/figures/latex/perfect_substitutes.svg", width: 56%, caption: [
-  完全替代输入示例。
+  完全替代输入示例
 ])
 
 == 错误处理

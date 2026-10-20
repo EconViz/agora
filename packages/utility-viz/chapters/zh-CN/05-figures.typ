@@ -20,7 +20,7 @@
 from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$", shared_y=True)
 
@@ -39,7 +39,7 @@ fig.save("side_by_side.png")
 ```])
 
 #fig("/figures/consumer/side_by_side.svg", width: 100%, caption: [
-  价格变动前后比较。
+  价格变动前后比较
 ])
 
 #changed("1.2.0", label: "Layout")[多面板 `Figure` 版面与 `Layout` 枚举]
@@ -107,7 +107,7 @@ fig.save("side_by_side.png")
 from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 budget = LinearBudget(px=2.0, py=2.0, income=40.0)
@@ -123,7 +123,7 @@ cvs.save("price_path.png")
 ```])
 
 #fig("/figures/consumer/price_path.svg", width: 56%, caption: [
-  价格消费曲线。
+  价格消费曲线
 ]) <fig-price-path>
 
 == 需求图
@@ -163,7 +163,7 @@ fig.save("demand_cobb_douglas.png")
 下图由 MosaicKit 图层画成，标签可逐一手动摆放。
 
 #fig("/figures/consumer/demand.svg", width: 62%, caption: [
-  需求曲线最优点。
+  需求曲线最优点
 ]) <fig-demand>
 
 == 价格效应分解
@@ -260,7 +260,7 @@ result = decompose_price_effect(
 下图同样由 MosaicKit 图层画成，两个效果的名称标在坐标轴下方。
 
 #fig("/figures/consumer/hicks.zh-CN.svg", width: 72%, caption: [
-  Hicks 分解。
+  Hicks 分解
 ])
 
 == Edgeworth 箱形图
@@ -309,5 +309,5 @@ box = EdgeworthBox(
 下图同样由 MosaicKit 图层画成，以教科书的图为蓝本，画出两人的无差异曲线。
 
 #fig("/figures/consumer/edgeworth.svg", width: 86%, caption: [
-  两位消费者通过配置 A 至 D 的无差异曲线；阴影透镜是双方都偏好于 A 的配置。
+  两位消费者通过配置 A 至 D 的无差异曲线 阴影透镜是双方都偏好于 A 的配置
 ])

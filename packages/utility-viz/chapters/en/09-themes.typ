@@ -79,7 +79,7 @@ cvs.save("theme_default.png")
 ```])
 
 #fig("/figures/themes/default.svg", width: 56%, caption: [
-  The `default` theme.
+  The `default` theme
 ])
 
 #example([```python
@@ -108,7 +108,7 @@ cvs.save("theme_nord.png")
 ```])
 
 #fig("/figures/themes/nord.svg", width: 56%, caption: [
-  The `nord` theme.
+  The `nord` theme
 ])
 
 #example([```python
@@ -137,7 +137,7 @@ cvs.save("theme_paper.png")
 ```])
 
 #fig("/figures/themes/paper.svg", width: 56%, caption: [
-  The `paper` theme.
+  The `paper` theme
 ])
 
 #example([```python
@@ -166,7 +166,7 @@ cvs.save("theme_monochrome.png")
 ```])
 
 #fig("/figures/themes/monochrome.svg", width: 56%, caption: [
-  The `monochrome` theme.
+  The `monochrome` theme
 ])
 
 #example([```python
@@ -195,7 +195,7 @@ cvs.save("theme_presentation.png")
 ```])
 
 #fig("/figures/themes/presentation.svg", width: 56%, caption: [
-  The `presentation` theme.
+  The `presentation` theme
 ])
 
 == Custom themes
@@ -350,110 +350,6 @@ with the valid names. For instance, writing `[stroke.budgt]` for
 utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ...)
 ```
 
-
-=== This manual's settings <sec-manual-toml>
-
-Every example in this manual loads `manual.toml` first. It sets the look of the figures: grey curves, black axes and guides, black points and a white page. It leaves the font out so that it runs anywhere; the figures use TeX Gyre Pagella, and without that font you get the default typeface.
-
-```toml
-# Settings for every manual figure
-# Grey curves and black axes on white
-# Load them before drawing
-#
-#     Config.load("manual.toml").use()
-#
-# Sections map to Theme properties
-
-base = "default"
-
-# Font is TeX Gyre Pagella but unset
-# Add [font] text = "TeX Gyre Pagella" to use it
-
-[color]
-background = "#ffffff"
-axis = "#1a1a1a"
-label = "#1a1a1a"
-ic = "#8c8c8c"              # indifference curves
-secondary_ic = "#b8b8b8"    # the curves beside a highlighted one
-path = "#1a1a1a"            # price- and income-consumption paths
-budget = "#222222"
-eq = "#1a1a1a"              # equilibrium and other points
-ray = "#8c8c8c"
-kink = "#8c8c8c"
-sub_effect = "#8c8c8c"
-inc_effect = "#8c8c8c"
-compensated_budget = "#1a1a1a"
-subsistence = "#8c8c8c"
-contract = "#8c8c8c"
-core = "#1a1a1a"
-price = "#8c8c8c"
-walrasian = "#1a1a1a"
-
-[stroke.axis]
-width = 1.0
-style = "solid"
-arrow = "-|>"
-
-[stroke.ic]
-width = 2.6
-
-[stroke.secondary_ic]
-width = 1.8
-opacity = 1.0
-
-[stroke.path]
-width = 1.4
-
-[stroke.budget]
-width = 2.6
-
-[stroke.ray]
-width = 0.9
-
-[stroke.substitution]
-width = 1.8
-
-[stroke.income]
-width = 1.8
-
-[stroke.compensated_budget]
-width = 1.0
-
-[stroke.contract]
-width = 2.6
-
-[stroke.price]
-width = 2.6
-
-[stroke.drop]               # guides from a point to the axes
-width = 0.8
-style = "dashed"
-color = "#1a1a1a"
-
-[stroke.projection]
-width = 0.8
-style = "dashed"
-color = "#1a1a1a"
-
-[stroke.guide]
-width = 0.8
-style = "dashed"
-color = "#1a1a1a"
-
-[marker.eq]
-size = 5
-
-[marker.point]
-size = 5
-
-[label.point]               # text beside a point such as x*
-fontsize = 14
-position = "right"
-offset = 10
-
-[fill.budget]
-opacity = 0.08
-```
 
 === File lookup <sec-config-lookup>
 

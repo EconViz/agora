@@ -16,7 +16,7 @@ What the script adds to the examples, and nothing else:
 * the examples do not pin a typeface, so the figures are set in TeX Gyre Pagella, the manual's;
 * an animation example saves a GIF; the figure shows four frames of it (see FRAMES).
 
-Next to each SVG the script also writes the code it ran, `<name>.py`, which the website offers to download.
+Next to the SVGs it also writes each figure's code, `<name>.py` and `<name>.<edition>.py`, which the website offers to download.
 
 The three editions each carry the example in their own language. When the code of an edition
 differs from the English one (a translated title, a CJK font) it gets its own figure,
@@ -96,19 +96,14 @@ def program(code: str) -> str:
 
 
 def check_settings() -> None:
-    """Every edition prints manual.toml in full, so the file the examples load is the file the manual shows.
-
-    The comments are in the edition's language, so the editions are compared without them.
-    """
+    """The translated settings files differ from manual.toml in their comments only."""
     def settings(text: str) -> list[str]:
         return [re.sub(r"\s+# .*$", "", line) for line in text.splitlines() if not line.lstrip().startswith("#")]
 
     shown = settings((ROOT / "config" / "manual.toml").read_text())
-    for edition in EDITIONS:
-        chapter = (ROOT / "chapters" / edition / "09-themes.typ").read_text()
-        block = re.search(r"<sec-manual-toml>.*?```toml\n(.*?)\n```", chapter, re.S)
-        if not block or settings(block.group(1)) != shown:
-            raise SystemExit(f"{edition}: 09-themes.typ does not print config/manual.toml as it is")
+    for edition in EDITIONS[1:]:
+        if settings((ROOT / "config" / f"manual.{edition}.toml").read_text()) != shown:
+            raise SystemExit(f"config/manual.{edition}.toml differs from config/manual.toml beyond its comments")
 
 
 def plan() -> dict[str, dict[str, str]]:
@@ -289,8 +284,13 @@ def main() -> int:
         for suffix, code in figures[name].items():
             target = OUT / f"{name}{suffix}.svg"
             run(code, target, name)
-            target.with_suffix(".py").write_text(code.rstrip("\n") + "\n")  # the website offers it as a download
             print(f"  {target.relative_to(ROOT)}")
+    # every edition gets the script in its own language; the website offers them as downloads
+    for edition in EDITIONS:
+        for name, code in examples(edition).items():
+            if name in selected:
+                path = OUT / f"{name}{'' if edition == 'en' else '.' + edition}.py"
+                path.write_text(code.rstrip("\n") + "\n")
     return 0
 
 

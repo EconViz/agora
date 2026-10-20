@@ -134,7 +134,7 @@ cvs.add_utility(
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -145,7 +145,7 @@ cvs.save("add_utility.png")
 ```])
 
 #fig("/figures/canvas/add_utility.svg", width: 56%, caption: [
-  Three indifference curves.
+  Three indifference curves
 ]) <fig-add-utility>
 
 #api(("add_budget",), syntax: [
@@ -172,7 +172,7 @@ cvs.save("add_utility.png")
 #example([```python
 from utility_viz import Canvas, Config
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
 cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # the line and its feasible set
@@ -180,7 +180,7 @@ cvs.save("add_budget.png")
 ```])
 
 #fig("/figures/canvas/add_budget.svg", width: 56%, caption: [
-  Budget line and shading.
+  Budget line and shading
 ])
 
 #api(("add_equilibrium",), syntax: [
@@ -209,7 +209,7 @@ cvs.save("add_budget.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -222,7 +222,7 @@ cvs.save("add_equilibrium.png")
 ```])
 
 #fig("/figures/canvas/add_equilibrium.svg", width: 56%, caption: [
-  Equilibrium and drop lines.
+  Equilibrium and drop lines
 ])
 
 #api(("add_ray",), syntax: [
@@ -243,7 +243,7 @@ cvs.save("add_equilibrium.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -257,7 +257,7 @@ cvs.save("add_ray.png")
 ```])
 
 #fig("/figures/canvas/add_ray.svg", width: 56%, caption: [
-  Expansion-path ray.
+  Expansion-path ray
 ])
 
 #api(("add_point",), syntax: [
@@ -283,7 +283,7 @@ cvs.save("add_ray.png")
 from utility_viz import Canvas, Config, Label, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -299,7 +299,7 @@ cvs.save("add_point.png")
 ```])
 
 #fig("/figures/canvas/add_point.svg", width: 56%, caption: [
-  An indifference curve meets the budget line at two points, $A$ and $B$.
+  An indifference curve meets the budget line at two points $A$ and $B$
 ])
 
 #api(("show", "save"), syntax: [
@@ -317,7 +317,7 @@ cvs.save("add_point.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -330,7 +330,7 @@ cvs.save("show_save.png")
 ```])
 
 #fig("/figures/canvas/show_save.svg", width: 56%, caption: [
-  The complete canvas.
+  The complete canvas
 ]) <fig-show-save>
 
 == Styles <sec-styles>
@@ -367,7 +367,7 @@ import matplotlib.pyplot as plt
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 
@@ -389,7 +389,7 @@ fig.savefig("line_styles.png", dpi=160)
 ```])
 
 #fig("/figures/canvas/line_styles.svg", width: 56%, caption: [
-  The four line styles.
+  The four line styles
 ]) <fig-line-styles>
 
 === Arrow styles
@@ -412,7 +412,7 @@ import matplotlib.pyplot as plt
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 
@@ -434,7 +434,7 @@ fig.savefig("arrow_styles.png", dpi=160)
 ```])
 
 #fig("/figures/canvas/arrow_styles.svg", width: 56%, caption: [
-  The four arrow styles.
+  The four arrow styles
 ]) <fig-arrow-styles>
 
 === Stroke

@@ -18,7 +18,7 @@ and equilibrium shown in @fig-quickstart.
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -32,7 +32,7 @@ cvs.save("cobb_douglas.png")
 ```])
 
 #fig("/figures/models/cobb_douglas.svg", caption: [
-  The consumer-equilibrium diagram.
+  The consumer-equilibrium diagram
 ]) <fig-quickstart>
 
 Running `main.py` writes `cobb_douglas.png` to the current working directory.

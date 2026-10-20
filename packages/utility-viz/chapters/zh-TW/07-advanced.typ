@@ -20,7 +20,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 # 任何陣列函數都可當效用
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
@@ -34,7 +34,7 @@ cvs.save("custom.png")
 ```])
 
 #fig("/figures/models/custom.svg", width: 56%, caption: [
-  對數自訂模型。
+  對數自訂模型
 ])
 
 === 多商品 Cobb-Douglas
@@ -55,7 +55,7 @@ cvs.save("custom.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import MultiGoodCD
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 # 三種商品 固定 z = 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})
@@ -70,7 +70,7 @@ cvs.save("multigood.png")
 ```])
 
 #fig("/figures/models/multigood.svg", width: 56%, caption: [
-  三商品固定 $z=10$。
+  三商品固定 $z=10$
 ])
 
 

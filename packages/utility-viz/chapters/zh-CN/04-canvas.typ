@@ -129,7 +129,7 @@ cvs.add_utility(
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -140,7 +140,7 @@ cvs.save("add_utility.png")
 ```])
 
 #fig("/figures/canvas/add_utility.svg", width: 56%, caption: [
-  三条无差异曲线。
+  三条无差异曲线
 ]) <fig-add-utility>
 
 #api(("add_budget",), syntax: [
@@ -167,7 +167,7 @@ cvs.save("add_utility.png")
 #example([```python
 from utility_viz import Canvas, Config
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
 cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # 预算线与可行集合
@@ -175,7 +175,7 @@ cvs.save("add_budget.png")
 ```])
 
 #fig("/figures/canvas/add_budget.svg", width: 56%, caption: [
-  预算线与阴影。
+  预算线与阴影
 ])
 
 #api(("add_equilibrium",), syntax: [
@@ -204,7 +204,7 @@ cvs.save("add_budget.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -217,7 +217,7 @@ cvs.save("add_equilibrium.png")
 ```])
 
 #fig("/figures/canvas/add_equilibrium.svg", width: 56%, caption: [
-  均衡点与虚线。
+  均衡点与虚线
 ])
 
 #api(("add_ray",), syntax: [
@@ -237,7 +237,7 @@ cvs.save("add_equilibrium.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -251,7 +251,7 @@ cvs.save("add_ray.png")
 ```])
 
 #fig("/figures/canvas/add_ray.svg", width: 56%, caption: [
-  扩张路径射线。
+  扩张路径射线
 ])
 
 #api(("add_point",), syntax: [
@@ -277,7 +277,7 @@ cvs.save("add_ray.png")
 from utility_viz import Canvas, Config, Label, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -293,7 +293,7 @@ cvs.save("add_point.png")
 ```])
 
 #fig("/figures/canvas/add_point.svg", width: 56%, caption: [
-  一条无差异曲线与预算线交于两点 $A$ 与 $B$。
+  一条无差异曲线与预算线交于两点 $A$ 与 $B$
 ])
 
 #api(("show", "save"), syntax: [
@@ -309,7 +309,7 @@ cvs.save("add_point.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -322,7 +322,7 @@ cvs.save("show_save.png")
 ```])
 
 #fig("/figures/canvas/show_save.svg", width: 56%, caption: [
-  完整画布。
+  完整画布
 ]) <fig-show-save>
 
 == 样式 <sec-styles>
@@ -356,7 +356,7 @@ import matplotlib.pyplot as plt
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 titles = ["实线", "虚线", "点线", "点划线"]
@@ -380,7 +380,7 @@ fig.savefig("line_styles.png", dpi=160)
 ```])
 
 #fig("/figures/canvas/line_styles.zh-CN.svg", width: 56%, caption: [
-  四种线条样式。
+  四种线条样式
 ]) <fig-line-styles>
 
 === 箭头样式
@@ -402,7 +402,7 @@ import matplotlib.pyplot as plt
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # 本手册图形所用的设置
+Config.load("manual.toml").use()  # 图形设置
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 titles = ["简单", "三角形", "花式", "楔形"]
@@ -426,7 +426,7 @@ fig.savefig("arrow_styles.png", dpi=160)
 ```])
 
 #fig("/figures/canvas/arrow_styles.zh-CN.svg", width: 56%, caption: [
-  四种箭头样式。
+  四种箭头样式
 ]) <fig-arrow-styles>
 
 === Stroke

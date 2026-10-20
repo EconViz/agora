@@ -17,7 +17,7 @@ $
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 本手冊圖形所用的設定
+Config.load("manual.toml").use()  # 圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -31,7 +31,7 @@ cvs.save("cobb_douglas.png")
 ```])
 
 #fig("/figures/models/cobb_douglas.svg", caption: [
-  消費者均衡。
+  消費者均衡
 ]) <fig-quickstart>
 
 執行主程式 `main.py` 後，會在目前工作目錄建立 `cobb_douglas.png`。本例的最適消費量為 $x^* = 7.5$、$y^* = 5$，支出為 $2 times 7.5 + 3 times 5 = 30$，恰好等於所得。預算線的兩個軸截距則為 $I / p_x = 15$ 與 $I / p_y = 10$。

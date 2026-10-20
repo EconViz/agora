@@ -3,7 +3,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 # any array function works
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")

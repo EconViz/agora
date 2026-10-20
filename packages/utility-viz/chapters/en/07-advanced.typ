@@ -23,7 +23,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 # any array function works
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
@@ -37,7 +37,7 @@ cvs.save("custom.png")
 ```])
 
 #fig("/figures/models/custom.svg", width: 56%, caption: [
-  A custom model, $ln x + ln y$.
+  A custom model $ln x + ln y$
 ])
 
 === Many-good Cobb-Douglas
@@ -59,7 +59,7 @@ cvs.save("custom.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import MultiGoodCD
 
-Config.load("manual.toml").use()  # the settings behind this manual's figures
+Config.load("manual.toml").use()  # figure settings
 
 # three goods with z held at 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})
@@ -74,7 +74,7 @@ cvs.save("multigood.png")
 ```])
 
 #fig("/figures/models/multigood.svg", width: 56%, caption: [
-  A three-good Cobb-Douglas model with $z = 10$ fixed.
+  A three-good Cobb-Douglas model with $z = 10$ fixed
 ])
 
 

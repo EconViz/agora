@@ -69,7 +69,7 @@ cvs.save("theme_default.png")
 ```])
 
 #fig("/figures/themes/default.svg", width: 56%, caption: [
-  `default` 主題。
+  `default` 主題
 ])
 
 #example([```python
@@ -98,7 +98,7 @@ cvs.save("theme_nord.png")
 ```])
 
 #fig("/figures/themes/nord.svg", width: 56%, caption: [
-  `nord` 主題。
+  `nord` 主題
 ])
 
 #example([```python
@@ -127,7 +127,7 @@ cvs.save("theme_paper.png")
 ```])
 
 #fig("/figures/themes/paper.svg", width: 56%, caption: [
-  `paper` 主題。
+  `paper` 主題
 ])
 
 #example([```python
@@ -156,7 +156,7 @@ cvs.save("theme_monochrome.png")
 ```])
 
 #fig("/figures/themes/monochrome.svg", width: 56%, caption: [
-  `monochrome` 主題。
+  `monochrome` 主題
 ])
 
 #example([```python
@@ -185,7 +185,7 @@ cvs.save("theme_presentation.png")
 ```])
 
 #fig("/figures/themes/presentation.svg", width: 56%, caption: [
-  `presentation` 主題。
+  `presentation` 主題
 ])
 
 == 自訂主題
@@ -314,110 +314,6 @@ cvs.save("theme_presentation.png")
 utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ...)
 ```
 
-
-=== 手冊圖形設定 <sec-manual-toml>
-
-本手冊的範例都先載入 `manual.toml`，圖形的外觀由它決定：灰色曲線、黑色座標軸與輔助線、黑色的點、白色底。檔案沒有指定字體，在任何電腦上都能執行；圖形用 TeX Gyre Pagella 排版，沒有這個字體時用預設字體。
-
-```toml
-# 本手冊所有圖形的設定
-# 灰色曲線 黑色軸 白底
-# 畫圖前先載入
-#
-#     Config.load("manual.toml").use()
-#
-# 各區段對應 Theme 屬性
-
-base = "default"
-
-# 字體是 TeX Gyre Pagella 但不指定
-# 要用請加上 [font] text = "TeX Gyre Pagella"
-
-[color]
-background = "#ffffff"
-axis = "#1a1a1a"
-label = "#1a1a1a"
-ic = "#8c8c8c"              # 無異曲線
-secondary_ic = "#b8b8b8"    # 強調曲線旁的曲線
-path = "#1a1a1a"            # 價格與所得消費路徑
-budget = "#222222"
-eq = "#1a1a1a"              # 均衡點與其他點
-ray = "#8c8c8c"
-kink = "#8c8c8c"
-sub_effect = "#8c8c8c"
-inc_effect = "#8c8c8c"
-compensated_budget = "#1a1a1a"
-subsistence = "#8c8c8c"
-contract = "#8c8c8c"
-core = "#1a1a1a"
-price = "#8c8c8c"
-walrasian = "#1a1a1a"
-
-[stroke.axis]
-width = 1.0
-style = "solid"
-arrow = "-|>"
-
-[stroke.ic]
-width = 2.6
-
-[stroke.secondary_ic]
-width = 1.8
-opacity = 1.0
-
-[stroke.path]
-width = 1.4
-
-[stroke.budget]
-width = 2.6
-
-[stroke.ray]
-width = 0.9
-
-[stroke.substitution]
-width = 1.8
-
-[stroke.income]
-width = 1.8
-
-[stroke.compensated_budget]
-width = 1.0
-
-[stroke.contract]
-width = 2.6
-
-[stroke.price]
-width = 2.6
-
-[stroke.drop]               # 從點到座標軸的輔助線
-width = 0.8
-style = "dashed"
-color = "#1a1a1a"
-
-[stroke.projection]
-width = 0.8
-style = "dashed"
-color = "#1a1a1a"
-
-[stroke.guide]
-width = 0.8
-style = "dashed"
-color = "#1a1a1a"
-
-[marker.eq]
-size = 5
-
-[marker.point]
-size = 5
-
-[label.point]               # 點旁的文字 如 x*
-fontsize = 14
-position = "right"
-offset = 10
-
-[fill.budget]
-opacity = 0.08
-```
 
 === 設定檔查找順序 <sec-config-lookup>
 

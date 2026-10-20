@@ -160,7 +160,7 @@ L 316.115639 346.80796
 L 344.530845 347.749951 
 L 353.724 348.01819 
 L 353.724 348.01819 
-" clip-path="url(#p8aa4d54355)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
+" clip-path="url(#p132d7d52e1)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
     <path d="M 40.65573 24.978 
 L 42.286674 48.204442 
 L 43.964784 68.942337 
@@ -216,7 +216,7 @@ L 315.279898 333.226033
 L 335.33769 334.77197 
 L 353.724 336.028217 
 L 353.724 336.028217 
-" clip-path="url(#p8aa4d54355)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
+" clip-path="url(#p132d7d52e1)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
     <path d="M 57.555835 24.978 
 L 59.690217 42.397832 
 L 61.954737 58.988147 
@@ -270,7 +270,7 @@ L 331.158983 316.461656
 L 348.487433 318.626589 
 L 353.724 319.235591 
 L 353.724 319.235591 
-" clip-path="url(#p8aa4d54355)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
+" clip-path="url(#p132d7d52e1)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
     <path d="M 79.285258 24.978 
 L 81.957167 39.079768 
 L 84.615284 51.970885 
@@ -320,7 +320,7 @@ L 328.651759 292.791898
 L 341.634441 295.400147 
 L 353.724 297.646255 
 L 353.724 297.646255 
-" clip-path="url(#p8aa4d54355)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
+" clip-path="url(#p132d7d52e1)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
     <path d="M 105.843713 24.978 
 L 108.987818 36.591221 
 L 112.368217 48.204442 
@@ -365,7 +365,7 @@ L 331.994725 265.265253
 L 342.859362 268.362652 
 L 353.724 271.259356 
 L 353.724 271.259356 
-" clip-path="url(#p8aa4d54355)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
+" clip-path="url(#p132d7d52e1)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6"/>
    </g>
    <g id="line2d_16">
     <path d="M 360.978 191.298 
@@ -494,7 +494,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p8aa4d54355">
+  <clipPath id="p132d7d52e1">
    <rect x="18.924" y="24.978" width="334.8" height="332.64"/>
   </clipPath>
  </defs>
