@@ -74,3 +74,5 @@ literature, are called package conventions. The standard references are
 On first use, read @sec-quickstart and @sec-curves. The figures in this
 manual are themselves #pkg("bezierkit") output: every curve in them was
 written by the TikZ exporter of @sec-export and compiled with #LaTeX.
+
+The figures of this manual come as one zip, sorted into folders by topic, with the script that draws them: #link("https://econ-viz.org/assets/bezierkit/agora/bezierkit-figures.zip")[bezierkit-figures.zip].

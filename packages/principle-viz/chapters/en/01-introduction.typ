@@ -90,3 +90,5 @@ tools (see @tab-guide).
 On first use, read @sec-quickstart, @sec-markets and @sec-figures in that
 order. Each later chapter covers one topic: the calculation first, then the
 figure. For the options of a specific command, go to @sec-cli.
+
+The figures of this manual come as one zip, sorted into folders by topic, with the script that draws them: #link("https://econ-viz.org/assets/principle-viz/agora/principle-viz-figures.zip")[principle-viz-figures.zip].
