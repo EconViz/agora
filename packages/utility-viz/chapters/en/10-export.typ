@@ -19,7 +19,7 @@
   the keyword arguments `tikz_scale` and `tikz_standalone`.
 
 ```python
-cvs.save("figure.png")   # PNG at the canvas DPI and 300 by default
+cvs.save("figure.png")   # PNG with canvas DPI default 300
 cvs.save("figure.pdf")   # PDF vector
 cvs.save("figure.svg")   # SVG vector
 cvs.save("figure.tex")   # TikZ

@@ -435,7 +435,7 @@ L 211.729468 93.772487
 L 211.569979 92.555155 
 L 211.419108 91.336537 
 z
-" clip-path="url(#p0a93e46ef9)" style="fill: #ececec; stroke: #333333; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: #ececec; stroke: #333333; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="label.U_J^1">
     <!-- $U_J^1$ -->
@@ -887,7 +887,7 @@ L 379.074422 268.64356
 L 387.488497 270.318461 
 L 394.704 271.584 
 L 394.704 271.584 
-" clip-path="url(#p0a93e46ef9)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.66; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.66; stroke-linejoin: miter"/>
    </g>
    <g id="j2">
     <path d="M 230.112 68.544 
@@ -932,7 +932,7 @@ L 373.501459 243.324563
 L 379.623857 244.928134 
 L 384.768 246.096 
 L 384.768 246.096 
-" clip-path="url(#p0a93e46ef9)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.66; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.66; stroke-linejoin: miter"/>
    </g>
    <g id="j3">
     <path d="M 267.264 63.36 
@@ -970,7 +970,7 @@ L 371.100345 181.120907
 L 377.060792 182.19387 
 L 383.04 183.024 
 L 383.04 183.024 
-" clip-path="url(#p0a93e46ef9)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.66; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.66; stroke-linejoin: miter"/>
    </g>
    <g id="k1">
     <path d="M 192.096 86.688 
@@ -1017,7 +1017,7 @@ L 356.517226 278.052838
 L 356.681177 285.099336 
 L 356.688 286.272 
 L 356.688 286.272 
-" clip-path="url(#p0a93e46ef9)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.66; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.66; stroke-linejoin: miter"/>
    </g>
    <g id="k2">
     <path d="M 202.464 108.72 
@@ -1058,7 +1058,7 @@ L 328.26535 259.817289
 L 328.533093 264.389739 
 L 328.608 268.992 
 L 328.608 268.992 
-" clip-path="url(#p0a93e46ef9)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.66; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.66; stroke-linejoin: miter"/>
    </g>
    <g id="k3">
     <path d="M 203.328 132.48 
@@ -1095,11 +1095,11 @@ L 301.213811 249.087227
 L 301.695947 254.766532 
 L 301.824 256.896 
 L 301.824 256.896 
-" clip-path="url(#p0a93e46ef9)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.66; stroke-linejoin: miter"/>
+" clip-path="url(#pc7c0376d6a)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.66; stroke-linejoin: miter"/>
    </g>
    <g id="dot.A">
     <defs>
-     <path id="m525318e54e" d="M 0 3.224903 
+     <path id="m4bc00ec508" d="M 0 3.224903 
 C 0.855254 3.224903 1.675595 2.885107 2.280351 2.280351 
 C 2.885107 1.675595 3.224903 0.855254 3.224903 0 
 C 3.224903 -0.855254 2.885107 -1.675595 2.280351 -2.280351 
@@ -1112,7 +1112,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m525318e54e" x="355.392" y="262.512" style="fill: #1a1a1a"/>
+     <use xlink:href="#m4bc00ec508" x="355.392" y="262.512" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="letter.A">
@@ -1157,7 +1157,7 @@ z
    </g>
    <g id="dot.B">
     <g>
-     <use xlink:href="#m525318e54e" x="318.24" y="217.584" style="fill: #1a1a1a"/>
+     <use xlink:href="#m4bc00ec508" x="318.24" y="217.584" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="letter.B">
@@ -1206,7 +1206,7 @@ z
    </g>
    <g id="dot.C">
     <g>
-     <use xlink:href="#m525318e54e" x="272.88" y="176.112" style="fill: #1a1a1a"/>
+     <use xlink:href="#m4bc00ec508" x="272.88" y="176.112" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="letter.C">
@@ -1237,7 +1237,7 @@ z
    </g>
    <g id="dot.D">
     <g>
-     <use xlink:href="#m525318e54e" x="303.12" y="145.44" style="fill: #1a1a1a"/>
+     <use xlink:href="#m4bc00ec508" x="303.12" y="145.44" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="letter.D">
@@ -1278,7 +1278,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p0a93e46ef9">
+  <clipPath id="pc7c0376d6a">
    <rect x="2.88" y="2.88" width="524.88" height="328.32"/>
   </clipPath>
  </defs>

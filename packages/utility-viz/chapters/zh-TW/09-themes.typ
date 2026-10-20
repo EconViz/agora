@@ -41,7 +41,7 @@
   `themes.COLORBLIND_CYCLE_HEX` 與 `themes.COLORBLIND_CYCLE_RGB` 提供這組配色的十六進位與 RGB 值。經濟學教學大量依賴圖形，因此不應只靠顏色傳達意義，以免視覺障礙的學生無法辨識 #citep(<kugler1996>)。
 ]
 
-下列各圖以每個內建主題（`dark` 除外）畫出同一張 Cobb-Douglas 圖，沿用本手冊的線寬，底色為白色。
+下列各圖用內建主題（`dark` 除外）畫出同一張 Cobb-Douglas 圖，線寬沿用本手冊，底色為白色。
 
 #example([```python
 from dataclasses import replace
@@ -52,7 +52,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題自己的顏色 配上本手冊的線寬 放在白底上
+# 主題配色 本手冊線寬
 theme = replace(
     themes.default,
     background_color="#ffffff",
@@ -81,7 +81,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題自己的顏色 配上本手冊的線寬 放在白底上
+# 主題配色 本手冊線寬
 theme = replace(
     themes.nord,
     background_color="#ffffff",
@@ -110,7 +110,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題自己的顏色 配上本手冊的線寬 放在白底上
+# 主題配色 本手冊線寬
 theme = replace(
     themes.paper,
     background_color="#ffffff",
@@ -139,7 +139,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題自己的顏色 配上本手冊的線寬 放在白底上
+# 主題配色 本手冊線寬
 theme = replace(
     themes.monochrome,
     background_color="#ffffff",
@@ -168,7 +168,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題自己的顏色 配上本手冊的線寬 放在白底上
+# 主題配色 本手冊線寬
 theme = replace(
     themes.presentation,
     background_color="#ffffff",
@@ -294,7 +294,7 @@ cvs.save("theme_presentation.png")
   ```python
   from utility_viz import Config
 
-  Config.load().use()   # 預設讀取目前目錄的 utility-viz.toml
+  Config.load().use()   # 預設讀 ./utility-viz.toml
   ```
 
   此後建立的 `Canvas`、`Figure`、`DemandDiagram` 與 `EdgeworthBox` 都使用這組設定；呼叫 `Config.reset()` 可恢復內建預設值。
@@ -317,21 +317,21 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 
 === 手冊圖形設定 <sec-manual-toml>
 
-本手冊的範例都先載入 `manual.toml`，圖形的外觀由它決定：灰色曲線、黑色座標軸與輔助線、黑色的點、白色底。檔案沒有指定字體，所以在任何電腦上都能執行；圖形使用 TeX Gyre Pagella，沒有這個字體時則用預設字體。
+本手冊的範例都先載入 `manual.toml`，圖形的外觀由它決定：灰色曲線、黑色座標軸與輔助線、黑色的點、白色底。檔案沒有指定字體，在任何電腦上都能執行；圖形用 TeX Gyre Pagella 排版，沒有這個字體時用預設字體。
 
 ```toml
 # 本手冊所有圖形的設定
-# 灰色曲線 黑色座標軸與輔助線 黑色的點 白色背景
+# 灰色曲線 黑色軸 白底
 # 畫圖前先載入
 #
 #     Config.load("manual.toml").use()
 #
-# 各區段對應 Theme 的屬性 詳見主題與設定一章
+# 各區段對應 Theme 屬性
 
 base = "default"
 
-# 字體是 TeX Gyre Pagella 這裡不指定 檔案在任何電腦上都能執行
-# 已安裝該字體時可加上 [font] text = "TeX Gyre Pagella"
+# 字體是 TeX Gyre Pagella 但不指定
+# 要用請加上 [font] text = "TeX Gyre Pagella"
 
 [color]
 background = "#ffffff"
@@ -410,7 +410,7 @@ size = 5
 [marker.point]
 size = 5
 
-[label.point]               # 點旁的文字 例如最適點的 x*
+[label.point]               # 點旁的文字 如 x*
 fontsize = 14
 position = "right"
 offset = 10

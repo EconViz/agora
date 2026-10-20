@@ -113,7 +113,7 @@ from utility_viz.models import CobbDouglas
 Config.load("manual.toml").use()  # 本手册图形所用的设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
-# 每一格都用同一组曲线 只有预算线与最优点在动
+# 每帧用同一组曲线
 fixed = levels.around(solve(model, px=2.0, py=2.0, income=20.0).utility, n=5)
 
 
@@ -144,7 +144,7 @@ from utility_viz.models import CobbDouglas
 Config.load("manual.toml").use()  # 本手册图形所用的设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
-# 每一格都用同一组曲线 只有预算线与最优点在动
+# 每帧用同一组曲线
 fixed = levels.around(solve(model, px=2.0, py=2.0, income=20.0).utility, n=5)
 
 

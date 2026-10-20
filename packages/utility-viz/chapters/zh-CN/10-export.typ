@@ -17,7 +17,7 @@
 - TeX：TikZ 源代码（`.tex`），可嵌入 #LaTeX 文件。通过关键字参数 `tikz_scale` 与 `tikz_standalone` 调整输出。
 
 ```python
-cvs.save("figure.png")   # PNG 依画布 DPI 默认 300
+cvs.save("figure.png")   # PNG 默认 300 DPI
 cvs.save("figure.pdf")   # PDF 向量
 cvs.save("figure.svg")   # SVG 向量
 cvs.save("figure.tex")   # TikZ

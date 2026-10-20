@@ -130,7 +130,7 @@ cvs.add_utility(
     model,
     levels=levels.around(eq.utility, n=5),
     show_rays=True,
-    show_kinks=True,  # 每个折点画一条射线与一个标记
+    show_kinks=True,  # 每个折点画射线与标记
 )
 cvs.add_budget(2.0, 3.0, 30.0)
 cvs.add_equilibrium(eq)
@@ -339,7 +339,7 @@ Config.load("manual.toml").use()  # 本手册图形所用的设置
 
 model = Satiation(bliss_x=6.0, bliss_y=4.0)
 
-# 曲线取自网格上的效用值 这张图没有预算线与最优点
+# 曲线取自效用值网格
 X, Y = np.meshgrid(np.linspace(0.1, 12.0, 300), np.linspace(0.1, 10.0, 300))
 
 cvs = Canvas(x_max=12, y_max=10, x_label="$x$", y_label="$y$")

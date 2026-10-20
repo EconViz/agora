@@ -22,7 +22,7 @@ from utility_viz.models import CustomUtility
 
 Config.load("manual.toml").use()  # 本手冊圖形所用的設定
 
-# 任何可以處理陣列的 x y 函數都能當效用函數
+# 任何陣列函數都可當效用
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
@@ -57,7 +57,7 @@ from utility_viz.models import MultiGoodCD
 
 Config.load("manual.toml").use()  # 本手冊圖形所用的設定
 
-# 三種商品 x y z 固定 z = 10 畫出 (x, y) 平面
+# 三種商品 固定 z = 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})
 two_good_model = model.freeze(z=10.0)
 eq = solve(two_good_model, px=2.0, py=3.0, income=30.0)

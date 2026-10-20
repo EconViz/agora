@@ -94,7 +94,7 @@
       show_rays=False,
       show_kinks=False,
       kink_radius=1.0,
-      show_bliss=True,   # 标出饱和点 Satiation
+      show_bliss=True,   # 标出极乐点
       show_ic_labels=False,
       stroke=None,
       ray_stroke=None,
@@ -285,8 +285,8 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
 cvs.add_utility(model, levels=[5.0])  # 一条无差异曲线 u = 5
 cvs.add_budget(2.0, 3.0, 30.0)
-# 它与预算线交于两点 即 2x^2 - 30x + 75 = 0 的根
-# 以 Label 把文字放在点的旁边
+# 与预算线交于两点
+# 以 Label 放在点旁
 cvs.add_point(3.17, 7.89, label=Label(text="A", position="top-right"))
 cvs.add_point(11.83, 2.11, label=Label(text="B", position="top-right"))
 cvs.save("add_point.png")
@@ -374,7 +374,7 @@ for ax, style, title in zip(axes, styles, titles):
         ax=ax,
     )
 
-# 轴标签会放在箭头外侧 四张图并排时要多留一点水平间距
+# 预留轴标签的空间
 fig.subplots_adjust(wspace=0.62)
 fig.savefig("line_styles.png", dpi=160)
 ```])
@@ -420,7 +420,7 @@ for ax, style, title in zip(axes, styles, titles):
         ax=ax,
     )
 
-# 轴标签会放在箭头外侧 四张图并排时要多留一点水平间距
+# 预留轴标签的空间
 fig.subplots_adjust(wspace=0.62)
 fig.savefig("arrow_styles.png", dpi=160)
 ```])

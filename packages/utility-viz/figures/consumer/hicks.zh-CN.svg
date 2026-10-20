@@ -169,7 +169,7 @@ z
    <g id="compensated">
     <path d="M 23.584059 -1 
 L 272.56 247.564667 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="u.A.1">
     <path d="M 77.582003 22.978 
@@ -206,7 +206,7 @@ L 256.755082 154.925284
 L 266.155551 156.619765 
 L 272.56 157.739524 
 L 272.56 157.739524 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6; stroke-linejoin: miter"/>
    </g>
    <g id="u.C.1">
     <path d="M 46.735432 22.978 
@@ -248,12 +248,12 @@ L 249.765817 176.964442
 L 264.116944 178.310529 
 L 272.56 179.059624 
 L 272.56 179.059624 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke: #8c8c8c; stroke-width: 2.6; stroke-linejoin: miter"/>
    </g>
    <g id="A.guide">
     <path d="M 163.964615 200.386 
 L 163.964615 126.466 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="A.label">
     <!-- $A$ -->
@@ -298,7 +298,7 @@ z
    <g id="B.guide">
     <path d="M 120.591661 200.386 
 L 120.591661 95.847358 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="B.label">
     <!-- $B$ -->
@@ -347,7 +347,7 @@ z
    <g id="C.guide">
     <path d="M 89.922308 200.386 
 L 89.922308 126.466 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 0.8; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-width: 0.8; stroke-linejoin: miter"/>
    </g>
    <g id="C.label">
     <!-- $C$ -->
@@ -696,16 +696,16 @@ z
    <g id="b0">
     <path d="M 289.44 189.100058 
 L 15.88 52.546 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke: #222222; stroke-width: 2.6; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke: #222222; stroke-width: 2.6; stroke-linejoin: miter"/>
    </g>
    <g id="b1">
     <path d="M 163.964615 200.386 
 L 15.88 52.546 
-" clip-path="url(#pa876cef213)" style="fill: none; stroke: #222222; stroke-width: 2.6; stroke-linejoin: miter"/>
+" clip-path="url(#p3faea4d7f5)" style="fill: none; stroke: #222222; stroke-width: 2.6; stroke-linejoin: miter"/>
    </g>
    <g id="A.dot">
     <defs>
-     <path id="m92f5543da4" d="M 0 2.54951 
+     <path id="m73b3496bfb" d="M 0 2.54951 
 C 0.676138 2.54951 1.324674 2.280877 1.802776 1.802776 
 C 2.280877 1.324674 2.54951 0.676138 2.54951 0 
 C 2.54951 -0.676138 2.280877 -1.324674 1.802776 -1.802776 
@@ -718,23 +718,23 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m92f5543da4" x="163.964615" y="126.466" style="fill: #1a1a1a"/>
+     <use xlink:href="#m73b3496bfb" x="163.964615" y="126.466" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="B.dot">
     <g>
-     <use xlink:href="#m92f5543da4" x="120.591661" y="95.847358" style="fill: #1a1a1a"/>
+     <use xlink:href="#m73b3496bfb" x="120.591661" y="95.847358" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="C.dot">
     <g>
-     <use xlink:href="#m92f5543da4" x="89.922308" y="126.466" style="fill: #1a1a1a"/>
+     <use xlink:href="#m73b3496bfb" x="89.922308" y="126.466" style="fill: #1a1a1a"/>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pa876cef213">
+  <clipPath id="p3faea4d7f5">
    <rect x="15.88" y="22.978" width="256.68" height="232.848"/>
   </clipPath>
  </defs>

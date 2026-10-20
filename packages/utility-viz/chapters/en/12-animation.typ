@@ -123,7 +123,7 @@ from utility_viz.models import CobbDouglas
 Config.load("manual.toml").use()  # the settings behind this manual's figures
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
-# One set of curves for every frame so that only the budget line and the optimum move
+# same curves in every frame
 fixed = levels.around(solve(model, px=2.0, py=2.0, income=20.0).utility, n=5)
 
 
@@ -154,7 +154,7 @@ from utility_viz.models import CobbDouglas
 Config.load("manual.toml").use()  # the settings behind this manual's figures
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
-# One set of curves for every frame so that only the budget line and the optimum move
+# same curves in every frame
 fixed = levels.around(solve(model, px=2.0, py=2.0, income=20.0).utility, n=5)
 
 

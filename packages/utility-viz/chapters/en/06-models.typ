@@ -141,7 +141,7 @@ cvs.add_utility(
     model,
     levels=levels.around(eq.utility, n=5),
     show_rays=True,
-    show_kinks=True,  # a ray and a marker at each kink
+    show_kinks=True,  # ray and marker at each kink
 )
 cvs.add_budget(2.0, 3.0, 30.0)
 cvs.add_equilibrium(eq)
@@ -363,7 +363,7 @@ Config.load("manual.toml").use()  # the settings behind this manual's figures
 
 model = Satiation(bliss_x=6.0, bliss_y=4.0)
 
-# Curves are picked from the utility values on a grid so there is no budget line or optimum here
+# curves from a utility grid
 X, Y = np.meshgrid(np.linspace(0.1, 12.0, 300), np.linspace(0.1, 10.0, 300))
 
 cvs = Canvas(x_max=12, y_max=10, x_label="$x$", y_label="$y$")
