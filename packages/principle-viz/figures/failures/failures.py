@@ -84,6 +84,8 @@ CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 FMT = CONFIG["output"]["format"]
 FONT = CONFIG["fonts"]["family"]
+EDITIONS = ("en", "zh-TW", "zh-CN")
+EDITION = "en"  # the language the figures are drawn in; see set_edition()
 
 
 # ---------------------------------------------------------------------------
@@ -135,6 +137,60 @@ def use_manual_fonts() -> None:
             module.font_properties = font_properties
 
 
+def localize(value, table):
+    """The same value with every string found in *table* replaced; dataclasses, tuples and dicts are rebuilt."""
+    if isinstance(value, str):
+        return table.get(value, value)
+    if dataclasses.is_dataclass(value) and not isinstance(value, type):
+        changes = {}
+        for field in dataclasses.fields(value):
+            old = getattr(value, field.name)
+            new = localize(old, table)
+            if new is not old and new != old:
+                changes[field.name] = new
+        return dataclasses.replace(value, **changes) if changes else value
+    if isinstance(value, tuple):
+        return type(value)(localize(v, table) for v in value) if not hasattr(value, "_fields") else value
+    if isinstance(value, list):
+        return [localize(v, table) for v in value]
+    if isinstance(value, dict):
+        return {k: localize(v, table) for k, v in value.items()}
+    return value
+
+
+_original_render = None
+
+
+def set_edition(edition: str) -> None:
+    """Draw the following figures in this language: the words in them are translated and set in a CJK face.
+
+    principle-viz's built-in labels ("Shortage", "Consumer surplus", ...) are English; the table in
+    config/figures.toml gives their translations, applied to a figure just before it is drawn.
+    """
+    global EDITION, _original_render
+    from mosaickit.rendering.matplotlib.renderer import MatplotlibRenderer
+
+    EDITION = edition
+    table = CONFIG.get("labels", {}).get(edition, {})
+    if _original_render is None:
+        _original_render = MatplotlibRenderer.render, MatplotlibRenderer.render_grid
+        render, render_grid = _original_render
+
+        def translated_render(self, scene, context):
+            return render(self, localize(scene, CONFIG.get("labels", {}).get(EDITION, {})), context)
+
+        def translated_grid(self, grid, cache):
+            return render_grid(self, localize(grid, CONFIG.get("labels", {}).get(EDITION, {})), cache)
+
+        MatplotlibRenderer.render, MatplotlibRenderer.render_grid = translated_render, translated_grid
+    family = CONFIG["fonts"].get("cjk", {}).get(edition, FONT)
+    matplotlib.rcParams["font.family"] = [family]
+    base = resolution.PRIMITIVE_DEFAULT
+    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
+        base, text=dataclasses.replace(base.text or TextStyle(), family=family)
+    )
+
+
 def use_house_colours() -> None:
     """Grey curves, black axes and arrows, grey fills: the EconViz look instead of the colour palette."""
     from principle_viz.visuals import theme
@@ -160,7 +216,7 @@ def use_house_colours() -> None:
 
 
 def out(group: str, name: str) -> Path:
-    path = OUT / group / f"{name}.{FMT}"
+    path = OUT / group / f"{name}{'' if EDITION == 'en' else '.' + EDITION}.{FMT}"
     path.parent.mkdir(parents=True, exist_ok=True)
     return path
 
@@ -231,4 +287,6 @@ def market_failures() -> None:
 
 
 if __name__ == "__main__":
-    market_failures()
+    for edition in EDITIONS:
+        set_edition(edition)
+        market_failures()

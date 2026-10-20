@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:10:20.774157</dc:date>
+    <dc:date>2026-10-20T15:20:39.727936</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -560,7 +560,7 @@ L 132.031554 107.28
 L 173.881554 148.86 
 L 173.881554 287.46 
 z
-" clip-path="url(#p28b03ee165)" style="fill: #b8b8b8; fill-opacity: 0.15"/>
+" clip-path="url(#pf95de45f4e)" style="fill: #b8b8b8; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.ps">
     <path d="M 132.031554 329.04 
@@ -568,7 +568,7 @@ L 132.031554 287.46
 L 173.881554 287.46 
 L 173.881554 287.46 
 z
-" clip-path="url(#p28b03ee165)" style="fill: #8c8c8c; fill-opacity: 0.15"/>
+" clip-path="url(#pf95de45f4e)" style="fill: #8c8c8c; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.dwl">
     <path d="M 173.881554 287.46 
@@ -576,32 +576,32 @@ L 173.881554 148.86
 L 243.631554 218.16 
 L 243.631554 218.16 
 z
-" clip-path="url(#p28b03ee165)" style="fill: #595959; fill-opacity: 0.45"/>
+" clip-path="url(#pf95de45f4e)" style="fill: #595959; fill-opacity: 0.45"/>
    </g>
    <g id="market.demand">
     <path d="M 132.031554 107.28 
 L 411.031554 384.48 
-" clip-path="url(#p28b03ee165)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf95de45f4e)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 132.031554 329.04 
 L 384.247554 78.4512 
-" clip-path="url(#p28b03ee165)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf95de45f4e)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.guide.q_d">
     <path d="M 313.381554 384.48 
 L 313.381554 287.46 
-" clip-path="url(#p28b03ee165)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pf95de45f4e)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.guide.q_s">
     <path d="M 173.881554 384.48 
 L 173.881554 287.46 
-" clip-path="url(#p28b03ee165)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pf95de45f4e)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.price">
     <path d="M 132.031554 287.46 
 L 466.831554 287.46 
-" clip-path="url(#p28b03ee165)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
+" clip-path="url(#pf95de45f4e)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.price.label">
     <!-- $p_c$ -->
@@ -1013,7 +1013,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p28b03ee165">
+  <clipPath id="pf95de45f4e">
    <rect x="132.031554" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

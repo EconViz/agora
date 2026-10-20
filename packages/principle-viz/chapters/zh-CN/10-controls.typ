@@ -50,11 +50,11 @@ print(ceiling.is_binding, ceiling.traded_quantity, ceiling.shortage)
   画出管制线并命名为 "Price ceiling" 或 "Price floor"，在价格轴上标出 $p_c$。有约束时另标出 $Q_d$ 与 $Q_s$，并以括号标示差额：上限下方为 "Shortage"，下限上方为 "Surplus"。`gap_brace="axis"` 改在数量轴下方标示（参见#ref(<fig-ceiling>)、#ref(<fig-floor>)）。
 ]
 
-#fig("/figures/controls/ceiling.svg", width: 46%, caption: [
+#fig("/figures/controls/ceiling.zh-CN.svg", width: 46%, caption: [
   有约束的价格上限。
 ]) <fig-ceiling>
 
-#fig("/figures/controls/floor.svg", width: 46%, caption: [
+#fig("/figures/controls/floor.zh-CN.svg", width: 46%, caption: [
   有约束的价格下限。
 ]) <fig-floor>
 
@@ -73,7 +73,7 @@ fig.add_price_control(ceiling)
 fig.add_welfare(delta.policy)
 ```
 
-#fig("/figures/controls/ceiling_welfare.svg", width: 46%, caption: [
+#fig("/figures/controls/ceiling_welfare.zh-CN.svg", width: 46%, caption: [
   上限为 3.5 时的福利。
 ]) <fig-ceiling-welfare>
 

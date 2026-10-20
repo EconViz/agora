@@ -118,7 +118,7 @@
   設 $P$ 為簡單多邊形，外接矩形的寬與高皆為正，並設精度 $epsilon > 0$。則 `polylabel` 必定結束，且回傳的點 $q$ 滿足 $f(q) >= f^* - epsilon$。特別地，當 $f^* > epsilon$ 時，$q$ 位於 $"int" P$。
 ] <thm-polylabel>
 
-#fig("/figures/geometry/polylabel.pdf", width: auto, caption: [
+#fig("/figures/geometry/polylabel.zh-TW.pdf", width: auto, caption: [
   極點、最大圓盤與形心。
 ]) <fig-polylabel>
 
@@ -139,6 +139,6 @@
   (i) 位於帶狀區 $0 <= u <= delta$ 內；(ii) 在 $v |-> ell + h - v$ 下對稱；(iii) 除尖端外處處切線連續，尖端處曲線折返（尖點）。
 ] <prop-brace>
 
-#fig("/figures/geometry/brace.pdf", width: auto, caption: [
+#fig("/figures/geometry/brace.zh-TW.pdf", width: auto, caption: [
   大括號外形；右側跨距小於 $2 delta$。
 ]) <fig-brace>

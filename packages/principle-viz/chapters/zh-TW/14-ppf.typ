@@ -52,7 +52,7 @@ result = analyze_ppf(ppf, points=points)
 ppf_canvas(result).save("ppf_points.png")
 ```
 
-#fig("/figures/ppf/points.svg", width: 46%, caption: [
+#fig("/figures/ppf/points.zh-TW.svg", width: 46%, caption: [
   有效率、無效率與無法達成的點。
 ]) <fig-ppf>
 
@@ -64,7 +64,7 @@ ppf_canvas(result).save("ppf_points.png")
   經濟成長使各截距乘以一加上對應的成長率；結果包含 `baseline` 與 `shifted` 兩條曲線及其取樣點。`ppf_growth_canvas()` 畫出兩條曲線並命名為 $P P F_0$ 與 $P P F_1$（參見#ref(<fig-ppf-growth>)）。
 ]
 
-#fig("/figures/ppf/growth.svg", width: 46%, caption: [
+#fig("/figures/ppf/growth.zh-TW.svg", width: 46%, caption: [
   消費財成長 20%、資本財成長 10%。
 ]) <fig-ppf-growth>
 

@@ -100,18 +100,36 @@ TEXT = CONFIG["text"]
 # TeX Gyre Pagella when the TeX distribution has it.
 INK, GREY, LIGHT = "#1a1a1a", "#8c8c8c", "#b8b8b8"
 FONT = register_font()
-FIGURES_CONFIG = Config(
-    role_overrides={
-        "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=FONT)),
-        "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=FONT)),
-        "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=FONT), stroke=Stroke(color=INK, width=0.8)),
-        "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=FONT)),
-        "point": StyleBundle(marker=Marker(color=INK, size=16)),
-        "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
-        "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
-        "guide": StyleBundle(stroke=Stroke(color=INK, width=0.6, dash=DashStyle.DASHED)),
-    }
-)
+def figures_config(family: str | None) -> Config:
+    return Config(
+        role_overrides={
+            "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
+            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
+            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family), stroke=Stroke(color=INK, width=0.8)),
+            "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=family)),
+            "point": StyleBundle(marker=Marker(color=INK, size=16)),
+            "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
+            "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
+            "guide": StyleBundle(stroke=Stroke(color=INK, width=0.6, dash=DashStyle.DASHED)),
+        }
+    )
+
+
+FIGURES_CONFIG = figures_config(FONT)
+EDITIONS = ("en", "zh-TW", "zh-CN")
+EDITION = "en"  # the language the figures are drawn in; see set_edition()
+
+
+def set_edition(edition: str) -> None:
+    """Draw the following figures in this language: their words come from config/figures.toml, set in a CJK face."""
+    global EDITION, FIGURES_CONFIG
+    EDITION = edition
+    FIGURES_CONFIG = figures_config(CONFIG["fonts"].get("cjk", {}).get(edition, FONT))
+
+
+def tr(text: str) -> str:
+    """The word in the current edition's language (English words are the table's keys)."""
+    return CONFIG.get("labels", {}).get(EDITION, {}).get(text, text)
 
 
 def canvas(x: float = 10, y: float = 10, *, width: float | None = None, height: float | None = None) -> Canvas:
@@ -126,7 +144,7 @@ def canvas(x: float = 10, y: float = 10, *, width: float | None = None, height: 
 
 
 def save(target: Canvas | CanvasGrid, name: str) -> None:
-    path = OUT / f"{name}.{CONFIG['output']['format']}"
+    path = OUT / f"{name}{'' if EDITION == 'en' else '.' + EDITION}.{CONFIG['output']['format']}"
     path.parent.mkdir(parents=True, exist_ok=True)
     target.save(path)
     print(f"  {path.relative_to(ROOT)}")
@@ -158,8 +176,8 @@ def labels_regions() -> None:
     c.add(FillLayer([(6, 0), (0, 8), (0, 8.8), (6.6, 0)], id="thin", fill=Fill(color=INK, opacity=0.25), z_index=-1))
     c.add(PathLayer([(0, 8), (6, 0)], role="primary"))
     c.add(PathLayer([(0, 8.8), (6.6, 0)], role="secondary"))
-    c.add(RegionLabelLayer("wide", "Feasible"))
-    c.add(RegionLabelLayer("thin", "Slack"))
+    c.add(RegionLabelLayer("wide", tr("Feasible")))
+    c.add(RegionLabelLayer("thin", tr("Slack")))
     save(c, "labels/regions")
 
 
@@ -176,5 +194,7 @@ def labels_points() -> None:
 
 
 if __name__ == "__main__":
-    labels_regions()
-    labels_points()
+    for edition in EDITIONS:
+        set_edition(edition)
+        labels_regions()
+        labels_points()

@@ -65,7 +65,11 @@ def split(package: str) -> None:
         for name in names:
             args = {a.arg for a in functions[name].args.args + functions[name].args.kwonlyargs}
             calls.append(f"    {name}({'compile_pdf=True' if 'compile_pdf' in args else ''})")
-        text = body + '\n\nif __name__ == "__main__":\n' + "\n".join(calls) + "\n"
+        if "set_edition" in functions:  # one set of figures per language, like make_figures.py
+            tail = ["    for edition in EDITIONS:", "        set_edition(edition)"] + ["    " + c for c in calls]
+        else:
+            tail = calls
+        text = body + '\n\nif __name__ == "__main__":\n' + "\n".join(tail) + "\n"
         compile(text, f"{package}/{group}", "exec")
         out = PACKAGES / package / "figures" / group / f"{group}.py"
         out.parent.mkdir(parents=True, exist_ok=True)

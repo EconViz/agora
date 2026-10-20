@@ -25,7 +25,7 @@ fig.finalize()
 fig.save("basic_equilibrium.png")
 ```)
 
-#fig("/figures/quickstart/equilibrium.svg", width: 46%, caption: [
+#fig("/figures/quickstart/equilibrium.zh-CN.svg", width: 46%, caption: [
   本章的市场（省略标题）。
 ]) <fig-quickstart>
 

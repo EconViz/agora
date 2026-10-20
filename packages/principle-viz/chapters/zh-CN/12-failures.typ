@@ -38,11 +38,11 @@ print(result.corrective_tax, result.deadweight_loss)
   画出社会曲线，在数量轴上标出 $Q_m$（市场）与 $Q^*$（最优），在 $Q^*$ 处标出横跨差距的矫正税 $t$ 或补贴 $s$，并为无谓损失填色（参见#ref(<fig-neg-externality>)、#ref(<fig-pos-externality>)）。
 ]
 
-#fig("/figures/failures/negative_externality.svg", width: 46%, caption: [
+#fig("/figures/failures/negative_externality.zh-CN.svg", width: 46%, caption: [
   负外部性。
 ]) <fig-neg-externality>
 
-#fig("/figures/failures/positive_externality.svg", width: 46%, caption: [
+#fig("/figures/failures/positive_externality.zh-CN.svg", width: 46%, caption: [
   正外部性。
 ]) <fig-pos-externality>
 
@@ -62,7 +62,7 @@ print(result.corrective_tax, result.deadweight_loss)
   画出社会成本，标出 $Q^*$ 与 $Q_"open"$，并为无谓损失填色。在 `add_curves()` 中将曲线命名为 $M B$ 与 $M P C$。参见#ref(<fig-common-resource>)。
 ]
 
-#fig("/figures/failures/common_resource.svg", width: 46%, caption: [
+#fig("/figures/failures/common_resource.zh-CN.svg", width: 46%, caption: [
   公共资源的过度使用。
 ]) <fig-common-resource>
 
@@ -95,6 +95,6 @@ print(result.efficient_quantity, result.private_provision_quantity)
   位于 `principle_viz.visuals.market_failures` 的 #pkg("mosaickit") 画布，画出各人的边际利益、其垂直加总、边际成本，并在数量轴上标出 $Q_p$ 与 $Q^*$（参见#ref(<fig-public-good>)）。
 ]
 
-#fig("/figures/failures/public_good.svg", width: 46%, caption: [
+#fig("/figures/failures/public_good.zh-CN.svg", width: 46%, caption: [
   边际利益的垂直加总。
 ]) <fig-public-good>

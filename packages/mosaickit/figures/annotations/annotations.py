@@ -100,18 +100,36 @@ TEXT = CONFIG["text"]
 # TeX Gyre Pagella when the TeX distribution has it.
 INK, GREY, LIGHT = "#1a1a1a", "#8c8c8c", "#b8b8b8"
 FONT = register_font()
-FIGURES_CONFIG = Config(
-    role_overrides={
-        "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=FONT)),
-        "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=FONT)),
-        "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=FONT), stroke=Stroke(color=INK, width=0.8)),
-        "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=FONT)),
-        "point": StyleBundle(marker=Marker(color=INK, size=16)),
-        "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
-        "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
-        "guide": StyleBundle(stroke=Stroke(color=INK, width=0.6, dash=DashStyle.DASHED)),
-    }
-)
+def figures_config(family: str | None) -> Config:
+    return Config(
+        role_overrides={
+            "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
+            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
+            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family), stroke=Stroke(color=INK, width=0.8)),
+            "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=family)),
+            "point": StyleBundle(marker=Marker(color=INK, size=16)),
+            "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
+            "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
+            "guide": StyleBundle(stroke=Stroke(color=INK, width=0.6, dash=DashStyle.DASHED)),
+        }
+    )
+
+
+FIGURES_CONFIG = figures_config(FONT)
+EDITIONS = ("en", "zh-TW", "zh-CN")
+EDITION = "en"  # the language the figures are drawn in; see set_edition()
+
+
+def set_edition(edition: str) -> None:
+    """Draw the following figures in this language: their words come from config/figures.toml, set in a CJK face."""
+    global EDITION, FIGURES_CONFIG
+    EDITION = edition
+    FIGURES_CONFIG = figures_config(CONFIG["fonts"].get("cjk", {}).get(edition, FONT))
+
+
+def tr(text: str) -> str:
+    """The word in the current edition's language (English words are the table's keys)."""
+    return CONFIG.get("labels", {}).get(EDITION, {}).get(text, text)
 
 
 def canvas(x: float = 10, y: float = 10, *, width: float | None = None, height: float | None = None) -> Canvas:
@@ -126,7 +144,7 @@ def canvas(x: float = 10, y: float = 10, *, width: float | None = None, height: 
 
 
 def save(target: Canvas | CanvasGrid, name: str) -> None:
-    path = OUT / f"{name}.{CONFIG['output']['format']}"
+    path = OUT / f"{name}{'' if EDITION == 'en' else '.' + EDITION}.{CONFIG['output']['format']}"
     path.parent.mkdir(parents=True, exist_ok=True)
     target.save(path)
     print(f"  {path.relative_to(ROOT)}")
@@ -152,10 +170,10 @@ def annotations_gutter() -> None:
     c = canvas().extend(quadrant_axes(10, 10))
     c.add(PathLayer([(0, 7), (9, 7)], role="guide"))
     c.add(PathLayer([(0, 5), (9, 5)], role="guide"))
-    for value, symbol, note in [(7, "a_1", "Upper\nvalue"), (5, "a_0", "Lower\nvalue")]:
+    for value, symbol, note in [(7, "a_1", tr("Upper\nvalue")), (5, "a_0", tr("Lower\nvalue"))]:
         c.add(AxisMarkLayer("y", value, symbol, math=True))
         c.add(AxisNoteLayer("y", value, note))
-    c.add(BraceLayer("y", 5, 7, "Span", side="outside"))
+    c.add(BraceLayer("y", 5, 7, tr("Span"), side="outside"))
     c.add(AxisMarkLayer("x", 6, "b", math=True))
     save(c, "annotations/gutter")
 
@@ -166,10 +184,12 @@ def annotations_span() -> None:
     c.add(PathLayer([(1, 8.5), (3, 5), (5, 3.6), (8, 2.6)], role="primary"))
     c.add(PathLayer([(1, 1.5), (4, 3.2), (8, 6)], role="secondary"))
     c.add(MarkerLayer([(3, 5), (3, 2.7)]))
-    c.add(SpanBraceLayer((3, 2.7), (3, 5), "gap", side="left"))
+    c.add(SpanBraceLayer((3, 2.7), (3, 5), tr("gap"), side="left"))
     save(c, "annotations/span")
 
 
 if __name__ == "__main__":
-    annotations_gutter()
-    annotations_span()
+    for edition in EDITIONS:
+        set_edition(edition)
+        annotations_gutter()
+        annotations_span()

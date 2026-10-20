@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:10:21.423193</dc:date>
+    <dc:date>2026-10-20T15:20:41.928376</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -643,7 +643,7 @@ L 342.21913 378.723882
 L 345.130435 384.48 
 L 345.130435 384.48 
 z
-" clip-path="url(#p83f76f37ff)" style="fill: #b8b8b8; fill-opacity: 0.12"/>
+" clip-path="url(#p2add802f77)" style="fill: #b8b8b8; fill-opacity: 0.12"/>
    </g>
    <g id="ppf.frontier">
     <path d="M 54 95.227826 
@@ -747,7 +747,7 @@ L 336.396522 367.385197
 L 339.307826 373.025614 
 L 342.21913 378.723882 
 L 345.130435 384.48 
-" clip-path="url(#p83f76f37ff)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#p2add802f77)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Production Possibilities Frontier -->
@@ -898,7 +898,7 @@ z
    </g>
    <g id="ppf.point.0">
     <defs>
-     <path id="mb9e69232a8" d="M 0 3.25 
+     <path id="m9cbdbc0cea" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -911,12 +911,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mb9e69232a8" x="228.678261" y="199.358609" style="fill: #1a1a1a"/>
+     <use xlink:href="#m9cbdbc0cea" x="228.678261" y="199.358609" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="ppf.point.1">
     <defs>
-     <path id="m0b54cdfd4f" d="M 0 3.25 
+     <path id="mc58ea4c4b6" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -929,12 +929,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m0b54cdfd4f" x="170.452174" y="276.010435" style="fill: #6e6e6e"/>
+     <use xlink:href="#mc58ea4c4b6" x="170.452174" y="276.010435" style="fill: #6e6e6e"/>
     </g>
    </g>
    <g id="ppf.point.2">
     <defs>
-     <path id="mbd0237fc87" d="M 0 3.25 
+     <path id="mdd7236a022" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -947,7 +947,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mbd0237fc87" x="257.791304" y="167.54087" style="fill: #595959"/>
+     <use xlink:href="#mdd7236a022" x="257.791304" y="167.54087" style="fill: #595959"/>
     </g>
    </g>
    <g id="ppf.point.0.label">
@@ -1051,7 +1051,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p83f76f37ff">
+  <clipPath id="p2add802f77">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

@@ -55,14 +55,14 @@ print(result.policy.government_revenue, result.deadweight_loss)
   画出世界价格线并命名为 $p_w$，标出政策价格（$p_w + t$ 或 $p_q$），在数量轴上标 $Q_s$ 与 $Q_d$ 并于下方加上 "Imports" 或 "Exports" 括号，再以命名的矩形表示关税收入或配额租（参见#ref(<fig-free-trade>)、#ref(<fig-tariff>)、#ref(<fig-quota>)）。
 ]
 
-#fig("/figures/trade/free_trade_import.svg", width: 46%, caption: [
+#fig("/figures/trade/free_trade_import.zh-CN.svg", width: 46%, caption: [
   自由贸易下的进口。
 ]) <fig-free-trade>
 
-#fig("/figures/trade/tariff.svg", width: 46%, caption: [
+#fig("/figures/trade/tariff.zh-CN.svg", width: 46%, caption: [
   进口关税。
 ]) <fig-tariff>
 
-#fig("/figures/trade/quota.svg", width: 46%, caption: [
+#fig("/figures/trade/quota.zh-CN.svg", width: 46%, caption: [
   有约束的进口配额。
 ]) <fig-quota>

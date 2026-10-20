@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:10:21.294533</dc:date>
+    <dc:date>2026-10-20T15:20:41.097169</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -343,7 +343,7 @@ L 354.7 379.2
 L 357.8 380.96 
 L 360.9 382.72 
 L 364 384.48 
-" clip-path="url(#pcb2ec3234b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pb3802e6fb5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="public_good.individual.1">
     <path d="M 54 252.48 
@@ -447,7 +447,7 @@ L 354.7 384.48
 L 357.8 384.48 
 L 360.9 384.48 
 L 364 384.48 
-" clip-path="url(#pcb2ec3234b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pb3802e6fb5)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="public_good.social_benefit">
     <path d="M 54 76.48 
@@ -551,7 +551,7 @@ L 354.7 379.2
 L 357.8 380.96 
 L 360.9 382.72 
 L 364 384.48 
-" clip-path="url(#pcb2ec3234b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pb3802e6fb5)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="public_good.marginal_cost">
     <path d="M 54 274.48 
@@ -655,11 +655,11 @@ L 354.7 274.48
 L 357.8 274.48 
 L 360.9 274.48 
 L 364 274.48 
-" clip-path="url(#pcb2ec3234b)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pb3802e6fb5)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="public_good.efficient">
     <defs>
-     <path id="mb03f1d1d74" d="M 0 3.25 
+     <path id="mf40b213e51" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -672,12 +672,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mb03f1d1d74" x="228.375" y="274.48" style="fill: #1a1a1a"/>
+     <use xlink:href="#mf40b213e51" x="228.375" y="274.48" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="public_good.private_provision">
     <defs>
-     <path id="m004df0e9e9" d="M 0 3.25 
+     <path id="m20b08fbdd4" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -690,7 +690,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m004df0e9e9" x="170.25" y="274.48" style="fill: #6e6e6e"/>
+     <use xlink:href="#m20b08fbdd4" x="170.25" y="274.48" style="fill: #6e6e6e"/>
     </g>
    </g>
    <g id="public_good.efficient.mark">
@@ -776,12 +776,12 @@ z
    <g id="public_good.efficient.guide">
     <path d="M 228.375 384.48 
 L 228.375 274.48 
-" clip-path="url(#pcb2ec3234b)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pb3802e6fb5)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="public_good.private_provision.guide">
     <path d="M 170.25 384.48 
 L 170.25 274.48 
-" clip-path="url(#pcb2ec3234b)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pb3802e6fb5)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Public Good -->
@@ -1116,7 +1116,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pcb2ec3234b">
+  <clipPath id="pb3802e6fb5">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

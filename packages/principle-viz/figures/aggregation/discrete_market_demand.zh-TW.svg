@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="993.6pt" height="302.4pt" viewBox="0 0 993.6 302.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-20T15:20:37.888029</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 302.4 
+L 993.6 302.4 
+L 993.6 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="axes.x">
+    <path d="M 124.2 269.136 
+L 350.682353 269.136 
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_2">
+    <path d="M 350.455871 269.136 
+Q 350.569112 269.136 349.564319 269.136 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 344.764319 266.736 
+L 349.564319 269.136 
+L 344.764319 271.536 
+z
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
+   </g>
+   <g id="axes.y">
+    <path d="M 124.2 269.136 
+L 124.2 36.288 
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 124.2 36.520848 
+Q 124.2 36.404424 124.2 37.406034 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 121.8 42.206034 
+L 124.2 37.406034 
+L 126.6 42.206034 
+z
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
+   </g>
+   <g id="axes.y.label">
+    <!-- $p$ -->
+    <g style="fill: #1a1a1a" transform="translate(120.075 25.668) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Italic-51" d="M -45 -1728 
+L 0 -1766 
+C 134 -1722 262 -1690 467 -1658 
+L 736 19 
+L 794 0 
+C 960 -58 1056 -70 1126 -70 
+C 1485 -70 2221 397 2496 800 
+C 2758 1190 2976 1894 2976 2374 
+C 2976 2803 2829 3085 2598 3085 
+C 2330 3085 1997 2912 1658 2618 
+C 1402 2387 1267 2227 1037 1850 
+L 1190 2611 
+C 1210 2720 1222 2816 1222 2893 
+C 1222 3014 1171 3085 1082 3085 
+C 947 3085 704 2950 230 2611 
+L 51 2483 
+L 96 2355 
+L 301 2490 
+C 480 2605 550 2637 608 2637 
+C 672 2637 717 2579 717 2490 
+C 717 2438 704 2310 691 2246 
+L 320 51 
+L 6 -1491 
+L -45 -1728 
+z
+M 800 378 
+L 915 1056 
+C 1056 1875 1741 2714 2272 2714 
+C 2438 2714 2515 2573 2515 2278 
+C 2515 1760 2259 998 1920 512 
+C 1792 326 1587 230 1325 230 
+C 1126 230 966 275 800 378 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
+    </g>
+   </g>
+   <g id="axes.x.label">
+    <!-- $Q$ -->
+    <g style="fill: #1a1a1a" transform="translate(356.682353 274.4985) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Italic-32" d="M 339 1741 
+C 339 531 941 -115 2067 -115 
+C 2611 -115 3066 6 3482 269 
+C 4288 768 4787 1709 4787 2720 
+C 4787 3859 4122 4518 2970 4518 
+C 1453 4518 339 3347 339 1741 
+z
+M 806 -909 
+C 806 -909 806 -966 813 -1018 
+L 966 -1101 
+C 966 -608 1120 -378 1459 -378 
+C 1645 -378 1824 -429 2074 -563 
+L 3002 -1050 
+C 3386 -1248 3501 -1286 3757 -1286 
+C 4237 -1286 4467 -1011 4531 -390 
+L 4371 -390 
+C 4333 -736 4192 -896 3936 -896 
+C 3827 -896 3706 -864 3539 -800 
+L 2029 -186 
+C 1869 -122 1754 -96 1606 -96 
+C 1133 -96 781 -422 806 -909 
+z
+M 902 1773 
+C 902 2605 1158 3354 1600 3795 
+C 1901 4102 2285 4250 2771 4250 
+C 3078 4250 3392 4173 3603 4045 
+C 4019 3802 4224 3322 4224 2618 
+C 4224 1811 3968 1088 3533 640 
+C 3219 320 2803 154 2304 154 
+C 1382 154 902 704 902 1773 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
+    </g>
+   </g>
+   <g id="axes.origin.label">
+    <!-- 0 -->
+    <g style="fill: #1a1a1a" transform="translate(107.3 282.076) scale(0.165 -0.165)">
+     <defs>
+      <path id="PingFangTC-Regular-13" d="M 1920 4659 
+C 1370 4659 960 4422 685 3936 
+C 442 3526 320 2976 320 2285 
+C 320 1594 442 1043 685 634 
+C 960 154 1370 -90 1920 -90 
+C 2464 -90 2874 154 3155 634 
+C 3398 1043 3520 1594 3520 2285 
+C 3520 2976 3398 3526 3155 3936 
+C 2874 4422 2464 4659 1920 4659 
+z
+M 1920 4211 
+C 2330 4211 2624 3994 2803 3552 
+C 2931 3245 3002 2822 3002 2285 
+C 3002 1754 2931 1331 2803 1018 
+C 2624 582 2330 358 1920 358 
+C 1510 358 1216 582 1037 1018 
+C 909 1331 845 1754 845 2285 
+C 845 2822 909 3245 1037 3552 
+C 1216 3994 1510 4211 1920 4211 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#PingFangTC-Regular-13"/>
+    </g>
+   </g>
+   <g id="aggregation.A.quantity.label">
+    <!-- $Q_A$ -->
+    <g style="fill: #1a1a1a" transform="translate(225.235637 288.326) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Italic-22" d="M -122 -19 
+C 115 -6 358 0 595 0 
+C 826 0 1056 -6 1280 -19 
+L 1280 160 
+L 947 179 
+C 838 186 749 243 749 301 
+C 749 352 787 435 915 653 
+L 1568 1773 
+L 3142 1773 
+L 3315 493 
+C 3322 435 3328 384 3328 352 
+C 3328 250 3232 192 3053 179 
+L 2771 160 
+L 2771 -19 
+C 3034 -6 3290 0 3552 0 
+C 3814 0 4077 -6 4333 -19 
+L 4333 160 
+L 4166 179 
+C 3866 211 3846 224 3808 512 
+L 3251 4512 
+L 2957 4512 
+L 570 717 
+C 346 358 224 256 6 205 
+L -122 173 
+L -122 -19 
+z
+M 1728 2003 
+L 2874 3846 
+L 3110 2003 
+L 1728 2003 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-22" transform="translate(77.799927 -14.054688) scale(0.7)"/>
+    </g>
+   </g>
+   <g id="aggregation.A.price.label">
+    <!-- $p_1$ -->
+    <g style="fill: #1a1a1a" transform="translate(104.68 152.435087) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Regular-12" d="M 384 3827 
+L 429 3552 
+L 493 3552 
+L 1318 3923 
+L 1338 3930 
+C 1376 3930 1389 3872 1389 3718 
+L 1389 614 
+C 1389 282 1318 211 973 192 
+L 614 173 
+L 614 -19 
+C 966 -6 1318 0 1670 0 
+C 2003 0 2342 -6 2675 -19 
+L 2675 173 
+L 2342 192 
+C 1990 211 1926 282 1926 614 
+L 1926 4410 
+L 1837 4442 
+C 1421 4224 966 4032 384 3827 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
+     <use xlink:href="#TeXGyrePagella-Regular-12" transform="translate(49.999954 -13.664062) scale(0.7)"/>
+    </g>
+   </g>
+   <g id="aggregation.A.curve.connector.0">
+    <path d="M 180.121569 66.659478 
+L 180.121569 127.402435 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.A.curve.connector.1">
+    <path d="M 236.043137 127.402435 
+L 236.043137 188.145391 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.A.guide.price">
+    <path d="M 124.2 147.650087 
+L 236.043137 147.650087 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.A.guide.quantity">
+    <path d="M 236.043137 196.295071 
+L 236.043137 269.136 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.A.curve.step.0">
+    <path d="M 124.2 66.659478 
+L 180.121569 66.659478 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.A.curve.step.1">
+    <path d="M 180.121569 127.402435 
+L 236.043137 127.402435 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.A.curve.step.2">
+    <path d="M 236.043137 188.145391 
+L 291.964706 188.145391 
+" clip-path="url(#pcc7bd7351f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <!-- Individual A -->
+    <g style="fill: #1a1a1a" transform="translate(189.687739 30.288) scale(0.18 -0.18)">
+     <defs>
+      <path id="PingFangTC-Regular-2c" d="M 499 4570 
+L 499 0 
+L 1018 0 
+L 1018 4570 
+L 499 4570 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-51" d="M 1946 3398 
+C 1728 3398 1530 3347 1350 3245 
+C 1171 3149 1024 3008 909 2822 
+L 909 3309 
+L 397 3309 
+L 397 0 
+L 909 0 
+L 909 1997 
+C 928 2298 1024 2534 1203 2714 
+C 1370 2880 1568 2963 1798 2963 
+C 2374 2963 2669 2643 2669 1997 
+L 2669 0 
+L 3181 0 
+L 3181 2035 
+C 3181 2944 2765 3398 1946 3398 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-47" d="M 2842 4659 
+L 2842 2701 
+C 2586 3168 2221 3398 1747 3398 
+C 1274 3398 909 3226 640 2867 
+C 390 2547 269 2150 269 1664 
+C 269 1165 390 755 640 435 
+C 909 90 1286 -90 1773 -90 
+C 2272 -90 2643 122 2874 544 
+L 2874 0 
+L 3354 0 
+L 3354 4659 
+L 2842 4659 
+z
+M 1856 2976 
+C 2150 2976 2394 2861 2579 2618 
+C 2758 2381 2854 2067 2854 1683 
+L 2854 1619 
+C 2854 1248 2771 947 2611 717 
+C 2426 461 2170 333 1837 333 
+C 1478 333 1210 467 1030 723 
+C 870 954 794 1267 794 1664 
+C 794 2061 870 2368 1037 2592 
+C 1216 2848 1491 2976 1856 2976 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-4c" d="M 819 4557 
+C 710 4557 621 4525 544 4448 
+C 467 4384 435 4294 435 4179 
+C 435 4070 467 3981 544 3904 
+C 621 3834 710 3795 819 3795 
+C 928 3795 1018 3834 1094 3904 
+C 1171 3981 1210 4070 1210 4179 
+C 1210 4294 1171 4384 1094 4448 
+C 1018 4525 928 4557 819 4557 
+z
+M 563 3309 
+L 563 0 
+L 1075 0 
+L 1075 3309 
+L 563 3309 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-59" d="M 32 3309 
+L 1280 0 
+L 1798 0 
+L 3053 3309 
+L 2490 3309 
+L 1542 640 
+L 595 3309 
+L 32 3309 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-58" d="M 397 3309 
+L 397 1261 
+C 397 365 794 -90 1600 -90 
+C 2048 -90 2406 115 2675 512 
+L 2675 0 
+L 3187 0 
+L 3187 3309 
+L 2675 3309 
+L 2675 1293 
+C 2637 1011 2528 781 2349 602 
+C 2176 435 1978 346 1760 346 
+C 1459 346 1242 429 1107 582 
+C 973 736 909 973 909 1286 
+L 909 3309 
+L 397 3309 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-44" d="M 1837 3398 
+C 1440 3398 1126 3322 883 3168 
+C 614 3002 442 2739 371 2394 
+L 877 2355 
+C 928 2566 1037 2726 1210 2829 
+C 1363 2931 1562 2976 1805 2976 
+C 2381 2976 2669 2701 2669 2144 
+L 2669 1971 
+L 1875 1958 
+C 1376 1952 992 1856 723 1677 
+C 416 1485 269 1203 269 826 
+C 269 557 371 333 576 160 
+C 774 -6 1037 -90 1370 -90 
+C 1677 -90 1952 -19 2195 115 
+C 2400 230 2573 378 2701 557 
+L 2701 0 
+L 3181 0 
+L 3181 2125 
+C 3181 2509 3078 2810 2886 3027 
+C 2656 3277 2310 3398 1837 3398 
+z
+M 2669 1587 
+L 2669 1306 
+C 2669 1050 2547 819 2310 621 
+C 2067 416 1792 314 1478 314 
+C 1274 314 1107 365 979 461 
+C 851 563 794 685 794 838 
+C 794 1318 1165 1562 1907 1574 
+L 2669 1587 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-4f" d="M 499 4659 
+L 499 0 
+L 1005 0 
+L 1005 4659 
+L 499 4659 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-3" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-24" d="M 1798 4570 
+L 0 0 
+L 563 0 
+L 1050 1280 
+L 3149 1280 
+L 3635 0 
+L 4205 0 
+L 2406 4570 
+L 1798 4570 
+z
+M 1216 1722 
+L 2093 4006 
+L 2118 4006 
+L 2982 1722 
+L 1216 1722 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#PingFangTC-Regular-2c"/>
+     <use xlink:href="#PingFangTC-Regular-51" transform="translate(23.703125 0)"/>
+     <use xlink:href="#PingFangTC-Regular-47" transform="translate(79.609375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4c" transform="translate(138.203125 0)"/>
+     <use xlink:href="#PingFangTC-Regular-59" transform="translate(163.796875 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4c" transform="translate(212 0)"/>
+     <use xlink:href="#PingFangTC-Regular-47" transform="translate(237.59375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-58" transform="translate(296.1875 0)"/>
+     <use xlink:href="#PingFangTC-Regular-44" transform="translate(352.1875 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4f" transform="translate(408.09375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-3" transform="translate(431.59375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-24" transform="translate(464.890625 0)"/>
+    </g>
+   </g>
+   <g id="aggregation.A.curve.closed">
+    <defs>
+     <path id="mdc89280dfb" d="M 0 2.915476 
+C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
+C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
+C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
+C 1.514823 -2.608283 0.773193 -2.915476 0 -2.915476 
+C -0.773193 -2.915476 -1.514823 -2.608283 -2.061553 -2.061553 
+C -2.608283 -1.514823 -2.915476 -0.773193 -2.915476 0 
+C -2.915476 0.773193 -2.608283 1.514823 -2.061553 2.061553 
+C -1.514823 2.608283 -0.773193 2.915476 0 2.915476 
+z
+" style="stroke: #8c8c8c; stroke-width: 1.5"/>
+    </defs>
+    <g>
+     <use xlink:href="#mdc89280dfb" x="124.2" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="180.121569" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="236.043137" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="aggregation.A.curve.open">
+    <defs>
+     <path id="m3e4a0d5ed0" d="M 0 2.915476 
+C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
+C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
+C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
+C 1.514823 -2.608283 0.773193 -2.915476 0 -2.915476 
+C -0.773193 -2.915476 -1.514823 -2.608283 -2.061553 -2.061553 
+C -2.608283 -1.514823 -2.915476 -0.773193 -2.915476 0 
+C -2.915476 0.773193 -2.608283 1.514823 -2.061553 2.061553 
+C -1.514823 2.608283 -0.773193 2.915476 0 2.915476 
+z
+" style="stroke: #8c8c8c; stroke-width: 1.5"/>
+    </defs>
+    <g>
+     <use xlink:href="#m3e4a0d5ed0" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="aggregation.A.curve.label">
+    <!-- $D_A$ -->
+    <g style="fill: #8c8c8c" transform="translate(298.701109 178.723988) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Italic-25" d="M 179 -19 
+C 378 -6 576 0 774 0 
+C 1190 0 1606 -19 2022 -19 
+C 2483 -19 2797 51 3130 218 
+C 4128 730 4742 1696 4742 2758 
+C 4742 3386 4550 3834 4160 4109 
+C 3866 4320 3251 4429 2714 4429 
+C 2278 4429 1843 4410 1408 4410 
+C 1146 4410 883 4416 621 4429 
+L 602 4250 
+L 941 4237 
+C 1094 4230 1165 4179 1165 4064 
+C 1165 3974 1139 3770 1107 3578 
+L 550 352 
+C 525 205 333 179 211 147 
+L 179 -19 
+z
+M 1075 358 
+C 1075 435 1082 480 1101 595 
+L 1715 4160 
+C 1965 4160 2208 4192 2458 4192 
+C 3622 4192 4154 3706 4154 2656 
+C 4154 1907 3910 1235 3475 794 
+C 3130 442 2662 262 2106 262 
+C 1824 262 1510 294 1075 358 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-25" transform="translate(0 0.796875)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-22" transform="translate(77.799927 -13.664062) scale(0.7)"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="axes.x">
+    <path d="M 395.978824 269.136 
+L 622.461176 269.136 
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 622.234694 269.136 
+Q 622.347935 269.136 621.343142 269.136 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 616.543142 266.736 
+L 621.343142 269.136 
+L 616.543142 271.536 
+z
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
+   </g>
+   <g id="axes.y">
+    <path d="M 395.978824 269.136 
+L 395.978824 36.288 
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 395.978824 36.520848 
+Q 395.978824 36.404424 395.978824 37.406034 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 393.578824 42.206034 
+L 395.978824 37.406034 
+L 398.378824 42.206034 
+z
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
+   </g>
+   <g id="axes.y.label">
+    <!-- $p$ -->
+    <g style="fill: #1a1a1a" transform="translate(391.853824 25.668) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
+    </g>
+   </g>
+   <g id="axes.x.label">
+    <!-- $Q$ -->
+    <g style="fill: #1a1a1a" transform="translate(628.461176 274.4985) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
+    </g>
+   </g>
+   <g id="axes.origin.label">
+    <!-- 0 -->
+    <g style="fill: #1a1a1a" transform="translate(379.078824 282.076) scale(0.165 -0.165)">
+     <use xlink:href="#PingFangTC-Regular-13"/>
+    </g>
+   </g>
+   <g id="aggregation.B.quantity.label">
+    <!-- $Q_B$ -->
+    <g style="fill: #1a1a1a" transform="translate(441.752892 288.326) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Italic-23" d="M 166 -19 
+C 358 -6 557 0 749 0 
+C 1094 0 1434 -19 1779 -19 
+C 2086 -19 2387 51 2688 230 
+C 3194 531 3475 966 3475 1453 
+C 3475 1728 3386 1939 3213 2080 
+C 3046 2214 2854 2272 2413 2336 
+C 2778 2464 2931 2547 3136 2720 
+C 3424 2976 3578 3270 3578 3597 
+C 3578 4122 3059 4429 2566 4429 
+C 2246 4429 1926 4410 1606 4410 
+C 1280 4410 960 4416 640 4429 
+L 621 4250 
+L 960 4237 
+C 1114 4230 1184 4179 1184 4064 
+C 1184 3974 1158 3770 1126 3578 
+L 570 352 
+C 550 237 467 192 198 147 
+L 166 -19 
+z
+M 1062 262 
+L 1389 2176 
+L 1933 2176 
+C 2592 2176 2912 1907 2912 1350 
+C 2912 691 2445 218 1805 218 
+C 1677 218 1491 224 1280 243 
+C 1242 250 1165 256 1062 262 
+z
+M 1427 2406 
+L 1741 4160 
+C 1914 4160 2080 4192 2253 4192 
+C 2771 4192 3027 3962 3027 3482 
+C 3027 2810 2554 2406 1760 2406 
+L 1427 2406 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-23" transform="translate(77.799927 -14.054688) scale(0.7)"/>
+    </g>
+   </g>
+   <g id="aggregation.B.price.label">
+    <!-- $p_1$ -->
+    <g style="fill: #1a1a1a" transform="translate(376.458824 152.435087) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
+     <use xlink:href="#TeXGyrePagella-Regular-12" transform="translate(49.999954 -13.664062) scale(0.7)"/>
+    </g>
+   </g>
+   <g id="aggregation.B.curve.connector.0">
+    <path d="M 451.900392 107.154783 
+L 451.900392 167.897739 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.B.curve.connector.1">
+    <path d="M 507.821961 167.897739 
+L 507.821961 228.640696 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.B.guide.price">
+    <path d="M 395.978824 147.650087 
+L 451.900392 147.650087 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.B.guide.quantity">
+    <path d="M 451.900392 176.047419 
+L 451.900392 269.136 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.B.curve.step.0">
+    <path d="M 395.978824 107.154783 
+L 451.900392 107.154783 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.B.curve.step.1">
+    <path d="M 451.900392 167.897739 
+L 507.821961 167.897739 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.B.curve.step.2">
+    <path d="M 507.821961 228.640696 
+L 563.743529 228.640696 
+" clip-path="url(#p2ad508a9f6)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_2">
+    <!-- Individual B -->
+    <g style="fill: #1a1a1a" transform="translate(461.286562 30.288) scale(0.18 -0.18)">
+     <defs>
+      <path id="PingFangTC-Regular-25" d="M 461 4570 
+L 461 0 
+L 2490 0 
+C 2957 0 3328 96 3597 275 
+C 3910 493 4070 826 4070 1274 
+C 4070 1581 3981 1824 3814 2016 
+C 3648 2208 3418 2336 3117 2387 
+C 3347 2464 3533 2586 3674 2752 
+C 3808 2938 3878 3162 3878 3418 
+C 3878 3776 3757 4058 3514 4262 
+C 3264 4467 2925 4570 2502 4570 
+L 461 4570 
+z
+M 986 4128 
+L 2381 4128 
+C 2701 4128 2944 4070 3110 3942 
+C 3277 3814 3360 3622 3360 3366 
+C 3360 3104 3270 2906 3104 2771 
+C 2938 2643 2694 2573 2374 2573 
+L 986 2573 
+L 986 4128 
+z
+M 986 2138 
+L 2445 2138 
+C 2797 2138 3066 2074 3251 1933 
+C 3443 1792 3546 1574 3546 1280 
+C 3546 986 3430 762 3206 621 
+C 3014 506 2765 442 2445 442 
+L 986 442 
+L 986 2138 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#PingFangTC-Regular-2c"/>
+     <use xlink:href="#PingFangTC-Regular-51" transform="translate(23.703125 0)"/>
+     <use xlink:href="#PingFangTC-Regular-47" transform="translate(79.609375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4c" transform="translate(138.203125 0)"/>
+     <use xlink:href="#PingFangTC-Regular-59" transform="translate(163.796875 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4c" transform="translate(212 0)"/>
+     <use xlink:href="#PingFangTC-Regular-47" transform="translate(237.59375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-58" transform="translate(296.1875 0)"/>
+     <use xlink:href="#PingFangTC-Regular-44" transform="translate(352.1875 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4f" transform="translate(408.09375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-3" transform="translate(431.59375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-25" transform="translate(464.890625 0)"/>
+    </g>
+   </g>
+   <g id="aggregation.B.curve.closed">
+    <g>
+     <use xlink:href="#mdc89280dfb" x="395.978824" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="451.900392" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="507.821961" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="aggregation.B.curve.open">
+    <g>
+     <use xlink:href="#m3e4a0d5ed0" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="aggregation.B.curve.label">
+    <!-- $D_B$ -->
+    <g style="fill: #8c8c8c" transform="translate(570.659932 219.219293) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-25" transform="translate(0 0.796875)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-23" transform="translate(77.799927 -13.664062) scale(0.7)"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g id="axes.x">
+    <path d="M 667.757647 269.136 
+L 894.24 269.136 
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 894.013518 269.136 
+Q 894.126759 269.136 893.121966 269.136 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 888.321966 266.736 
+L 893.121966 269.136 
+L 888.321966 271.536 
+z
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
+   </g>
+   <g id="axes.y">
+    <path d="M 667.757647 269.136 
+L 667.757647 36.288 
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 667.757647 36.520848 
+Q 667.757647 36.404424 667.757647 37.406034 
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
+    <path d="M 665.357647 42.206034 
+L 667.757647 37.406034 
+L 670.157647 42.206034 
+z
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
+   </g>
+   <g id="axes.y.label">
+    <!-- $p$ -->
+    <g style="fill: #1a1a1a" transform="translate(663.632647 25.668) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
+    </g>
+   </g>
+   <g id="axes.x.label">
+    <!-- $Q$ -->
+    <g style="fill: #1a1a1a" transform="translate(900.24 274.4985) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
+    </g>
+   </g>
+   <g id="axes.origin.label">
+    <!-- 0 -->
+    <g style="fill: #1a1a1a" transform="translate(650.857647 282.076) scale(0.165 -0.165)">
+     <use xlink:href="#PingFangTC-Regular-13"/>
+    </g>
+   </g>
+   <g id="aggregation.market.quantity.label">
+    <!-- $Q_A + Q_B = Q$ -->
+    <g style="fill: #1a1a1a" transform="translate(713.305588 288.326) scale(0.165 -0.165)">
+     <defs>
+      <path id="TeXGyrePagella-Regular-c" d="M 512 1408 
+L 2240 1408 
+L 2240 -320 
+C 2304 -307 2368 -301 2432 -301 
+C 2496 -301 2560 -307 2624 -320 
+L 2624 1408 
+L 4352 1408 
+C 4339 1472 4333 1536 4333 1600 
+C 4333 1664 4339 1728 4352 1792 
+L 2624 1792 
+L 2624 3520 
+C 2560 3507 2496 3501 2432 3501 
+C 2368 3501 2304 3507 2240 3520 
+L 2240 1792 
+L 512 1792 
+C 525 1728 531 1664 531 1600 
+C 531 1536 525 1472 512 1408 
+z
+" transform="scale(0.015625)"/>
+      <path id="TeXGyrePagella-Regular-1e" d="M 512 704 
+L 4352 704 
+C 4339 768 4333 832 4333 896 
+C 4333 960 4339 1024 4352 1088 
+L 512 1088 
+C 525 1024 531 960 531 896 
+C 531 832 525 768 512 704 
+z
+M 512 2112 
+L 4352 2112 
+C 4339 2176 4333 2240 4333 2304 
+C 4333 2368 4339 2432 4352 2496 
+L 512 2496 
+C 525 2432 531 2368 531 2304 
+C 531 2240 525 2176 512 2112 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(0 0.40625)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-22" transform="translate(77.799927 -14.054688) scale(0.7)"/>
+     <use xlink:href="#TeXGyrePagella-Regular-c" transform="translate(146.310023 0.40625)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(237.869933 0.40625)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-23" transform="translate(315.669859 -14.054688) scale(0.7)"/>
+     <use xlink:href="#TeXGyrePagella-Regular-1e" transform="translate(376.409962 0.40625)"/>
+     <use xlink:href="#TeXGyrePagella-Italic-32" transform="translate(467.969872 0.40625)"/>
+    </g>
+   </g>
+   <g id="aggregation.market.price.label">
+    <!-- $p_1$ -->
+    <g style="fill: #1a1a1a" transform="translate(648.237647 152.435087) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-51" transform="translate(0 0.796875)"/>
+     <use xlink:href="#TeXGyrePagella-Regular-12" transform="translate(49.999954 -13.664062) scale(0.7)"/>
+    </g>
+   </g>
+   <g id="aggregation.market.curve.connector.0">
+    <path d="M 697.955294 66.659478 
+L 697.955294 107.154783 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.connector.1">
+    <path d="M 728.152941 107.154783 
+L 728.152941 127.402435 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.connector.2">
+    <path d="M 758.350588 127.402435 
+L 758.350588 167.897739 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.connector.3">
+    <path d="M 788.548235 167.897739 
+L 788.548235 188.145391 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.connector.4">
+    <path d="M 818.745882 188.145391 
+L 818.745882 228.640696 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.guide.price">
+    <path d="M 667.757647 147.650087 
+L 758.350588 147.650087 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.guide.quantity">
+    <path d="M 758.350588 176.047419 
+L 758.350588 269.136 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.step.0">
+    <path d="M 667.757647 66.659478 
+L 697.955294 66.659478 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.step.1">
+    <path d="M 697.955294 107.154783 
+L 728.152941 107.154783 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.step.2">
+    <path d="M 728.152941 127.402435 
+L 758.350588 127.402435 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.step.3">
+    <path d="M 758.350588 167.897739 
+L 788.548235 167.897739 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.step.4">
+    <path d="M 788.548235 188.145391 
+L 818.745882 188.145391 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="aggregation.market.curve.step.5">
+    <path d="M 818.745882 228.640696 
+L 848.943529 228.640696 
+" clip-path="url(#pd8c3e830b2)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_3">
+    <!-- Market -->
+    <g style="fill: #1a1a1a" transform="translate(751.792417 30.288) scale(0.18 -0.18)">
+     <defs>
+      <path id="PingFangTC-Regular-30" d="M 461 4570 
+L 461 0 
+L 986 0 
+L 986 3635 
+L 1005 3635 
+L 2586 0 
+L 3059 0 
+L 4640 3635 
+L 4659 3635 
+L 4659 0 
+L 5184 0 
+L 5184 4570 
+L 4531 4570 
+L 2835 672 
+L 2816 672 
+L 1114 4570 
+L 461 4570 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-55" d="M 1850 3398 
+C 1619 3398 1421 3328 1248 3187 
+C 1107 3078 992 2925 902 2733 
+L 902 3309 
+L 397 3309 
+L 397 0 
+L 902 0 
+L 902 1754 
+C 902 2061 986 2323 1165 2541 
+C 1338 2771 1555 2880 1811 2880 
+C 1971 2880 2138 2861 2304 2810 
+L 2304 3322 
+C 2182 3373 2029 3398 1850 3398 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-4e" d="M 397 4659 
+L 397 0 
+L 909 0 
+L 909 1171 
+L 1434 1645 
+L 2726 0 
+L 3386 0 
+L 1786 1978 
+L 3245 3309 
+L 2566 3309 
+L 909 1773 
+L 909 4659 
+L 397 4659 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-48" d="M 1760 3398 
+C 1280 3398 902 3226 621 2880 
+C 339 2554 205 2144 205 1658 
+C 205 1120 346 698 640 378 
+C 922 70 1306 -90 1779 -90 
+C 2208 -90 2560 38 2835 282 
+C 3059 486 3206 742 3283 1062 
+L 2771 1062 
+C 2688 832 2579 659 2438 544 
+C 2272 410 2048 339 1779 339 
+C 1466 339 1216 442 1037 646 
+C 858 851 762 1139 736 1510 
+L 3347 1510 
+C 3334 2086 3206 2541 2963 2861 
+C 2694 3219 2291 3398 1760 3398 
+z
+M 1773 2970 
+C 2400 2970 2752 2618 2816 1907 
+L 749 1907 
+C 781 2234 883 2490 1062 2682 
+C 1242 2874 1478 2970 1773 2970 
+z
+" transform="scale(0.015625)"/>
+      <path id="PingFangTC-Regular-57" d="M 1280 4378 
+L 774 4166 
+L 774 3309 
+L 109 3309 
+L 109 2880 
+L 774 2880 
+L 774 774 
+C 774 525 826 339 934 211 
+C 1050 70 1248 0 1517 0 
+L 2016 0 
+L 2016 429 
+L 1594 429 
+C 1478 429 1395 461 1350 512 
+C 1299 563 1280 653 1280 774 
+L 1280 2880 
+L 2099 2880 
+L 2099 3309 
+L 1280 3309 
+L 1280 4378 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#PingFangTC-Regular-30"/>
+     <use xlink:href="#PingFangTC-Regular-44" transform="translate(88.203125 0)"/>
+     <use xlink:href="#PingFangTC-Regular-55" transform="translate(144.109375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-4e" transform="translate(180.609375 0)"/>
+     <use xlink:href="#PingFangTC-Regular-48" transform="translate(233.515625 0)"/>
+     <use xlink:href="#PingFangTC-Regular-57" transform="translate(289.015625 0)"/>
+    </g>
+   </g>
+   <g id="aggregation.market.curve.closed">
+    <g>
+     <use xlink:href="#mdc89280dfb" x="667.757647" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="697.955294" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="728.152941" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="758.350588" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="788.548235" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#mdc89280dfb" x="818.745882" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="aggregation.market.curve.open">
+    <g>
+     <use xlink:href="#m3e4a0d5ed0" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3e4a0d5ed0" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+    </g>
+   </g>
+   <g id="aggregation.market.curve.label">
+    <!-- $D$ -->
+    <g style="fill: #8c8c8c" transform="translate(855.732432 219.586793) scale(0.165 -0.165)">
+     <use xlink:href="#TeXGyrePagella-Italic-25" transform="translate(0 0.796875)"/>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pcc7bd7351f">
+   <rect x="124.2" y="36.288" width="226.482353" height="232.848"/>
+  </clipPath>
+  <clipPath id="p2ad508a9f6">
+   <rect x="395.978824" y="36.288" width="226.482353" height="232.848"/>
+  </clipPath>
+  <clipPath id="pd8c3e830b2">
+   <rect x="667.757647" y="36.288" width="226.482353" height="232.848"/>
+  </clipPath>
+ </defs>
+</svg>

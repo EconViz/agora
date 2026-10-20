@@ -80,11 +80,11 @@ print(solve_tax_equilibrium(demand, supply, tax))
   画出征税后的曲线并命名为 $S + t$ 或 $D - t$，以虚线箭头表示平移或旋转，并标出未征税的均衡（参见#ref(<fig-tax-producer>)、#ref(<fig-tax-consumer>)）。
 ]
 
-#fig("/figures/taxes/per_unit_producer.svg", width: 46%, caption: [
+#fig("/figures/taxes/per_unit_producer.zh-CN.svg", width: 46%, caption: [
   向卖方征收从量税。
 ]) <fig-tax-producer>
 
-#fig("/figures/taxes/ad_valorem_consumer.svg", width: 46%, caption: [
+#fig("/figures/taxes/ad_valorem_consumer.zh-CN.svg", width: 46%, caption: [
   向买方征收从价税。
 ]) <fig-tax-consumer>
 
@@ -120,7 +120,7 @@ fig.add_tax_comparison(compare_tax_scenario(demand, supply, tax))
 fig.finalize()
 ```
 
-#fig("/figures/taxes/welfare.svg", width: 46%, caption: [
+#fig("/figures/taxes/welfare.zh-CN.svg", width: 46%, caption: [
   征税下的剩余与无谓损失。
 ]) <fig-tax-welfare>
 
@@ -175,6 +175,6 @@ fig = MarketFigure(
 )
 ```
 
-#fig("/figures/taxes/subsidy.svg", width: 46%, caption: [
+#fig("/figures/taxes/subsidy.zh-CN.svg", width: 46%, caption: [
   从量补贴与无谓损失。
 ]) <fig-subsidy>

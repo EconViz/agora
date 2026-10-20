@@ -21,7 +21,7 @@
 
 “文字放得下”是指：文字矩形置中于极点、每边留白 2 pt 后，仍位于区域内（参见#ref(<thm-rect-inside>)），且不碰到任何线条、标记、文字或其他区域。#ref(<fig-regions>)同时呈现这两种结果。
 
-#fig("/figures/labels/regions.pdf", width: auto, caption: [
+#fig("/figures/labels/regions.zh-CN.pdf", width: auto, caption: [
   区域内标签与引线标注。
 ]) <fig-regions>
 
@@ -39,11 +39,11 @@
   将方向自 $+x$ 起逆时针编号为 $k = 0, dots, 15$，角度为 $2 pi k slash 16$。点标签按键值 $(min(s, 16 - s), [s > 8])$（$s = (k - 2) mod 16$）递增的顺序尝试：按与右上方向 $k = 2$ 的角距离，角距离相同的两个方向则逆时针者优先。
 ] <def-candidate-order>
 
-#fig("/figures/geometry/candidates.pdf", width: auto, caption: [
+#fig("/figures/geometry/candidates.zh-CN.pdf", width: auto, caption: [
   方向的尝试顺序。
 ]) <fig-candidates>
 
-#fig("/figures/labels/points.pdf", width: auto, caption: [
+#fig("/figures/labels/points.zh-CN.pdf", width: auto, caption: [
   点旁的点标签。
 ]) <fig-points>
 

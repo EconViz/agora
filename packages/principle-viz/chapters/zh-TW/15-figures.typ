@@ -122,7 +122,7 @@ fig.hide("axes.origin.label")
 fig.finalize()
 ```
 
-#fig("/figures/figures/labels.svg", width: 46%, caption: [
+#fig("/figures/figures/labels.zh-TW.svg", width: 46%, caption: [
   改名的曲線與均衡點。
 ]) <fig-labels>
 
@@ -166,7 +166,7 @@ fig.finalize()
 fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 ```
 
-#fig("/figures/figures/monochrome.svg", width: 46%, caption: [
+#fig("/figures/figures/monochrome.zh-TW.svg", width: 46%, caption: [
   `monochrome` 配色。
 ]) <fig-monochrome>
 

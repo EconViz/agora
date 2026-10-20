@@ -30,7 +30,7 @@ canvas.add(TextLayer((4, 3), "A", offset=(6, 6)))
 canvas.save("diagram.pdf")
 ```)
 
-#fig("/figures/quickstart/diagram.pdf", width: auto, caption: [
+#fig("/figures/quickstart/diagram.zh-TW.pdf", width: auto, caption: [
   快速入門的圖。
 ]) <fig-quickstart>
 

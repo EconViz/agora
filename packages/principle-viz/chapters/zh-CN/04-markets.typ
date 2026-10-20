@@ -114,11 +114,11 @@ fig.add_comparative_statics(result, q_max=10)
 fig.finalize()
 ```
 
-#fig("/figures/markets/shift_demand_increase.svg", width: 46%, caption: [
+#fig("/figures/markets/shift_demand_increase.zh-CN.svg", width: 46%, caption: [
   需求增加。
 ]) <fig-shifts>
 
-#fig("/figures/markets/shift_supply_decrease.svg", width: 46%, caption: [
+#fig("/figures/markets/shift_supply_decrease.zh-CN.svg", width: 46%, caption: [
   供给减少。
 ]) <fig-shift-supply>
 
