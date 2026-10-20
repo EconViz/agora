@@ -1,4 +1,4 @@
-"""Generate the figures used by the manual, in principle-viz's default style.
+"""Generate the figures used by the manual, in the EconViz house style.
 
 Run from the manual's directory (principle-viz/):
 
@@ -133,6 +133,30 @@ def use_manual_fonts() -> None:
     for name, module in list(sys.modules.items()):
         if name.startswith("mosaickit") and getattr(module, "font_properties", None) is original:
             module.font_properties = font_properties
+
+
+def use_house_colours() -> None:
+    """Grey curves, black axes and arrows, grey fills: the EconViz look instead of the colour palette."""
+    from principle_viz.visuals import theme
+
+    house = theme.ColorModel(
+        name="house",
+        axis_color="#1a1a1a",
+        label_color="#1a1a1a",
+        demand_color="#8c8c8c",
+        supply_color="#1a1a1a",
+        baseline_color="#1a1a1a",
+        shifted_color="#6e6e6e",
+        tax_color="#595959",
+        control_color="#595959",
+        cs_color="#b8b8b8",
+        ps_color="#8c8c8c",
+        tax_revenue_color="#d9d9d9",
+        dwl_color="#595959",
+        arrow_color="#1a1a1a",
+    )
+    theme.DEFAULT_COLOR_MODEL = house  # every PlotTheme() created from here on starts from it
+    theme.BUILTIN_COLOR_MODELS["default"] = house  # and so does the "default" palette by name
 
 
 def out(group: str, name: str) -> Path:

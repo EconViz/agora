@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-04T14:51:50.809838</dc:date>
+    <dc:date>2026-10-20T15:10:21.531455</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -32,36 +32,36 @@ z
    <g id="axes.x">
     <path d="M 54 384.48 
 L 388.8 384.48 
-" style="fill: none; stroke: #333333; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="patch_2">
     <path d="M 388.4652 384.48 
 Q 388.6326 384.48 387.681966 384.48 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
     <path d="M 382.881966 382.08 
 L 387.681966 384.48 
 L 382.881966 386.88 
 z
-" style="fill: #333333; stroke: #333333; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="axes.y">
     <path d="M 54 384.48 
 L 54 51.84 
-" style="fill: none; stroke: #333333; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 54 52.17264 
 Q 54 52.00632 54 52.958034 
-" style="fill: none; stroke: #333333; stroke-linecap: round"/>
+" style="fill: none; stroke: #1a1a1a; stroke-linecap: round"/>
     <path d="M 51.6 57.758034 
 L 54 52.958034 
 L 56.4 57.758034 
 z
-" style="fill: #333333; stroke: #333333; stroke-linecap: round"/>
+" style="fill: #1a1a1a; stroke: #1a1a1a; stroke-linecap: round"/>
    </g>
    <g id="axes.y.label">
     <!-- Capital goods -->
-    <g style="fill: #222222" transform="translate(3.28957 41.171016) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(3.28957 41.171016) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-24" d="M 141 2189 
 C 141 806 1152 -128 2656 -128 
@@ -337,7 +337,7 @@ z
    </g>
    <g id="axes.x.label">
     <!-- Consumer goods -->
-    <g style="fill: #222222" transform="translate(264.160547 402.459) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(264.160547 402.459) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-4f" d="M 38 -19 
 C 301 -6 570 0 832 0 
@@ -518,7 +518,7 @@ z
    </g>
    <g id="axes.origin.label">
     <!-- 0 -->
-    <g style="fill: #222222" transform="translate(38.75 395.15125) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(38.75 395.15125) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-11" d="M 186 2074 
 C 186 1325 320 678 544 365 
@@ -640,7 +640,7 @@ L 300.027273 368.232873
 L 302.563636 373.5936 
 L 305.1 379.009309 
 L 307.636364 384.48 
-" clip-path="url(#p5eb0114ed7)" style="fill: none; stroke: #222222; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#p3f4a2bed59)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="ppf.growth.shifted">
     <path d="M 54 82.08 
@@ -744,11 +744,11 @@ L 349.232727 366.60816
 L 352.276364 372.50496 
 L 355.32 378.46224 
 L 358.363636 384.48 
-" clip-path="url(#p5eb0114ed7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #666666; stroke-linejoin: miter"/>
+" clip-path="url(#p3f4a2bed59)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #6e6e6e; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Economic Growth -->
-    <g style="fill: #222222" transform="translate(149.139844 45.84) scale(0.18 -0.18)">
+    <g style="fill: #1a1a1a" transform="translate(149.139844 45.84) scale(0.18 -0.18)">
      <defs>
       <path id="TeXGyrePagella-Regular-26" d="M 141 4237 
 L 448 4218 
@@ -918,7 +918,7 @@ z
    </g>
    <g id="ppf.growth.baseline.label">
     <!-- $PPF_0$ -->
-    <g style="fill: #222222" transform="translate(310.107097 375.147982) scale(0.165 -0.165)">
+    <g style="fill: #1a1a1a" transform="translate(310.107097 375.147982) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Italic-31" d="M 58 -19 
 C 339 -6 621 0 902 0 
@@ -993,7 +993,7 @@ z
    </g>
    <g id="ppf.growth.shifted.label">
     <!-- $PPF_1$ -->
-    <g style="fill: #666666" transform="translate(362.132063 376.015073) scale(0.165 -0.165)">
+    <g style="fill: #6e6e6e" transform="translate(362.132063 376.015073) scale(0.165 -0.165)">
      <defs>
       <path id="TeXGyrePagella-Regular-12" d="M 384 3827 
 L 429 3552 
@@ -1025,7 +1025,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p5eb0114ed7">
+  <clipPath id="p3f4a2bed59">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

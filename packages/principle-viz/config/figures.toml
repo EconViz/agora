@@ -1,6 +1,6 @@
 # Figure output and fonts for the manual. Read by scripts/make_figures.py.
-# Colours, line widths and label placement are principle-viz's own defaults
-# (the "default" palette), so every figure looks the way users' output does.
+# Line widths and label placement are principle-viz's own defaults; the colours
+# are the EconViz house greys, set in scripts/make_figures.py.
 
 [output]
 dir = "figures"
