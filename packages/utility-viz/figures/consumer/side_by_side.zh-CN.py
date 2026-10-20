@@ -3,7 +3,7 @@ from utility_viz.models import CobbDouglas
 
 Config.load("manual.toml").use()  # 图形设置
 
-fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$", shared_y=True)
+fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$")
 
 # 价格上涨前后
 cases = [
