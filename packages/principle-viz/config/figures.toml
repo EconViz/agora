@@ -28,6 +28,14 @@ texmf_files = [
 # principle-viz's built-in labels are English; each edition draws them with these translations.
 
 [labels."zh-TW"]
+"Demand and Elasticity" = "需求與彈性"
+"Total Revenue" = "總收益"
+"Elastic" = "富有彈性"
+"Unit elastic" = "單一彈性"
+"Inelastic" = "缺乏彈性"
+"Maximum $TR$ at $|\\varepsilon| = 1$" = "$|\\varepsilon| = 1$ 時 $TR$ 最大"
+"Cost" = "成本"
+"Revenue" = "收益"
 "Imports" = "進口"
 "Shortage" = "短缺"
 "Surplus" = "過剩"
@@ -62,6 +70,14 @@ texmf_files = [
 "Rent" = "租金"
 
 [labels."zh-CN"]
+"Demand and Elasticity" = "需求与弹性"
+"Total Revenue" = "总收益"
+"Elastic" = "富有弹性"
+"Unit elastic" = "单位弹性"
+"Inelastic" = "缺乏弹性"
+"Maximum $TR$ at $|\\varepsilon| = 1$" = "$|\\varepsilon| = 1$ 时 $TR$ 最大"
+"Cost" = "成本"
+"Revenue" = "收益"
 "Imports" = "进口"
 "Shortage" = "短缺"
 "Surplus" = "过剩"

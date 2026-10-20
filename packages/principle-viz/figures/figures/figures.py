@@ -173,16 +173,14 @@ def set_edition(edition: str) -> None:
     EDITION = edition
     table = CONFIG.get("labels", {}).get(edition, {})
     if _original_render is None:
-        _original_render = MatplotlibRenderer.render, MatplotlibRenderer.render_grid
-        render, render_grid = _original_render
+        _original_render = MatplotlibRenderer._draw
+        draw = _original_render
 
-        def translated_render(self, scene, context):
-            return render(self, localize(scene, CONFIG.get("labels", {}).get(EDITION, {})), context)
+        def translated_draw(self, ax, scene, context):  # canvases and grid cells both come through here
+            table = CONFIG.get("labels", {}).get(EDITION, {})
+            return draw(self, ax, localize(scene, table), localize(context, table))  # the context holds the titles
 
-        def translated_grid(self, grid, cache):
-            return render_grid(self, localize(grid, CONFIG.get("labels", {}).get(EDITION, {})), cache)
-
-        MatplotlibRenderer.render, MatplotlibRenderer.render_grid = translated_render, translated_grid
+        MatplotlibRenderer._draw = translated_draw
     family = CONFIG["fonts"].get("cjk", {}).get(edition, FONT)
     matplotlib.rcParams["font.family"] = [family]
     base = resolution.PRIMITIVE_DEFAULT
@@ -272,7 +270,7 @@ def figure_options() -> None:
     )
     fig.add_curves(DEMAND, SUPPLY, q_max=10)
     fig.add_equilibrium(eq)
-    fig.configure_label("market.equilibrium.label", text="$E$")
+    fig.configure_label("market.equilibrium.label", text="$e^*$")
     fig.hide("axes.origin.label")
     fig.finalize()
     fig.save(out("figures", "labels"))

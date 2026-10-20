@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:20:38.066315</dc:date>
+    <dc:date>2026-10-20T15:28:51.781754</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -243,171 +243,68 @@ z
    <g id="aggregation.A.curve.connector.0">
     <path d="M 180.121569 66.659478 
 L 180.121569 127.402435 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.connector.1">
     <path d="M 236.043137 127.402435 
 L 236.043137 188.145391 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.price">
     <path d="M 124.2 147.650087 
 L 236.043137 147.650087 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.quantity">
     <path d="M 236.043137 196.295071 
 L 236.043137 269.136 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.0">
     <path d="M 124.2 66.659478 
 L 180.121569 66.659478 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.1">
     <path d="M 180.121569 127.402435 
 L 236.043137 127.402435 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.2">
     <path d="M 236.043137 188.145391 
 L 291.964706 188.145391 
-" clip-path="url(#p06e0bce004)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pc3f1fefaf9)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
-    <!-- Individual A -->
-    <g style="fill: #1a1a1a" transform="translate(189.687739 30.288) scale(0.18 -0.18)">
+    <!-- 个人 A -->
+    <g style="fill: #1a1a1a" transform="translate(210.531176 30.288) scale(0.18 -0.18)">
      <defs>
-      <path id="PingFangSC-Regular-2c" d="M 499 4570 
-L 499 0 
-L 1018 0 
-L 1018 4570 
-L 499 4570 
+      <path id="PingFangSC-Regular-4fb" d="M 2963 3334 
+L 2963 -634 
+L 3437 -634 
+L 3437 3334 
+L 2963 3334 
+z
+M 2995 5222 
+C 2349 4262 1427 3475 230 2867 
+L 506 2451 
+C 1594 3002 2490 3782 3200 4794 
+C 3789 3872 4691 3104 5894 2477 
+L 6170 2893 
+C 4864 3565 3942 4339 3405 5222 
+L 2995 5222 
 z
 " transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-51" d="M 1946 3398 
-C 1728 3398 1530 3347 1350 3245 
-C 1171 3149 1024 3008 909 2822 
-L 909 3309 
-L 397 3309 
-L 397 0 
-L 909 0 
-L 909 1997 
-C 928 2298 1024 2534 1203 2714 
-C 1370 2880 1568 2963 1798 2963 
-C 2374 2963 2669 2643 2669 1997 
-L 2669 0 
-L 3181 0 
-L 3181 2035 
-C 3181 2944 2765 3398 1946 3398 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-47" d="M 2842 4659 
-L 2842 2701 
-C 2586 3168 2221 3398 1747 3398 
-C 1274 3398 909 3226 640 2867 
-C 390 2547 269 2150 269 1664 
-C 269 1165 390 755 640 435 
-C 909 90 1286 -90 1773 -90 
-C 2272 -90 2643 122 2874 544 
-L 2874 0 
-L 3354 0 
-L 3354 4659 
-L 2842 4659 
-z
-M 1856 2976 
-C 2150 2976 2394 2861 2579 2618 
-C 2758 2381 2854 2067 2854 1683 
-L 2854 1619 
-C 2854 1248 2771 947 2611 717 
-C 2426 461 2170 333 1837 333 
-C 1478 333 1210 467 1030 723 
-C 870 954 794 1267 794 1664 
-C 794 2061 870 2368 1037 2592 
-C 1216 2848 1491 2976 1856 2976 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-4c" d="M 819 4557 
-C 710 4557 621 4525 544 4448 
-C 467 4384 435 4294 435 4179 
-C 435 4070 467 3981 544 3904 
-C 621 3834 710 3795 819 3795 
-C 928 3795 1018 3834 1094 3904 
-C 1171 3981 1210 4070 1210 4179 
-C 1210 4294 1171 4384 1094 4448 
-C 1018 4525 928 4557 819 4557 
-z
-M 563 3309 
-L 563 0 
-L 1075 0 
-L 1075 3309 
-L 563 3309 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-59" d="M 32 3309 
-L 1280 0 
-L 1798 0 
-L 3053 3309 
-L 2490 3309 
-L 1542 640 
-L 595 3309 
-L 32 3309 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-58" d="M 397 3309 
-L 397 1261 
-C 397 365 794 -90 1600 -90 
-C 2048 -90 2406 115 2675 512 
-L 2675 0 
-L 3187 0 
-L 3187 3309 
-L 2675 3309 
-L 2675 1293 
-C 2637 1011 2528 781 2349 602 
-C 2176 435 1978 346 1760 346 
-C 1459 346 1242 429 1107 582 
-C 973 736 909 973 909 1286 
-L 909 3309 
-L 397 3309 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-44" d="M 1837 3398 
-C 1440 3398 1126 3322 883 3168 
-C 614 3002 442 2739 371 2394 
-L 877 2355 
-C 928 2566 1037 2726 1210 2829 
-C 1363 2931 1562 2976 1805 2976 
-C 2381 2976 2669 2701 2669 2144 
-L 2669 1971 
-L 1875 1958 
-C 1376 1952 992 1856 723 1677 
-C 416 1485 269 1203 269 826 
-C 269 557 371 333 576 160 
-C 774 -6 1037 -90 1370 -90 
-C 1677 -90 1952 -19 2195 115 
-C 2400 230 2573 378 2701 557 
-L 2701 0 
-L 3181 0 
-L 3181 2125 
-C 3181 2509 3078 2810 2886 3027 
-C 2656 3277 2310 3398 1837 3398 
-z
-M 2669 1587 
-L 2669 1306 
-C 2669 1050 2547 819 2310 621 
-C 2067 416 1792 314 1478 314 
-C 1274 314 1107 365 979 461 
-C 851 563 794 685 794 838 
-C 794 1318 1165 1562 1907 1574 
-L 2669 1587 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-4f" d="M 499 4659 
-L 499 0 
-L 1005 0 
-L 1005 4659 
-L 499 4659 
+      <path id="PingFangSC-Regular-548" d="M 3430 5216 
+L 2963 5216 
+C 2963 4973 2957 4634 2950 4198 
+C 2893 2355 1984 890 224 -192 
+L 506 -602 
+C 1926 314 2835 1466 3219 2861 
+C 3674 1414 4557 262 5862 -595 
+L 6163 -192 
+C 4672 723 3744 2054 3386 3795 
+C 3411 4192 3430 4666 3430 5216 
 z
 " transform="scale(0.015625)"/>
       <path id="PingFangSC-Regular-3" transform="scale(0.015625)"/>
@@ -429,23 +326,15 @@ L 1216 1722
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#PingFangSC-Regular-2c"/>
-     <use xlink:href="#PingFangSC-Regular-51" transform="translate(23.703125 0)"/>
-     <use xlink:href="#PingFangSC-Regular-47" transform="translate(79.609375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4c" transform="translate(138.203125 0)"/>
-     <use xlink:href="#PingFangSC-Regular-59" transform="translate(163.796875 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4c" transform="translate(212 0)"/>
-     <use xlink:href="#PingFangSC-Regular-47" transform="translate(237.59375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-58" transform="translate(296.1875 0)"/>
-     <use xlink:href="#PingFangSC-Regular-44" transform="translate(352.1875 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4f" transform="translate(408.09375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-3" transform="translate(431.59375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-24" transform="translate(464.890625 0)"/>
+     <use xlink:href="#PingFangSC-Regular-4fb"/>
+     <use xlink:href="#PingFangSC-Regular-548" transform="translate(100 0)"/>
+     <use xlink:href="#PingFangSC-Regular-3" transform="translate(200 0)"/>
+     <use xlink:href="#PingFangSC-Regular-24" transform="translate(233.296875 0)"/>
     </g>
    </g>
    <g id="aggregation.A.curve.closed">
     <defs>
-     <path id="m1808e253f7" d="M 0 2.915476 
+     <path id="m3ddc6781ac" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -458,14 +347,14 @@ z
 " style="stroke: #8c8c8c; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m1808e253f7" x="124.2" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="180.121569" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="236.043137" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="124.2" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="180.121569" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="236.043137" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.A.curve.open">
     <defs>
-     <path id="mdb0a6c43b6" d="M 0 2.915476 
+     <path id="m7d535f20d4" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -478,9 +367,9 @@ z
 " style="stroke: #8c8c8c; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#mdb0a6c43b6" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.A.curve.label">
@@ -624,41 +513,41 @@ z
    <g id="aggregation.B.curve.connector.0">
     <path d="M 451.900392 107.154783 
 L 451.900392 167.897739 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.connector.1">
     <path d="M 507.821961 167.897739 
 L 507.821961 228.640696 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.price">
     <path d="M 395.978824 147.650087 
 L 451.900392 147.650087 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.quantity">
     <path d="M 451.900392 176.047419 
 L 451.900392 269.136 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.0">
     <path d="M 395.978824 107.154783 
 L 451.900392 107.154783 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.1">
     <path d="M 451.900392 167.897739 
 L 507.821961 167.897739 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.2">
     <path d="M 507.821961 228.640696 
 L 563.743529 228.640696 
-" clip-path="url(#p1c2d58f942)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p576067a91f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_2">
-    <!-- Individual B -->
-    <g style="fill: #1a1a1a" transform="translate(461.286562 30.288) scale(0.18 -0.18)">
+    <!-- 个人 B -->
+    <g style="fill: #1a1a1a" transform="translate(482.13 30.288) scale(0.18 -0.18)">
      <defs>
       <path id="PingFangSC-Regular-25" d="M 461 4570 
 L 461 0 
@@ -693,32 +582,24 @@ L 986 2138
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#PingFangSC-Regular-2c"/>
-     <use xlink:href="#PingFangSC-Regular-51" transform="translate(23.703125 0)"/>
-     <use xlink:href="#PingFangSC-Regular-47" transform="translate(79.609375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4c" transform="translate(138.203125 0)"/>
-     <use xlink:href="#PingFangSC-Regular-59" transform="translate(163.796875 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4c" transform="translate(212 0)"/>
-     <use xlink:href="#PingFangSC-Regular-47" transform="translate(237.59375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-58" transform="translate(296.1875 0)"/>
-     <use xlink:href="#PingFangSC-Regular-44" transform="translate(352.1875 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4f" transform="translate(408.09375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-3" transform="translate(431.59375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-25" transform="translate(464.890625 0)"/>
+     <use xlink:href="#PingFangSC-Regular-4fb"/>
+     <use xlink:href="#PingFangSC-Regular-548" transform="translate(100 0)"/>
+     <use xlink:href="#PingFangSC-Regular-3" transform="translate(200 0)"/>
+     <use xlink:href="#PingFangSC-Regular-25" transform="translate(233.296875 0)"/>
     </g>
    </g>
    <g id="aggregation.B.curve.closed">
     <g>
-     <use xlink:href="#m1808e253f7" x="395.978824" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="451.900392" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="507.821961" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="395.978824" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="451.900392" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="507.821961" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.B.curve.open">
     <g>
-     <use xlink:href="#mdb0a6c43b6" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.B.curve.label">
@@ -838,192 +719,173 @@ z
    <g id="aggregation.market.curve.connector.0">
     <path d="M 697.955294 66.659478 
 L 697.955294 107.154783 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.1">
     <path d="M 728.152941 107.154783 
 L 728.152941 127.402435 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.2">
     <path d="M 758.350588 127.402435 
 L 758.350588 167.897739 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.3">
     <path d="M 788.548235 167.897739 
 L 788.548235 188.145391 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.4">
     <path d="M 818.745882 188.145391 
 L 818.745882 228.640696 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.price">
     <path d="M 667.757647 147.650087 
 L 758.350588 147.650087 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.quantity">
     <path d="M 758.350588 176.047419 
 L 758.350588 269.136 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.0">
     <path d="M 667.757647 66.659478 
 L 697.955294 66.659478 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.1">
     <path d="M 697.955294 107.154783 
 L 728.152941 107.154783 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.2">
     <path d="M 728.152941 127.402435 
 L 758.350588 127.402435 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.3">
     <path d="M 758.350588 167.897739 
 L 788.548235 167.897739 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.4">
     <path d="M 788.548235 188.145391 
 L 818.745882 188.145391 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.5">
     <path d="M 818.745882 228.640696 
 L 848.943529 228.640696 
-" clip-path="url(#pb245cc18ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf1a594853b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_3">
-    <!-- Market -->
-    <g style="fill: #1a1a1a" transform="translate(751.792417 30.288) scale(0.18 -0.18)">
+    <!-- 市场 -->
+    <g style="fill: #1a1a1a" transform="translate(762.998824 30.288) scale(0.18 -0.18)">
      <defs>
-      <path id="PingFangSC-Regular-30" d="M 461 4570 
-L 461 0 
-L 986 0 
-L 986 3635 
-L 1005 3635 
-L 2586 0 
-L 3059 0 
-L 4640 3635 
-L 4659 3635 
-L 4659 0 
-L 5184 0 
-L 5184 4570 
-L 4531 4570 
-L 2835 672 
-L 2816 672 
-L 1114 4570 
-L 461 4570 
+      <path id="PingFangSC-Regular-af1" d="M 365 4493 
+L 365 4051 
+L 2963 4051 
+L 2963 3213 
+L 966 3213 
+L 966 262 
+L 1421 262 
+L 1421 2771 
+L 2963 2771 
+L 2963 -627 
+L 3437 -627 
+L 3437 2771 
+L 5056 2771 
+L 5056 992 
+C 5056 813 4966 723 4787 723 
+L 4179 749 
+L 4294 307 
+L 4934 307 
+C 5318 307 5517 506 5517 890 
+L 5517 3213 
+L 3437 3213 
+L 3437 4051 
+L 6035 4051 
+L 6035 4493 
+L 3418 4493 
+C 3315 4787 3213 5056 3110 5293 
+L 2618 5216 
+C 2733 4998 2848 4762 2950 4493 
+L 365 4493 
 z
 " transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-55" d="M 1850 3398 
-C 1619 3398 1421 3328 1248 3187 
-C 1107 3078 992 2925 902 2733 
-L 902 3309 
-L 397 3309 
-L 397 0 
-L 902 0 
-L 902 1754 
-C 902 2061 986 2323 1165 2541 
-C 1338 2771 1555 2880 1811 2880 
-C 1971 2880 2138 2861 2304 2810 
-L 2304 3322 
-C 2182 3373 2029 3398 1850 3398 
+      <path id="PingFangSC-Regular-8cb" d="M 3610 2579 
+C 3405 1952 3046 1446 2534 1050 
+L 2822 698 
+C 3398 1146 3808 1773 4045 2579 
+L 4550 2579 
+C 4416 1901 4205 1350 3917 941 
+C 3603 531 3142 154 2534 -186 
+L 2816 -544 
+C 3482 -160 3981 269 4314 749 
+C 4608 1197 4838 1805 4992 2579 
+L 5453 2579 
+C 5414 1222 5357 435 5274 230 
+C 5184 0 5011 -115 4762 -122 
+C 4544 -122 4320 -109 4090 -96 
+L 4218 -544 
+C 4416 -550 4621 -557 4832 -557 
+C 5306 -544 5594 -326 5702 109 
+C 5805 538 5875 1498 5914 2989 
+L 3456 2989 
+C 4186 3450 4864 3936 5478 4461 
+L 5478 4864 
+L 2746 4864 
+L 2746 4442 
+L 4806 4442 
+C 4154 3936 3443 3456 2669 3008 
+L 2669 2579 
+L 3610 2579 
 z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-4e" d="M 397 4659 
-L 397 0 
-L 909 0 
-L 909 1171 
-L 1434 1645 
-L 2726 0 
-L 3386 0 
-L 1786 1978 
-L 3245 3309 
-L 2566 3309 
-L 909 1773 
-L 909 4659 
-L 397 4659 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-48" d="M 1760 3398 
-C 1280 3398 902 3226 621 2880 
-C 339 2554 205 2144 205 1658 
-C 205 1120 346 698 640 378 
-C 922 70 1306 -90 1779 -90 
-C 2208 -90 2560 38 2835 282 
-C 3059 486 3206 742 3283 1062 
-L 2771 1062 
-C 2688 832 2579 659 2438 544 
-C 2272 410 2048 339 1779 339 
-C 1466 339 1216 442 1037 646 
-C 858 851 762 1139 736 1510 
-L 3347 1510 
-C 3334 2086 3206 2541 2963 2861 
-C 2694 3219 2291 3398 1760 3398 
-z
-M 1773 2970 
-C 2400 2970 2752 2618 2816 1907 
-L 749 1907 
-C 781 2234 883 2490 1062 2682 
-C 1242 2874 1478 2970 1773 2970 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangSC-Regular-57" d="M 1280 4378 
-L 774 4166 
-L 774 3309 
-L 109 3309 
-L 109 2880 
-L 774 2880 
-L 774 774 
-C 774 525 826 339 934 211 
-C 1050 70 1248 0 1517 0 
-L 2016 0 
-L 2016 429 
-L 1594 429 
-C 1478 429 1395 461 1350 512 
-C 1299 563 1280 653 1280 774 
-L 1280 2880 
-L 2099 2880 
-L 2099 3309 
-L 1280 3309 
-L 1280 4378 
+M 326 3456 
+L 326 3014 
+L 1094 3014 
+L 1094 646 
+C 819 582 538 518 250 467 
+L 371 -19 
+C 1088 141 1760 339 2381 576 
+L 2381 1056 
+C 2118 954 1850 864 1568 781 
+L 1568 3014 
+L 2368 3014 
+L 2368 3456 
+L 1568 3456 
+L 1568 5088 
+L 1094 5088 
+L 1094 3456 
+L 326 3456 
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#PingFangSC-Regular-30"/>
-     <use xlink:href="#PingFangSC-Regular-44" transform="translate(88.203125 0)"/>
-     <use xlink:href="#PingFangSC-Regular-55" transform="translate(144.109375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-4e" transform="translate(180.609375 0)"/>
-     <use xlink:href="#PingFangSC-Regular-48" transform="translate(233.515625 0)"/>
-     <use xlink:href="#PingFangSC-Regular-57" transform="translate(289.015625 0)"/>
+     <use xlink:href="#PingFangSC-Regular-af1"/>
+     <use xlink:href="#PingFangSC-Regular-8cb" transform="translate(100 0)"/>
     </g>
    </g>
    <g id="aggregation.market.curve.closed">
     <g>
-     <use xlink:href="#m1808e253f7" x="667.757647" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="697.955294" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="728.152941" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="758.350588" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="788.548235" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m1808e253f7" x="818.745882" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="667.757647" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="697.955294" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="728.152941" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="758.350588" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="788.548235" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m3ddc6781ac" x="818.745882" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.market.curve.open">
     <g>
-     <use xlink:href="#mdb0a6c43b6" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mdb0a6c43b6" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#m7d535f20d4" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.market.curve.label">
@@ -1035,13 +897,13 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p06e0bce004">
+  <clipPath id="pc3f1fefaf9">
    <rect x="124.2" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="p1c2d58f942">
+  <clipPath id="p576067a91f">
    <rect x="395.978824" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="pb245cc18ff">
+  <clipPath id="pf1a594853b">
    <rect x="667.757647" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
  </defs>

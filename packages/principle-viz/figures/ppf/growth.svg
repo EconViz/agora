@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:20:42.102885</dc:date>
+    <dc:date>2026-10-20T15:28:55.670246</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -640,7 +640,7 @@ L 300.027273 368.232873
 L 302.563636 373.5936 
 L 305.1 379.009309 
 L 307.636364 384.48 
-" clip-path="url(#pe2e3ddfc0e)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.2; stroke-linejoin: miter"/>
+" clip-path="url(#p5b9720d5e7)" style="fill: none; stroke: #1a1a1a; stroke-width: 2.2; stroke-linejoin: miter"/>
    </g>
    <g id="ppf.growth.shifted">
     <path d="M 54 82.08 
@@ -744,7 +744,7 @@ L 349.232727 366.60816
 L 352.276364 372.50496 
 L 355.32 378.46224 
 L 358.363636 384.48 
-" clip-path="url(#pe2e3ddfc0e)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #6e6e6e; stroke-linejoin: miter"/>
+" clip-path="url(#p5b9720d5e7)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #6e6e6e; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Economic Growth -->
@@ -1025,7 +1025,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pe2e3ddfc0e">
+  <clipPath id="p5b9720d5e7">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

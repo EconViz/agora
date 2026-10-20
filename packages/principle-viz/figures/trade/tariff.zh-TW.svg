@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:20:40.612702</dc:date>
+    <dc:date>2026-10-20T15:28:54.218517</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -517,37 +517,37 @@ L 221.4 282.129231
 L 221.4 230.953846 
 L 165.6 230.953846 
 z
-" clip-path="url(#p5f7967534b)" style="fill: #d9d9d9; fill-opacity: 0.22"/>
+" clip-path="url(#p27ac34af74)" style="fill: #d9d9d9; fill-opacity: 0.22"/>
    </g>
    <g id="market.demand">
     <path d="M 55.116 78.4512 
 L 360.9 358.892308 
-" clip-path="url(#p5f7967534b)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p27ac34af74)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 333.304615 
 L 331.884 78.4512 
-" clip-path="url(#p5f7967534b)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p27ac34af74)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.trade.world_price">
     <path d="M 54 282.129231 
 L 388.8 282.129231 
-" clip-path="url(#p5f7967534b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p27ac34af74)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.trade.policy_price">
     <path d="M 54 230.953846 
 L 388.8 230.953846 
-" clip-path="url(#p5f7967534b)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
+" clip-path="url(#p27ac34af74)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
    </g>
    <g id="market.trade.guide.q_s">
     <path d="M 165.6 384.48 
 L 165.6 230.953846 
-" clip-path="url(#p5f7967534b)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p27ac34af74)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.trade.guide.q_d">
     <path d="M 221.4 384.48 
 L 221.4 230.953846 
-" clip-path="url(#p5f7967534b)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p27ac34af74)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.demand.label">
     <!-- $D$ -->
@@ -633,183 +633,9 @@ z
     </g>
    </g>
    <g id="market.trade.policy_rent.label">
-    <!-- 關稅收入 -->
-    <g style="fill: #1a1a1a" transform="translate(210.45097 215.767292) scale(0.15 -0.15)">
+    <!-- 收益 -->
+    <g style="fill: #1a1a1a" transform="translate(178.5 261.941538) scale(0.15 -0.15)">
      <defs>
-      <path id="PingFangTC-Regular-6a55" d="M 1658 1210 
-L 1658 301 
-L 2522 301 
-C 2490 250 2451 192 2400 134 
-C 2234 -19 1939 -141 1530 -237 
-L 1747 -570 
-C 2189 -454 2509 -301 2707 -102 
-C 2899 115 3008 397 3021 755 
-L 3021 1274 
-L 2637 1274 
-L 2637 755 
-C 2637 717 2630 678 2630 634 
-L 2029 634 
-L 2029 1210 
-L 1658 1210 
-z
-M 3443 1280 
-L 3443 -570 
-L 3846 -570 
-L 3846 301 
-L 4813 301 
-L 4813 1197 
-L 4442 1197 
-L 4442 634 
-L 3846 634 
-L 3846 1280 
-L 3443 1280 
-z
-M 1005 4013 
-L 2522 4013 
-L 2522 3674 
-L 1005 3674 
-L 1005 4013 
-z
-M 2522 4314 
-L 1005 4314 
-L 1005 4653 
-L 2522 4653 
-L 2522 4314 
-z
-M 3859 4013 
-L 5389 4013 
-L 5389 3667 
-L 3859 3667 
-L 3859 4013 
-z
-M 5389 4307 
-L 3859 4307 
-L 3859 4646 
-L 5389 4646 
-L 5389 4307 
-z
-M 2944 4992 
-L 576 4992 
-L 576 -640 
-L 1005 -640 
-L 1005 3347 
-L 2170 3347 
-C 1837 2886 1581 2611 1395 2522 
-L 1459 2234 
-C 1696 2253 1958 2272 2240 2298 
-C 1920 1971 1651 1766 1440 1683 
-L 1504 1402 
-C 1914 1440 2362 1491 2835 1562 
-C 2854 1491 2874 1414 2893 1338 
-L 3187 1408 
-C 3110 1715 3027 1990 2938 2221 
-L 2656 2131 
-C 2694 2042 2726 1939 2758 1830 
-L 1997 1728 
-C 2285 1914 2662 2272 3130 2810 
-L 2816 2938 
-C 2707 2816 2605 2694 2502 2579 
-L 1862 2534 
-C 2042 2675 2278 2944 2573 3341 
-L 2554 3347 
-L 2944 3347 
-L 2944 4992 
-z
-M 5389 3341 
-L 5389 13 
-C 5389 -147 5306 -230 5152 -230 
-C 4947 -230 4723 -224 4486 -211 
-L 4589 -602 
-C 4819 -608 5062 -614 5306 -614 
-C 5645 -614 5818 -448 5818 -122 
-L 5818 4992 
-L 3437 4992 
-L 3437 3341 
-L 4032 3341 
-C 3699 2886 3450 2618 3270 2534 
-L 3334 2246 
-C 3578 2266 3840 2285 4122 2310 
-C 3795 1984 3526 1779 3315 1696 
-L 3379 1414 
-C 3795 1453 4243 1504 4730 1568 
-C 4755 1485 4774 1395 4800 1306 
-L 5094 1382 
-C 5011 1702 4915 1978 4813 2221 
-L 4531 2131 
-C 4570 2042 4608 1939 4646 1837 
-L 3866 1734 
-C 4160 1926 4538 2285 5005 2810 
-L 4691 2938 
-C 4589 2816 4486 2701 4384 2592 
-C 4141 2573 3923 2554 3731 2541 
-C 3910 2682 4147 2944 4435 3341 
-L 5389 3341 
-z
-" transform="scale(0.015625)"/>
-      <path id="PingFangTC-Regular-7eb6" d="M 2950 3450 
-L 2950 1696 
-L 3507 1696 
-C 3443 794 3040 147 2298 -243 
-L 2547 -646 
-C 3405 -154 3866 627 3936 1696 
-L 4493 1696 
-L 4493 -6 
-C 4493 -358 4653 -538 4973 -538 
-L 5453 -538 
-C 5632 -538 5773 -480 5862 -365 
-C 5958 -230 6022 147 6061 768 
-L 5645 896 
-C 5632 403 5600 102 5555 0 
-C 5517 -77 5459 -122 5370 -122 
-L 5107 -122 
-C 4986 -122 4928 -51 4928 90 
-L 4928 1696 
-L 5510 1696 
-L 5510 3437 
-C 5562 3354 5613 3264 5664 3168 
-L 6054 3366 
-C 5696 4032 5274 4640 4794 5190 
-L 4397 5018 
-C 4755 4602 5088 4134 5395 3622 
-L 3117 3622 
-C 3443 3994 3718 4454 3942 5011 
-L 3526 5178 
-C 3277 4499 2899 3955 2400 3546 
-L 2733 3258 
-C 2803 3322 2874 3386 2950 3450 
-z
-M 5075 2112 
-L 3386 2112 
-L 3386 3213 
-L 5075 3213 
-L 5075 2112 
-z
-M 493 4230 
-C 774 4269 1043 4314 1306 4365 
-L 1306 3469 
-L 422 3469 
-L 422 3040 
-L 1286 3040 
-C 1069 2310 717 1658 224 1082 
-L 416 614 
-C 787 1114 1082 1664 1306 2272 
-L 1306 -640 
-L 1747 -640 
-L 1747 2298 
-C 1926 2042 2138 1690 2394 1248 
-L 2643 1613 
-C 2336 2016 2042 2381 1747 2701 
-L 1747 3040 
-L 2458 3040 
-L 2458 3469 
-L 1747 3469 
-L 1747 4467 
-C 2010 4531 2259 4608 2496 4691 
-L 2336 5120 
-C 1773 4902 1133 4749 403 4672 
-L 493 4230 
-z
-" transform="scale(0.015625)"/>
       <path id="PingFangTC-Regular-7869" d="M 582 627 
 C 1062 755 1523 896 1971 1050 
 L 1971 -602 
@@ -847,34 +673,71 @@ L 2880 2349
 C 3219 2739 3501 3226 3725 3802 
 z
 " transform="scale(0.015625)"/>
-      <path id="PingFangTC-Regular-7348" d="M 3053 4518 
-C 2643 2470 1715 909 269 -160 
-L 544 -550 
-C 1875 435 2771 1837 3226 3654 
-C 3603 2054 4474 646 5830 -570 
-L 6093 -173 
-C 4480 1299 3584 3014 3405 4966 
-L 2099 4966 
-L 2099 4518 
-L 3053 4518 
+      <path id="PingFangTC-Regular-1345" d="M 5242 2067 
+L 1210 2067 
+L 1210 13 
+L 371 13 
+L 371 -429 
+L 6035 -429 
+L 6035 13 
+L 5242 13 
+L 5242 2067 
+z
+M 1651 13 
+L 1651 1632 
+L 2406 1632 
+L 2406 13 
+L 1651 13 
+z
+M 2829 13 
+L 2829 1632 
+L 3610 1632 
+L 3610 13 
+L 2829 13 
+z
+M 4032 13 
+L 4032 1632 
+L 4794 1632 
+L 4794 13 
+L 4032 13 
+z
+M 506 4102 
+L 506 3654 
+L 5901 3654 
+L 5901 4102 
+L 4365 4102 
+C 4595 4390 4800 4723 4986 5094 
+L 4538 5248 
+C 4346 4838 4122 4461 3859 4102 
+L 2227 4102 
+L 2528 4320 
+C 2342 4582 2074 4890 1722 5248 
+L 1344 5011 
+C 1664 4685 1926 4384 2131 4102 
+L 506 4102 
+z
+M 4096 3418 
+L 3859 3066 
+C 4525 2758 5184 2336 5824 1805 
+L 6080 2208 
+C 5485 2682 4826 3085 4096 3418 
+z
+M 2291 3456 
+C 1773 2950 1114 2547 307 2240 
+L 506 1811 
+C 1338 2157 2035 2598 2586 3123 
+L 2291 3456 
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#PingFangTC-Regular-6a55"/>
-     <use xlink:href="#PingFangTC-Regular-7eb6" transform="translate(100 0)"/>
-     <use xlink:href="#PingFangTC-Regular-7869" transform="translate(200 0)"/>
-     <use xlink:href="#PingFangTC-Regular-7348" transform="translate(300 0)"/>
+     <use xlink:href="#PingFangTC-Regular-7869"/>
+     <use xlink:href="#PingFangTC-Regular-1345" transform="translate(100 0)"/>
     </g>
-   </g>
-   <g id="market.trade.policy_rent.label.leader">
-    <path d="M 193.5 256.541538 
-L 207.925604 221.715051 
-" style="fill: none; stroke: #333333; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p5f7967534b">
+  <clipPath id="p27ac34af74">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

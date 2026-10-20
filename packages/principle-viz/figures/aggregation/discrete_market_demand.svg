@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:20:37.723765</dc:date>
+    <dc:date>2026-10-20T15:28:51.313964</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -236,37 +236,37 @@ z
    <g id="aggregation.A.curve.connector.0">
     <path d="M 180.121569 66.659478 
 L 180.121569 127.402435 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.connector.1">
     <path d="M 236.043137 127.402435 
 L 236.043137 188.145391 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.price">
     <path d="M 124.2 147.650087 
 L 236.043137 147.650087 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.quantity">
     <path d="M 236.043137 196.295071 
 L 236.043137 269.136 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.0">
     <path d="M 124.2 66.659478 
 L 180.121569 66.659478 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.1">
     <path d="M 180.121569 127.402435 
 L 236.043137 127.402435 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve.step.2">
     <path d="M 236.043137 188.145391 
 L 291.964706 188.145391 
-" clip-path="url(#pd2f81dcce9)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p50c73c7352)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Individual A -->
@@ -537,7 +537,7 @@ z
    </g>
    <g id="aggregation.A.curve.closed">
     <defs>
-     <path id="m5bd106be31" d="M 0 2.915476 
+     <path id="me617d9e1a3" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -550,14 +550,14 @@ z
 " style="stroke: #8c8c8c; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#m5bd106be31" x="124.2" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="180.121569" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="236.043137" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="124.2" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="180.121569" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="236.043137" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.A.curve.open">
     <defs>
-     <path id="mcd20d30173" d="M 0 2.915476 
+     <path id="ma8b96ec555" d="M 0 2.915476 
 C 0.773193 2.915476 1.514823 2.608283 2.061553 2.061553 
 C 2.608283 1.514823 2.915476 0.773193 2.915476 0 
 C 2.915476 -0.773193 2.608283 -1.514823 2.061553 -2.061553 
@@ -570,9 +570,9 @@ z
 " style="stroke: #8c8c8c; stroke-width: 1.5"/>
     </defs>
     <g>
-     <use xlink:href="#mcd20d30173" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="180.121569" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="236.043137" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="291.964706" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.A.curve.label">
@@ -716,37 +716,37 @@ z
    <g id="aggregation.B.curve.connector.0">
     <path d="M 451.900392 107.154783 
 L 451.900392 167.897739 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.connector.1">
     <path d="M 507.821961 167.897739 
 L 507.821961 228.640696 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.price">
     <path d="M 395.978824 147.650087 
 L 451.900392 147.650087 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.quantity">
     <path d="M 451.900392 176.047419 
 L 451.900392 269.136 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.0">
     <path d="M 395.978824 107.154783 
 L 451.900392 107.154783 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.1">
     <path d="M 451.900392 167.897739 
 L 507.821961 167.897739 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve.step.2">
     <path d="M 507.821961 228.640696 
 L 563.743529 228.640696 
-" clip-path="url(#pa9c8006cda)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pda71d595c0)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_2">
     <!-- Individual B -->
@@ -804,16 +804,16 @@ z
    </g>
    <g id="aggregation.B.curve.closed">
     <g>
-     <use xlink:href="#m5bd106be31" x="395.978824" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="451.900392" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="507.821961" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="395.978824" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="451.900392" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="507.821961" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.B.curve.open">
     <g>
-     <use xlink:href="#mcd20d30173" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="451.900392" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="507.821961" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="563.743529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.B.curve.label">
@@ -933,67 +933,67 @@ z
    <g id="aggregation.market.curve.connector.0">
     <path d="M 697.955294 66.659478 
 L 697.955294 107.154783 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.1">
     <path d="M 728.152941 107.154783 
 L 728.152941 127.402435 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.2">
     <path d="M 758.350588 127.402435 
 L 758.350588 167.897739 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.3">
     <path d="M 788.548235 167.897739 
 L 788.548235 188.145391 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.connector.4">
     <path d="M 818.745882 188.145391 
 L 818.745882 228.640696 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.price">
     <path d="M 667.757647 147.650087 
 L 758.350588 147.650087 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.quantity">
     <path d="M 758.350588 176.047419 
 L 758.350588 269.136 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.0">
     <path d="M 667.757647 66.659478 
 L 697.955294 66.659478 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.1">
     <path d="M 697.955294 107.154783 
 L 728.152941 107.154783 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.2">
     <path d="M 728.152941 127.402435 
 L 758.350588 127.402435 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.3">
     <path d="M 758.350588 167.897739 
 L 788.548235 167.897739 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.4">
     <path d="M 788.548235 188.145391 
 L 818.745882 188.145391 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve.step.5">
     <path d="M 818.745882 228.640696 
 L 848.943529 228.640696 
-" clip-path="url(#pceaa053417)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pa1dcb419b1)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_3">
     <!-- Market -->
@@ -1156,22 +1156,22 @@ z
    </g>
    <g id="aggregation.market.curve.closed">
     <g>
-     <use xlink:href="#m5bd106be31" x="667.757647" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="697.955294" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="728.152941" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="758.350588" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="788.548235" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#m5bd106be31" x="818.745882" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="667.757647" y="66.659478" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="697.955294" y="107.154783" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="728.152941" y="127.402435" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="758.350588" y="167.897739" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="788.548235" y="188.145391" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#me617d9e1a3" x="818.745882" y="228.640696" style="fill: #8c8c8c; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.market.curve.open">
     <g>
-     <use xlink:href="#mcd20d30173" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
-     <use xlink:href="#mcd20d30173" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="697.955294" y="66.659478" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="728.152941" y="107.154783" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="758.350588" y="127.402435" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="788.548235" y="167.897739" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="818.745882" y="188.145391" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
+     <use xlink:href="#ma8b96ec555" x="848.943529" y="228.640696" style="fill: #ffffff; stroke: #8c8c8c; stroke-width: 1.5"/>
     </g>
    </g>
    <g id="aggregation.market.curve.label">
@@ -1183,13 +1183,13 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pd2f81dcce9">
+  <clipPath id="p50c73c7352">
    <rect x="124.2" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="pa9c8006cda">
+  <clipPath id="pda71d595c0">
    <rect x="395.978824" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="pceaa053417">
+  <clipPath id="pa1dcb419b1">
    <rect x="667.757647" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
  </defs>

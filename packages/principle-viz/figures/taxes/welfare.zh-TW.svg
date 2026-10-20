@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:20:39.059718</dc:date>
+    <dc:date>2026-10-20T15:28:52.719781</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -404,7 +404,7 @@ L 59.2 107.28
 L 128.95 176.58 
 L 128.95 176.58 
 z
-" clip-path="url(#paa0fd7f645)" style="fill: #b8b8b8; fill-opacity: 0.15"/>
+" clip-path="url(#p134c5c989f)" style="fill: #b8b8b8; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.ps">
     <path d="M 59.2 329.04 
@@ -412,7 +412,7 @@ L 59.2 259.74
 L 128.95 259.74 
 L 128.95 259.74 
 z
-" clip-path="url(#paa0fd7f645)" style="fill: #8c8c8c; fill-opacity: 0.15"/>
+" clip-path="url(#p134c5c989f)" style="fill: #8c8c8c; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.tax_revenue">
     <path d="M 59.2 259.74 
@@ -421,7 +421,7 @@ L 128.95 176.58
 L 128.95 259.74 
 L 59.2 259.74 
 z
-" clip-path="url(#paa0fd7f645)" style="fill: none"/>
+" clip-path="url(#p134c5c989f)" style="fill: none"/>
    </g>
    <g id="market.welfare.dwl">
     <path d="M 128.95 259.74 
@@ -429,36 +429,36 @@ L 128.95 176.58
 L 170.8 218.16 
 L 170.8 218.16 
 z
-" clip-path="url(#paa0fd7f645)" style="fill: #595959; fill-opacity: 0.45"/>
+" clip-path="url(#p134c5c989f)" style="fill: #595959; fill-opacity: 0.45"/>
    </g>
    <g id="market.demand">
     <path d="M 59.2 107.28 
 L 338.2 384.48 
-" clip-path="url(#paa0fd7f645)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p134c5c989f)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 59.2 329.04 
 L 311.416 78.4512 
-" clip-path="url(#paa0fd7f645)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p134c5c989f)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.tax.wedge.guide.p_d">
     <path d="M 59.2 176.58 
 L 128.95 176.58 
-" clip-path="url(#paa0fd7f645)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p134c5c989f)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.tax.wedge.guide.p_s">
     <path d="M 59.2 259.74 
 L 128.95 259.74 
-" clip-path="url(#paa0fd7f645)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p134c5c989f)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.tax.wedge">
     <path d="M 128.95 259.74 
 L 128.95 176.58 
-" clip-path="url(#paa0fd7f645)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
+" clip-path="url(#p134c5c989f)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
    </g>
    <g id="market.equilibrium.baseline">
     <defs>
-     <path id="mf73dfe567a" d="M 0 3.25 
+     <path id="m6836b06375" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -471,12 +471,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mf73dfe567a" x="170.8" y="218.16" style="fill: #1a1a1a"/>
+     <use xlink:href="#m6836b06375" x="170.8" y="218.16" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="market.equilibrium.shifted">
     <defs>
-     <path id="mc188c834e6" d="M 0 3.25 
+     <path id="mbf7cfb7f14" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -489,7 +489,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mc188c834e6" x="128.95" y="176.58" style="fill: #6e6e6e"/>
+     <use xlink:href="#mbf7cfb7f14" x="128.95" y="176.58" style="fill: #6e6e6e"/>
     </g>
    </g>
    <g id="market.demand.label">
@@ -1464,7 +1464,7 @@ L 187.12072 119.61515
   </g>
  </g>
  <defs>
-  <clipPath id="paa0fd7f645">
+  <clipPath id="p134c5c989f">
    <rect x="59.2" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-20T15:20:37.642860</dc:date>
+    <dc:date>2026-10-20T15:28:51.198030</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -246,17 +246,17 @@ z
    <g id="aggregation.A.guide.price">
     <path d="M 124.2 188.145391 
 L 350.682353 188.145391 
-" clip-path="url(#p5616332b8e)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pdc30a31297)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.guide.quantity">
     <path d="M 242.364706 188.145391 
 L 242.364706 269.136 
-" clip-path="url(#p5616332b8e)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pdc30a31297)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.A.curve">
     <path d="M 124.2 66.659478 
 L 321.141176 269.136 
-" clip-path="url(#p5616332b8e)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pdc30a31297)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- Individual A -->
@@ -527,7 +527,7 @@ z
    </g>
    <g id="aggregation.A.point">
     <defs>
-     <path id="m79ae1b71fd" d="M 0 3.25 
+     <path id="md4ddce3fb5" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -540,7 +540,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m79ae1b71fd" x="242.364706" y="188.145391" style="fill: #1a1a1a"/>
+     <use xlink:href="#md4ddce3fb5" x="242.364706" y="188.145391" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="aggregation.A.curve.label">
@@ -677,17 +677,17 @@ z
    <g id="aggregation.B.guide.price">
     <path d="M 395.978824 188.145391 
 L 622.461176 188.145391 
-" clip-path="url(#p861c771114)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pae40220c65)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.guide.quantity">
     <path d="M 461.625882 188.145391 
 L 461.625882 269.136 
-" clip-path="url(#p861c771114)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pae40220c65)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.B.curve">
     <path d="M 395.978824 147.650087 
 L 592.92 269.136 
-" clip-path="url(#p861c771114)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pae40220c65)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_2">
     <!-- Individual B -->
@@ -745,7 +745,7 @@ z
    </g>
    <g id="aggregation.B.point">
     <g>
-     <use xlink:href="#m79ae1b71fd" x="461.625882" y="188.145391" style="fill: #1a1a1a"/>
+     <use xlink:href="#md4ddce3fb5" x="461.625882" y="188.145391" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="aggregation.B.curve.label">
@@ -858,18 +858,18 @@ z
    <g id="aggregation.market.guide.price">
     <path d="M 667.757647 188.145391 
 L 894.24 188.145391 
-" clip-path="url(#p2fb1143118)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p30b5445adb)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.guide.quantity">
     <path d="M 748.851073 188.145391 
 L 748.851073 269.136 
-" clip-path="url(#p2fb1143118)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p30b5445adb)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="aggregation.market.curve">
     <path d="M 667.757647 66.659478 
 L 690.927197 147.650087 
 L 864.698824 269.136 
-" clip-path="url(#p2fb1143118)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p30b5445adb)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="text_3">
     <!-- Market -->
@@ -1032,7 +1032,7 @@ z
    </g>
    <g id="aggregation.market.point">
     <g>
-     <use xlink:href="#m79ae1b71fd" x="748.851073" y="188.145391" style="fill: #1a1a1a"/>
+     <use xlink:href="#md4ddce3fb5" x="748.851073" y="188.145391" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="aggregation.market.curve.label">
@@ -1044,13 +1044,13 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p5616332b8e">
+  <clipPath id="pdc30a31297">
    <rect x="124.2" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="p861c771114">
+  <clipPath id="pae40220c65">
    <rect x="395.978824" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
-  <clipPath id="p2fb1143118">
+  <clipPath id="p30b5445adb">
    <rect x="667.757647" y="36.288" width="226.482353" height="232.848"/>
   </clipPath>
  </defs>

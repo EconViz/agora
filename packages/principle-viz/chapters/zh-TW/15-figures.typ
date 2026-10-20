@@ -117,7 +117,7 @@ fig = MarketFigure(
 )
 fig.add_curves(demand, supply, q_max=10)
 fig.add_equilibrium(eq)
-fig.configure_label("market.equilibrium", text="$E$")
+fig.configure_label("market.equilibrium", text="$e^*$")
 fig.hide("axes.origin.label")
 fig.finalize()
 ```
