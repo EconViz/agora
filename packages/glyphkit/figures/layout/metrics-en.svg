@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300">
+<rect width="100%" height="100%" fill="white"/>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto-start-reverse"><path d="M0,0 L7,3.5 L0,7 Z" fill="#252525"/></marker></defs>
+<rect x="325" y="38" width="112" height="202" fill="#d9d9d9"/>
+<g stroke="#252525" stroke-width="1.2">
+<line x1="145" y1="38" x2="705" y2="38" stroke-dasharray="6 4"/>
+<line x1="145" y1="103" x2="650" y2="103" stroke-dasharray="6 4"/>
+<line x1="145" y1="190" x2="705" y2="190"/>
+<line x1="145" y1="240" x2="705" y2="240" stroke-dasharray="6 4"/>
+</g>
+<g fill="#111" font-family="TeX Gyre Bonum, Times New Roman, serif">
+<text x="165" y="190" font-size="142">x</text>
+<text x="326" y="190" font-size="142">y</text>
+<text x="482" y="190" font-size="196">Z</text>
+</g>
+<g stroke="#252525" stroke-width="1.4" marker-start="url(#arrow)" marker-end="url(#arrow)">
+<line x1="112" y1="104" x2="112" y2="188"/>
+<line x1="664" y1="40" x2="664" y2="188"/>
+<line x1="460" y1="192" x2="460" y2="238"/>
+<line x1="326" y1="263" x2="437" y2="263"/>
+</g>
+<text x="135" y="45" text-anchor="end" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#252525">ascender line</text>
+<text x="135" y="110" text-anchor="end" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#252525">mean line</text>
+<text x="135" y="197" text-anchor="end" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#252525">baseline</text>
+<text x="135" y="247" text-anchor="end" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#252525">descender line</text>
+<text x="190" y="78" text-anchor="middle" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="600" fill="#356f9f">ascender</text>
+<text x="190" y="226" text-anchor="middle" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="600" fill="#356f9f">descender</text>
+<text x="206" y="276" text-anchor="middle" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="18" font-weight="600" fill="#356f9f">serif</text>
+<text x="112" y="151" text-anchor="middle" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="16" font-weight="400" fill="#969696">x-height</text>
+<text x="665" y="121" text-anchor="middle" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="16" font-weight="400" fill="#969696">cap height</text>
+<text x="461" y="220" text-anchor="start" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="16" font-weight="400" fill="#969696">depth</text>
+<text x="382" y="286" text-anchor="middle" font-family="Inter, Noto Sans CJK SC, Noto Sans, sans-serif" font-size="16" font-weight="400" fill="#969696">width</text>
+<circle cx="218" cy="183" r="3.2" fill="#356f9f"/>
+<path d="M218 183 C238 205, 234 239, 215 256" fill="none" stroke="#356f9f" stroke-width="1.2"/>
+</svg>

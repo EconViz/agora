@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="252" viewBox="70 24 460 252" role="img">
+  <g id="world" transform="matrix(50 0 0 -50 50 300)">
+    <path id="route" data-kk-id="route" data-kk-kind="shape" d="M0.98 1.04 L8.98 5.04 L9.02 4.96 L1.02 0.96 Z" fill="#9bb8cd" stroke="none"/>
+    <g id="sample-1" data-kk-id="sample-1" data-kk-kind="point" transform="translate(1.0625 1.0312)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="sample-2" data-kk-id="sample-2" data-kk-kind="point" transform="translate(1.5 1.25)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="sample-3" data-kk-id="sample-3" data-kk-kind="point" transform="translate(2.6875 1.8438)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="sample-4" data-kk-id="sample-4" data-kk-kind="point" transform="translate(5 3)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="sample-5" data-kk-id="sample-5" data-kk-kind="point" transform="translate(7.3125 4.1562)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="sample-6" data-kk-id="sample-6" data-kk-kind="point" transform="translate(8.5 4.75)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="sample-7" data-kk-id="sample-7" data-kk-kind="point" transform="translate(8.9375 4.9688)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#9bb8cd" stroke="none" transform="scale(0.09 0.09)"/>
+    </g>
+    <g id="start" data-kk-id="start" data-kk-kind="point" transform="translate(1 1)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#e4572e" stroke="none" transform="scale(0.12 0.12)"/>
+    </g>
+    <g id="end" data-kk-id="end" data-kk-kind="point" transform="translate(9 5)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#e4572e" stroke="none" transform="scale(0.12 0.12)"/>
+    </g>
+    <g id="dot" data-kk-id="dot" data-kk-kind="point" transform="translate(1 1)">
+      <path d="M1 0A1 1 0 1 0-1 0A1 1 0 1 0 1 0Z" fill="#356f9f" stroke="none" transform="scale(0.2 0.2)"/>
+      <animateTransform attributeName="transform" type="translate" begin="0s" dur="2s" values="1 1;1.0023 1.0012;1.0185 1.0093;1.0625 1.0312;1.1481 1.0741;1.2894 1.1447;1.5 1.25;1.794 1.397;2.1852 1.5926;2.6875 1.8438;3.3148 2.1574;4.081 2.5405;5 3;5.919 3.4595;6.6852 3.8426;7.3125 4.1562;7.8148 4.4074;8.206 4.603;8.5 4.75;8.7106 4.8553;8.8519 4.9259;8.9375 4.9688;8.9815 4.9907;8.9977 4.9988;9 5" keyTimes="0;0.041667;0.083333;0.125;0.166667;0.208333;0.25;0.291667;0.333333;0.375;0.416667;0.458333;0.5;0.541667;0.583333;0.625;0.666667;0.708333;0.75;0.791667;0.833333;0.875;0.916667;0.958333;1" calcMode="spline" keySplines="0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1;0 0 1 1" fill="freeze"/>
+    </g>
+  </g>
+  <script type="application/ecmascript">(function(){var s=document.currentScript.ownerSVGElement;if(window.matchMedia&amp;&amp;matchMedia("(prefers-reduced-motion: reduce)").matches&amp;&amp;s.pauseAnimations){s.pauseAnimations();s.setCurrentTime(2);}})();</script>
+</svg>

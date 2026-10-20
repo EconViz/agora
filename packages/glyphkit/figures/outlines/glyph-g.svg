@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="180" viewBox="75 60 170 180">
+<rect width="100%" height="100%" fill="white"/>
+<path d="M181.470,176.305 L181.470,172.740 L150.075,172.740 L150.075,176.190 C158.470,177.225 161.345,179.985 161.345,187.000 C161.345,202.180 146.050,205.975 138.345,205.975 C121.785,205.975 110.630,192.060 110.630,171.360 C110.630,149.970 120.865,135.710 136.275,135.710 C142.485,135.710 148.465,138.125 154.445,143.070 C158.240,146.290 161.230,149.855 166.520,157.330 L170.890,156.065 L163.875,131.685 L160.310,131.685 L158.010,137.205 C151.340,132.605 143.520,130.190 135.585,130.190 C116.725,130.190 97.060,145.140 97.060,170.555 C97.060,193.900 114.080,211.495 136.735,211.495 C146.625,211.495 154.215,208.735 162.840,202.065 L166.520,210.000 L171.925,210.000 L171.925,189.300 C171.925,178.720 174.225,177.570 179.400,176.650 Z" fill="none" stroke="#252525" stroke-width="2"/>
+<polyline points="150.07,176.19 158.47,177.22 161.34,179.99 161.34,187.00" fill="none" stroke="#969696" stroke-width="1"/>
+<circle cx="150.07" cy="176.19" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="158.47" cy="177.22" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="161.34" cy="179.99" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="161.34" cy="187.00" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<polyline points="161.34,187.00 161.34,202.18 146.05,205.97 138.34,205.97" fill="none" stroke="#969696" stroke-width="1"/>
+<circle cx="161.34" cy="187.00" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="161.34" cy="202.18" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="146.05" cy="205.97" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="138.34" cy="205.97" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<polyline points="138.34,205.97 121.78,205.97 110.63,192.06 110.63,171.36" fill="none" stroke="#969696" stroke-width="1"/>
+<circle cx="138.34" cy="205.97" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="121.78" cy="205.97" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="110.63" cy="192.06" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="110.63" cy="171.36" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<polyline points="110.63,171.36 110.63,149.97 120.87,135.71 136.28,135.71" fill="none" stroke="#969696" stroke-width="1"/>
+<circle cx="110.63" cy="171.36" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="110.63" cy="149.97" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="120.87" cy="135.71" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="136.28" cy="135.71" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<polyline points="136.28,135.71 142.49,135.71 148.47,138.12 154.44,143.07" fill="none" stroke="#969696" stroke-width="1"/>
+<circle cx="136.28" cy="135.71" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="142.49" cy="135.71" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="148.47" cy="138.12" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+<circle cx="154.44" cy="143.07" r="3" fill="white" stroke="#356f9f" stroke-width="1.3"/>
+</svg>

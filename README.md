@@ -23,6 +23,8 @@ collected in a change history.
 | [`packages/principle-viz/`](packages/principle-viz/) | [principle-viz](https://github.com/EconViz/principle-viz) 0.10.1 | English, 繁體中文, 简体中文 |
 | [`packages/bezierkit/`](packages/bezierkit/) | [bezierkit](https://github.com/EconViz/bezierkit) 1.0.0 | English, 繁體中文, 简体中文 |
 | [`packages/mosaickit/`](packages/mosaickit/) | [mosaickit](https://github.com/EconViz/mosaickit) 0.5.1 | English, 繁體中文, 简体中文 |
+| [`packages/glyphkit/`](packages/glyphkit/) | [glyphkit](https://github.com/EconViz/glyphkit) 1.0.0b2 | English, 繁體中文, 简体中文 |
+| [`packages/kinetickit/`](packages/kinetickit/) | [kinetickit](https://github.com/EconViz/kinetickit) 1.0.0b2 | English, 繁體中文, 简体中文 |
 
 The published PDFs can be downloaded from [econ-viz.org](https://econ-viz.org/project/manual/).
 

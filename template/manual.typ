@@ -308,7 +308,7 @@
 #let script-site = "https://econ-viz.org/assets/utility-viz/agora/"
 #let script-label = (en: "source", "zh-TW": "生圖檔", "zh-CN": "生图文件")
 
-#let fig(path, caption: none, width: 55%) = figure(
+#let fig(path, caption: none, width: 55%, floating: true) = figure(
   if type(path) == str { context image(_root.get() + path, width: width) } else { path },
   caption: if type(path) == str and caption != none {
     context {
@@ -320,6 +320,7 @@
     }
   } else { caption },
   kind: image,
+  placement: if floating { auto } else { none },
 )
 
 // booktabs-style table.
@@ -753,18 +754,21 @@
   })
 
   // Figures and tables: caption hangs in the left column.
-  show figure.where(kind: image): it => _float(hanging(
-    align(bottom, {
-      set text(size: p.caption-size * 1pt, costs: (runt: 800%))
-      set par(justify: false, first-line-indent: 0pt, linebreaks: "optimized")
-      strong[#s.figure #context it.counter.display(it.numbering)]
-      if it.caption != none { [\ #it.caption.body] }
-    }),
-    align(left, it.body),
-    above: 0pt,
-    below: 0pt,
-    breakable: false,
-  ))
+  show figure.where(kind: image): it => {
+    let rendered = hanging(
+      align(bottom, {
+        set text(size: p.caption-size * 1pt, costs: (runt: 800%))
+        set par(justify: false, first-line-indent: 0pt, linebreaks: "optimized")
+        strong[#s.figure #context it.counter.display(it.numbering)]
+        if it.caption != none { [\ #it.caption.body] }
+      }),
+      align(left, it.body),
+      above: 0pt,
+      below: 0pt,
+      breakable: false,
+    )
+    if it.placement == none { rendered } else { _float(rendered) }
+  }
   // A figure is an unbreakable block unless told otherwise; tables may split.
   show figure.where(kind: table): set block(breakable: true)
   show figure.where(kind: table): it => hanging(
