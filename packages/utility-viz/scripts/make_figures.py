@@ -16,6 +16,8 @@ What the script adds to the examples, and nothing else:
 * the examples do not pin a typeface, so the figures are set in TeX Gyre Pagella, the manual's;
 * an animation example saves a GIF; the figure shows four frames of it (see FRAMES).
 
+Next to each SVG the script also writes the code it ran, `<name>.py`, which the website offers to download.
+
 The three editions each carry the example in their own language. When the code of an edition
 differs from the English one (a translated title, a CJK font) it gets its own figure,
 `<name>.zh-TW.svg`; otherwise all editions share `<name>.svg`.
@@ -56,6 +58,9 @@ FRAMES = {
     "animation/parameter_sweep": [0.2, 0.4, 0.6, 0.8],
 }
 
+# Figures whose script is too long to print: it lives in scripts/scenes/<name>.<edition>.py.
+SCENES = ["consumer/demand", "consumer/hicks", "consumer/edgeworth"]
+
 FIG = re.compile(r'^#fig\("/figures/(?P<name>[\w/]+?)(?P<suffix>\.zh-[A-Z]+)?\.svg"', re.M)
 BLOCK = re.compile(r"^[ \t]*(?:#example\(\[)?```python\n(.*?)\n[ \t]*```", re.S | re.M)
 
@@ -76,6 +81,8 @@ def examples(edition: str) -> dict[str, str]:
             start = fig.end()
             if blocks:
                 found[fig["name"]] = textwrap.dedent(blocks[-1].group(1))
+    for name in SCENES:  # these figures are drawn from MosaicKit layers; the manual prints the API call instead
+        found[name] = (ROOT / "scripts" / "scenes" / f"{name.split('/')[-1]}.{edition}.py").read_text()
     return found
 
 
@@ -282,6 +289,7 @@ def main() -> int:
         for suffix, code in figures[name].items():
             target = OUT / f"{name}{suffix}.svg"
             run(code, target, name)
+            target.with_suffix(".py").write_text(code.rstrip("\n") + "\n")  # the website offers it as a download
             print(f"  {target.relative_to(ROOT)}")
     return 0
 
