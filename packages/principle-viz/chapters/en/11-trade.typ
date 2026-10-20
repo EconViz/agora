@@ -67,13 +67,13 @@ of 4 goes to the party named by `quota_rent_recipient`.
 ]
 
 #fig("/figures/trade/free_trade_import.svg", width: 46%, caption: [
-  Free trade with imports.
+  Free trade with imports
 ]) <fig-free-trade>
 
 #fig("/figures/trade/tariff.svg", width: 46%, caption: [
-  An import tariff.
+  Import tariff
 ]) <fig-tariff>
 
 #fig("/figures/trade/quota.svg", width: 46%, caption: [
-  A binding import quota.
+  Binding import quota
 ]) <fig-quota>

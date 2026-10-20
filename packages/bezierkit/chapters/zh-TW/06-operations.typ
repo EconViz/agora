@@ -69,7 +69,7 @@ print(d.at(0.5))   # Point(coords=(4.5, 0.0)): the tangent at the top is horizon
 這是標準結果，見 #citet(<floater2025>)（第 8.4 節，由 blossom 導出）與 #citet(<farin2002>)。
 
 #fig("/figures/curves/split.pdf", width: auto, caption: [
-  在 $t = 0.4$ 分割三次曲線。
+  在 $t = 0.4$ 分割曲線
 ]) <fig-split>
 
 #api(("BezierCurve.split", "BezierCurve.segment"), syntax: [

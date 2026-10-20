@@ -57,7 +57,7 @@ derivative of each coordinate.
 ]
 
 #fig("/figures/paths/bbox.pdf", width: auto, caption: [
-  The tight bounding box of a cubic.
+  Tight bounding box of a cubic
 ]) <fig-bbox>
 
 == Degree elevation

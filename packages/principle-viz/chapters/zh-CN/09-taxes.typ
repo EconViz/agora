@@ -81,11 +81,11 @@ print(solve_tax_equilibrium(demand, supply, tax))
 ]
 
 #fig("/figures/taxes/per_unit_producer.zh-CN.svg", width: 46%, caption: [
-  向卖方征收从量税。
+  向卖方征从量税
 ]) <fig-tax-producer>
 
 #fig("/figures/taxes/ad_valorem_consumer.zh-CN.svg", width: 46%, caption: [
-  向买方征收从价税。
+  向买方征从价税
 ]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[在价格轴上标出 $p_d$、$p_0$ 与 $p_s$，并加上 "Tax" 括号；新增 `brace_side` 与 `notes`]
@@ -121,7 +121,7 @@ fig.finalize()
 ```
 
 #fig("/figures/taxes/welfare.zh-CN.svg", width: 46%, caption: [
-  征税下的剩余与无谓损失。
+  征税下的剩余与损失
 ]) <fig-tax-welfare>
 
 == 补贴
@@ -176,5 +176,5 @@ fig = MarketFigure(
 ```
 
 #fig("/figures/taxes/subsidy.zh-CN.svg", width: 46%, caption: [
-  从量补贴与无谓损失。
+  从量补贴与无谓损失
 ]) <fig-subsidy>

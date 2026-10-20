@@ -58,7 +58,7 @@ ppf_canvas(result).save("ppf_points.png")
 ```
 
 #fig("/figures/ppf/points.svg", width: 46%, caption: [
-  Efficient, inefficient and unattainable points.
+  Efficient and inefficient points
 ]) <fig-ppf>
 
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
@@ -73,7 +73,7 @@ ppf_canvas(result).save("ppf_points.png")
 ]
 
 #fig("/figures/ppf/growth.svg", width: 46%, caption: [
-  Growth of 20% in consumer goods and 10% in capital goods.
+  Growth in consumer and capital goods
 ]) <fig-ppf-growth>
 
 == Comparative advantage <sec-comparative-advantage>

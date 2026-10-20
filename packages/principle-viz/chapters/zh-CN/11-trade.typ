@@ -56,13 +56,13 @@ print(result.policy.government_revenue, result.deadweight_loss)
 ]
 
 #fig("/figures/trade/free_trade_import.zh-CN.svg", width: 46%, caption: [
-  自由贸易下的进口。
+  自由贸易下的进口
 ]) <fig-free-trade>
 
 #fig("/figures/trade/tariff.zh-CN.svg", width: 46%, caption: [
-  进口关税。
+  进口关税
 ]) <fig-tariff>
 
 #fig("/figures/trade/quota.zh-CN.svg", width: 46%, caption: [
-  有约束的进口配额。
+  有约束的进口配额
 ]) <fig-quota>

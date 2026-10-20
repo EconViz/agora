@@ -115,11 +115,11 @@ fig.finalize()
 ```
 
 #fig("/figures/markets/shift_demand_increase.zh-TW.svg", width: 46%, caption: [
-  需求增加。
+  需求增加
 ]) <fig-shifts>
 
 #fig("/figures/markets/shift_supply_decrease.zh-TW.svg", width: 46%, caption: [
-  供給減少。
+  供給減少
 ]) <fig-shift-supply>
 
 == 例外 <sec-errors>

@@ -81,7 +81,7 @@ This is a standard result; see #citet(<floater2025>) (Section 8.4, where it
 is derived from the blossom) and #citet(<farin2002>).
 
 #fig("/figures/curves/split.pdf", width: auto, caption: [
-  Splitting the cubic at $t = 0.4$.
+  Splitting the cubic at $t = 0.4$
 ]) <fig-split>
 
 #api(("BezierCurve.split", "BezierCurve.segment"), syntax: [

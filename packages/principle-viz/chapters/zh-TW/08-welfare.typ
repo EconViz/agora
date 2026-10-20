@@ -74,7 +74,7 @@ fig.finalize()
 輸出參見#ref(<fig-welfare>)。
 
 #fig("/figures/welfare/equilibrium.zh-TW.svg", width: 46%, caption: [
-  均衡下的消費者與生產者剩餘。
+  均衡下的剩餘
 ]) <fig-welfare>
 
 #api(("MarketFigure.add_welfare_transition",), syntax: [

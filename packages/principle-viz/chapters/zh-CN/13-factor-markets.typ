@@ -39,7 +39,7 @@ fig.add_minimum_wage(labor)
 ```
 
 #fig("/figures/factor/minimum_wage.zh-CN.svg", width: 46%, caption: [
-  有约束的最低工资。
+  有约束的最低工资
 ]) <fig-minimum-wage>
 
 `labor_demanded` 为 3，`labor_supplied` 为 7，`employment` 为 3，`unemployment` 为 4。
@@ -79,5 +79,5 @@ print(funds.interest_rate_change, funds.crowding_out)  # 1.0 2.0
 ]
 
 #fig("/figures/factor/loanable_funds.zh-CN.svg", width: 46%, caption: [
-  政府借款挤出民间投资。
+  政府借款挤出投资
 ]) <fig-loanable-funds>

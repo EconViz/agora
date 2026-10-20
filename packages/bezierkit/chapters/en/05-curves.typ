@@ -23,7 +23,7 @@ The proofs below use two identities of binomial coefficients.
 ] <lem-binomial>
 
 #fig("/figures/curves/basis.pdf", width: auto, caption: [
-  The cubic Bernstein polynomials.
+  Cubic Bernstein polynomials
 ]) <fig-basis>
 
 #proposition(name: [Bernstein basis])[
@@ -126,7 +126,7 @@ goes back to Paul de Casteljau's work at Citroën around 1959
 The statement is Theorems 1.6 and 1.7 of #citet(<floater2025>).
 
 #fig("/figures/curves/casteljau.pdf", width: auto, caption: [
-  de Casteljau's algorithm at $t = 0.4$.
+  de Casteljau at $t = 0.4$
 ]) <fig-casteljau>
 
 Every intermediate point is a convex combination of the control points, so

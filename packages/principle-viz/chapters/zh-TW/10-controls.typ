@@ -51,11 +51,11 @@ print(ceiling.is_binding, ceiling.traded_quantity, ceiling.shortage)
 ]
 
 #fig("/figures/controls/ceiling.zh-TW.svg", width: 46%, caption: [
-  有約束的價格上限。
+  有約束的價格上限
 ]) <fig-ceiling>
 
 #fig("/figures/controls/floor.zh-TW.svg", width: 46%, caption: [
-  有約束的價格下限。
+  有約束的價格下限
 ]) <fig-floor>
 
 `outcome_from_control()` 將結果轉為市場結果，可交給#ref(<sec-welfare>)的福利函式（參見#ref(<fig-ceiling-welfare>)）：
@@ -74,7 +74,7 @@ fig.add_welfare(delta.policy)
 ```
 
 #fig("/figures/controls/ceiling_welfare.zh-TW.svg", width: 46%, caption: [
-  上限為 3.5 時的福利。
+  上限 3.5 時的福利
 ]) <fig-ceiling-welfare>
 
 價格上限下，無謂損失為未成交的交易利益；部分剩餘由賣方轉移給買方。

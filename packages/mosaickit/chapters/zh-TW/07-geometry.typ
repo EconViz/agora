@@ -119,7 +119,7 @@
 ] <thm-polylabel>
 
 #fig("/figures/geometry/polylabel.zh-TW.pdf", width: auto, caption: [
-  極點、最大圓盤與形心。
+  極點最大圓盤與形心
 ]) <fig-polylabel>
 
 三角形的極點就是內心，也就是三條角平分線的交點。配置時會以預設的一像素精度呼叫 `polylabel`，這比任何文字的擺放精度都更細。
@@ -140,5 +140,5 @@
 ] <prop-brace>
 
 #fig("/figures/geometry/brace.zh-TW.pdf", width: auto, caption: [
-  大括號外形；右側跨距小於 $2 delta$。
+  大括號外形
 ]) <fig-brace>

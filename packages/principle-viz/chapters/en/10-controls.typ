@@ -59,11 +59,11 @@ A ceiling above the equilibrium price (for example 7) leaves `is_binding`
 ]
 
 #fig("/figures/controls/ceiling.svg", width: 46%, caption: [
-  A binding price ceiling.
+  Binding price ceiling
 ]) <fig-ceiling>
 
 #fig("/figures/controls/floor.svg", width: 46%, caption: [
-  A binding price floor.
+  Binding price floor
 ]) <fig-floor>
 
 `outcome_from_control()` turns the result into a market outcome for the
@@ -83,7 +83,7 @@ fig.add_welfare(delta.policy)
 ```
 
 #fig("/figures/controls/ceiling_welfare.svg", width: 46%, caption: [
-  Welfare under a price ceiling of 3.5.
+  Welfare under a ceiling of 3.5
 ]) <fig-ceiling-welfare>
 
 Under a price ceiling, the deadweight loss is the surplus of the units that

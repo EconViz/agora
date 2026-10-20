@@ -39,11 +39,11 @@ print(result.corrective_tax, result.deadweight_loss)
 ]
 
 #fig("/figures/failures/negative_externality.zh-CN.svg", width: 46%, caption: [
-  负外部性。
+  负外部性
 ]) <fig-neg-externality>
 
 #fig("/figures/failures/positive_externality.zh-CN.svg", width: 46%, caption: [
-  正外部性。
+  正外部性
 ]) <fig-pos-externality>
 
 == 公共资源
@@ -63,7 +63,7 @@ print(result.corrective_tax, result.deadweight_loss)
 ]
 
 #fig("/figures/failures/common_resource.zh-CN.svg", width: 46%, caption: [
-  公共资源的过度使用。
+  共有资源的过度使用
 ]) <fig-common-resource>
 
 == 公共物品
@@ -96,5 +96,5 @@ print(result.efficient_quantity, result.private_provision_quantity)
 ]
 
 #fig("/figures/failures/public_good.zh-CN.svg", width: 46%, caption: [
-  边际利益的垂直加总。
+  边际利益的垂直加总
 ]) <fig-public-good>

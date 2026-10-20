@@ -82,5 +82,5 @@ CanvasGrid(canvases, rows=1).save("elasticity_total_revenue.png")
 ```
 
 #fig("/figures/elasticity/revenue.svg", width: 100%, caption: [
-  Elasticity along demand and total revenue.
+  Elasticity and total revenue
 ]) <fig-revenue>

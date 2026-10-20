@@ -38,11 +38,11 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 ```
 
 #fig("/figures/annotations/gutter.zh-CN.pdf", width: auto, caption: [
-  y 轴边栏的标记、注释与大括号。
+  y 轴边栏的标记与注记
 ]) <fig-gutter>
 
 #fig("/figures/annotations/span.zh-CN.pdf", width: auto, caption: [
-  两点之间的跨距大括号。
+  两点之间的跨距大括号
 ]) <fig-span>
 
 == 边栏的字段
@@ -77,7 +77,7 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 ] <cor-spread>
 
 #fig("/figures/geometry/spread.zh-CN.pdf", width: auto, caption: [
-  目标（上）与分散结果（下）。
+  目标与分散结果
 ]) <fig-spread>
 
 #ref(<fig-spread>)中的前三项因重叠而形成一组，该组的位置以各项目标位置的平均值为中心；其余两项原本就已分开，因此不会移动。

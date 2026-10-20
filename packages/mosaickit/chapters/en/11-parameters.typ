@@ -129,7 +129,7 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
 ```
 
 #fig("/figures/grids/sweep.pdf", width: auto, caption: [
-  A three-value sweep with a link from the first cell to the last.
+  A three-value sweep
 ]) <fig-sweep>
 
 == Animation

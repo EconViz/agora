@@ -92,7 +92,7 @@ segment = graph_hermite(x0=1, x1=1.5, y0=4, y1=16 / 9, m0=-8, m1=-64 / 27)
 ```
 
 #fig("/figures/construction/hermite.pdf", width: auto, caption: [
-  $4 slash x^2$ 在 $[1, 1.5]$ 的 Hermite 插值。
+  $4 slash x^2$ 的 Hermite 插值
 ]) <fig-hermite>
 
 == 插值误差

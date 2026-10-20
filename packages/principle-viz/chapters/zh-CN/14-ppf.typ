@@ -53,7 +53,7 @@ ppf_canvas(result).save("ppf_points.png")
 ```
 
 #fig("/figures/ppf/points.zh-CN.svg", width: 46%, caption: [
-  有效率、无效率与无法达成的点。
+  有效率与无效率的点
 ]) <fig-ppf>
 
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
@@ -65,7 +65,7 @@ ppf_canvas(result).save("ppf_points.png")
 ]
 
 #fig("/figures/ppf/growth.zh-CN.svg", width: 46%, caption: [
-  消费财成长 20%、资本财成长 10%。
+  消费品与资本品增长
 ]) <fig-ppf-growth>
 
 == 比较优势 <sec-comparative-advantage>

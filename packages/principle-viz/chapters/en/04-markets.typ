@@ -134,11 +134,11 @@ fig.finalize()
 ```
 
 #fig("/figures/markets/shift_demand_increase.svg", width: 46%, caption: [
-  An increase in demand.
+  Demand increase
 ]) <fig-shifts>
 
 #fig("/figures/markets/shift_supply_decrease.svg", width: 46%, caption: [
-  A decrease in supply.
+  Supply decrease
 ]) <fig-shift-supply>
 
 == Errors <sec-errors>

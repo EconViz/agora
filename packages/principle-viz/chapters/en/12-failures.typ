@@ -49,11 +49,11 @@ print(result.corrective_tax, result.deadweight_loss)
 ]
 
 #fig("/figures/failures/negative_externality.svg", width: 46%, caption: [
-  A negative externality.
+  Negative externality
 ]) <fig-neg-externality>
 
 #fig("/figures/failures/positive_externality.svg", width: 46%, caption: [
-  A positive externality.
+  Positive externality
 ]) <fig-pos-externality>
 
 == Common resources
@@ -80,7 +80,7 @@ uses 5 units, the efficient level is 3.5 and `corrective_fee` is 3.
 ]
 
 #fig("/figures/failures/common_resource.svg", width: 46%, caption: [
-  Overuse of a common resource.
+  Overuse of a common resource
 ]) <fig-common-resource>
 
 == Public goods
@@ -120,5 +120,5 @@ print(result.efficient_quantity, result.private_provision_quantity)
 ]
 
 #fig("/figures/failures/public_good.svg", width: 46%, caption: [
-  The vertical sum of marginal benefits.
+  Vertical sum of marginal benefits
 ]) <fig-public-good>

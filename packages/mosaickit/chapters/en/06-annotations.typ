@@ -49,11 +49,11 @@ canvas.add(AxisMarkLayer("x", 6, "b", math=True))
 ```
 
 #fig("/figures/annotations/gutter.pdf", width: auto, caption: [
-  Marks, notes and an outside brace in the y gutter (guide lines added).
+  Marks and notes in the y gutter
 ]) <fig-gutter>
 
 #fig("/figures/annotations/span.pdf", width: auto, caption: [
-  A span brace between two points, labelled to the left.
+  Span brace between two points
 ]) <fig-span>
 
 == Gutter columns
@@ -105,7 +105,7 @@ constraints into $y_1 <= dots.c <= y_n$.
 ] <cor-spread>
 
 #fig("/figures/geometry/spread.pdf", width: auto, caption: [
-  Targets (top) and their spread (bottom).
+  Targets and their spread
 ]) <fig-spread>
 
 In @fig-spread the first three items overlap and form one cluster centred at

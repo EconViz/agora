@@ -132,9 +132,9 @@ fig.save("market_demand.png")
 The output of `demand_aggregation_figure()` is shown in @fig-market-demand.
 
 #fig("/figures/aggregation/market_demand.svg", width: 100%, caption: [
-  Market demand as the horizontal sum.
+  Market demand as horizontal sum
 ]) <fig-market-demand>
 
 #fig("/figures/aggregation/discrete_market_demand.svg", width: 100%, caption: [
-  Combining two discrete demand schedules.
+  Combining two discrete demands
 ]) <fig-discrete-market-demand>

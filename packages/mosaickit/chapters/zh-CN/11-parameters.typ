@@ -90,7 +90,7 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
 ```
 
 #fig("/figures/grids/sweep.zh-CN.pdf", width: auto, caption: [
-  三个值的扫描与跨格连线。
+  三个值的扫描
 ]) <fig-sweep>
 
 == 动画

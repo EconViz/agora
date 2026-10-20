@@ -81,11 +81,11 @@ print(solve_tax_equilibrium(demand, supply, tax))
 ]
 
 #fig("/figures/taxes/per_unit_producer.zh-TW.svg", width: 46%, caption: [
-  向賣方課徵從量稅。
+  向賣方課從量稅
 ]) <fig-tax-producer>
 
 #fig("/figures/taxes/ad_valorem_consumer.zh-TW.svg", width: 46%, caption: [
-  向買方課徵從價稅。
+  向買方課從價稅
 ]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[在價格軸上標出 $p_d$、$p_0$ 與 $p_s$，並加上 "Tax" 括號；新增 `brace_side` 與 `notes`]
@@ -121,7 +121,7 @@ fig.finalize()
 ```
 
 #fig("/figures/taxes/welfare.zh-TW.svg", width: 46%, caption: [
-  課稅下的剩餘與無謂損失。
+  課稅下的剩餘與損失
 ]) <fig-tax-welfare>
 
 == 補貼
@@ -176,5 +176,5 @@ fig = MarketFigure(
 ```
 
 #fig("/figures/taxes/subsidy.zh-TW.svg", width: 46%, caption: [
-  從量補貼與無謂損失。
+  從量補貼與無謂損失
 ]) <fig-subsidy>

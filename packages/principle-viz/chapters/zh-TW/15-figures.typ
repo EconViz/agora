@@ -123,7 +123,7 @@ fig.finalize()
 ```
 
 #fig("/figures/figures/labels.zh-TW.svg", width: 46%, caption: [
-  改名的曲線與均衡點。
+  改名的曲線與均衡點
 ]) <fig-labels>
 
 == 配色與主題 <sec-palettes>
@@ -167,7 +167,7 @@ fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 ```
 
 #fig("/figures/figures/monochrome.zh-TW.svg", width: 46%, caption: [
-  `monochrome` 配色。
+  `monochrome` 配色
 ]) <fig-monochrome>
 
 == 畫布

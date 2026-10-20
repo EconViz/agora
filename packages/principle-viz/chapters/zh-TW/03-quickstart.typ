@@ -26,7 +26,7 @@ fig.save("basic_equilibrium.png")
 ```)
 
 #fig("/figures/quickstart/equilibrium.zh-TW.svg", width: 46%, caption: [
-  本章的市場（省略標題）。
+  本章的市場
 ]) <fig-quickstart>
 
 由 $10 - Q = 2 + Q$ 得 $Q^* = 4$、$p^* = 6$。輸出參見#ref(<fig-quickstart>)。

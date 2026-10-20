@@ -115,9 +115,9 @@ fig.save("market_demand.png")
 `demand_aggregation_figure()` 的输出参见#ref(<fig-market-demand>)。
 
 #fig("/figures/aggregation/market_demand.zh-CN.svg", width: 100%, caption: [
-  水平加总的市场需求。
+  水平加总的市场需求
 ]) <fig-market-demand>
 
 #fig("/figures/aggregation/discrete_market_demand.zh-CN.svg", width: 100%, caption: [
-  合并两张离散需求表。
+  合并两张离散需求表
 ]) <fig-discrete-market-demand>

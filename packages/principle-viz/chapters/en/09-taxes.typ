@@ -92,11 +92,11 @@ the consumer price to $(1 + r)$ times the producer price.
 ]
 
 #fig("/figures/taxes/per_unit_producer.svg", width: 46%, caption: [
-  A per-unit tax on sellers.
+  Per-unit tax on sellers
 ]) <fig-tax-producer>
 
 #fig("/figures/taxes/ad_valorem_consumer.svg", width: 46%, caption: [
-  An ad valorem tax on buyers.
+  Ad valorem tax on buyers
 ]) <fig-tax-consumer>
 
 #changed("0.10.0", label: "MarketFigure.add_tax_comparison")[Marks $p_d$, $p_0$ and $p_s$ on the price axis with a "Tax" brace; `brace_side` and `notes`]
@@ -135,7 +135,7 @@ fig.finalize()
 ```
 
 #fig("/figures/taxes/welfare.svg", width: 46%, caption: [
-  Surplus and deadweight loss under a tax.
+  Surplus and loss under a tax
 ]) <fig-tax-welfare>
 
 == Subsidies
@@ -200,5 +200,5 @@ fig = MarketFigure(
 ```
 
 #fig("/figures/taxes/subsidy.svg", width: 46%, caption: [
-  A per-unit subsidy and its deadweight loss.
+  Per-unit subsidy and its loss
 ]) <fig-subsidy>

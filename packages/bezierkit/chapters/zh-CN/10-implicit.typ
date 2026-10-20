@@ -59,7 +59,7 @@
 + 弯曲（提供 `gradient` 时）。把每条直线段换成端点切线沿等值集方向的三次曲线（详见#ref(<thm-gradient>)），控制柄长为弦长的三分之一。只有当三次曲线与弦的距离不超过 `tolerance` 时才采用；任一端 $nabla F = 0$ 时维持直线。
 
 #fig("/figures/implicit/saddle.pdf", width: auto, caption: [
-  鞍点单元格：(a) 中心高、(b) 中心低；实心角点的 $F >= c$。
+  鞍点格子的两种中心
 ]) <fig-saddle>
 
 鞍点规则使用四个角点值的双线性插值
@@ -90,7 +90,7 @@ print(len(contours.for_level(4)[0].segments))    # 15
 ```
 
 #fig("/figures/implicit/contours.pdf", width: auto, caption: [
-  $x^2 y = c$，$c = 1, 2, 4$ 由内而外。
+  $x^2 y = c$ 的三条曲线
 ]) <fig-contours>
 
 == 结果

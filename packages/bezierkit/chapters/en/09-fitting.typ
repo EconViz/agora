@@ -60,7 +60,7 @@ print(max(s.fit_error for s in path))        # 0.000676
 ```
 
 #fig("/figures/fitting/adaptive.pdf", width: auto, caption: [
-  Adaptive fit of $4 slash x^2$; segments alternate colour.
+  Adaptive fit of $4 slash x^2$
 ]) <fig-adaptive>
 
 Segments are short where the curve bends sharply and long where it is
@@ -136,7 +136,7 @@ of the algorithm.
 ] <cor-rdp-path>
 
 #fig("/figures/fitting/polyline.pdf", width: auto, caption: [
-  41 noisy samples simplified with tolerance $0.08$.
+  Noisy samples simplified
 ]) <fig-polyline>
 
 #api(("maximum_polyline_deviation",), syntax: [

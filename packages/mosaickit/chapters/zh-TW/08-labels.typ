@@ -22,7 +22,7 @@
 「文字放得下」是指：文字矩形置中於極點、每邊留白 2 pt 後，仍位於區域內（參見#ref(<thm-rect-inside>)），且不碰到任何線條、標記、文字或其他區域。#ref(<fig-regions>)同時呈現這兩種結果。
 
 #fig("/figures/labels/regions.zh-TW.pdf", width: auto, caption: [
-  區域內標籤與引線標註。
+  區域內標籤與引線
 ]) <fig-regions>
 
 == 點標籤
@@ -40,11 +40,11 @@
 ] <def-candidate-order>
 
 #fig("/figures/geometry/candidates.zh-TW.pdf", width: auto, caption: [
-  方向的嘗試順序。
+  方向的嘗試順序
 ]) <fig-candidates>
 
 #fig("/figures/labels/points.zh-TW.pdf", width: auto, caption: [
-  點旁的點標籤。
+  點旁的點標籤
 ]) <fig-points>
 
 == 硬性限制

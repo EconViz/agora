@@ -45,7 +45,7 @@ fig.add_minimum_wage(labor)
 ```
 
 #fig("/figures/factor/minimum_wage.svg", width: 46%, caption: [
-  A binding minimum wage.
+  Binding minimum wage
 ]) <fig-minimum-wage>
 
 `labor_demanded` is 3, `labor_supplied` is 7, `employment` is 3 and
@@ -94,5 +94,5 @@ print(funds.interest_rate_change, funds.crowding_out)  # 1.0 2.0
 ]
 
 #fig("/figures/factor/loanable_funds.svg", width: 46%, caption: [
-  Government borrowing crowds out private investment.
+  Borrowing crowds out investment
 ]) <fig-loanable-funds>
