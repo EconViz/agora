@@ -141,7 +141,7 @@ Animator(draw, frames=np.linspace(1.0, 6.0, 45)).save("price_sweep.gif", fps=12,
 ```])
 
 #fig("/figures/animation/price_sweep.svg", width: 94%, caption: [
-  Price sweep with $p_y = 2$ and $I = 20$ fixed
+  Price sweep
 ]) <fig-sweep-price>
 
 #example([```python
@@ -172,5 +172,5 @@ Animator(draw, frames=np.linspace(8.0, 36.0, 45)).save("income_sweep.gif", fps=1
 ```])
 
 #fig("/figures/animation/income_sweep.svg", width: 94%, caption: [
-  Income sweep with $p_x = p_y = 2$ fixed
+  Income sweep
 ]) <fig-sweep-income>

@@ -149,7 +149,7 @@ cvs.save("leontief.png")
 ```])
 
 #fig("/figures/models/leontief.svg", width: 56%, caption: [
-  Leontief with the ray through the kinks
+  Leontief with kink ray
 ])
 
 === Perfect substitutes
@@ -182,7 +182,7 @@ cvs.save("perfect_substitutes.png")
 ```])
 
 #fig("/figures/models/perfect_substitutes.svg", width: 56%, caption: [
-  Perfect substitutes a corner solution on the $y$-axis
+  Perfect substitutes corner solution
 ])
 
 === Maximum utility

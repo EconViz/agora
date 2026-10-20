@@ -293,7 +293,7 @@ cvs.save("add_point.png")
 ```])
 
 #fig("/figures/canvas/add_point.svg", width: 56%, caption: [
-  一条无差异曲线与预算线交于两点 $A$ 与 $B$
+  无差异曲线交预算线于两点
 ])
 
 #api(("show", "save"), syntax: [

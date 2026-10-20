@@ -309,5 +309,5 @@ box = EdgeworthBox(
 下圖同樣由 MosaicKit 圖層畫成，以教科書的圖為藍本，畫出兩人的無異曲線。
 
 #fig("/figures/consumer/edgeworth.svg", width: 86%, caption: [
-  兩位消費者通過配置 A 至 D 的無異曲線 陰影透鏡是雙方都偏好於 A 的配置
+  Edgeworth 箱形圖
 ])

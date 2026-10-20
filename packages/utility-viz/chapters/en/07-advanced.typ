@@ -74,7 +74,7 @@ cvs.save("multigood.png")
 ```])
 
 #fig("/figures/models/multigood.svg", width: 56%, caption: [
-  A three-good Cobb-Douglas model with $z = 10$ fixed
+  Three-good Cobb-Douglas
 ])
 
 

@@ -343,5 +343,5 @@ box = EdgeworthBox(
 The figure below is drawn from MosaicKit layers after a textbook figure, with both consumers' indifference curves.
 
 #fig("/figures/consumer/edgeworth.svg", width: 86%, caption: [
-  Both consumers' indifference curves through allocations A to D the shaded lens holds the allocations both prefer to A
+  Edgeworth box indifference curves
 ])

@@ -299,7 +299,7 @@ cvs.save("add_point.png")
 ```])
 
 #fig("/figures/canvas/add_point.svg", width: 56%, caption: [
-  An indifference curve meets the budget line at two points $A$ and $B$
+  Indifference curve cutting the budget line
 ])
 
 #api(("show", "save"), syntax: [
