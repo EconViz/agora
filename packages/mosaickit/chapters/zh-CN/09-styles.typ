@@ -78,9 +78,43 @@
   点标记样式。`size` 是以平方点计的面积，与 Matplotlib 的 `scatter` 相同（36 对应 6 pt 圆点）；`shape` 为 Matplotlib 标记，例如 `"o"`、`"s"` 或 `"X"`。
 ]
 
-#api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, family=None, weight=None, opacity=None, rotation=None)")])[
-  文字。`size` 以点为单位，`family` 为字体家族名称，`weight` 例如 `"bold"`，`rotation` 为逆时针角度（度）。
+#api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, font=None, weight=None, opacity=None, rotation=None)")])[
+  文字样式。`size` 以點为单位，`font` 是通用字体（`"sans"`、`"serif"` 或 `"mono"`，见#ref(<sec-fonts>)），`weight` 是 1 到 1000 的整数、`"normal"` 或 `"bold"`，`rotation` 为逆时针旋转的角度（度）。`family`（字体家族名称）仍可用但已弃用：它走 Matplotlib 绘制，不经过 #pkg("glyphkit")，1.0 会移除。
+  #changed("0.9.0", label: "TextStyle")[`weight` 不再弃用]
+  #changed("0.9.1", label: "TextStyle")[新增 `font` 字段；`family` 弃用]
 ]
+
+== 字体 <sec-fonts>
+
+文字由 #pkg("glyphkit") 依字体文件排版。三種通用字体指向字体文件：`"sans"`（默认）、`"serif"` 与 `"mono"`。MosaicKit 默认用 DejaVu Sans、DejaVu Serif 与 DejaVu Sans Mono，也就是 Matplotlib 附的文件。它**不会搜索系统字体**，其他字体一律要自己给文件。
+
+#api(("TextFonts",), syntax: [
+  #raw("TextFonts(sans=None, serif=None, mono=None)")
+])[
+  取代通用字体的字体文件。每个字段可给一个文件或一个列表；需要的字面都要列出，例如常规与粗体两个文件。样式的 `weight` 会选最接近的字面，文件顺序则是第一个文件缺字时依次尝试的顺序。没给的字段沿用 DejaVu 默认。
+  #changed("0.9.0", label: "TextFonts")[新增；sans 接一个文件列表]
+  #changed("0.9.1", label: "TextFonts")[新增 `serif` 与 `mono`；默认为 DejaVu]
+]
+
+#api(("MathFont",), syntax: [
+  #raw("MathFont(path, italic=True)")
+])[
+  OpenType 数学字体，如 STIX Two Math、Libertinus Math 或 Fira Math，文件要有 `MATH` 表。`italic` 让单个拉丁字母与小写希腊字母用斜体字母表，和 TeX 一樣。没有数学字体时，`$...$` 内的数学式由 Matplotlib 排版。
+]
+
+```python
+from mosaickit import Canvas, CanvasSpec, Config, MathFont, TextFonts, TextLayer, TextStyle, use_config
+
+fonts = TextFonts(serif=["fonts/Pagella-Regular.otf", "fonts/Pagella-Bold.otf"])
+config = Config(fonts=fonts, math_font=MathFont("fonts/Pagella-Math.otf"))
+
+with use_config(config):
+    canvas = Canvas(CanvasSpec(x_range=(0, 1), y_range=(0, 1)))
+    canvas.add(TextLayer((0.5, 0.5), "$u = x^{0.5}$", style=TextStyle(font="serif")))
+```
+
+TikZ 渲染器把 `sans`、`serif`、`mono` 对应到 `\sffamily`、`\rmfamily` 与 `\ttfamily`。
+#changed("0.9.2", label: "TikZ")[`font` 对应到 TeX 字体家族]
 
 #api(("LegendStyle",), syntax: [#raw("LegendStyle(visible=None, location=None, frame=None, size=None)")])[
   图例：Matplotlib 的位置名称，例如 `"best"` 或 `"upper right"`、外框，以及字号。

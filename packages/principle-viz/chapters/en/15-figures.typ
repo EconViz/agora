@@ -201,6 +201,27 @@ model; the four are also exported as `DEFAULT_COLOR_MODEL`,
   and sets any of these fields.
 ]
 
+Fonts take three fields. `font` is `"sans"` (the default), `"serif"` or
+`"mono"`; an installed family name such as `"Arial"` is an error. `fonts` is a
+`mosaickit.TextFonts` that replaces any of the three with font files, the rest
+keeping #pkg("mosaickit")'s DejaVu defaults. `math_font` is a `MathFont` or
+the path of an OpenType math font, and sets `$...$` through #pkg("glyphkit").
+`font_roles` maps a style role to a generic font, for example
+`{"axes": "mono"}`. Nothing searches the system for fonts, so pass the paths.
+#changed("0.11.0", label: "PlotTheme")[New `font`, `fonts`, `math_font` and `font_roles`]
+
+```python
+from mosaickit import TextFonts
+from principle_viz import MarketFigure, PlotTheme
+
+theme = PlotTheme(
+    font="serif",
+    fonts=TextFonts(serif=["fonts/Pagella-Regular.otf", "fonts/Pagella-Bold.otf"]),
+    math_font="fonts/Pagella-Math.otf",
+)
+fig = MarketFigure(x_max=12, y_max=12, theme=theme)
+```
+
 The `palette` argument selects a colour model (see @fig-monochrome):
 
 ```python

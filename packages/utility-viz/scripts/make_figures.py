@@ -11,15 +11,14 @@ picture as `figures/<group>/<name>.svg`.
 
 What the script adds to the examples, and nothing else:
 
-* the working directory holds `manual.toml` (the settings the examples load) and nothing else;
+* the working directory holds `manual.toml` (the settings the examples load, fonts included) and the font files it names;
 * every `save()` is redirected to the figure's SVG, cropped to its content on a white page;
-* the examples do not pin a typeface, so the figures are set in TeX Gyre Pagella, the manual's;
 * an animation example saves a GIF; the figure shows four frames of it (see FRAMES).
 
 Next to the SVGs it also writes each figure's code, `<name>.py` and `<name>.<edition>.py`, which the website offers to download.
 
 The three editions each carry the example in their own language. When the code of an edition
-differs from the English one (a translated title, a CJK font) it gets its own figure,
+differs from the English one (a translated title) it gets its own figure,
 `<name>.zh-TW.svg`; otherwise all editions share `<name>.svg`.
 """
 
@@ -27,7 +26,6 @@ from __future__ import annotations
 
 import argparse
 import ast
-import dataclasses
 import os
 import re
 import shutil
@@ -43,12 +41,9 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from matplotlib import font_manager  # noqa: E402
-
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
-FONT = CONFIG["fonts"]["family"]
 EDITIONS = ["en", "zh-TW", "zh-CN"]
 
 # An animation figure shows four frames of the GIF its example saves: these values of `frames`.
@@ -96,14 +91,21 @@ def program(code: str) -> str:
 
 
 def check_settings() -> None:
-    """The translated settings files differ from manual.toml in their comments only."""
+    """The translated settings files differ from manual.toml in their comments and fonts only."""
     def settings(text: str) -> list[str]:
-        return [re.sub(r"\s+# .*$", "", line) for line in text.splitlines() if not line.lstrip().startswith("#")]
+        """Settings lines without comments and without [font] and [fonts], which differ by edition."""
+        lines, skipping = [], False
+        for line in text.splitlines():
+            if line.startswith("["):
+                skipping = line.startswith(("[font]", "[fonts]"))
+            if not skipping and not line.lstrip().startswith("#"):
+                lines.append(re.sub(r"\s+# .*$", "", line))
+        return lines
 
     shown = settings((ROOT / "config" / "manual.toml").read_text())
     for edition in EDITIONS[1:]:
         if settings((ROOT / "config" / f"manual.{edition}.toml").read_text()) != shown:
-            raise SystemExit(f"config/manual.{edition}.toml differs from config/manual.toml beyond its comments")
+            raise SystemExit(f"config/manual.{edition}.toml differs from config/manual.toml beyond its comments and fonts")
 
 
 def plan() -> dict[str, dict[str, str]]:
@@ -158,35 +160,29 @@ def strip(frames: list[Path], target: Path, gap: float = 12.0) -> None:
     )
 
 
-def register_fonts() -> None:
-    """TeX Gyre Pagella from the TeX distribution, for text and for mathtext."""
+def font_dirs() -> list[Path]:
+    """Where the font files named in manual*.toml live: the TeX distribution and agora/fonts."""
+    dirs = [ROOT.parent.parent / "fonts"]
     try:
         texmf = subprocess.run(
             ["kpsewhich", "-var-value", "TEXMFDIST"], capture_output=True, text=True, check=True
         ).stdout.strip()
+        dirs.extend(Path(texmf) / rel for rel in CONFIG["fonts"]["texmf_dirs"])
     except (OSError, subprocess.CalledProcessError):
-        return
-    for rel in CONFIG["fonts"]["texmf_files"]:
-        path = Path(texmf) / rel
-        if path.exists():
-            font_manager.fontManager.addfont(str(path))
-    matplotlib.rcParams.update(
-        {
-            "font.family": [FONT],
-            "mathtext.fontset": "custom",
-            "mathtext.rm": FONT,
-            "mathtext.it": f"{FONT}:italic",
-            "mathtext.bf": f"{FONT}:bold",
-        }
-    )
-    # MosaicKit text layers whose theme role names no family fall back to DejaVu Sans; use the manual's.
-    from mosaickit import TextStyle
-    from mosaickit.themes import resolution
+        pass
+    return dirs
 
-    base = resolution.PRIMITIVE_DEFAULT
-    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
-        base, text=dataclasses.replace(base.text or TextStyle(), family=FONT)
-    )
+
+def manual_settings(edition: str, tmp: str) -> None:
+    """Put the edition's settings into *tmp* as manual.toml, with the font files it names beside it."""
+    source = ROOT / "config" / ("manual.toml" if edition == "en" else f"manual.{edition}.toml")
+    shutil.copy(source, Path(tmp) / "manual.toml")
+    settings = tomllib.loads(source.read_text())
+    for name in [*settings["fonts"]["serif"], settings["font"]["math"]]:
+        found = next((d / name for d in font_dirs() if (d / name).exists()), None)
+        if found is None:
+            raise SystemExit(f"font file {name} named in {source.name} not found")
+        shutil.copy(found, tmp)
 
 
 class Recorder:
@@ -206,7 +202,7 @@ class Recorder:
         )
 
 
-def run(code: str, target: Path, name: str) -> None:
+def run(code: str, target: Path, name: str, edition: str = "en") -> None:
     """Run one example in an empty directory that holds manual.toml, saving its picture to *target*."""
     from matplotlib.figure import Figure
     from mosaickit.rendering.matplotlib.renderer import MatplotlibRenderer
@@ -234,7 +230,7 @@ def run(code: str, target: Path, name: str) -> None:
     cwd = os.getcwd()
     try:
         with tempfile.TemporaryDirectory() as tmp:
-            shutil.copy(ROOT / "config" / "manual.toml", tmp)
+            manual_settings(edition, tmp)
             os.chdir(tmp)
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
@@ -278,12 +274,11 @@ def main() -> int:
     if not selected:
         print(f"no figure matches {args.only}", file=sys.stderr)
         return 1
-    register_fonts()
     print(f"writing {sum(len(figures[n]) for n in selected)} figure(s):")
     for name in selected:
         for suffix, code in figures[name].items():
             target = OUT / f"{name}{suffix}.svg"
-            run(code, target, name)
+            run(code, target, name, suffix[1:] or "en")
             print(f"  {target.relative_to(ROOT)}")
     # every edition gets the script in its own language; the website offers them as downloads
     for edition in EDITIONS:

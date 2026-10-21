@@ -25,10 +25,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from matplotlib import font_manager
-from mosaickit import CanvasGrid, TextStyle
-from mosaickit.rendering.matplotlib import fonts as mpl_fonts
-from mosaickit.themes import resolution
+from mosaickit import CanvasGrid
 
 from principle_viz import (
     DiscreteDemand,
@@ -83,7 +80,6 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 FMT = CONFIG["output"]["format"]
-FONT = CONFIG["fonts"]["family"]
 EDITIONS = ("en", "zh-TW", "zh-CN")
 EDITION = "en"  # the language the figures are drawn in; see set_edition()
 
@@ -93,48 +89,89 @@ EDITION = "en"  # the language the figures are drawn in; see set_edition()
 # ---------------------------------------------------------------------------
 
 
-def use_manual_fonts() -> None:
-    """Set text and math in TeX Gyre Pagella, the manual's body face."""
+def font_dirs() -> list[Path]:
+    """Where the manual's font files live: agora/fonts and the TeX distribution."""
+    dirs = [ROOT.parent.parent / "fonts"]
     try:
         texmf = subprocess.run(
             ["kpsewhich", "-var-value", "TEXMFDIST"],
             capture_output=True, text=True, check=True,
         ).stdout.strip()
+        dirs.extend(Path(texmf) / rel for rel in CONFIG["fonts"]["texmf_dirs"])
     except (OSError, subprocess.CalledProcessError):
-        texmf = ""
-    for rel in CONFIG["fonts"]["texmf_files"]:
-        path = Path(texmf) / rel
-        if path.exists():
-            font_manager.fontManager.addfont(str(path))
-    matplotlib.rcParams.update({
-        "font.family": [FONT],
-        "mathtext.fontset": "custom",
-        "mathtext.rm": FONT,
-        "mathtext.it": f"{FONT}:italic",
-        "mathtext.bf": f"{FONT}:bold",
-    })
-    # MosaicKit falls back to DejaVu Sans for every text layer whose theme
-    # role sets no family (the primitive default every style resolves over);
-    # use the manual's face there instead.
-    base = resolution.PRIMITIVE_DEFAULT
-    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
-        base, text=dataclasses.replace(base.text or TextStyle(), family=FONT)
-    )
-    # Every label, axis mark and brace text is set through MosaicKit's
-    # font_properties(); scale its size there, in each module that imported it
-    # (placement measures text through the same function, so labels still
-    # avoid each other at the larger size).
-    scale = CONFIG["fonts"].get("text_scale", 1.0)
-    original = mpl_fonts.font_properties
+        pass
+    return dirs
 
-    def font_properties(style):
-        props = original(style)
-        props.set_size(props.get_size_in_points() * scale)
-        return props
+
+def font_file(name: str) -> Path:
+    found = next((d / name for d in font_dirs() if (d / name).exists()), None)
+    if found is None:
+        raise SystemExit(f"font file {name} not found")
+    return found
+
+
+_font_scope = None
+
+
+def use_manual_fonts(edition: str = "en") -> None:
+    """Set the figures in the manual's face: Pagella, or Noto Serif in Chinese, with Pagella Math.
+
+    MosaicKit's `sans` slot, the font of every text style here, is replaced by the files; the
+    configuration stays active for the figures drawn after this call.
+    """
+    global _font_scope
+    from mosaickit import MathFont, TextFonts
+    from mosaickit.config import current_config, use_config
+
+    names = CONFIG["fonts"]["text"].get(edition, CONFIG["fonts"]["text"]["en"])
+    if _font_scope is not None:
+        _font_scope.__exit__(None, None, None)
+    _font_scope = use_config(
+        dataclasses.replace(
+            current_config(),
+            fonts=TextFonts(sans=[font_file(name) for name in names]),
+            math_font=MathFont(font_file(CONFIG["fonts"]["math"])),
+        )
+    )
+    _font_scope.__enter__()
+    # Titles, legends and text that mixes words with $math$ are still set by Matplotlib.
+    from matplotlib import font_manager
+
+    faces = [font_file(name) for name in names]
+    for path in faces:
+        font_manager.fontManager.addfont(str(path))
+    family = font_manager.FontProperties(fname=str(faces[0])).get_name()
+    latin = font_manager.FontProperties(fname=str(font_file(CONFIG["fonts"]["text"]["en"][0]))).get_name()
+    matplotlib.rcParams.update({
+        "font.family": [family],
+        "mathtext.fontset": "custom",
+        "mathtext.rm": latin,
+        "mathtext.it": f"{latin}:italic",
+        "mathtext.bf": f"{latin}:bold",
+    })
+
+
+def scale_text() -> None:
+    """Scale every resolved text size by `text_scale`, so labels stay legible at half the text width.
+
+    Line widths are unchanged. Placement measures text through the same styles, so labels still
+    avoid each other at the larger size.
+    """
+    from mosaickit.themes import resolution
+
+    scale = CONFIG["fonts"].get("text_scale", 1.0)
+    original = resolution.resolve
+
+    def resolve(*args, **kwargs):
+        bundle = original(*args, **kwargs)
+        if bundle.text is None or bundle.text.size is None:
+            return bundle
+        text = dataclasses.replace(bundle.text, size=bundle.text.size * scale)
+        return dataclasses.replace(bundle, text=text)
 
     for name, module in list(sys.modules.items()):
-        if name.startswith("mosaickit") and getattr(module, "font_properties", None) is original:
-            module.font_properties = font_properties
+        if name.startswith("mosaickit") and getattr(module, "resolve", None) is original:
+            module.resolve = resolve
 
 
 def localize(value, table):
@@ -181,12 +218,7 @@ def set_edition(edition: str) -> None:
             return draw(self, ax, localize(scene, table), localize(context, table))  # the context holds the titles
 
         MatplotlibRenderer._draw = translated_draw
-    family = CONFIG["fonts"].get("cjk", {}).get(edition, FONT)
-    matplotlib.rcParams["font.family"] = [family]
-    base = resolution.PRIMITIVE_DEFAULT
-    resolution.PRIMITIVE_DEFAULT = dataclasses.replace(
-        base, text=dataclasses.replace(base.text or TextStyle(), family=family)
-    )
+    use_manual_fonts(edition)
 
 
 def use_house_colours() -> None:

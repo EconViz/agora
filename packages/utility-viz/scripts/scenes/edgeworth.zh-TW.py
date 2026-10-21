@@ -5,6 +5,7 @@ from mosaickit import (
     AxisSpec,
     Canvas,
     CanvasSpec,
+    Config as MosaicConfig,
     Fill,
     FillLayer,
     Marker,
@@ -17,10 +18,12 @@ from mosaickit import (
 )
 from scipy.interpolate import CubicSpline
 
+from utility_viz import Config
 from utility_viz.core.scenes import UTILITY_THEME
 
 INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # 同 manual.toml 的顏色
-text = TextStyle(color=INK, size=12)
+settings = Config.load("manual.toml")
+text = TextStyle(color=INK, size=12, font="serif")
 
 # 仿教科書的圖 箱寬 10 高 6
 # J 起於 O_J K 起於 O_K
@@ -89,7 +92,7 @@ spec = CanvasSpec(
     height=(y_range[1] - y_range[0]) * unit / 0.77,
 )
 roles = {"canvas": StyleBundle(fill=Fill(color="#ffffff", opacity=1.0))}
-cv = Canvas(spec, theme=UTILITY_THEME, role_overrides=roles)
+cv = Canvas(spec, theme=UTILITY_THEME, config=MosaicConfig(fonts=settings.fonts, math_font=settings.math_font), role_overrides=roles)
 cv.add(
     PathLayer(
         [(0, 0), (10, 0), (10, 6), (0, 6), (0, 0)],

@@ -63,29 +63,22 @@ from mosaickit.layout.stack1d import spread
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def register_font() -> str | None:
-    """TeX Gyre Pagella from the TeX distribution, or None to keep the default typeface."""
+def font_file(name: str) -> Path:
+    """A font file of agora/fonts or of the TeX distribution."""
     import subprocess
 
-    from matplotlib import font_manager
-
+    dirs = [ROOT.parent.parent / "fonts"]
     try:
         texmf = subprocess.run(
             ["kpsewhich", "-var-value", "TEXMFDIST"], capture_output=True, text=True, check=True
         ).stdout.strip()
+        dirs.extend(Path(texmf) / rel for rel in CONFIG["fonts"]["texmf_dirs"])
     except (OSError, subprocess.CalledProcessError):
-        return None
-    found = False
-    for style in ("regular", "italic", "bold"):
-        path = Path(texmf) / "fonts/opentype/public/tex-gyre" / f"texgyrepagella-{style}.otf"
-        if path.exists():
-            font_manager.fontManager.addfont(str(path))
-            found = True
-    if not found:
-        return None
-    matplotlib.rcParams.update({"mathtext.fontset": "custom", "mathtext.rm": "TeX Gyre Pagella",
-                                "mathtext.it": "TeX Gyre Pagella:italic", "mathtext.bf": "TeX Gyre Pagella:bold"})
-    return "TeX Gyre Pagella"
+        pass
+    found = next((d / name for d in dirs if (d / name).exists()), None)
+    if found is None:
+        raise SystemExit(f"font file {name} not found")
+    return found
 
 
 CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
@@ -99,14 +92,32 @@ TEXT = CONFIG["text"]
 # The look is the EconViz one: grey curves, black axes, guides and points, a white page, set in
 # TeX Gyre Pagella when the TeX distribution has it.
 INK, GREY, LIGHT = "#1a1a1a", "#8c8c8c", "#b8b8b8"
-FONT = register_font()
-def figures_config(family: str | None) -> Config:
+
+
+def figures_config(edition: str) -> Config:
+    """The figures' configuration: the sans slot holds the edition's font files (Pagella, or Noto Serif)."""
+    from matplotlib import font_manager
+    from mosaickit import MathFont, TextFonts
+
+    names = CONFIG["fonts"]["text"].get(edition, CONFIG["fonts"]["text"]["en"])
+    faces = [font_file(name) for name in names]
+    # Matplotlib still sets titles, legends and words mixed with $math$; give it the same faces
+    for path in faces:
+        font_manager.fontManager.addfont(str(path))
+    latin = font_manager.FontProperties(fname=str(font_file(CONFIG["fonts"]["text"]["en"][0]))).get_name()
+    matplotlib.rcParams.update({
+        "font.family": [font_manager.FontProperties(fname=str(faces[0])).get_name()],
+        "mathtext.fontset": "custom", "mathtext.rm": latin,
+        "mathtext.it": f"{latin}:italic", "mathtext.bf": f"{latin}:bold",
+    })
     return Config(
+        fonts=TextFonts(sans=faces),
+        math_font=MathFont(font_file(CONFIG["fonts"]["math"])),
         role_overrides={
-            "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
-            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family)),
-            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK, family=family), stroke=Stroke(color=INK, width=0.8)),
-            "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK, family=family)),
+            "text": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK)),
+            "title": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK)),
+            "axes": StyleBundle(text=TextStyle(size=TEXT["size"], color=INK), stroke=Stroke(color=INK, width=0.8)),
+            "axes.note": StyleBundle(text=TextStyle(size=TEXT["note"], color=INK)),
             "point": StyleBundle(marker=Marker(color=INK, size=16)),
             "primary": StyleBundle(stroke=Stroke(color=GREY, width=2)),
             "secondary": StyleBundle(stroke=Stroke(color=INK, width=1.2)),
@@ -115,7 +126,7 @@ def figures_config(family: str | None) -> Config:
     )
 
 
-FIGURES_CONFIG = figures_config(FONT)
+FIGURES_CONFIG = figures_config("en")
 EDITIONS = ("en", "zh-TW", "zh-CN")
 EDITION = "en"  # the language the figures are drawn in; see set_edition()
 
@@ -124,7 +135,7 @@ def set_edition(edition: str) -> None:
     """Draw the following figures in this language: their words come from config/figures.toml, set in a CJK face."""
     global EDITION, FIGURES_CONFIG
     EDITION = edition
-    FIGURES_CONFIG = figures_config(CONFIG["fonts"].get("cjk", {}).get(edition, FONT))
+    FIGURES_CONFIG = figures_config(edition)
 
 
 def tr(text: str) -> str:

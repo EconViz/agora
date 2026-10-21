@@ -14,10 +14,16 @@ dpi = 300
 size = 8         # pt: labels, marks and titles, the size of the captions
 note = 7         # pt: axis notes (the axes.note role)
 
-# CJK faces for the zh editions' text.
-[fonts.cjk]
-"zh-TW" = "PingFang TC"
-"zh-CN" = "PingFang SC"
+# Text in TeX Gyre Pagella, the manual's body face, and Noto Serif for the Chinese editions
+# (agora/fonts); the math is set in Pagella Math.
+[fonts]
+math = "texgyrepagella-math.otf"
+texmf_dirs = ["fonts/opentype/public/tex-gyre", "fonts/opentype/public/tex-gyre-math"]
+
+[fonts.text]
+en = ["texgyrepagella-regular.otf", "texgyrepagella-italic.otf", "texgyrepagella-bold.otf", "texgyrepagella-bolditalic.otf"]
+"zh-TW" = ["NotoSerifTC-Regular.otf", "NotoSerifTC-Bold.otf"]
+"zh-CN" = ["NotoSerifSC-Regular.ttf", "NotoSerifSC-Bold.ttf"]
 
 # The figures' words, by edition (English words are the keys).
 [labels."zh-TW"]

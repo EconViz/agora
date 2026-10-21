@@ -14,7 +14,8 @@
 
 #api(("Canvas",), updated: "v1.7.0", syntax: [
   ```python
-  from utility_viz import ArrowStyle, Canvas, Stroke, themes
+  from mosaickit import TextFonts
+from utility_viz import ArrowStyle, Canvas, Stroke, themes
 
   cvs = Canvas(
       x_max=20,
@@ -25,8 +26,9 @@
       dpi=300,
       x_label_pos="right",   # top / right / bottom
       y_label_pos="top",     # left / top / right
-      font="DejaVu Sans",
-      math_font="stix",
+      font="serif",          # sans / serif / mono
+      fonts=TextFonts(serif="MyFont-Regular.otf"),
+      math_font="STIXTwoMath-Regular.otf",
       axis_stroke=Stroke(width=1.0, arrow=ArrowStyle.TRIANGLE),
       theme=themes.default,
   )
@@ -67,11 +69,14 @@
     [`"right"`], [箭頭右側],
   )
 ] <tab-y-label-pos>
-#param("font", type: "str | list", default: "None")[
-  所有文字使用的字型，或候選字型清單。此項設定僅作用於指定畫布，不會更動 #pkg("matplotlib") 的全域設定。
+#param("font", type: "str", default: "None")[
+  所有文字使用的通用字型：`"sans"`（預設）、`"serif"` 或 `"mono"`。已安裝的字型名稱（如 `"Arial"`）會報錯，請改用 `fonts`。
 ]
-#param("math_font", type: "str", default: "None")[
-  #pkg("matplotlib") 的數學字型：`dejavusans`、`dejavuserif`、`cm`、`stix` 或 `stixsans` 等。
+#param("fonts", type: "TextFonts", default: "None")[
+  取代通用字型的字型檔，如 `TextFonts(serif="MyFont-Regular.otf")`。每個欄位可給一個檔案或檔案清單（一般、粗體等）；沒給的欄位沿用 DejaVu 預設。系統字型不會被搜尋，請直接給路徑。
+]
+#param("math_font", type: "MathFont | str", default: "None")[
+  OpenType 數學字型或其檔案路徑，如 STIX Two Math，經由 #pkg("glyphkit") 排版數學式。未設定時由 #pkg("matplotlib") 排版。舊的字型組名稱（`stix`、`cm`、`dejavusans`）會報錯。
 ]
 #param("axis_stroke", type: "Stroke", default: "theme")[
   同時設定兩軸的粗細、線條樣式、顏色與箭頭（詳見#ref(<sec-styles>)）。
@@ -352,7 +357,7 @@ cvs.save("show_save.png")
 #param("DASHDOT", type: "LineStyle")[點劃線。]
 
 #example([```python
-import matplotlib.pyplot as plt
+from mosaickit import CanvasGrid
 
 from utility_viz import Canvas, Config, LineStyle
 
@@ -360,23 +365,13 @@ Config.load("manual.toml").use()  # 圖形設定
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 titles = ["實線", "虛線", "點線", "點劃線"]
-
-fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
-for ax, style, title in zip(axes, styles, titles):
-    Canvas(
-        title=title,
-        x_label="$x$",
-        y_label="$y$",
-        x_line_style=style,
-        y_line_style=style,
-        font="PingFang TC",  # 使用有中文字形的字體
-        fig=fig,
-        ax=ax,
-    )
-
-# 預留軸標籤的空間
-fig.subplots_adjust(wspace=0.62)
-fig.savefig("line_styles.png", dpi=160)
+panels = [
+    Canvas(title=title, x_label="$x$", y_label="$y$", x_label_pos="bottom", x_line_style=style, y_line_style=style)
+    for style, title in zip(styles, titles)
+]
+for panel in panels:
+    panel.spec = panel.spec.replace(width=2.2, height=2.0)  # 小畫布
+CanvasGrid([panels]).save("line_styles.png")
 ```])
 
 #fig("/figures/canvas/line_styles.zh-TW.svg", width: 56%, caption: [
@@ -398,7 +393,7 @@ fig.savefig("line_styles.png", dpi=160)
 #param("WEDGE", type: "ArrowStyle")[細楔形箭頭。]
 
 #example([```python
-import matplotlib.pyplot as plt
+from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
@@ -406,23 +401,13 @@ Config.load("manual.toml").use()  # 圖形設定
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 titles = ["簡單", "三角形", "花式", "楔形"]
-
-fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
-for ax, style, title in zip(axes, styles, titles):
-    Canvas(
-        title=title,
-        x_label="$x$",
-        y_label="$y$",
-        x_arrow_style=style,
-        y_arrow_style=style,
-        font="PingFang TC",  # 使用有中文字形的字體
-        fig=fig,
-        ax=ax,
-    )
-
-# 預留軸標籤的空間
-fig.subplots_adjust(wspace=0.62)
-fig.savefig("arrow_styles.png", dpi=160)
+panels = [
+    Canvas(title=title, x_label="$x$", y_label="$y$", x_label_pos="bottom", x_arrow_style=style, y_arrow_style=style)
+    for style, title in zip(styles, titles)
+]
+for panel in panels:
+    panel.spec = panel.spec.replace(width=2.2, height=2.0)  # 小畫布
+CanvasGrid([panels]).save("arrow_styles.png")
 ```])
 
 #fig("/figures/canvas/arrow_styles.zh-TW.svg", width: 56%, caption: [

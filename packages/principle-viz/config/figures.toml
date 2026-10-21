@@ -7,23 +7,20 @@ dir = "figures"
 format = "svg"   # vector; Typst embeds SVG directly
 
 [fonts]
-# Text and math in the figures use TeX Gyre Pagella, the manual's body face.
-family = "TeX Gyre Pagella"
+# Text and math in the figures use TeX Gyre Pagella, the manual's body face; the Chinese
+# editions set their text in Noto Serif (agora/fonts) and keep the math in Pagella Math.
+math = "texgyrepagella-math.otf"
 # A figure is drawn at 6 x 6 in and set at about half the text width, which
 # shrinks its 10-11 pt labels; scale every text size by this factor (line
 # widths are unchanged).
 text_scale = 1.5
-# Font files registered with matplotlib (relative to TEXMFDIST).
-texmf_files = [
-  "fonts/opentype/public/tex-gyre/texgyrepagella-regular.otf",
-  "fonts/opentype/public/tex-gyre/texgyrepagella-italic.otf",
-  "fonts/opentype/public/tex-gyre/texgyrepagella-bold.otf",
-]
+# Places the font files are found, besides agora/fonts (relative to TEXMFDIST).
+texmf_dirs = ["fonts/opentype/public/tex-gyre", "fonts/opentype/public/tex-gyre-math"]
 
-# CJK faces for the zh editions' text (mathtext stays in Pagella).
-[fonts.cjk]
-"zh-TW" = "PingFang TC"
-"zh-CN" = "PingFang SC"
+[fonts.text]
+en = ["texgyrepagella-regular.otf", "texgyrepagella-italic.otf", "texgyrepagella-bold.otf", "texgyrepagella-bolditalic.otf"]
+"zh-TW" = ["NotoSerifTC-Regular.otf", "NotoSerifTC-Bold.otf"]
+"zh-CN" = ["NotoSerifSC-Regular.ttf", "NotoSerifSC-Bold.ttf"]
 
 # principle-viz's built-in labels are English; each edition draws them with these translations.
 
