@@ -86,7 +86,7 @@
 
 == 字型 <sec-fonts>
 
-文字由 #pkg("glyphkit") 依字型檔排版。三種通用字型指向字型檔：`"sans"`（預設）、`"serif"` 與 `"mono"`。MosaicKit 預設用 DejaVu Sans、DejaVu Serif 與 DejaVu Sans Mono，也就是 Matplotlib 附的檔案。它**不會搜尋系統字型**，其他字型一律要自己給檔案。
+文字由 #pkg("glyphkit") 依字型檔排版。三種通用字型指向字型檔：`"sans"`（預設）、`"serif"` 與 `"mono"`。MosaicKit 預設用 DejaVu Sans、DejaVu Serif 與 DejaVu Sans Mono，也就是 Matplotlib 附的檔案。它*不會搜尋系統字型*，其他字型一律要自己給檔案。
 
 #api(("TextFonts",), syntax: [
   #raw("TextFonts(sans=None, serif=None, mono=None)")
