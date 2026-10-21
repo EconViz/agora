@@ -3,6 +3,7 @@ from mosaickit import (
     Canvas,
     CanvasGrid,
     CanvasSpec,
+    Config as MosaicConfig,
     DashStyle,
     Fill,
     Marker,
@@ -16,12 +17,13 @@ from mosaickit import (
 )
 import numpy as np
 
-from utility_viz import solve
+from utility_viz import Config, solve
 from utility_viz.core.scenes import UTILITY_THEME, budget_layers, indifference_layers
 from utility_viz.models import CobbDouglas
 
 INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # the colours of manual.toml
-text = TextStyle(color=INK, size=14)
+settings = Config.load("manual.toml")
+text = TextStyle(color=INK, size=14, font="serif")
 
 # Cobb-Douglas demand for x
 model = CobbDouglas(alpha=0.5, beta=0.5)
@@ -41,7 +43,7 @@ def panel(y_min, y_max, height, y_label):
         "axes": StyleBundle(stroke=Stroke(color=INK, width=1.0), text=text),
         "guide": StyleBundle(stroke=Stroke(color=INK, width=0.8, dash=DashStyle.DASHED)),
     }
-    cv = Canvas(spec, theme=UTILITY_THEME, role_overrides=roles)
+    cv = Canvas(spec, theme=UTILITY_THEME, config=MosaicConfig(fonts=settings.fonts, math_font=settings.math_font), role_overrides=roles)
     cv.extend(
         build_axes(
             AxisSpec((0, X), arrow="end", label="$x$"),

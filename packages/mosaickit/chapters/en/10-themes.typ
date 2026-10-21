@@ -117,12 +117,13 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
 
 #api(("Config",), syntax: [
   #raw("Config(theme=default, canvas_spec=CanvasSpec(), renderer=\"matplotlib\",") \
-  #raw("       role_overrides={}, palette=DEFAULT_PALETTE)")
+  #raw("       role_overrides={}, palette=DEFAULT_PALETTE, math_font=None, fonts=None)")
 ])[
   Runtime defaults for new canvases: the theme, the specification, the
   renderer (a name or a `Renderer`), role overrides applied after the theme
-  ($G$ in @thm-resolution) and the palette.
+  ($G$ in @thm-resolution) and the palette. `math_font` is a `MathFont` and `fonts` a `TextFonts` (@sec-fonts).
   #changed("0.3.0")[`Config.palette` added, defaulting to `DEFAULT_PALETTE`]
+  #changed("0.9.0", label: "Config")[`Config.math_font` and `Config.fonts` added]
 ]
 
 #api(("use_config",), syntax: [#raw("with use_config(config): ...")])[
@@ -137,7 +138,7 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
 ])[
   Reads a strict TOML configuration. Top-level keys are `theme` (only
   `"default"`; custom themes are passed in Python), `canvas` (fields of
-  `CanvasSpec`), `renderer` (only `"matplotlib"`), `palette` and `styles`.
+  `CanvasSpec`), `renderer` (only `"matplotlib"`), `palette`, `styles`, `math` (`font`, the path of a math font, and `italic`) and `fonts` (`sans`, `serif` and `mono`, each a list of font files). A relative path is read from the folder of the file.
   Any other key, unknown style, bad value or unreadable file raises
   `ConfigurationError` naming the file and the key.
 ]

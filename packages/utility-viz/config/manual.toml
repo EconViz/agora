@@ -8,8 +8,18 @@
 
 base = "default"
 
-# Font is TeX Gyre Pagella but unset
-# Add [font] text = "TeX Gyre Pagella" to use it
+# Font files sit beside this file
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = [
+  "texgyrepagella-regular.otf",
+  "texgyrepagella-italic.otf",
+  "texgyrepagella-bold.otf",
+  "texgyrepagella-bolditalic.otf",
+]
 
 [color]
 background = "#ffffff"

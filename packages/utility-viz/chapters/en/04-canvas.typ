@@ -15,7 +15,8 @@ layers for indifference curves, budget lines, equilibria and more.
 
 #api(("Canvas",), updated: "v1.7.0", syntax: [
   ```python
-  from utility_viz import ArrowStyle, Canvas, Stroke, themes
+  from mosaickit import TextFonts
+from utility_viz import ArrowStyle, Canvas, Stroke, themes
 
   cvs = Canvas(
       x_max=20,
@@ -26,8 +27,9 @@ layers for indifference curves, budget lines, equilibria and more.
       dpi=300,
       x_label_pos="right",   # top / right / bottom
       y_label_pos="top",     # left / top / right
-      font="DejaVu Sans",
-      math_font="stix",
+      font="serif",          # sans / serif / mono
+      fonts=TextFonts(serif="MyFont-Regular.otf"),
+      math_font="STIXTwoMath-Regular.otf",
       axis_stroke=Stroke(width=1.0, arrow=ArrowStyle.TRIANGLE),
       theme=themes.default,
   )
@@ -69,13 +71,20 @@ layers for indifference curves, budget lines, equilibria and more.
     [`"right"`], [Right of the arrow],
   )
 ] <tab-y-label-pos>
-#param("font", type: "str | list", default: "None")[
-  Font for all text, or a list of candidate fonts. It applies to this canvas
-  only and leaves #pkg("matplotlib")'s global configuration alone.
+#param("font", type: "str", default: "None")[
+  Generic font for all text: `"sans"` (the default), `"serif"` or `"mono"`.
+  An installed family name such as `"Arial"` is an error; pass `fonts` instead.
 ]
-#param("math_font", type: "str", default: "None")[
-  #pkg("matplotlib") math font set: `dejavusans`, `dejavuserif`, `cm`,
-  `stix`, `stixsans` and so on.
+#param("fonts", type: "TextFonts", default: "None")[
+  Font files that replace the generic fonts, such as
+  `TextFonts(serif="MyFont-Regular.otf")`. A slot takes one file or a list of
+  files (regular, bold and so on); the slots you leave out keep the DejaVu
+  defaults. Nothing searches the system for fonts, so pass the paths.
+]
+#param("math_font", type: "MathFont | str", default: "None")[
+  An OpenType math font, or the path of its file, such as STIX Two Math. It
+  sets math through #pkg("glyphkit"). Without it #pkg("matplotlib") sets math.
+  The old font set names (`stix`, `cm`, `dejavusans`) are errors.
 ]
 #param("axis_stroke", type: "Stroke", default: "theme")[
   Width, style, colour and arrowhead of both axes (@sec-styles).
@@ -363,29 +372,20 @@ and drop lines.
 #param("DASHDOT", type: "LineStyle")[Dash-dot line.]
 
 #example([```python
-import matplotlib.pyplot as plt
+from mosaickit import CanvasGrid
 
 from utility_viz import Canvas, Config, LineStyle
 
 Config.load("manual.toml").use()  # figure settings
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
-
-fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
-for ax, style in zip(axes, styles):
-    Canvas(
-        title=style.value,
-        x_label="$x$",
-        y_label="$y$",
-        x_line_style=style,
-        y_line_style=style,
-        fig=fig,
-        ax=ax,
-    )
-
-# leave room for axis labels
-fig.subplots_adjust(wspace=0.62)
-fig.savefig("line_styles.png", dpi=160)
+panels = [
+    Canvas(title=style.value, x_label="$x$", y_label="$y$", x_label_pos="bottom", x_line_style=style, y_line_style=style)
+    for style in styles
+]
+for panel in panels:
+    panel.spec = panel.spec.replace(width=2.2, height=2.0)  # small panels
+CanvasGrid([panels]).save("line_styles.png")
 ```])
 
 #fig("/figures/canvas/line_styles.svg", width: 56%, caption: [
@@ -408,29 +408,20 @@ fig.savefig("line_styles.png", dpi=160)
 #param("WEDGE", type: "ArrowStyle")[Thin wedge-shaped arrowhead.]
 
 #example([```python
-import matplotlib.pyplot as plt
+from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
 Config.load("manual.toml").use()  # figure settings
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
-
-fig, axes = plt.subplots(1, 4, figsize=(7.6, 2.0))
-for ax, style in zip(axes, styles):
-    Canvas(
-        title=style.name,
-        x_label="$x$",
-        y_label="$y$",
-        x_arrow_style=style,
-        y_arrow_style=style,
-        fig=fig,
-        ax=ax,
-    )
-
-# leave room for axis labels
-fig.subplots_adjust(wspace=0.62)
-fig.savefig("arrow_styles.png", dpi=160)
+panels = [
+    Canvas(title=style.value, x_label="$x$", y_label="$y$", x_label_pos="bottom", x_arrow_style=style, y_arrow_style=style)
+    for style in styles
+]
+for panel in panels:
+    panel.spec = panel.spec.replace(width=2.2, height=2.0)  # small panels
+CanvasGrid([panels]).save("arrow_styles.png")
 ```])
 
 #fig("/figures/canvas/arrow_styles.svg", width: 56%, caption: [

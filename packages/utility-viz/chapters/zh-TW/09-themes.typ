@@ -287,7 +287,7 @@ cvs.save("theme_presentation.png")
   position = "right"
   ```
 
-  區段名稱對應主題屬性：`[color]` 的 `ic` 對應 `ic_color`，`[stroke.budget]` 對應 `theme.budget_stroke`；區段內的欄位就是 `Stroke`、`Marker`、`Label`、`Fill`、`Legend` 的參數（詳見#ref(<sec-styles>)）。字型寫在 `[font]` 的 `text` 與 `math`。省略的欄位保留基底主題的值。
+  區段名稱對應主題屬性：`[color]` 的 `ic` 對應 `ic_color`，`[stroke.budget]` 對應 `theme.budget_stroke`；區段內的欄位就是 `Stroke`、`Marker`、`Label`、`Fill`、`Legend` 的參數（詳見#ref(<sec-styles>)）。字型寫在 `[font]` 的 `text`（`"sans"`、`"serif"` 或 `"mono"`）與 `math`（數學字型的路徑），字型檔寫在 `[fonts]` 的 `sans`、`serif`、`mono`，每項可為一個檔案或檔案清單。相對路徑以 TOML 檔所在資料夾為準。省略的欄位保留基底主題的值。
 
 + *在 Python 中套用。*在建立任何圖形之前載入一次：
 

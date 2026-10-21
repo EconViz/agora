@@ -160,6 +160,21 @@ fig.finalize()
   配色加上线宽（`demand_linewidth`、`supply_linewidth`、`shifted_linewidth`、`tax_linewidth`、`arrow_linewidth`、`dashed_linewidth`）、`equilibrium_marker_size`，以及开关 `show_grid`、`show_ticks`、`show_axis_arrows` 与 `show_origin_label`。`from_palette()` 以内建配色为起点，并可设置上述任一字段。
 ]
 
+字体有三个字段。`font` 是 `"sans"`（默认）、`"serif"` 或 `"mono"`，已安装的字体名称（如 `"Arial"`）会报错。`fonts` 是 `mosaickit.TextFonts`，用字体文件取代三者之一，没给的沿用 #pkg("mosaickit") 的 DejaVu 默认。`math_font` 是 `MathFont` 或 OpenType 数学字体的路径，经由 #pkg("glyphkit") 排版 `$...$`。`font_roles` 把样式角色对应到通用字体，例如 `{"axes": "mono"}`。系统字体不会被搜索，请直接给路径。
+#changed("0.11.0", label: "PlotTheme")[新增 `font`、`fonts`、`math_font` 与 `font_roles`]
+
+```python
+from mosaickit import TextFonts
+from principle_viz import MarketFigure, PlotTheme
+
+theme = PlotTheme(
+    font="serif",
+    fonts=TextFonts(serif=["fonts/Pagella-Regular.otf", "fonts/Pagella-Bold.otf"]),
+    math_font="fonts/Pagella-Math.otf",
+)
+fig = MarketFigure(x_max=12, y_max=12, theme=theme)
+```
+
 以 `palette` 参数选用配色（参见#ref(<fig-monochrome>)）：
 
 ```python

@@ -85,10 +85,11 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
 
 #api(("Config",), syntax: [
   #raw("Config(theme=default, canvas_spec=CanvasSpec(), renderer=\"matplotlib\",") \
-  #raw("       role_overrides={}, palette=DEFAULT_PALETTE)")
+  #raw("       role_overrides={}, palette=DEFAULT_PALETTE, math_font=None, fonts=None)")
 ])[
-  新画布的运行时默认值：主题、规格、渲染器（名称或 `Renderer`）、在主题之后应用的角色覆盖（#ref(<thm-resolution>)中的 $G$），以及调色板。
+  新画布的运行时默认值：主题、规格、渲染器（名称或 `Renderer`）、在主题之后应用的角色覆盖（#ref(<thm-resolution>)中的 $G$），以及调色板。`math_font` 是 `MathFont`，`fonts` 是 `TextFonts`（#ref(<sec-fonts>)）。
   #changed("0.3.0")[新增 `Config.palette`，默认为 `DEFAULT_PALETTE`]
+  #changed("0.9.0", label: "Config")[新增 `Config.math_font` 与 `Config.fonts`]
 ]
 
 #api(("use_config",), syntax: [#raw("with use_config(config): ...")])[
@@ -99,7 +100,7 @@ mytheme = Theme("mypkg", {**default.roles, **roles})
   #raw("Config.load(path)") \
   #raw("Config.from_dict(data, *, source=\"<dict>\")")
 ])[
-  读取严格的 TOML 配置。最上层的键为 `theme`（只能是 `"default"`；自定义主题须在 Python 中传入）、`canvas`（`CanvasSpec` 的字段）、`renderer`（只能是 `"matplotlib"`）、`palette` 与 `styles`。其他键、未知的样式、错误的值或无法读取的文件，都引发指明文件与键的 `ConfigurationError`。
+  读取严格的 TOML 配置。最上层的键为 `theme`（只能是 `"default"`；自定义主题须在 Python 中传入）、`canvas`（`CanvasSpec` 的字段）、`renderer`（只能是 `"matplotlib"`）、`palette`、`styles`、`math`（`font` 为数学字体的路径，另有 `italic`）与 `fonts`（`sans`、`serif`、`mono`，各是一个字体文件列表）。相对路径以配置文件所在目录为准。其他键、未知的样式、错误的值或无法读取的文件，都引发指明文件与键的 `ConfigurationError`。
 ]
 
 ```toml

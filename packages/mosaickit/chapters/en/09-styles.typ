@@ -91,11 +91,59 @@ as a priority list: the first source that sets a field wins.
   `"o"`, `"s"` or `"X"`.
 ]
 
-#api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, family=None, weight=None, opacity=None, rotation=None)")])[
-  Text styles. `size` is in points, `family` is a font-family name, `weight`
-  may be a value such as `"bold"`, and `rotation` is in degrees
-  counter-clockwise.
+#api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, font=None, weight=None, opacity=None, rotation=None)")])[
+  Text styles. `size` is in points, `font` is a generic font (`"sans"`,
+  `"serif"` or `"mono"`, @sec-fonts), `weight` is an integer from 1 to 1000,
+  `"normal"` or `"bold"`, and `rotation` is in degrees counter-clockwise.
+  `family`, a font-family name, still works but is deprecated: it draws
+  through Matplotlib and ignores #pkg("glyphkit"). It will go in 1.0.
+  #changed("0.9.0", label: "TextStyle")[`weight` is no longer deprecated]
+  #changed("0.9.1", label: "TextStyle")[New `font` field; `family` is deprecated]
 ]
+
+== Fonts <sec-fonts>
+
+Text is set by #pkg("glyphkit") from font files. Three generic fonts name
+them: `"sans"` (the default), `"serif"` and `"mono"`. MosaicKit starts with
+DejaVu Sans, DejaVu Serif and DejaVu Sans Mono, the files Matplotlib ships.
+It never searches the system for fonts, so any other face is a file you pass.
+
+#api(("TextFonts",), syntax: [
+  #raw("TextFonts(sans=None, serif=None, mono=None)")
+])[
+  Font files that replace the generic fonts. Each slot takes one file or a
+  list; list every face it needs, such as a regular and a bold file. A style's
+  `weight` picks the nearest listed face, and the order of the files is the
+  order tried for a character the first one lacks. The slots you leave out
+  keep the DejaVu defaults.
+  #changed("0.9.0", label: "TextFonts")[Added; one list of files for sans]
+  #changed("0.9.1", label: "TextFonts")[`serif` and `mono` slots; defaults to DejaVu]
+]
+
+#api(("MathFont",), syntax: [
+  #raw("MathFont(path, italic=True)")
+])[
+  An OpenType math font such as STIX Two Math, Libertinus Math or Fira Math.
+  The file needs a `MATH` table. `italic` sets single Latin and lowercase
+  Greek letters in the italic alphabet, as TeX does. Without a math font,
+  math in `$...$` is set by Matplotlib.
+]
+
+```python
+from mosaickit import Canvas, CanvasSpec, Config, MathFont, TextFonts, TextLayer, TextStyle, use_config
+
+fonts = TextFonts(serif=["fonts/Pagella-Regular.otf", "fonts/Pagella-Bold.otf"])
+config = Config(fonts=fonts, math_font=MathFont("fonts/Pagella-Math.otf"))
+
+with use_config(config):
+    canvas = Canvas(CanvasSpec(x_range=(0, 1), y_range=(0, 1)))
+    canvas.add(TextLayer((0.5, 0.5), "$u = x^{0.5}$", style=TextStyle(font="serif")))
+```
+
+The TikZ renderer maps `sans`, `serif` and `mono` to `\sffamily`, `\rmfamily`
+and `\ttfamily`.
+#changed("0.9.2", label: "TikZ")[`font` maps to the TeX font families]
+
 
 #api(("LegendStyle",), syntax: [#raw("LegendStyle(visible=None, location=None, frame=None, size=None)")])[
   Legend styles, including a Matplotlib location such as `"best"` or

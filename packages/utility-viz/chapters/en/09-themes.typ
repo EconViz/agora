@@ -315,7 +315,7 @@ where both Python and the command line read it.
   Section names map to theme properties: `ic` under `[color]` sets
   `ic_color`, and `[stroke.budget]` sets `theme.budget_stroke`. The fields
   inside a section are the arguments of `Stroke`, `Marker`, `Label`, `Fill`
-  or `Legend` (@sec-styles). Fonts go under `[font]` as `text` and `math`.
+  or `Legend` (@sec-styles). Fonts go under `[font]` as `text` (`"sans"`, `"serif"` or `"mono"`) and `math` (the path of a math font), and font files under `[fonts]` as `sans`, `serif` and `mono`, each a file or a list of files. A relative path is read from the folder of the TOML file.
   Fields you leave out keep the base theme's values.
 
 + *Use it from Python.* Load it once, before creating any diagram:

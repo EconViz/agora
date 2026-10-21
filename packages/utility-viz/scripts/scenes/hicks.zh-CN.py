@@ -4,6 +4,7 @@ from mosaickit import (
     AxisSpec,
     Canvas,
     CanvasSpec,
+    Config as MosaicConfig,
     DashStyle,
     Fill,
     Marker,
@@ -16,15 +17,14 @@ from mosaickit import (
     build_axes,
 )
 
-from utility_viz import DecompositionMethod
+from utility_viz import Config, DecompositionMethod
 from utility_viz.core.scenes import UTILITY_THEME, budget_layers, indifference_layers
 from utility_viz.models import CobbDouglas, decompose_price_effect
 
 INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 同 manual.toml 的颜色
-text = TextStyle(color=INK, size=14)
-effect_name = TextStyle(
-    color=INK, size=13, family="PingFang SC"
-)  # 选用中日韩字体
+settings = Config.load("manual.toml")
+text = TextStyle(color=INK, size=14, font="serif")
+effect_name = TextStyle(color=INK, size=13, font="serif")
 
 # x 的价格由 2 涨到 4
 # A 旧 C 新 B 为补偿点
@@ -43,7 +43,7 @@ roles = {
     "axes": StyleBundle(stroke=Stroke(color=INK, width=1.0), text=text),
     "guide": StyleBundle(stroke=Stroke(color=INK, width=0.8, dash=DashStyle.DASHED)),
 }
-cv = Canvas(spec, theme=UTILITY_THEME, role_overrides=roles)
+cv = Canvas(spec, theme=UTILITY_THEME, config=MosaicConfig(fonts=settings.fonts, math_font=settings.math_font), role_overrides=roles)
 cv.extend(
     build_axes(
         AxisSpec((0, X), arrow="end", label="$x$"), AxisSpec((0, Y), arrow="end", label="$y$")

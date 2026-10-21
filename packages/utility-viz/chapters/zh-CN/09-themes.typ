@@ -287,7 +287,7 @@ cvs.save("theme_presentation.png")
   position = "right"
   ```
 
-  配置节名称对应主题属性：`[color]` 的 `ic` 对应 `ic_color`，`[stroke.budget]` 对应 `theme.budget_stroke`；配置节内的字段就是 `Stroke`、`Marker`、`Label`、`Fill`、`Legend` 的参数（详见#ref(<sec-styles>)）。字体写在 `[font]` 的 `text` 与 `math`。省略的字段保留基础主题的值。
+  配置节名称对应主题属性：`[color]` 的 `ic` 对应 `ic_color`，`[stroke.budget]` 对应 `theme.budget_stroke`；配置节内的字段就是 `Stroke`、`Marker`、`Label`、`Fill`、`Legend` 的参数（详见#ref(<sec-styles>)）。字体写在 `[font]` 的 `text`（`"sans"`、`"serif"` 或 `"mono"`）与 `math`（数学字体的路径），字体文件写在 `[fonts]` 的 `sans`、`serif`、`mono`，每项可为一个文件或文件列表。相对路径以 TOML 文件所在目录为准。省略的字段保留基础主题的值。
 
 + *在 Python 中应用。*在创建任何图形之前加载一次：
 

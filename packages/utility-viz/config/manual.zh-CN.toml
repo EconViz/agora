@@ -8,8 +8,13 @@
 
 base = "default"
 
-# 字体是 TeX Gyre Pagella 但不指定
-# 要用请加上 [font] text = "TeX Gyre Pagella"
+# 字体文件放在此文件旁
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = ["NotoSerifSC-Regular.ttf", "NotoSerifSC-Bold.ttf"]
 
 [color]
 background = "#ffffff"
