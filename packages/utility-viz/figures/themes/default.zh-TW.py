@@ -6,7 +6,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題配色與手冊線寬
+# 主題配色搭配手冊線寬
 theme = replace(
     themes.default,
     background_color="#ffffff",

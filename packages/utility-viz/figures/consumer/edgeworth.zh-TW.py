@@ -21,13 +21,13 @@ from scipy.interpolate import CubicSpline
 from utility_viz import Config
 from utility_viz.core.scenes import UTILITY_THEME
 
-INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # 同 manual.toml 的顏色
+INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # 顏色與 manual.toml 相同
 settings = Config.load("manual.toml")
 text = TextStyle(color=INK, size=12, font="serif")
 
-# 仿教科書的寬 10 高 6 箱子
-# J 與 K 各從 O_J 與 O_K 起
-# 曲線是過控制點的樣條
+# 仿照教科書的箱子尺寸
+# J 與 K 分別從 O_J 與 O_K 起算
+# 樣條曲線通過各控制點
 J = {  # J 的控制點由低到高
     1: (
         [3.80, 3.91, 4.18, 4.59, 5.12, 5.75, 6.46, 7.16, 8.07],
@@ -80,7 +80,7 @@ def spline(points, n=240):
 curves_j = {k: spline(v) for k, v in J.items()}
 curves_k = {k: spline(v) for k, v in K.items()}
 
-# 箱子加上放箭頭的邊界
+# 箱外留出放箭頭的空間
 # 每單位 0.6 吋
 x_range, y_range, unit = (-1.0, 11.15), (-0.8, 6.8), 0.6
 spec = CanvasSpec(
@@ -102,7 +102,7 @@ cv.add(
     )
 )
 
-# 到配置 A 為止的透鏡形
+# 到配置 A 為止的透鏡區域
 j1, k1 = curves_j[1], curves_k[1]
 near = lambda curve, point: int(np.argmin(np.hypot(*(curve - point).T)))
 gaps = [
@@ -151,7 +151,7 @@ for label, point in curve_labels.items():
 cv.add(TextLayer((-0.14, -0.20), "O_J", math=True, anchor="center", style=text, id="origin.j"))
 cv.add(TextLayer((10.30, 6.18), "O_K", math=True, anchor="center", style=text, id="origin.k"))
 
-# 軸上箭頭標出兩人的量
+# 以箭頭標示兩人的數量
 arrow, plain = Stroke(color=GREY, width=1.0, arrow=ArrowStyle.TRIANGLE), Stroke(
     color=GREY, width=1.0
 )

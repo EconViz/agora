@@ -20,9 +20,9 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
-# 陣列函數都能當效用
+# 陣列函式都能當作效用
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
@@ -55,7 +55,7 @@ cvs.save("custom.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import MultiGoodCD
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
 # 三種商品且 z 固定為 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})

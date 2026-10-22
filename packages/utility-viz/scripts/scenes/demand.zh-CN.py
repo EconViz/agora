@@ -21,7 +21,7 @@ from utility_viz import Config, solve
 from utility_viz.core.scenes import UTILITY_THEME, budget_layers, indifference_layers
 from utility_viz.models import CobbDouglas
 
-INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 同 manual.toml 的颜色
+INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 颜色与 manual.toml 相同
 settings = Config.load("manual.toml")
 text = TextStyle(color=INK, size=14, font="serif")
 

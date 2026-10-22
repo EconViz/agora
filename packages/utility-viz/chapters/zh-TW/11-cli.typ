@@ -93,18 +93,18 @@
 ]
 
 #example([```bash
-# Cobb-Douglas 與可行集合陰影
+# Cobb-Douglas 並為可行集合加陰影
 utility-viz plot --model cobb-douglas --alpha 0.5 --beta 0.5 \
               --px 2 --py 3 --income 30 \
               --fill --output cobb_douglas.png
 
-# LaTeX 與 Nord 主題加擴張路徑
+# 用 LaTeX 與 Nord 主題畫擴張路徑
 utility-viz plot --latex "x^{0.4} y^{0.6}" \
               --px 2 --py 3 --income 30 \
               --theme nord --show-ray \
               --output cd_latex.png
 
-# 完全互補與加大的畫布
+# 完全互補並放大畫布
 utility-viz plot --model leontief --a 1 --b 2 \
               --px 2 --py 3 --income 30 \
               --x-max 20 --y-max 15 \

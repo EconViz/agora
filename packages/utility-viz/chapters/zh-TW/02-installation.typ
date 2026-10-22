@@ -86,7 +86,7 @@ from utility_viz import Canvas, solve
 ```bash
 uv add "utility-viz[animation]"    # 以 Pillow 匯出 GIF
 uv add "utility-viz[interactive]"  # 筆記本互動元件
-uv add "utility-viz[all]"          # 全部選用依賴
+uv add "utility-viz[all]"          # 安裝全部選用套件
 ```
 
 安裝選用依賴不會自動執行動畫或開啟筆記本，仍需依各章範例呼叫對應的 API。

@@ -52,7 +52,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主题配色与手册线宽
+# 主题配色搭配手册线宽
 theme = replace(
     themes.default,
     background_color="#ffffff",
@@ -81,7 +81,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主题配色与手册线宽
+# 主题配色搭配手册线宽
 theme = replace(
     themes.nord,
     background_color="#ffffff",
@@ -110,7 +110,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主题配色与手册线宽
+# 主题配色搭配手册线宽
 theme = replace(
     themes.paper,
     background_color="#ffffff",
@@ -139,7 +139,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主题配色与手册线宽
+# 主题配色搭配手册线宽
 theme = replace(
     themes.monochrome,
     background_color="#ffffff",
@@ -168,7 +168,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主题配色与手册线宽
+# 主题配色搭配手册线宽
 theme = replace(
     themes.presentation,
     background_color="#ffffff",
@@ -294,7 +294,7 @@ cvs.save("theme_presentation.png")
   ```python
   from utility_viz import Config
 
-  Config.load().use()   # 默认读 ./utility-viz.toml
+  Config.load().use()   # 默认读取 ./utility-viz.toml
   ```
 
   此后创建的 `Canvas`、`Figure`、`DemandDiagram` 与 `EdgeworthBox` 都使用这组配置；调用 `Config.reset()` 可恢复内置默认值。
