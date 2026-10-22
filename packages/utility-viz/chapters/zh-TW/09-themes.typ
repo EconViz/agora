@@ -52,7 +52,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題配色 本手冊線寬
+# 主題配色與手冊線寬
 theme = replace(
     themes.default,
     background_color="#ffffff",
@@ -81,7 +81,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題配色 本手冊線寬
+# 主題配色與手冊線寬
 theme = replace(
     themes.nord,
     background_color="#ffffff",
@@ -110,7 +110,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題配色 本手冊線寬
+# 主題配色與手冊線寬
 theme = replace(
     themes.paper,
     background_color="#ffffff",
@@ -139,7 +139,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題配色 本手冊線寬
+# 主題配色與手冊線寬
 theme = replace(
     themes.monochrome,
     background_color="#ffffff",
@@ -168,7 +168,7 @@ from utility_viz.models import CobbDouglas
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 
-# 主題配色 本手冊線寬
+# 主題配色與手冊線寬
 theme = replace(
     themes.presentation,
     background_color="#ffffff",
@@ -241,7 +241,7 @@ cvs.save("theme_presentation.png")
   from utility_viz import Config
 
   Config.load("utility-viz.toml").use()
-  # 此後建立的圖形使用該設定
+  # 之後的圖形都用此設定
 
   Config.reset()
   # 恢復內建預設值
