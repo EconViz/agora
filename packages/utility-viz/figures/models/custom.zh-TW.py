@@ -5,7 +5,7 @@ from utility_viz.models import CustomUtility
 
 Config.load("manual.toml").use()  # 圖形設定
 
-# 任何陣列函數都可當效用
+# 陣列函數都能當效用
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 

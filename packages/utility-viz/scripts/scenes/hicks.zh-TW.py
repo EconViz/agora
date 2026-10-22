@@ -27,7 +27,8 @@ text = TextStyle(color=INK, size=14, font="serif")
 effect_name = TextStyle(color=INK, size=13, font="serif")
 
 # x 的價格由 2 漲到 4
-# A 舊 C 新 B 為補償點
+# A 舊點與 C 新點
+# B 為補償點
 model = CobbDouglas(alpha=0.5, beta=0.5)
 px0, px1, py, income = 2.0, 4.0, 3.0, 60.0
 result = decompose_price_effect(

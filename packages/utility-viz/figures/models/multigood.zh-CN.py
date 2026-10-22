@@ -3,7 +3,7 @@ from utility_viz.models import MultiGoodCD
 
 Config.load("manual.toml").use()  # 图形设置
 
-# 三种商品 固定 z = 10
+# 三种商品且 z 固定为 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})
 two_good_model = model.freeze(z=10.0)
 eq = solve(two_good_model, px=2.0, py=3.0, income=30.0)

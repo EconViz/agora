@@ -7,7 +7,7 @@ model = CobbDouglas(alpha=0.5, beta=0.5)
 budget = LinearBudget(px=2.0, py=2.0, income=40.0)
 path = PricePath(model, budget=budget, price="px", price_range=(0.8, 6.0), n=40)
 
-# 圍繞路徑中段最適點的曲線
+# 圍繞中段最適點的曲線
 eq = path.equilibria[len(path.equilibria) // 2]
 
 cvs = Canvas(x_max=25, y_max=20, x_label="$x$", y_label="$y$")

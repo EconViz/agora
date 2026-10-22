@@ -25,10 +25,10 @@ INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # 同 manual.toml 的顏色
 settings = Config.load("manual.toml")
 text = TextStyle(color=INK, size=12, font="serif")
 
-# 仿教科書的圖 箱寬 10 高 6
-# J 起於 O_J K 起於 O_K
+# 仿教科書的寬 10 高 6 箱子
+# J 與 K 各從 O_J 與 O_K 起
 # 曲線是過控制點的樣條
-J = {  # J 的控制點 由低到高
+J = {  # J 的控制點由低到高
     1: (
         [3.80, 3.91, 4.18, 4.59, 5.12, 5.75, 6.46, 7.16, 8.07],
         [5.15, 4.29, 3.49, 2.74, 2.08, 1.52, 1.07, 0.79, 0.58],
@@ -42,7 +42,7 @@ J = {  # J 的控制點 由低到高
         [5.40, 4.88, 4.39, 3.93, 3.50, 3.18, 2.91, 2.73, 2.63],
     ),
 }
-K = {  # K 的控制點 由外而內
+K = {  # K 的控制點由外而內
     1: (
         [3.38, 4.17, 4.91, 5.57, 5.95, 6.60, 6.93, 7.16, 7.19],
         [4.86, 4.65, 4.30, 3.83, 3.50, 2.57, 1.83, 0.79, 0.24],
@@ -151,7 +151,7 @@ for label, point in curve_labels.items():
 cv.add(TextLayer((-0.14, -0.20), "O_J", math=True, anchor="center", style=text, id="origin.j"))
 cv.add(TextLayer((10.30, 6.18), "O_K", math=True, anchor="center", style=text, id="origin.k"))
 
-# 沿軸的箭頭標出兩人的量
+# 軸上箭頭標出兩人的量
 arrow, plain = Stroke(color=GREY, width=1.0, arrow=ArrowStyle.TRIANGLE), Stroke(
     color=GREY, width=1.0
 )

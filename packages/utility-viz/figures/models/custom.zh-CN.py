@@ -5,7 +5,7 @@ from utility_viz.models import CustomUtility
 
 Config.load("manual.toml").use()  # 图形设置
 
-# 任何数组函数都可作效用
+# 数组函数都能作效用
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
 

@@ -1,5 +1,5 @@
 # 图形设置
-# 灰色曲线 黑色轴 白底
+# 白底黑轴灰曲线
 # 画图前先加载
 #
 #     Config.load("manual.toml").use()
@@ -93,7 +93,7 @@ size = 5
 [marker.point]
 size = 5
 
-[label.point]               # 点旁的文字 如 x*
+[label.point]               # 点旁的文字如 x*
 fontsize = 14
 position = "right"
 offset = 10
