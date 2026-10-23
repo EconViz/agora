@@ -193,7 +193,8 @@ window that fails to open does not mean the installation failed.
     [Distribution], [`pip install econ-viz`], [`pip install utility-viz`],
     [Import], [`import econ_viz`], [`import utility_viz`],
     [Command], [`econ-viz`], [`utility-viz`],
-    [Configuration file], [`econ-viz.toml`], [`utility-viz.toml`],
+    [Configuration file], [`econ-viz.toml`], [`econ-viz.toml`, shared by every EconViz package],
+    [Configuration layout], [`[color]`, `[stroke.*]`, `[legend]`, ... at the top level], [utility-viz's tables under `[utility]`; `base`, `[font]`, `[fonts]` and the shared colours at the top level],
   )
 ] <tab-migrate>
 
@@ -222,9 +223,11 @@ Throughout 2.x, documented 1.x code keeps working:
   `UtilityVizDeprecationWarning` naming the replacement.
 - The `econ-viz` command prints a deprecation warning and forwards its
   arguments to `utility-viz`.
-- A legacy `econ-viz.toml` is still read, with a warning (@sec-config-lookup);
-  `utility-viz init --migrate` copies it to `utility-viz.toml`
-  (@sec-cli-init).
+- A `utility-viz.toml`, the file name of the 2.0 betas up to 2.0.0b6, is
+  still read with a warning (@sec-config-lookup), and so are utility-viz's
+  tables at the top level of `econ-viz.toml`, the 1.x layout;
+  `utility-viz init --migrate` moves them under `[utility]` in
+  `econ-viz.toml` (@sec-cli-init).
 
 #api(("UtilityVizDeprecationWarning",), added: "v2.0.0b1")[
   A `FutureWarning` subclass, so it is shown by default. Its message states
@@ -261,8 +264,9 @@ APIs that may move between minor releases.
 
 === Removal in 3.0.0
 
-The `econ_viz` package, the `econ-viz` command and `econ-viz.toml` lookup
-are removed in 3.0.0, not 2.0.0. Only the documented 1.x API is covered;
+The `econ_viz` package, the `econ-viz` command, `utility-viz.toml` lookup
+and utility-viz's tables at the top level of `econ-viz.toml` are removed in
+3.0.0, not 2.0.0. Only the documented 1.x API is covered;
 undocumented deep paths such as `econ_viz.canvas.renderers` resolve on a
 best-effort basis and may disappear at any time.
 

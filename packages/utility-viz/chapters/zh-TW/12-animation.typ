@@ -80,7 +80,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 
 def draw(alpha: float) -> Canvas:
@@ -110,7 +110,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # 每格用同一組曲線
@@ -141,7 +141,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # 每格用同一組曲線

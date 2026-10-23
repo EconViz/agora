@@ -21,8 +21,8 @@ from scipy.interpolate import CubicSpline
 from utility_viz import Config
 from utility_viz.core.scenes import UTILITY_THEME
 
-INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # 顏色與 manual.toml 相同
-settings = Config.load("manual.toml")
+INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # 手冊主題的顏色
+settings = Config.load("econ-viz.toml")
 text = TextStyle(color=INK, size=12, font="serif")
 
 # 仿照教科書的箱子尺寸

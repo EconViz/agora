@@ -292,16 +292,16 @@ wheels = [
 
 [[package]]
 name = "mosaickit"
-version = "1.0.0rc4"
+version = "1.0.0rc6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "glyphkit" },
     { name = "matplotlib" },
     { name = "numpy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/63/e5/d868905de1e0d6e0b64e924456a2d7e5a43c36463928516039285be21a4f/mosaickit-1.0.0rc4.tar.gz", hash = "sha256:00a82a9b738c8f7b3aab136700ab6d67b7300c574a3d96c396a7bcd692426d02", size = 283985, upload-time = "2026-10-23T03:04:00.23Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2f/4d/5215f089057d05a1dc90db98a6150937045b821f89bd6de8f093d484e851/mosaickit-1.0.0rc6.tar.gz", hash = "sha256:b448b3d5b29c45b5917cae99284dfdee49168ba0affe8711737fac88d9eec981", size = 313513, upload-time = "2026-10-23T12:23:47.484Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bd/ad/c026656a22af575e1897c6e848f592c46c194af483496862a4fa1474868e/mosaickit-1.0.0rc4-py3-none-any.whl", hash = "sha256:1c41653c440e0bea97777554abf7da390af4557dcee40280118e66919754b40c", size = 120004, upload-time = "2026-10-23T03:03:58.745Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/60/46c81860b86064dc693fae68b41d361cc966ca91e9e7a485023f3c09e0c1/mosaickit-1.0.0rc6-py3-none-any.whl", hash = "sha256:4582f661206578696e9e351bf4139c6770a3eb6f9cbec1433bd5938878ea66c6", size = 136699, upload-time = "2026-10-23T12:23:45.779Z" },
 ]
 
 [[package]]
@@ -439,14 +439,14 @@ wheels = [
 
 [[package]]
 name = "principle-viz"
-version = "0.11.2"
+version = "0.12.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mosaickit" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b8/99/cb64dcc7e72cbddc290d6039e096d6036f12fbb7c3816e9bc7d424fe829c/principle_viz-0.11.2.tar.gz", hash = "sha256:570a1cda607890a7a2d183e998944d11eb610e6ef70f4d74a0868fdf305b89e4", size = 66168, upload-time = "2026-10-23T00:45:46.393Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0c/40/fef2edba981813527c7ddcd25c67c113efa10acfaa585271b50a1cda910f/principle_viz-0.12.1.tar.gz", hash = "sha256:7f13dcb3b254db610f4e09cd7f3837f5114bc368e5ade4a377d3764fc150e9fc", size = 72252, upload-time = "2026-10-23T13:26:47.311Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/4a/a2567216ef427ee819d52ab449c42f74f74dadb9adb3ccf9af051d370b81/principle_viz-0.11.2-py3-none-any.whl", hash = "sha256:b4fee82bdd32ad536e4d9569c09ab46c0b73ac14ccf1405af9b55b6a3e96155c", size = 94204, upload-time = "2026-10-23T00:45:44.859Z" },
+    { url = "https://files.pythonhosted.org/packages/db/08/52a24e8b9fa243b657dcf4624ab8c63cfb0c8db1da15907f3faec5d54af8/principle_viz-0.12.1-py3-none-any.whl", hash = "sha256:c2eb2ec59791c953f370d31f70566d039fe4024734418b33c133b4bce2ba6473", size = 101059, upload-time = "2026-10-23T13:26:45.96Z" },
 ]
 
 [[package]]
@@ -460,8 +460,8 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "mosaickit", specifier = ">=1.0.0rc4" },
-    { name = "principle-viz", specifier = "==0.11.2" },
+    { name = "mosaickit", specifier = ">=1.0.0rc6" },
+    { name = "principle-viz", specifier = "==0.12.1" },
 ]
 
 [[package]]

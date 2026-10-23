@@ -84,18 +84,19 @@
 == 標籤與圖層 <sec-labels>
 
 #changed("0.10.1", label: "Label")[每個內建標籤都可改名、隱藏或移動：新增 `Label`、`labels=`、`configure_label()` 與 `label_ids`]
+#changed("0.12.1", label: "Label")[新增 `top`、`bottom`、`left` 與 `right`，可在標籤定位後微調單一標籤]
 #changed("0.10.1", label: "MarketFigure.configure_layer")[每個圖層都可隱藏或顯示：新增 `visibility=`、`configure_layer()`、`hide()`、`show()` 與 `layer_ids`]
 
 圖中的每條線、每個點、每個區塊與每段文字都是一個圖層，各有固定的 id，例如 `market.demand`、`market.demand.label` 或 `market.welfare.dwl`。id 依圖形結構命名：座標軸為 `axes.*`，各元素為 `market.<部分>`，命名該元素的文字再加上 `.label` 後綴。`fig.layer_ids` 列出所有圖層；`fig.label_ids` 列出可設定的文字（標籤、座標軸標記與括號）。
 
-#api(("Label",), added: "v0.10.1", syntax: [
-  #raw("Label(text=None, visible=None, offset=None)")
+#api(("Label",), added: "v0.10.1", updated: "v0.12.1", syntax: [
+  #raw("Label(text=None, visible=None, offset=None, top=None, bottom=None, left=None, right=None)")
 ])[
-  覆寫一個內建標籤。值為 `None` 的欄位保留套件的預設值。指定 `offset`（單位為點）時，標籤不再自動放置，改為精確移動該距離。
+  覆寫一個內建標籤。值為 `None` 的欄位保留套件的預設值。指定 `offset`（單位為點）時，標籤不再自動放置，改為精確移動該距離。`top`、`bottom`、`left` 與 `right` 則在標籤定位之後再移動，位置仍由 principle-viz 決定，只做細部調整。
 ]
 
 #api(("MarketFigure.configure_label", "MarketFigure.configure_layer"), added: "v0.10.1", syntax: [
-  #raw("configure_label(")#meta("layer id")#raw(", label=None, *, text=None, visible=None, offset=None)") \
+  #raw("configure_label(")#meta("layer id")#raw(", label=None, *, text=None, visible=None, offset=None, top=None, bottom=None, left=None, right=None)") \
   #raw("configure_layer(")#meta("layer id")#raw(", *, visible)")
 ])[
   改名、隱藏或移動一個標籤（id 可省略結尾的 `.label`），或顯示、隱藏任一圖層。`hide(*ids)` 與 `show(*ids)` 一次切換多個圖層。每個方法都回傳圖形本身。
@@ -126,13 +127,27 @@ fig.finalize()
   改名的曲線與均衡點
 ]) <fig-labels>
 
+=== 微調標籤
+
+距離可為點數，或帶單位的字串：`"10pt"`、`"0.5em"`（以標籤字級為單位）或 `"2mm"`。`top` 與 `bottom` 可以合併使用，`right` 與 `left` 亦同。微調在自動定位或 `offset` 之後套用；之後加入的標籤仍會避開移動後的標籤，未設定微調的圖形維持不變。座標軸刻度標籤不支援微調。均衡點標籤的 id 為 `market.equilibrium`：
+
+```python
+from principle_viz import Label, MarketFigure
+
+fig = MarketFigure(labels={"market.equilibrium": Label(top="4pt")})
+fig.configure_label("market.supply", Label(right="8pt"))
+fig.configure_label("market.demand", text="$D_0$", left="0.5em")
+```
+
 == 配色與主題 <sec-palettes>
 
 #changed("0.1.0", label: "ColorModel")[`default`、`colorblind`、`nord` 與 `monochrome` 四種配色]
 #changed("0.10.0", label: "ColorModel")[`default` 配色改用 #pkg("mosaickit") 的色相：需求藍、供給紅、無謂損失青]
 #changed("0.10.0", label: "PlotTheme")[供需曲線寬 3.5 pt、座標軸 1.0 pt、均衡點直徑 6.5 pt]
+#changed("0.11.2", label: "ColorModel")[新增 `manual` 配色，即本手冊的灰階]
+#changed("0.12.1", label: "ColorModel")[配色改為 EconViz 共用主題，同一名稱在各 EconViz 套件中外觀一致；新增 `paper` 與 `presentation`]
 
-`ColorModel` 為每個經濟角色指定顏色；`PlotTheme` 再加上線寬與座標軸選項，並將兩者編譯為 #pkg("mosaickit") 主題。內建的四種配色如#ref(<tab-palettes>)。
+`ColorModel` 為每個經濟角色指定顏色；`PlotTheme` 再加上線寬與座標軸選項，並將兩者編譯為 #pkg("mosaickit") 主題。內建配色就是所有 EconViz 套件共用的主題（#ref(<tab-palettes>)），同一名稱在 utility-viz 與 principle-viz 中外觀一致。
 
 #api(("ColorModel",), syntax: [
   #raw("ColorModel(name, axis_color, label_color, demand_color, supply_color, ...)")
@@ -143,15 +158,20 @@ fig.finalize()
 #tbl(caption: [內建配色])[
   #booktabs(
     columns: (auto, 1fr),
-    header: ([名稱], [特色]),
-    [`default`], [#pkg("mosaickit") 色相：需求藍、供給紅、無謂損失青；剩餘沿用曲線色相，透明度 15%],
-    [`colorblind`], [色盲友善的質性配色],
-    [`nord`], [Nord 配色],
-    [`monochrome`], [黑、白與灰階，供印刷使用],
+    header: ([名稱], [特色與用途]),
+    [`manual`], [EconViz 手冊的灰階：黑色座標軸、供給曲線與箭頭，灰色需求曲線與剩餘區域，適合列印與講義],
+    [`default`], [需求藍、供給綠、無謂損失紅，租稅與價格管制橙；剩餘區域沿用曲線顏色，適合一般用途],
+    [`colorblind`], [與 `default` 相同的配色，以明確名稱標示],
+    [`monochrome`], [黑色曲線搭配灰階區域，適合黑白列印],
+    [`nord`], [採用 Nord 色盤的冷色系，適合螢幕與投影片],
+    [`paper`], [柔和色彩，適合論文],
+    [`presentation`], [色彩較鮮明，線條放大為 1.5 倍、均衡點放大為 1.3 倍，適合投影],
   )
 ] <tab-palettes>
 
-`list_color_models()` 回傳所有名稱，`get_color_model(name)` 回傳對應的配色；四種配色也以 `DEFAULT_COLOR_MODEL`、`COLORBLIND_COLOR_MODEL`、`NORD_COLOR_MODEL` 與 `MONOCHROME_COLOR_MODEL` 匯出。
+共用主題為各個角色指定顏色，`principle_viz.visuals.roles` 則決定各元素使用的角色：座標軸、標籤、基準線與箭頭使用 ink，需求使用 primary，供給使用 secondary，移動後的曲線使用 tertiary，租稅與價格管制使用 intervention，消費者剩餘、生產者剩餘、無謂損失與租稅收入分別使用 light、mid、dark 與 faint 填色。主題的線條與標記比例會乘上 principle-viz 自身的線寬與均衡點大小。內建主題不含深色主題。
+
+`list_color_models()` 回傳所有名稱，`get_color_model(name)` 回傳對應的配色；另匯出 `DEFAULT_COLOR_MODEL`、`COLORBLIND_COLOR_MODEL`、`NORD_COLOR_MODEL` 與 `MONOCHROME_COLOR_MODEL`。
 
 #api(("PlotTheme",), syntax: [
   #raw("PlotTheme(color_model=..., demand_linewidth=3.5, supply_linewidth=3.5, ...)") \
@@ -184,6 +204,54 @@ fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 #fig("/figures/figures/monochrome.zh-TW.svg", width: 46%, caption: [
   `monochrome` 配色
 ]) <fig-monochrome>
+
+== 設定檔 <sec-settings>
+
+#changed("0.12.0", label: "Config")[`Config.load("econ-viz.toml").use()` 讀取所有 EconViz 套件共用的設定檔]
+#changed("0.12.1", label: "Config")[改由 #pkg("mosaickit") 依 principle-viz 宣告的結構讀取並檢查檔案；共用的 `base` 決定起始主題]
+
+principle-viz 讀取所有 EconViz 套件共用的設定檔 `econ-viz.toml`，並由 #pkg("mosaickit") 讀取與檢查。頂層放置所有套件共用的設定：起始主題（`base`，可選#ref(<tab-palettes>)中的名稱）、字型，以及座標軸與標籤顏色。principle-viz 自身的設定放在 `[principle]` 表格中；其他套件的表格（例如 `[utility]`）會被略過。
+
+```toml
+base = "manual"      # 共用主題名稱
+
+[font]
+text = "serif"
+math = "fonts/texgyrepagella-math.otf"
+
+[fonts]
+serif = ["fonts/NotoSerifTC-Regular.otf", "fonts/NotoSerifTC-Bold.otf"]
+
+[principle]
+language = "zh-TW"   # 內建圖形文字
+
+[principle.color]    # 配色角色名稱
+demand = "#8c8c8c"
+
+[principle.stroke]   # 線寬以點為單位
+demand = 3.5
+
+[principle.marker]
+equilibrium = 6.5    # 均衡點直徑
+```
+
+`base = "manual"` 即為本手冊的黑白樣式，不必逐一寫出顏色與線寬。`[principle] palette` 仍可只為 principle-viz 設定配色，並優先於 `base`；`[principle.color]` 則設定單一元素。相對路徑以設定檔所在資料夾為準。
+
+#api(("Config.load", "Config.use", "default_theme"), added: "v0.12.0", syntax: [
+  ```python
+  from principle_viz import Config
+
+  Config.load("econ-viz.toml").use()
+  ```
+])[
+  `Config.load()` 讀取設定檔，`use()` 將其設為預設值：未傳入 `theme=` 或 `palette=` 的圖形都會採用，`default_theme()` 則回傳這些圖形使用的主題。直接傳入圖形的 `theme=` 或 `palette=` 仍優先。`mosaickit.econ_toml.use("econ-viz.toml")` 會一次為所有已安裝的 EconViz 套件載入此檔。
+]
+
+設定檔寫錯時會拋出 `mosaickit.ConfigurationError`，指出檔案與表格，並在有相近名稱時提示可能的正確寫法：
+
+```text
+econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
+```
 
 == 畫布
 

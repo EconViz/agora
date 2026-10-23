@@ -99,6 +99,7 @@ Each topic adds its own methods, described in its chapter (see
 == Labels and layers <sec-labels>
 
 #changed("0.10.1", label: "Label")[Every built-in label can be renamed, hidden or moved: `Label`, `labels=`, `configure_label()` and `label_ids`]
+#changed("0.12.1", label: "Label")[`top`, `bottom`, `left` and `right` nudge one label after it has been placed]
 #changed("0.10.1", label: "MarketFigure.configure_layer")[Every layer can be hidden or shown: `visibility=`, `configure_layer()`, `hide()`, `show()` and `layer_ids`]
 
 Every line, point, area and piece of text in a figure is a layer with a
@@ -109,16 +110,18 @@ suffix for the text that names it. `fig.layer_ids` lists every layer;
 `fig.label_ids` lists the configurable text (labels, axis marks and
 braces).
 
-#api(("Label",), added: "v0.10.1", syntax: [
-  #raw("Label(text=None, visible=None, offset=None)")
+#api(("Label",), added: "v0.10.1", updated: "v0.12.1", syntax: [
+  #raw("Label(text=None, visible=None, offset=None, top=None, bottom=None, left=None, right=None)")
 ])[
   An override for one built-in label. Fields left as `None` keep the
   package's default. An `offset` in points opts the label out of automatic
-  placement and moves it by exactly that much.
+  placement and moves it by exactly that much. `top`, `bottom`, `left` and
+  `right` instead move the label after it has been placed, so principle-viz
+  still picks the spot and you only fine-tune it.
 ]
 
 #api(("MarketFigure.configure_label", "MarketFigure.configure_layer"), added: "v0.10.1", syntax: [
-  #raw("configure_label(")#meta("layer id")#raw(", label=None, *, text=None, visible=None, offset=None)") \
+  #raw("configure_label(")#meta("layer id")#raw(", label=None, *, text=None, visible=None, offset=None, top=None, bottom=None, left=None, right=None)") \
   #raw("configure_layer(")#meta("layer id")#raw(", *, visible)")
 ])[
   Rename, hide or move one label (the id may omit its final `.label`), or
@@ -154,15 +157,36 @@ fig.finalize()
   Renamed curves and equilibrium
 ]) <fig-labels>
 
+=== Nudging a label
+
+A length is a number of points or a string with a unit: `"10pt"`, `"0.5em"`
+(the label's font size) or `"2mm"`. `top` and `bottom` combine, as do
+`right` and `left`. A nudge applies after automatic placement, or after an
+`offset`; later labels still avoid the moved one, and figures without
+nudges are unchanged. Axis tick labels do not take nudges. The equilibrium
+label's id is `market.equilibrium`:
+
+```python
+from principle_viz import Label, MarketFigure
+
+fig = MarketFigure(labels={"market.equilibrium": Label(top="4pt")})
+fig.configure_label("market.supply", Label(right="8pt"))
+fig.configure_label("market.demand", text="$D_0$", left="0.5em")
+```
+
 == Palettes and themes <sec-palettes>
 
 #changed("0.1.0", label: "ColorModel")[`default`, `colorblind`, `nord` and `monochrome` colour models]
 #changed("0.10.0", label: "ColorModel")[The `default` palette takes its hues from #pkg("mosaickit"): demand blue, supply red, deadweight loss teal]
 #changed("0.10.0", label: "PlotTheme")[Supply and demand curves are 3.5 pt wide, axes 1.0 pt, equilibrium points 6.5 pt across]
+#changed("0.11.2", label: "ColorModel")[New `manual` palette: the greys of this manual]
+#changed("0.12.1", label: "ColorModel")[The colour models are the shared EconViz themes, so one name gives the same look in every EconViz package; new `paper` and `presentation`]
 
 A `ColorModel` assigns a colour to each economic role; a `PlotTheme` adds line
 widths and axis options and compiles both into a #pkg("mosaickit") theme.
-@tab-palettes lists the four built-in colour models.
+The built-in colour models are the themes every EconViz package shares
+(@tab-palettes): the same name gives the same look in utility-viz and
+principle-viz.
 
 #api(("ColorModel",), syntax: [
   #raw("ColorModel(name, axis_color, label_color, demand_color, supply_color, ...)")
@@ -177,17 +201,28 @@ widths and axis options and compiles both into a #pkg("mosaickit") theme.
 #tbl(caption: [Built-in colour models])[
   #booktabs(
     columns: (auto, 1fr),
-    header: ([Name], [Character]),
-    [`default`], [#pkg("mosaickit") hues: demand blue, supply red, deadweight loss teal; surpluses in the curve hues at 15% opacity],
-    [`colorblind`], [A colour-blind-friendly qualitative palette],
-    [`nord`], [The Nord palette],
-    [`monochrome`], [Black, white and greys, for print],
+    header: ([Name], [Character and use]),
+    [`manual`], [The greys of the EconViz manuals: black axes, supply and arrows, a grey demand curve, grey surplus regions. For print and handouts],
+    [`default`], [Demand blue, supply green, deadweight loss red, taxes and controls orange; the surpluses follow the curves. The everyday choice],
+    [`colorblind`], [The colours of `default` under an explicit name],
+    [`monochrome`], [Black curves and a grey ladder for the regions, for black-and-white printing],
+    [`nord`], [Cool colours of the Nord palette, for screens and slides],
+    [`paper`], [Muted colours, for papers],
+    [`presentation`], [Brighter colours, with lines 1.5 and the equilibrium dot 1.3 times as large, for projection],
   )
 ] <tab-palettes>
 
+A shared theme gives a colour to each role, and `principle_viz.visuals.roles`
+says which role each element takes: the axis, labels, baseline and arrows
+take ink, demand primary, supply secondary, shifted curves tertiary, taxes
+and controls intervention, and consumer surplus, producer surplus,
+deadweight loss and tax revenue the light, mid, dark and faint fills. The
+theme's line and marker scales multiply principle-viz's own line widths and
+equilibrium dot. There is no dark theme.
+
 `list_color_models()` returns the names and `get_color_model(name)` the
-model; the four are also exported as `DEFAULT_COLOR_MODEL`,
-`COLORBLIND_COLOR_MODEL`, `NORD_COLOR_MODEL` and `MONOCHROME_COLOR_MODEL`.
+model; `DEFAULT_COLOR_MODEL`, `COLORBLIND_COLOR_MODEL`, `NORD_COLOR_MODEL`
+and `MONOCHROME_COLOR_MODEL` are also exported.
 
 #api(("PlotTheme",), syntax: [
   #raw("PlotTheme(color_model=..., demand_linewidth=3.5, supply_linewidth=3.5, ...)") \
@@ -231,6 +266,69 @@ fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 #fig("/figures/figures/monochrome.svg", width: 46%, caption: [
   The `monochrome` palette
 ]) <fig-monochrome>
+
+== Settings file <sec-settings>
+
+#changed("0.12.0", label: "Config")[`Config.load("econ-viz.toml").use()` reads the settings file every EconViz package shares]
+#changed("0.12.1", label: "Config")[#pkg("mosaickit") reads and checks the file from the schema principle-viz declares; the shared `base` picks the starting theme]
+
+principle-viz reads `econ-viz.toml`, the settings file every EconViz package
+shares; #pkg("mosaickit") reads and checks it. The top level sets what every
+package shares: the starting theme (`base`, one of @tab-palettes), the fonts
+and the axis and label colours. principle-viz's own settings live in the
+`[principle]` table; the tables of other packages, such as `[utility]`, are
+skipped.
+
+```toml
+base = "manual"      # a shared theme: manual, default, colorblind,
+                     # monochrome, nord, paper or presentation
+
+[font]
+text = "serif"
+math = "fonts/texgyrepagella-math.otf"
+
+[fonts]
+serif = ["fonts/NotoSerifTC-Regular.otf", "fonts/NotoSerifTC-Bold.otf"]
+
+[principle]
+language = "zh-TW"   # built-in figure text
+
+[principle.color]    # a colour-model role, without "_color"
+demand = "#8c8c8c"
+
+[principle.stroke]   # line widths in points
+demand = 3.5
+
+[principle.marker]
+equilibrium = 6.5    # equilibrium dot diameter in points
+```
+
+`base = "manual"` gives the black-and-white look of this manual, so its
+colours and widths need not be spelled out. `[principle] palette` still
+sets the colours for principle-viz alone and wins over `base`;
+`[principle.color]` sets one element. Relative paths are read from the
+folder of the file.
+
+#api(("Config.load", "Config.use", "default_theme"), added: "v0.12.0", syntax: [
+  ```python
+  from principle_viz import Config
+
+  Config.load("econ-viz.toml").use()
+  ```
+])[
+  `Config.load()` reads the file and `use()` makes it the default: figures
+  made without `theme=` or `palette=` then use it, and `default_theme()`
+  returns the theme they get. A `theme=` or `palette=` passed to a figure
+  still wins. `mosaickit.econ_toml.use("econ-viz.toml")` loads the file for
+  every installed EconViz package at once.
+]
+
+A mistake raises `mosaickit.ConfigurationError` naming the file and the
+table, with the closest key when one is close:
+
+```text
+econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
+```
 
 == Canvases
 

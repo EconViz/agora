@@ -13,8 +13,10 @@ style objects.
 #changed("1.11.0", label: "Theme")[Complete theme system: background colour, label scale and defaults for every economic layer]
 #changed("1.11.0", label: "themes")[New `paper`, `monochrome`, `presentation` and `dark` themes]
 #changed("1.12.0", label: "Theme")[Colour, width and opacity of secondary indifference curves]
+#changed("2.0.0b8", label: "themes")[The built-in themes are the shared EconViz themes, so one name gives the same look in every EconViz package; new `manual` theme]
+#changed("2.0.0b8", label: "themes")[No `dark` theme: `themes.dark` and `base = "dark"` warn and use `default`]
 
-#api(("themes",), updated: "v1.11.0", syntax: [
+#api(("themes",), updated: "v2.0.0b8", syntax: [
   ```python
   from utility_viz import Canvas, themes
 
@@ -28,19 +30,29 @@ style objects.
   #tbl(caption: [Built-in themes])[
     #booktabs(
       columns: (auto, 1fr),
-      header: ([Name], [Character]),
-      [`default`], [Colour-blind-friendly default palette],
-      [`colorblind`], [Alias with the same palette as `default`],
-      [`nord`], [Cool theme on the Nord palette],
-      [`paper`], [Transparent background and fine lines for print],
-      [`monochrome`], [Black and white; layers told apart by line style and marker],
-      [`presentation`], [Larger labels, lines and markers for projection],
-      [`dark`], [Dark background with matching foreground colours],
+      header: ([Name], [Character and use]),
+      [`manual`], [The black and white of the EconViz manuals and the playground: white page, black axes and points, grey curves. For print and handouts],
+      [`default`], [Colour-blind-friendly palette on a transparent background. The everyday choice],
+      [`colorblind`], [The colours of `default` under an explicit name],
+      [`nord`], [Cool colours of the Nord palette, for screens and slides],
+      [`paper`], [Muted colours and finer lines on a transparent background, for papers],
+      [`monochrome`], [Black only; layers told apart by line style and marker, for black-and-white printing],
+      [`presentation`], [Brighter colours, with lines 1.5, markers 1.3 and labels 1.25 times as large, for projection],
     )
   ] <tab-themes>
 
-  The Python API and the `base` key of a configuration file accept all seven
-  names#footnote[Passed directly to `--theme` on the command line, only the six themes other than the `colorblind` alias are accepted.].
+  The Python API, the `base` key of a configuration file and `--theme` on
+  the command line accept all seven names. The same name gives the same
+  look in every EconViz package: each theme gives a colour to a role (ink,
+  primary, constraint, accent, ...), and utility-viz decides which role each
+  element takes (`utility_viz.core.themes.roles`). Indifference curves take
+  primary, the budget line constraint, the equilibrium and other points
+  accent, and the axes and labels ink. Line widths and point sizes are
+  utility-viz's own; a theme only scales them.
+
+  There is no dark theme. `themes.dark`, `base = "dark"` and `--theme dark`
+  emit a `UtilityVizDeprecationWarning` and use `default` throughout 2.x;
+  set `background` under `[color]` for an opaque backdrop.
 
   The default theme takes its colours from a colour-blind-friendly palette
   #citep(<thriveth2014>).
@@ -51,7 +63,7 @@ style objects.
   impaired students cannot follow it #citep(<kugler1996>).
 ]
 
-The figures below show the same Cobb-Douglas diagram in each built-in theme except `dark`, with the manual's line weights on a white page.
+The figures below show the same Cobb-Douglas diagram in five built-in themes, with the manual's line weights on a white page. `manual` is the look of every other figure in this manual, and `colorblind` has the colours of `default`.
 
 #example([```python
 from dataclasses import replace
@@ -251,12 +263,14 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
 #changed("1.11.0", label: "Config")[Configuration files accept every built-in theme and keep the same visual meaning across diagram types]
 #changed("2.0.0b1", label: "Config")[Default file renamed `utility-viz.toml`; legacy `econ-viz.toml` still read with a warning]
 #changed("2.0.0b1", label: "Config.discover")[New `Config.discover()`, falling back to the built-in defaults when no file exists]
+#changed("2.0.0b7", label: "Config")[`econ-viz.toml` is the settings file again, shared by every EconViz package; `utility-viz.toml` is still read with a warning]
+#changed("2.0.0b8", label: "Config")[utility-viz's own settings live under `[utility]`; #pkg("mosaickit") reads and checks the file; the old layout is still read with a warning]
 
-#api(("Config.load", "Config.use", "Config.reset"), added: "v1.10.0", syntax: [
+#api(("Config.load", "Config.use", "Config.reset"), added: "v1.10.0", updated: "v2.0.0b8", syntax: [
   ```python
   from utility_viz import Config
 
-  Config.load("utility-viz.toml").use()
+  Config.load("econ-viz.toml").use()
   # later diagrams use these settings
 
   Config.reset()
@@ -272,11 +286,17 @@ other lines; markers, labels, fills and legends come from `Marker`, `Label`,
 
 Figures in one set of lecture notes or one paper usually share their
 colours and line styles. Rather than repeating the same arguments on every
-`Canvas`, write the style once in an `utility-viz.toml` at the project root,
-where both Python and the command line read it.
+`Canvas`, write the style once in an `econ-viz.toml` at the project root.
+Python, the command line and every other EconViz package read the same file;
+#pkg("mosaickit") parses it for all of them.
+
+The top level of the file holds what every package shares: `base`, `[font]`,
+`[fonts]` and the `background`, `axis` and `label` colours in `[color]`.
+utility-viz keeps its own settings under `[utility]`; other packages keep
+theirs in their own table, such as `[principle]`, which utility-viz skips.
 
 + *Create a template.* Run the following in the project root. It writes a
-  commented `utility-viz.toml` listing the names and fields each section
+  commented `econ-viz.toml` listing the names and fields each table
   accepts:
 
   ```bash
@@ -286,55 +306,80 @@ where both Python and the command line read it.
   Every setting in the template starts commented out; keep only what you
   change and delete the rest.
 
-+ *Pick a base theme.* `base` names the built-in theme to start from
-  (@tab-themes); everything else overrides it:
++ *Pick a base theme.* `base` names the shared theme to start from
+  (@tab-themes); everything else overrides it. `base = "manual"` gives the
+  black-and-white look of the manuals, so colours and widths need not be
+  spelled out:
 
   ```toml
-  base = "paper"
+  base = "manual"
   ```
 
-+ *Override colours and styles.* Write only the fields you change:
++ *Set the shared fonts and colours.* Fonts go under `[font]` as `text`
+  (`"sans"`, `"serif"` or `"mono"`) and `math` (the path of a math font),
+  and font files under `[fonts]` as `sans`, `serif` and `mono`, each a file
+  or a list of files. A relative path is read from the folder of the TOML
+  file:
 
   ```toml
+  [font]
+  text = "serif"
+  math = "fonts/texgyrepagella-math.otf"
+
+  [fonts]
+  serif = ["fonts/texgyrepagella-regular.otf", "fonts/texgyrepagella-bold.otf"]
+
   [color]
+  background = "#ffffff"
+  ```
+
++ *Override utility-viz's elements.* Write only the fields you change,
+  under `[utility]`:
+
+  ```toml
+  [utility.color]
   ic = "#1B4F72"
   eq = "#C0392B"
 
-  [stroke.budget]
+  [utility.stroke.budget]
   width = 1.6
   style = "dashed"
 
-  [marker.eq]
+  [utility.marker.eq]
   size = 5
 
-  [label.point]
+  [utility.label.point]
   fontsize = 11
   position = "right"
+  top = "2pt"
   ```
 
-  Section names map to theme properties: `ic` under `[color]` sets
-  `ic_color`, and `[stroke.budget]` sets `theme.budget_stroke`. The fields
-  inside a section are the arguments of `Stroke`, `Marker`, `Label`, `Fill`
-  or `Legend` (@sec-styles). Fonts go under `[font]` as `text` (`"sans"`, `"serif"` or `"mono"`) and `math` (the path of a math font), and font files under `[fonts]` as `sans`, `serif` and `mono`, each a file or a list of files. A relative path is read from the folder of the TOML file.
-  Fields you leave out keep the base theme's values.
+  Table names map to theme properties: `ic` under `[utility.color]` sets
+  `ic_color`, and `[utility.stroke.budget]` sets `theme.budget_stroke`. The
+  fields inside a table are the arguments of `Stroke`, `Marker`, `Label`,
+  `Fill` or `Legend` (@sec-styles); `top`, `bottom`, `left` and `right` in
+  `[utility.label.<name>]` nudge every label of that kind by a length in
+  pt, mm, cm or in. Fields you leave out keep the base theme's values.
 
 + *Use it from Python.* Load it once, before creating any diagram:
 
   ```python
   from utility_viz import Config
 
-  Config.load().use()   # reads ./utility-viz.toml by default
+  Config.load("econ-viz.toml").use()
   ```
 
   Every `Canvas`, `Figure`, `DemandDiagram` and `EdgeworthBox` created
   afterwards uses these settings; `Config.reset()` restores the defaults.
+  `mosaickit.econ_toml.use("econ-viz.toml")` loads the file for every
+  installed EconViz package at once.
 
 + *Use it from the command line.* `utility-viz plot` reads
-  `utility-viz.toml` from the current directory on its own; pass another
+  `econ-viz.toml` from the current directory on its own; pass another
   file with `--config`:
 
   ```bash
-  utility-viz plot --config utility-viz.toml --model cobb-douglas \
+  utility-viz plot --config econ-viz.toml --model cobb-douglas \
     --px 2 --py 3 --income 30 --output figure.png
   ```
 
@@ -343,11 +388,12 @@ or a drawing method, then the configuration file, then the base theme. For
 example, `Canvas(theme=themes.default)` ignores the file's theme.
 
 A mistake in the file makes `Config.load()` raise `InvalidParameterError`
-with the valid names. For instance, writing `[stroke.budgt]` for
-`[stroke.budget]` gives:
+naming the file and the table, with the closest name when one is close. For
+instance, writing `[utility.stroke.budgt]` for `[utility.stroke.budget]`
+gives:
 
 ```text
-utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ...)
+econ-viz.toml: [utility.stroke.budgt] no such setting; did you mean 'budget'? (choose: axis, box, budget, ...)
 ```
 
 
@@ -364,14 +410,19 @@ file in this order:
 
 + the path given explicitly (`Config.load("file.toml")` or `--config`),
   which must exist and is the only file read;
-+ `utility-viz.toml` in the current directory (or `directory=`);
-+ the legacy `econ-viz.toml`, with a deprecation warning;
++ `econ-viz.toml` in the current directory (or `directory=`);
++ `utility-viz.toml`, the name the 2.0 betas used up to 2.0.0b6, with a
+  deprecation warning;
 + the built-in defaults.
 
-When both files exist, `utility-viz.toml` wins and the legacy one is ignored
-with a warning. The two functions differ only when no file is found:
+When both files exist, `econ-viz.toml` wins and `utility-viz.toml` is
+ignored with a warning. The two functions differ only when no file is found:
 `Config.load()` raises `InvalidParameterError` ("config file not found"),
 as in 1.x, while `Config.discover()` returns the built-in defaults.
-`utility-viz init --migrate` turns a legacy file into `utility-viz.toml`
-(@sec-cli-init).
 
+Files written for 2.0.0b7 and earlier keep utility-viz's tables at the top
+level (`[color] ic`, `[stroke.budget]`, `[legend]`, ...). They are still
+read until 3.0, with one `UtilityVizDeprecationWarning` per load naming
+the new place of each table; a key under `[utility]` wins over the same key
+at the top level. `utility-viz init --migrate` moves the tables under
+`[utility]` and keeps the comments (@sec-cli-init).

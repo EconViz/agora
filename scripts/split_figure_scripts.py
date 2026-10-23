@@ -8,7 +8,7 @@ of that group, drops the others and the command line, and ends with calls that d
 
     packages/<package>/figures/<group>/<group>.py
 
-Put the script in scripts/ next to config/figures.toml and run it; the figures land in figures/.
+Put the script in scripts/, next to config/ (the settings files), and run it; the figures land in figures/.
 """
 
 from __future__ import annotations

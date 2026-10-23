@@ -21,8 +21,8 @@ from utility_viz import Config, solve
 from utility_viz.core.scenes import UTILITY_THEME, budget_layers, indifference_layers
 from utility_viz.models import CobbDouglas
 
-INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 顏色與 manual.toml 相同
-settings = Config.load("manual.toml")
+INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 手冊主題的顏色
+settings = Config.load("econ-viz.toml")
 text = TextStyle(color=INK, size=14, font="serif")
 
 # Cobb-Douglas 的 x 需求

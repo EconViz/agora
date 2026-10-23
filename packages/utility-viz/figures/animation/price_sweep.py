@@ -4,7 +4,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # same curves in every frame

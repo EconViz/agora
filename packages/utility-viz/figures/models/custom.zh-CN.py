@@ -3,7 +3,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 # 数组函数都能当作效用
 model = CustomUtility(func=lambda x, y: np.log(x) + np.log(y), name="log+log")

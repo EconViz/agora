@@ -50,7 +50,7 @@ x^{0.5} y^{0.5}
 #example([```python
 from utility_viz import Canvas, Config, levels, parse_latex, solve
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = parse_latex(r"\min(2x, 3y)")  # Leontief(a=2.0, b=3.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -69,7 +69,7 @@ cvs.save("leontief.png")
 #example([```python
 from utility_viz import Canvas, Config, levels, parse_latex, solve
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = parse_latex(r"2x + 3y")  # PerfectSubstitutes(a=2.0, b=3.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)

@@ -1,0 +1,18 @@
+# 手册图形的共用设置
+# 白底黑轴与灰色曲线
+# 画图前先加载本文件
+#
+#     Config.load("econ-viz.toml").use()
+#
+# 顶层放共用设置
+# 软件包设置放在 [utility]
+
+base = "manual"             # 手册的黑白样式
+
+# 字体文件放在本文件旁
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = ["NotoSerifSC-Regular.ttf", "NotoSerifSC-Bold.ttf"]

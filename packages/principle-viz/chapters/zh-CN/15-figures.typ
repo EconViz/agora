@@ -84,18 +84,20 @@
 == 标签与图层 <sec-labels>
 
 #changed("0.10.1", label: "Label")[每个内建标签都可改名、隐藏或移动：新增 `Label`、`labels=`、`configure_label()` 与 `label_ids`]
+#changed("0.12.1", label: "Label")[添加 `top`、`bottom`、`left` 与 `right`，可在标签定位后微调单个标签]
 #changed("0.10.1", label: "MarketFigure.configure_layer")[每个图层都可隐藏或显示：新增 `visibility=`、`configure_layer()`、`hide()`、`show()` 与 `layer_ids`]
 
 图中的每条线、每个点、每个区块与每段文字都是一个图层，各有固定的 id，例如 `market.demand`、`market.demand.label` 或 `market.welfare.dwl`。id 依图形结构命名：坐标轴为 `axes.*`，各元素为 `market.<部分>`，命名该元素的文字再加上 `.label` 后缀。`fig.layer_ids` 列出所有图层；`fig.label_ids` 列出可设置的文字（标签、坐标轴标记与括号）。
 
-#api(("Label",), added: "v0.10.1", syntax: [
-  #raw("Label(text=None, visible=None, offset=None)")
+#api(("Label",), added: "v0.10.1", updated: "v0.12.1", syntax: [
+  #raw("Label(text=None, visible=None, offset=None, top=None, bottom=None, left=None, right=None)")
 ])[
-  覆盖一个内建标签。值为 `None` 的字段保留软件包的默认值。指定 `offset`（单位为点）时，标签不再自动放置，改为精确移动该距离。
+  覆盖一个内建标签。值为 `None` 的字段保留软件包的默认值。指定 `offset`（单位为点）时，标签不再自动放置，改为精确移动该距离。`top`、`bottom`、`left` 与 `right` 则在标签定位之后再移动，位置仍由 principle-viz 决定，只做细部调整。
 ]
 
+
 #api(("MarketFigure.configure_label", "MarketFigure.configure_layer"), added: "v0.10.1", syntax: [
-  #raw("configure_label(")#meta("layer id")#raw(", label=None, *, text=None, visible=None, offset=None)") \
+  #raw("configure_label(")#meta("layer id")#raw(", label=None, *, text=None, visible=None, offset=None, top=None, bottom=None, left=None, right=None)") \
   #raw("configure_layer(")#meta("layer id")#raw(", *, visible)")
 ])[
   改名、隐藏或移动一个标签（id 可省略结尾的 `.label`），或显示、隐藏任一图层。`hide(*ids)` 与 `show(*ids)` 一次切换多个图层。每个方法都返回图形本身。
@@ -126,13 +128,27 @@ fig.finalize()
   改名的曲线与均衡点
 ]) <fig-labels>
 
+=== 微调标签
+
+距离可为点数，或带单位的字符串：`"10pt"`、`"0.5em"`（以标签字号为单位）或 `"2mm"`。`top` 与 `bottom` 可以合并使用，`right` 与 `left` 亦同。微调在自动定位或 `offset` 之后应用；之后加入的标签仍会避开移动后的标签，未设置微调的图形保持不变。坐标轴刻度标签不支持微调。均衡点标签的 id 为 `market.equilibrium`：
+
+```python
+from principle_viz import Label, MarketFigure
+
+fig = MarketFigure(labels={"market.equilibrium": Label(top="4pt")})
+fig.configure_label("market.supply", Label(right="8pt"))
+fig.configure_label("market.demand", text="$D_0$", left="0.5em")
+```
+
 == 配色与主题 <sec-palettes>
 
 #changed("0.1.0", label: "ColorModel")[`default`、`colorblind`、`nord` 与 `monochrome` 四种配色]
 #changed("0.10.0", label: "ColorModel")[`default` 配色改用 #pkg("mosaickit") 的色相：需求蓝、供给红、无谓损失青]
 #changed("0.10.0", label: "PlotTheme")[供需曲线宽 3.5 pt、坐标轴 1.0 pt、均衡点直径 6.5 pt]
+#changed("0.11.2", label: "ColorModel")[添加 `manual` 配色，即本手册的灰阶]
+#changed("0.12.1", label: "ColorModel")[配色改为 EconViz 共享主题，同一名称在各 EconViz 软件包中外观一致；添加 `paper` 与 `presentation`]
 
-`ColorModel` 为每个经济角色指定颜色；`PlotTheme` 再加上线宽与坐标轴选项，并将两者编译为 #pkg("mosaickit") 主题。内建的四种配色如#ref(<tab-palettes>)。
+`ColorModel` 为每个经济角色指定颜色；`PlotTheme` 再加上线宽与坐标轴选项，并将两者编译为 #pkg("mosaickit") 主题。内置配色就是所有 EconViz 软件包共享的主题（#ref(<tab-palettes>)），同一名称在 utility-viz 与 principle-viz 中外观一致。
 
 #api(("ColorModel",), syntax: [
   #raw("ColorModel(name, axis_color, label_color, demand_color, supply_color, ...)")
@@ -140,18 +156,23 @@ fig.finalize()
   具名的颜色角色：`axis_color`、`label_color`、`demand_color`、`supply_color`、`baseline_color`、`shifted_color`、`tax_color`、`control_color`、`cs_color`、`ps_color`、`tax_revenue_color`、`dwl_color` 与 `arrow_color`。每个值可为 `"#hex"` 或 `"blue"` 等 #pkg("mosaickit") 调色板名称。
 ]
 
-#tbl(caption: [内建配色])[
+#tbl(caption: [内置配色])[
   #booktabs(
     columns: (auto, 1fr),
-    header: ([名称], [特色]),
-    [`default`], [#pkg("mosaickit") 色相：需求蓝、供给红、无谓损失青；剩余沿用曲线色相，透明度 15%],
-    [`colorblind`], [色盲友善的质性配色],
-    [`nord`], [Nord 配色],
-    [`monochrome`], [黑、白与灰阶，供印刷使用],
+    header: ([名称], [特色与用途]),
+    [`manual`], [EconViz 手册的灰阶：黑色坐标轴、供给曲线与箭头，灰色需求曲线与剩余区域，适合打印与讲义],
+    [`default`], [需求蓝、供给绿、无谓损失红，税收与价格管制橙；剩余区域沿用曲线颜色，适合日常使用],
+    [`colorblind`], [与 `default` 相同的配色，以明确名称标示],
+    [`monochrome`], [黑色曲线搭配灰阶区域，适合黑白打印],
+    [`nord`], [采用 Nord 色盘的冷色系，适合屏幕与幻灯片],
+    [`paper`], [柔和颜色，适合论文],
+    [`presentation`], [颜色更鲜明，线条放大为 1.5 倍、均衡点放大为 1.3 倍，适合投影],
   )
 ] <tab-palettes>
 
-`list_color_models()` 返回所有名称，`get_color_model(name)` 返回对应的配色；四种配色也以 `DEFAULT_COLOR_MODEL`、`COLORBLIND_COLOR_MODEL`、`NORD_COLOR_MODEL` 与 `MONOCHROME_COLOR_MODEL` 导出。
+共享主题为各个角色指定颜色，`principle_viz.visuals.roles` 则决定各元素使用的角色：坐标轴、标签、基准线与箭头使用 ink，需求使用 primary，供给使用 secondary，移动后的曲线使用 tertiary，税收与价格管制使用 intervention，消费者剩余、生产者剩余、无谓损失与税收收入分别使用 light、mid、dark 与 faint 填色。主题的线条与标记比例会乘以 principle-viz 自身的线宽与均衡点大小。内置主题不含深色主题。
+
+`list_color_models()` 返回所有名称，`get_color_model(name)` 返回对应的配色；另导出 `DEFAULT_COLOR_MODEL`、`COLORBLIND_COLOR_MODEL`、`NORD_COLOR_MODEL` 与 `MONOCHROME_COLOR_MODEL`。
 
 #api(("PlotTheme",), syntax: [
   #raw("PlotTheme(color_model=..., demand_linewidth=3.5, supply_linewidth=3.5, ...)") \
@@ -184,6 +205,54 @@ fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 #fig("/figures/figures/monochrome.zh-CN.svg", width: 46%, caption: [
   `monochrome` 配色
 ]) <fig-monochrome>
+
+== 配置文件 <sec-settings>
+
+#changed("0.12.0", label: "Config")[`Config.load("econ-viz.toml").use()` 读取所有 EconViz 软件包共享的配置文件]
+#changed("0.12.1", label: "Config")[改由 #pkg("mosaickit") 按 principle-viz 声明的结构读取并检查文件；共享的 `base` 决定起始主题]
+
+principle-viz 读取所有 EconViz 软件包共享的配置文件 `econ-viz.toml`，并由 #pkg("mosaickit") 读取与检查。顶层放置所有软件包共享的配置：起始主题（`base`，可选#ref(<tab-palettes>)中的名称）、字体，以及坐标轴与标签颜色。principle-viz 自身的配置放在 `[principle]` 表中；其他软件包的表（例如 `[utility]`）会被跳过。
+
+```toml
+base = "manual"      # 共享主题名称
+
+[font]
+text = "serif"
+math = "fonts/texgyrepagella-math.otf"
+
+[fonts]
+serif = ["fonts/NotoSerifSC-Regular.ttf", "fonts/NotoSerifSC-Bold.ttf"]
+
+[principle]
+language = "zh-CN"   # 内置图形文字
+
+[principle.color]    # 配色角色名称
+demand = "#8c8c8c"
+
+[principle.stroke]   # 线宽以点为单位
+demand = 3.5
+
+[principle.marker]
+equilibrium = 6.5    # 均衡点直径
+```
+
+`base = "manual"` 即为本手册的黑白样式，无须逐一写出颜色与线宽。`[principle] palette` 仍可只为 principle-viz 设置配色，并优先于 `base`；`[principle.color]` 则设置单个元素。相对路径以配置文件所在文件夹为准。
+
+#api(("Config.load", "Config.use", "default_theme"), added: "v0.12.0", syntax: [
+  ```python
+  from principle_viz import Config
+
+  Config.load("econ-viz.toml").use()
+  ```
+])[
+  `Config.load()` 读取配置文件，`use()` 将其设为默认值：未传入 `theme=` 或 `palette=` 的图形都会采用，`default_theme()` 则返回这些图形使用的主题。直接传入图形的 `theme=` 或 `palette=` 仍优先。`mosaickit.econ_toml.use("econ-viz.toml")` 会一次为所有已安装的 EconViz 软件包加载此文件。
+]
+
+配置文件写错时会抛出 `mosaickit.ConfigurationError`，指出文件与表，并在有相近名称时提示可能的正确写法：
+
+```text
+econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
+```
 
 == 画布
 

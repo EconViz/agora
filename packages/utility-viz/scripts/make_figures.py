@@ -11,7 +11,8 @@ picture as `figures/<group>/<name>.svg`.
 
 What the script adds to the examples, and nothing else:
 
-* the working directory holds `manual.toml` (the settings the examples load, fonts included) and the font files it names;
+* the working directory holds `econ-viz.toml` (the edition's settings, `config/econ-viz[.<edition>].toml`,
+  which the examples load) and the font files it names;
 * every `save()` is redirected to the figure's SVG, cropped to its content on a white page;
 * an animation example saves a GIF; the figure shows four frames of it (see FRAMES).
 
@@ -33,7 +34,6 @@ import subprocess
 import sys
 import tempfile
 import textwrap
-import tomllib
 import warnings
 from pathlib import Path
 
@@ -42,8 +42,9 @@ import matplotlib
 matplotlib.use("Agg")
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
-OUT = ROOT / CONFIG["output"]["dir"]
+OUT = ROOT / "figures"
+# Where the font files named in config/econ-viz*.toml live besides agora/fonts (relative to TEXMFDIST).
+TEXMF_DIRS = ["fonts/opentype/public/tex-gyre", "fonts/opentype/public/tex-gyre-math"]
 EDITIONS = ["en", "zh-TW", "zh-CN"]
 
 # An animation figure shows four frames of the GIF its example saves: these values of `frames`.
@@ -91,7 +92,7 @@ def program(code: str) -> str:
 
 
 def check_settings() -> None:
-    """The translated settings files differ from manual.toml in their comments and fonts only."""
+    """The translated settings files differ from econ-viz.toml in their comments and fonts only."""
     def settings(text: str) -> list[str]:
         """Settings lines without comments and without [font] and [fonts], which differ by edition."""
         lines, skipping = [], False
@@ -102,10 +103,10 @@ def check_settings() -> None:
                 lines.append(re.sub(r"\s+# .*$", "", line))
         return lines
 
-    shown = settings((ROOT / "config" / "manual.toml").read_text())
+    shown = settings((ROOT / "config" / "econ-viz.toml").read_text())
     for edition in EDITIONS[1:]:
-        if settings((ROOT / "config" / f"manual.{edition}.toml").read_text()) != shown:
-            raise SystemExit(f"config/manual.{edition}.toml differs from config/manual.toml beyond its comments and fonts")
+        if settings((ROOT / "config" / f"econ-viz.{edition}.toml").read_text()) != shown:
+            raise SystemExit(f"config/econ-viz.{edition}.toml differs from config/econ-viz.toml beyond its comments and fonts")
 
 
 def plan() -> dict[str, dict[str, str]]:
@@ -161,28 +162,31 @@ def strip(frames: list[Path], target: Path, gap: float = 12.0) -> None:
 
 
 def font_dirs() -> list[Path]:
-    """Where the font files named in manual*.toml live: the TeX distribution and agora/fonts."""
+    """Where the font files named in econ-viz*.toml live: the TeX distribution and agora/fonts."""
     dirs = [ROOT.parent.parent / "fonts"]
     try:
         texmf = subprocess.run(
             ["kpsewhich", "-var-value", "TEXMFDIST"], capture_output=True, text=True, check=True
         ).stdout.strip()
-        dirs.extend(Path(texmf) / rel for rel in CONFIG["fonts"]["texmf_dirs"])
+        dirs.extend(Path(texmf) / rel for rel in TEXMF_DIRS)
     except (OSError, subprocess.CalledProcessError):
         pass
     return dirs
 
 
 def manual_settings(edition: str, tmp: str) -> None:
-    """Put the edition's settings into *tmp* as manual.toml, with the font files it names beside it."""
-    source = ROOT / "config" / ("manual.toml" if edition == "en" else f"manual.{edition}.toml")
-    shutil.copy(source, Path(tmp) / "manual.toml")
-    settings = tomllib.loads(source.read_text())
-    for name in [*settings["fonts"]["serif"], settings["font"]["math"]]:
-        found = next((d / name for d in font_dirs() if (d / name).exists()), None)
-        if found is None:
-            raise SystemExit(f"font file {name} named in {source.name} not found")
-        shutil.copy(found, tmp)
+    """Put the edition's settings into *tmp* as econ-viz.toml, with the font files beside it.
+
+    Every font file of agora/fonts and the TeX directories is linked in, so the file's relative
+    font names resolve; utility-viz itself reads and checks the file when the example loads it.
+    """
+    source = ROOT / "config" / ("econ-viz.toml" if edition == "en" else f"econ-viz.{edition}.toml")
+    shutil.copy(source, Path(tmp) / "econ-viz.toml")
+    for directory in font_dirs():
+        for font in directory.glob("*.[ot]t[fc]"):
+            link = Path(tmp) / font.name
+            if not link.exists():
+                link.symlink_to(font)
 
 
 class Recorder:
@@ -203,7 +207,7 @@ class Recorder:
 
 
 def run(code: str, target: Path, name: str, edition: str = "en") -> None:
-    """Run one example in an empty directory that holds manual.toml, saving its picture to *target*."""
+    """Run one example in an empty directory that holds econ-viz.toml, saving its picture to *target*."""
     from matplotlib.figure import Figure
     from mosaickit.rendering.matplotlib.renderer import MatplotlibRenderer
     from utility_viz import Config

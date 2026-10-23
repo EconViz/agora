@@ -21,8 +21,8 @@ from scipy.interpolate import CubicSpline
 from utility_viz import Config
 from utility_viz.core.scenes import UTILITY_THEME
 
-INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # the colours of manual.toml
-settings = Config.load("manual.toml")
+INK, GREY, LENS = "#1a1a1a", "#8c8c8c", "#ececec"  # the manual theme's colours
+settings = Config.load("econ-viz.toml")
 text = TextStyle(color=INK, size=12, font="serif")
 
 # after a textbook figure

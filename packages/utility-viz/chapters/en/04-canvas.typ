@@ -143,7 +143,7 @@ cvs.add_utility(
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -181,7 +181,7 @@ cvs.save("add_utility.png")
 #example([```python
 from utility_viz import Canvas, Config
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # italic x and y
 cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # the line and its feasible set
@@ -218,7 +218,7 @@ cvs.save("add_budget.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -252,7 +252,7 @@ cvs.save("add_equilibrium.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -292,7 +292,7 @@ cvs.save("add_ray.png")
 from utility_viz import Canvas, Config, Label, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -326,7 +326,7 @@ cvs.save("add_point.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -376,7 +376,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 panels = [
@@ -412,7 +412,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 panels = [
@@ -465,6 +465,8 @@ CanvasGrid([panels]).save("arrow_styles.png")
 
 === Marker and Label
 
+#changed("2.0.0b8", label: "Label")[`top`, `bottom`, `left` and `right` nudge one placed label]
+
 #api(("Marker",), added: "v1.8.0", updated: "v1.9.0", syntax: [
   `Marker(color=None, size=None, shape=None, opacity=None)`
 ])[
@@ -473,8 +475,8 @@ CanvasGrid([panels]).save("arrow_styles.png")
   `"*"`.
 ]
 
-#api(("Label",), added: "v1.8.0", updated: "v1.9.0", syntax: [
-  `Label(text=None, position=None, offset=None, color=None, fontsize=None, visible=None, opacity=None)`
+#api(("Label",), added: "v1.8.0", updated: "v2.0.0b8", syntax: [
+  `Label(text=None, position=None, offset=None, color=None, fontsize=None, visible=None, opacity=None, top=None, bottom=None, left=None, right=None)`
 ])[
   Text, position, offset, colour, size, visibility and opacity of a label.
   The position is a side or a corner; `Label(visible=False)` hides the text.
@@ -492,6 +494,22 @@ CanvasGrid([panels]).save("arrow_styles.png")
       marker=Marker(color="black", shape="D"),
       label=Label(text="A", position="left", fontsize=14),
   )
+  ```
+
+  `top`, `bottom`, `left` and `right` move one label after it has been
+  placed: by a number of points or by a string with a unit, such as
+  `"10pt"`, `"0.5em"` (the label's font size) or `"2mm"`. Automatic
+  placement still picks the spot, and later labels still avoid the moved
+  one. `top = "2pt"` under `[utility.label.<name>]` in `econ-viz.toml` sets
+  a default for every label of that kind (pt, mm, cm or in, no em); a
+  label's own value replaces it for that direction. Without nudges every
+  figure is unchanged.
+
+  ```python
+  from utility_viz import Label
+
+  cvs.add_equilibrium(eq, label=Label(top="10pt"))
+  cvs.add_point(5, 3, label=Label(text="A", left="6pt"))
   ```
 ]
 

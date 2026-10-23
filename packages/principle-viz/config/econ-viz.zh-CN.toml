@@ -1,0 +1,14 @@
+# The manual's figure settings, Simplified Chinese edition (see econ-viz.toml).
+
+base = "manual"      # the manual's black-and-white look (the EconViz greys)
+
+# Text in Noto Serif SC (agora/fonts); math in Pagella Math.
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = ["NotoSerifSC-Regular.ttf", "NotoSerifSC-Bold.ttf"]
+
+[principle]
+language = "zh-CN"   # built-in figure text in Simplified Chinese

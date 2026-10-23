@@ -21,8 +21,8 @@ from utility_viz import Config, DecompositionMethod
 from utility_viz.core.scenes import UTILITY_THEME, budget_layers, indifference_layers
 from utility_viz.models import CobbDouglas, decompose_price_effect
 
-INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # the colours of manual.toml
-settings = Config.load("manual.toml")
+INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # the manual theme's colours
+settings = Config.load("econ-viz.toml")
 text = TextStyle(color=INK, size=14, font="serif")
 effect_name = TextStyle(color=INK, size=13, font="serif")
 

@@ -10,8 +10,10 @@
 #changed("1.11.0", label: "Theme")[完成主题系统，添加背景色、标签比例及所有经济图层的默认样式]
 #changed("1.11.0", label: "themes")[添加 `paper`、`monochrome`、`presentation` 与 `dark`]
 #changed("1.12.0", label: "Theme")[添加次要无差异曲线的颜色、线宽与不透明度设置]
+#changed("2.0.0b8", label: "themes")[内置主题改为 EconViz 共享主题，同一名称在各 EconViz 软件包中外观一致；添加 `manual` 主题]
+#changed("2.0.0b8", label: "themes")[移除 `dark` 主题：`themes.dark` 与 `base = "dark"` 会发出警告并改用 `default`]
 
-#api(("themes",), updated: "v1.11.0", syntax: [
+#api(("themes",), updated: "v2.0.0b8", syntax: [
   ```python
   from utility_viz import Canvas, themes
 
@@ -23,25 +25,27 @@
   #tbl(caption: [内置主题])[
     #booktabs(
       columns: (auto, 1fr),
-      header: ([名称], [特性]),
-      [`default`], [色盲友好的默认配色],
-      [`colorblind`], [与 `default` 相同的配色别名],
-      [`nord`], [采用 Nord 色盘的冷色系主题],
-      [`paper`], [透明背景与出版用细线条],
-      [`monochrome`], [以线型与标记区分图层的黑白主题],
-      [`presentation`], [放大标签、线条与标记，供投影使用],
-      [`dark`], [深色背景与相应的前景色],
+      header: ([名称], [特性与用途]),
+      [`manual`], [EconViz 手册与 playground 的黑白样式：白底、黑色坐标轴与点、灰色曲线，适合打印与讲义],
+      [`default`], [透明背景上的色盲友好配色，适合日常使用],
+      [`colorblind`], [与 `default` 相同的配色，以明确名称标示],
+      [`nord`], [采用 Nord 色盘的冷色系，适合屏幕与幻灯片],
+      [`paper`], [透明背景上的柔和颜色与较细线条，适合论文],
+      [`monochrome`], [只用黑色，以线型与标记区分图层，适合黑白打印],
+      [`presentation`], [颜色更鲜明，线条、标记与标签分别放大为 1.5、1.3 与 1.25 倍，适合投影],
     )
   ] <tab-themes>
 
-  Python API 与配置文件的 `base` 可使用全部七个名称#footnote[在命令行中直接传入 `--theme` 时，只接受 `colorblind` 别名以外的六个主题。]。
+  Python API、配置文件的 `base` 与命令行的 `--theme` 都接受这七个名称。同一名称在各 EconViz 软件包中外观一致：每个主题为各个角色（ink、primary、constraint、accent 等）指定颜色，再由 utility-viz 决定各元素使用哪个角色（`utility_viz.core.themes.roles`）。无差异曲线使用 primary，预算线使用 constraint，均衡点与其他点使用 accent，坐标轴与标签使用 ink。线宽与点的大小由 utility-viz 自行决定，主题只按比例缩放。
+
+  内置主题不含深色主题。`themes.dark`、`base = "dark"` 与 `--theme dark` 在整个 2.x 会发出 `UtilityVizDeprecationWarning` 并改用 `default`；需要不透明背景时，请在 `[color]` 中设置 `background`。
 
   默认主题的颜色取自一组色盲友好的配色 #citep(<thriveth2014>)。
 
   `themes.COLORBLIND_CYCLE_HEX` 与 `themes.COLORBLIND_CYCLE_RGB` 提供这组配色的十六进制与 RGB 值。经济学教学大量依赖图形，因此不应只靠颜色传达含义，以免视觉障碍的学生无法辨识 #citep(<kugler1996>)。
 ]
 
-下列各图用内置主题（`dark` 除外）画出同一张 Cobb-Douglas 图，线宽沿用本手册，底色为白色。
+下列各图以五个内置主题绘制同一张 Cobb-Douglas 图，线宽沿用本手册，底色为白色。本手册其余各图都采用 `manual`，`colorblind` 的配色则与 `default` 相同。
 
 #example([```python
 from dataclasses import replace
@@ -235,12 +239,14 @@ cvs.save("theme_presentation.png")
 #changed("1.11.0", label: "Config")[配置文件可选择所有内置主题，并在各种图形间保留相同的视觉语义]
 #changed("2.0.0b1", label: "Config")[默认配置文件更名为 `utility-viz.toml`；旧的 `econ-viz.toml` 仍可读取，但会发出警告]
 #changed("2.0.0b1", label: "Config.discover")[添加 `Config.discover()`，找不到文件时改用内置默认值]
+#changed("2.0.0b7", label: "Config")[配置文件恢复为 `econ-viz.toml`，由所有 EconViz 软件包共享；`utility-viz.toml` 仍可读取，但会发出警告]
+#changed("2.0.0b8", label: "Config")[utility-viz 自身的配置移至 `[utility]` 下；改由 #pkg("mosaickit") 读取并检查文件；旧格式仍可读取，但会发出警告]
 
-#api(("Config.load", "Config.use", "Config.reset"), added: "v1.10.0", syntax: [
+#api(("Config.load", "Config.use", "Config.reset"), added: "v1.10.0", updated: "v2.0.0b8", syntax: [
   ```python
   from utility_viz import Config
 
-  Config.load("utility-viz.toml").use()
+  Config.load("econ-viz.toml").use()
   # 之后的图形都用此设置
 
   Config.reset()
@@ -252,66 +258,83 @@ cvs.save("theme_presentation.png")
 
 === 教程：统一样式
 
-同一份讲义或论文的图形，通常要共用相同的颜色与线条。与其在每个 `Canvas` 重复传入参数，不如把样式写在项目根目录的 `utility-viz.toml`，让 Python 与命令行读取同一份配置。
+同一份讲义或论文的图形，通常要共用相同的颜色与线条。与其在每个 `Canvas` 重复传入参数，不如把样式写在项目根目录的 `econ-viz.toml`。Python、命令行与其他 EconViz 软件包都读取同一个文件，并由 #pkg("mosaickit") 统一解析。
 
-+ *创建模板。*在项目根目录运行下列命令，会生成含注释的 `utility-viz.toml`，列出每个配置节可用的名称与字段：
+文件的顶层放置所有软件包共享的配置：`base`、`[font]`、`[fonts]`，以及 `[color]` 中的 `background`、`axis` 与 `label` 颜色。utility-viz 自身的配置放在 `[utility]` 下；其他软件包各有自己的表，例如 `[principle]`，utility-viz 会跳过这些表。
+
++ *创建模板。*在项目根目录运行下列命令，会生成含注释的 `econ-viz.toml`，列出每个表可用的名称与字段：
 
   ```bash
   utility-viz init
   ```
 
-  模板中的设置默认都是注释；只保留需要修改的项目即可，其余可以删除。
+  模板中的配置默认都是注释；只保留需要修改的项目即可，其余可以删除。
 
-+ *选择基础主题。*`base` 指定起始的内置主题（#ref(<tab-themes>)），其余设置都在它之上覆盖：
++ *选择基础主题。*`base` 指定起始的共享主题（#ref(<tab-themes>)），其余配置都在它之上覆盖。`base = "manual"` 即为手册的黑白样式，无须逐一写出颜色与线宽：
 
   ```toml
-  base = "paper"
+  base = "manual"
   ```
 
-+ *覆盖颜色与样式。*只写出要改的字段：
++ *设置共享的字体与颜色。*字体写在 `[font]` 的 `text`（`"sans"`、`"serif"` 或 `"mono"`）与 `math`（数学字体的路径），字体文件写在 `[fonts]` 的 `sans`、`serif`、`mono`，每项可为一个文件或文件列表。相对路径以 TOML 文件所在文件夹为准：
 
   ```toml
+  [font]
+  text = "serif"
+  math = "fonts/texgyrepagella-math.otf"
+
+  [fonts]
+  serif = ["fonts/texgyrepagella-regular.otf", "fonts/texgyrepagella-bold.otf"]
+
   [color]
+  background = "#ffffff"
+  ```
+
++ *覆盖 utility-viz 的元素。*在 `[utility]` 下只写出要改的字段：
+
+  ```toml
+  [utility.color]
   ic = "#1B4F72"
   eq = "#C0392B"
 
-  [stroke.budget]
+  [utility.stroke.budget]
   width = 1.6
   style = "dashed"
 
-  [marker.eq]
+  [utility.marker.eq]
   size = 5
 
-  [label.point]
+  [utility.label.point]
   fontsize = 11
   position = "right"
+  top = "2pt"
   ```
 
-  配置节名称对应主题属性：`[color]` 的 `ic` 对应 `ic_color`，`[stroke.budget]` 对应 `theme.budget_stroke`；配置节内的字段就是 `Stroke`、`Marker`、`Label`、`Fill`、`Legend` 的参数（详见#ref(<sec-styles>)）。字体写在 `[font]` 的 `text`（`"sans"`、`"serif"` 或 `"mono"`）与 `math`（数学字体的路径），字体文件写在 `[fonts]` 的 `sans`、`serif`、`mono`，每项可为一个文件或文件列表。相对路径以 TOML 文件所在目录为准。省略的字段保留基础主题的值。
+  表名对应主题属性：`[utility.color]` 的 `ic` 对应 `ic_color`，`[utility.stroke.budget]` 对应 `theme.budget_stroke`；表内的字段就是 `Stroke`、`Marker`、`Label`、`Fill`、`Legend` 的参数（详见#ref(<sec-styles>)）。`[utility.label.<name>]` 中的 `top`、`bottom`、`left` 与 `right` 会把该类标签全部微调一段距离，单位可用 pt、mm、cm 或 in。省略的字段保留基础主题的值。
 
 + *在 Python 中应用。*在创建任何图形之前加载一次：
 
   ```python
   from utility_viz import Config
 
-  Config.load().use()   # 默认读取 ./utility-viz.toml
+  Config.load("econ-viz.toml").use()
   ```
 
-  此后创建的 `Canvas`、`Figure`、`DemandDiagram` 与 `EdgeworthBox` 都使用这组配置；调用 `Config.reset()` 可恢复内置默认值。
+  此后创建的 `Canvas`、`Figure`、`DemandDiagram` 与 `EdgeworthBox` 都使用这组配置；调用 `Config.reset()` 可恢复内置默认值。`mosaickit.econ_toml.use("econ-viz.toml")` 则会一次为所有已安装的 EconViz 软件包加载此文件。
 
-+ *在命令行应用。*`utility-viz plot` 会自动读取当前目录的 `utility-viz.toml`；要使用其他文件时，以 `--config` 指定配置文件：
++ *在命令行应用。*`utility-viz plot` 会自动读取当前目录的 `econ-viz.toml`；要使用其他文件时，以 `--config` 指定配置文件：
 
   ```bash
-  utility-viz plot --config utility-viz.toml --model cobb-douglas \
+  utility-viz plot --config econ-viz.toml --model cobb-douglas \
     --px 2 --py 3 --income 30 --output figure.png
   ```
 
-配置的优先级由高到低为：直接传入 `Canvas` 或绘图方法的参数、配置文件、基础主题。例如 `Canvas(theme=themes.default)` 会略过配置文件中的主题。
+配置的优先级由高到低为：直接传入 `Canvas` 或绘图方法的参数、配置文件、基础主题。例如 `Canvas(theme=themes.default)` 会忽略配置文件中的主题。
 
-配置文件写错时，`Config.load()` 会抛出 `InvalidParameterError`，并列出可用的名称。例如把 `[stroke.budget]` 误写成 `[stroke.budgt]`：
+配置文件写错时，`Config.load()` 会抛出 `InvalidParameterError`，指出文件与表，并在有相近名称时提示可能的正确写法。例如把 `[utility.stroke.budget]` 误写成 `[utility.stroke.budgt]`：
 
 ```text
-utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ...)
+econ-viz.toml: [utility.stroke.budgt] no such setting; did you mean 'budget'? (choose: axis, box, budget, ...)
 ```
 
 
@@ -326,9 +349,10 @@ utility-viz.toml: [stroke.budgt]: no such setting (choose: axis, box, budget, ..
 `Config.load()`、`Config.discover()` 与 `utility-viz plot` 按下列顺序确定配置文件：
 
 + 明确指定的路径（`Config.load("file.toml")` 或 `--config`）：文件必须存在，且只读取该文件；
-+ 当前目录（或 `directory=`）中的 `utility-viz.toml`；
-+ 旧的 `econ-viz.toml`，并发出弃用警告；
++ 当前目录（或 `directory=`）中的 `econ-viz.toml`；
++ `utility-viz.toml`（2.0 测试版至 2.0.0b6 使用的名称），并发出弃用警告；
 + 内置默认值。
 
-两个文件同时存在时，以 `utility-viz.toml` 为准，旧文件会被忽略并发出警告。两个函数只在找不到文件时有差异：`Config.load()` 与 1.x 相同，抛出 `InvalidParameterError`（"config file not found"）；`Config.discover()` 则返回内置默认值。`utility-viz init --migrate` 可将旧文件转为 `utility-viz.toml`（详见#ref(<sec-cli-init>)）。
+两个文件同时存在时，以 `econ-viz.toml` 为准，`utility-viz.toml` 会被忽略并发出警告。两个函数只在找不到文件时有差异：`Config.load()` 与 1.x 相同，抛出 `InvalidParameterError`（"config file not found"）；`Config.discover()` 则返回内置默认值。
 
+为 2.0.0b7 及更早版本编写的配置文件，把 utility-viz 的表放在顶层（`[color] ic`、`[stroke.budget]`、`[legend]` 等）。这类文件在 3.0 之前仍可读取，每次加载会发出一次 `UtilityVizDeprecationWarning`，指出各表的新位置；同一个键同时出现在 `[utility]` 与顶层时，以 `[utility]` 为准。`utility-viz init --migrate` 会把这些表移到 `[utility]` 下，并保留注释（详见#ref(<sec-cli-init>)）。
