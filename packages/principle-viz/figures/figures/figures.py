@@ -6,9 +6,10 @@ Run from the manual's directory (principle-viz/):
     uv run python scripts/make_figures.py taxes      # one group
     uv run python scripts/make_figures.py --list     # list figure names
 
-Figures carry no titles, so the same files serve every language edition; the
-captions are written in Typst. Words inside a figure ("Shortage", "Consumer
-surplus", ...) are principle-viz's built-in labels, left as users get them.
+Figures carry no titles; the captions are written in Typst. Every figure is
+drawn once per edition with principle-viz's "manual" palette (the EconViz
+greys) and its built-in words ("Shortage", "Consumer surplus", ...) in that
+edition's language, through PlotTheme(language=...).
 """
 
 from __future__ import annotations
@@ -25,7 +26,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from mosaickit import CanvasGrid
+from mosaickit import CanvasGrid, TextFonts
 
 from principle_viz import (
     DiscreteDemand,
@@ -64,6 +65,7 @@ from principle_viz import (
 )
 from principle_viz.core.controls import PriceControlScenario, PriceControlType
 from principle_viz.core.shifts import ShiftScenario, ShiftSpec
+from principle_viz.i18n import translate
 from principle_viz.policy.tax import TaxOn, TaxScenario, TaxType
 from principle_viz.visuals.market_failures import public_good_canvas
 from principle_viz.visuals.ppf import ppf_canvas, ppf_growth_canvas
@@ -81,7 +83,7 @@ CONFIG = tomllib.loads((ROOT / "config" / "principle-viz.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 FMT = CONFIG["output"]["format"]
 EDITIONS = ("en", "zh-TW", "zh-CN")
-EDITION = "en"  # the language the figures are drawn in; see set_edition()
+EDITION = "en"  # the language the figures are drawn in; see set_edition() and theme()
 
 
 # ---------------------------------------------------------------------------
@@ -110,57 +112,18 @@ def font_file(name: str) -> Path:
     return found
 
 
-_font_scope = None
-
-
-def use_manual_fonts(edition: str = "en") -> None:
-    """Set the figures in the manual's face: Pagella, or Noto Serif in Chinese, with Pagella Math.
-
-    MosaicKit's `sans` slot, the font of every text style here, is replaced by the files; the
-    configuration stays active for the figures drawn after this call.
-    """
-    global _font_scope
-    from mosaickit import MathFont, TextFonts
-    from mosaickit.config import current_config, use_config
-
-    names = CONFIG["fonts"]["text"].get(edition, CONFIG["fonts"]["text"]["en"])
-    if _font_scope is not None:
-        _font_scope.__exit__(None, None, None)
-    _font_scope = use_config(
-        dataclasses.replace(
-            current_config(),
-            fonts=TextFonts(sans=[font_file(name) for name in names]),
-            math_font=MathFont(font_file(CONFIG["fonts"]["math"])),
-        )
-    )
-    _font_scope.__enter__()
-    # Titles, legends and text that mixes words with $math$ are still set by Matplotlib.
-    from matplotlib import font_manager
-
-    faces = [font_file(name) for name in names]
-    for path in faces:
-        font_manager.fontManager.addfont(str(path))
-    family = font_manager.FontProperties(fname=str(faces[0])).get_name()
-    latin = font_manager.FontProperties(fname=str(font_file(CONFIG["fonts"]["text"]["en"][0]))).get_name()
-    matplotlib.rcParams.update({
-        "font.family": [family],
-        "mathtext.fontset": "custom",
-        "mathtext.rm": latin,
-        "mathtext.it": f"{latin}:italic",
-        "mathtext.bf": f"{latin}:bold",
-    })
-
-
 def scale_text() -> None:
     """Scale every resolved text size by `text_scale`, so labels stay legible at half the text width.
 
     Line widths are unchanged. Placement measures text through the same styles, so labels still
-    avoid each other at the larger size.
+    avoid each other at the larger size. Calling it again does nothing.
     """
     from mosaickit.themes import resolution
 
     scale = CONFIG["fonts"].get("text_scale", 1.0)
     original = resolution.resolve
+    if getattr(original, "scaled", False):
+        return
 
     def resolve(*args, **kwargs):
         bundle = original(*args, **kwargs)
@@ -169,80 +132,54 @@ def scale_text() -> None:
         text = dataclasses.replace(bundle.text, size=bundle.text.size * scale)
         return dataclasses.replace(bundle, text=text)
 
+    resolve.scaled = True
     for name, module in list(sys.modules.items()):
         if name.startswith("mosaickit") and getattr(module, "resolve", None) is original:
             module.resolve = resolve
 
 
-def localize(value, table):
-    """The same value with every string found in *table* replaced; dataclasses, tuples and dicts are rebuilt."""
-    if isinstance(value, str):
-        return table.get(value, value)
-    if dataclasses.is_dataclass(value) and not isinstance(value, type):
-        changes = {}
-        for field in dataclasses.fields(value):
-            old = getattr(value, field.name)
-            new = localize(old, table)
-            if new is not old and new != old:
-                changes[field.name] = new
-        return dataclasses.replace(value, **changes) if changes else value
-    if isinstance(value, tuple):
-        return type(value)(localize(v, table) for v in value) if not hasattr(value, "_fields") else value
-    if isinstance(value, list):
-        return [localize(v, table) for v in value]
-    if isinstance(value, dict):
-        return {k: localize(v, table) for k, v in value.items()}
-    return value
+def theme(palette: str = "manual") -> PlotTheme:
+    """The manual's look in the current edition: the house greys, the built-in words translated.
+
+    Text is set in Pagella, or Noto Serif in the Chinese editions, and math in Pagella Math.
+    """
+    names = CONFIG["fonts"]["text"].get(EDITION, CONFIG["fonts"]["text"]["en"])
+    return PlotTheme.from_palette(
+        palette,
+        language=EDITION,
+        font="serif",
+        fonts=TextFonts(serif=[font_file(name) for name in names]),
+        math_font=font_file(CONFIG["fonts"]["math"]),
+    )
 
 
-_original_render = None
+def use_math_font() -> None:
+    """Pagella for the $math$ in text that mixes words and math, which Matplotlib still sets."""
+    from matplotlib import font_manager
+
+    faces = [font_file(name) for name in CONFIG["fonts"]["text"]["en"]]  # regular, italic, bold
+    for path in faces:
+        font_manager.fontManager.addfont(str(path))
+    latin = font_manager.FontProperties(fname=str(faces[0])).get_name()
+    matplotlib.rcParams.update({
+        "mathtext.fontset": "custom",
+        "mathtext.rm": latin,
+        "mathtext.it": f"{latin}:italic",
+        "mathtext.bf": f"{latin}:bold",
+    })
 
 
 def set_edition(edition: str) -> None:
-    """Draw the following figures in this language: the words in them are translated and set in a CJK face.
-
-    principle-viz's built-in labels ("Shortage", "Consumer surplus", ...) are English; the table in
-    config/principle-viz.toml gives their translations, applied to a figure just before it is drawn.
-    """
-    global EDITION, _original_render
-    from mosaickit.rendering.matplotlib.renderer import MatplotlibRenderer
-
+    """Draw the following figures in this language (see theme())."""
+    global EDITION
     EDITION = edition
-    table = CONFIG.get("labels", {}).get(edition, {})
-    if _original_render is None:
-        _original_render = MatplotlibRenderer._draw
-        draw = _original_render
-
-        def translated_draw(self, ax, scene, context):  # canvases and grid cells both come through here
-            table = CONFIG.get("labels", {}).get(EDITION, {})
-            return draw(self, ax, localize(scene, table), localize(context, table))  # the context holds the titles
-
-        MatplotlibRenderer._draw = translated_draw
-    use_manual_fonts(edition)
+    scale_text()
+    use_math_font()
 
 
-def use_house_colours() -> None:
-    """Grey curves, black axes and arrows, grey fills: the EconViz look instead of the colour palette."""
-    from principle_viz.visuals import theme
-
-    house = theme.ColorModel(
-        name="house",
-        axis_color="#1a1a1a",
-        label_color="#1a1a1a",
-        demand_color="#8c8c8c",
-        supply_color="#1a1a1a",
-        baseline_color="#1a1a1a",
-        shifted_color="#6e6e6e",
-        tax_color="#595959",
-        control_color="#595959",
-        cs_color="#b8b8b8",
-        ps_color="#8c8c8c",
-        tax_revenue_color="#d9d9d9",
-        dwl_color="#595959",
-        arrow_color="#1a1a1a",
-    )
-    theme.DEFAULT_COLOR_MODEL = house  # every PlotTheme() created from here on starts from it
-    theme.BUILTIN_COLOR_MODELS["default"] = house  # and so does the "default" palette by name
+def text(english: str) -> str:
+    """A label the script sets itself, in the current edition; principle-viz translates only its own."""
+    return translate(english, EDITION)
 
 
 def out(group: str, name: str) -> Path:
@@ -252,8 +189,9 @@ def out(group: str, name: str) -> Path:
 
 
 def market(**kwargs) -> MarketFigure:
-    """A MarketFigure without a title (captions are written in Typst)."""
+    """A MarketFigure without a title (captions are written in Typst), in the manual's theme."""
     kwargs.setdefault("title", "")
+    kwargs.setdefault("theme", theme(kwargs.pop("palette", "manual")))
     return MarketFigure(**kwargs)
 
 
@@ -298,7 +236,7 @@ def figure_options() -> None:
     fig = market(
         x_max=12,
         y_max=12,
-        labels={"market.demand.label": Label(text="Demand"), "market.supply.label": Label(text="Supply")},
+        labels={"market.demand.label": Label(text=text("Demand")), "market.supply.label": Label(text=text("Supply"))},
     )
     fig.add_curves(DEMAND, SUPPLY, q_max=10)
     fig.add_equilibrium(eq)
