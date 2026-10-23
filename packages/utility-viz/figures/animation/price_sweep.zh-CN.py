@@ -4,7 +4,7 @@ from utility_viz import Canvas, Config, levels, solve
 from utility_viz.core.animation import Animator
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 # 每帧用同一组曲线

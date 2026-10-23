@@ -68,6 +68,7 @@ through `kpsewhich`; if TeX Live is not on your `PATH`, pass
 | `packages/<manual>/chapters/<edition>/` | Chapter sources, with the same file names in every edition |
 | `packages/<manual>/figures/` | Generated figures (SVG or PDF), shared by all editions |
 | `packages/<manual>/scripts/`, `config/` | Figure script and its settings, references (`refs.bib`) |
+| `packages/<manual>/config/econ-viz[.<edition>].toml` | Figure settings of utility-viz and principle-viz, one `econ-viz.toml` per edition (`base = "manual"`), loaded by the package itself (`Config.load(...).use()`) |
 | `build/<manual>/` | Built PDFs (not tracked) |
 
 ## Adding a manual

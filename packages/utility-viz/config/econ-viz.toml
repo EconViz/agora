@@ -1,0 +1,23 @@
+# Figure settings
+# Grey curves and black axes on white
+# Load them before drawing
+#
+#     Config.load("econ-viz.toml").use()
+#
+# The shared settings sit at the top level
+# utility-viz's own would go under [utility]
+
+base = "manual"             # the manual's black-and-white look
+
+# Font files sit beside this file
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = [
+  "texgyrepagella-regular.otf",
+  "texgyrepagella-italic.otf",
+  "texgyrepagella-bold.otf",
+  "texgyrepagella-bolditalic.otf",
+]

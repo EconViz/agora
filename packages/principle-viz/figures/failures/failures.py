@@ -7,18 +7,21 @@ Run from the manual's directory (principle-viz/):
     uv run python scripts/make_figures.py --list     # list figure names
 
 Figures carry no titles; the captions are written in Typst. Every figure is
-drawn once per edition with principle-viz's "manual" palette (the EconViz
-greys) and its built-in words ("Shortage", "Consumer surplus", ...) in that
-edition's language, through PlotTheme(language=...).
+drawn once per edition from that edition's settings file, config/econ-viz.toml,
+econ-viz.zh-TW.toml or econ-viz.zh-CN.toml, which principle-viz loads itself
+(Config.load(...).use()): the shared "manual" theme (the EconViz greys), the
+edition's fonts and principle-viz's built-in words ("Shortage", "Consumer
+surplus", ...) in the edition's language.
 """
 
 from __future__ import annotations
 
 import argparse
 import dataclasses
+import shutil
 import subprocess
 import sys
-import tomllib
+import tempfile
 from collections.abc import Callable
 from pathlib import Path
 
@@ -26,9 +29,10 @@ import matplotlib
 
 matplotlib.use("Agg")
 
-from mosaickit import CanvasGrid, TextFonts
+from mosaickit import CanvasGrid
 
 from principle_viz import (
+    Config,
     DiscreteDemand,
     DiscreteSupply,
     ExternalityScenario,
@@ -54,6 +58,7 @@ from principle_viz import (
     compare_tax_scenario,
     comparative_statics,
     compute_surplus,
+    default_theme,
     demand_aggregation_figure,
     discrete_demand_aggregation_figure,
     elasticity_revenue_schedule,
@@ -79,11 +84,15 @@ from principle_viz.welfare.surplus import (
 )
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG = tomllib.loads((ROOT / "config" / "principle-viz.toml").read_text())
-OUT = ROOT / CONFIG["output"]["dir"]
-FMT = CONFIG["output"]["format"]
+OUT = ROOT / "figures"
+FMT = "svg"  # vector; Typst embeds SVG directly
 EDITIONS = ("en", "zh-TW", "zh-CN")
-EDITION = "en"  # the language the figures are drawn in; see set_edition() and theme()
+EDITION = "en"  # the edition the figures are drawn for; see set_edition()
+# A figure is drawn at 6 x 6 in and set at about half the text width, which shrinks its
+# 10-11 pt labels; every text size is scaled by this factor (line widths are unchanged).
+TEXT_SCALE = 1.5
+# Where the font files named in config/econ-viz*.toml live besides agora/fonts (relative to TEXMFDIST).
+TEXMF_DIRS = ["fonts/opentype/public/tex-gyre", "fonts/opentype/public/tex-gyre-math"]
 
 
 # ---------------------------------------------------------------------------
@@ -99,28 +108,39 @@ def font_dirs() -> list[Path]:
             ["kpsewhich", "-var-value", "TEXMFDIST"],
             capture_output=True, text=True, check=True,
         ).stdout.strip()
-        dirs.extend(Path(texmf) / rel for rel in CONFIG["fonts"]["texmf_dirs"])
+        dirs.extend(Path(texmf) / rel for rel in TEXMF_DIRS)
     except (OSError, subprocess.CalledProcessError):
         pass
     return dirs
 
 
-def font_file(name: str) -> Path:
-    found = next((d / name for d in font_dirs() if (d / name).exists()), None)
-    if found is None:
-        raise SystemExit(f"font file {name} not found")
-    return found
+# The settings files name their fonts relative to themselves, so they are read from this directory,
+# which links every font file of agora/fonts and the TeX directories; it lasts while figures are drawn.
+SETTINGS_DIR = tempfile.TemporaryDirectory(prefix="principle-viz-manual-")
+
+
+def settings(edition: str) -> Config:
+    """The edition's settings file, config/econ-viz[.<edition>].toml, read by principle-viz."""
+    tmp = Path(SETTINGS_DIR.name)
+    if not any(tmp.iterdir()):
+        for directory in font_dirs():
+            for font in directory.glob("*.[ot]t[fc]"):
+                if not (tmp / font.name).exists():
+                    (tmp / font.name).symlink_to(font)
+    name = "econ-viz.toml" if edition == "en" else f"econ-viz.{edition}.toml"
+    shutil.copy(ROOT / "config" / name, tmp / name)
+    return Config.load(tmp / name)
 
 
 def scale_text() -> None:
-    """Scale every resolved text size by `text_scale`, so labels stay legible at half the text width.
+    """Scale every resolved text size by TEXT_SCALE, so labels stay legible at half the text width.
 
     Line widths are unchanged. Placement measures text through the same styles, so labels still
     avoid each other at the larger size. Calling it again does nothing.
     """
     from mosaickit.themes import resolution
 
-    scale = CONFIG["fonts"].get("text_scale", 1.0)
+
     original = resolution.resolve
     if getattr(original, "scaled", False):
         return
@@ -129,7 +149,7 @@ def scale_text() -> None:
         bundle = original(*args, **kwargs)
         if bundle.text is None or bundle.text.size is None:
             return bundle
-        text = dataclasses.replace(bundle.text, size=bundle.text.size * scale)
+        text = dataclasses.replace(bundle.text, size=bundle.text.size * TEXT_SCALE)
         return dataclasses.replace(bundle, text=text)
 
     resolve.scaled = True
@@ -138,18 +158,16 @@ def scale_text() -> None:
             module.resolve = resolve
 
 
-def theme(palette: str = "manual") -> PlotTheme:
-    """The manual's look in the current edition: the house greys, the built-in words translated.
+def theme(palette: str | None = None) -> PlotTheme:
+    """The manual's look in the current edition, as loaded by set_edition().
 
-    Text is set in Pagella, or Noto Serif in the Chinese editions, and math in Pagella Math.
+    `palette` swaps in another built-in colour model and keeps the edition's fonts and language.
     """
-    names = CONFIG["fonts"]["text"].get(EDITION, CONFIG["fonts"]["text"]["en"])
+    loaded = default_theme()
+    if palette is None:
+        return loaded
     return PlotTheme.from_palette(
-        palette,
-        language=EDITION,
-        font="serif",
-        fonts=TextFonts(serif=[font_file(name) for name in names]),
-        math_font=font_file(CONFIG["fonts"]["math"]),
+        palette, language=loaded.language, font=loaded.font, fonts=loaded.fonts, math_font=loaded.math_font
     )
 
 
@@ -157,7 +175,7 @@ def use_math_font() -> None:
     """Pagella for the $math$ in text that mixes words and math, which Matplotlib still sets."""
     from matplotlib import font_manager
 
-    faces = [font_file(name) for name in CONFIG["fonts"]["text"]["en"]]  # regular, italic, bold
+    faces = settings("en").theme.fonts.serif  # Pagella regular, italic, bold, bold italic
     for path in faces:
         font_manager.fontManager.addfont(str(path))
     latin = font_manager.FontProperties(fname=str(faces[0])).get_name()
@@ -170,9 +188,10 @@ def use_math_font() -> None:
 
 
 def set_edition(edition: str) -> None:
-    """Draw the following figures in this language (see theme())."""
+    """Draw the following figures with this edition's settings file (see theme())."""
     global EDITION
     EDITION = edition
+    settings(edition).use()
     scale_text()
     use_math_font()
 
@@ -191,7 +210,7 @@ def out(group: str, name: str) -> Path:
 def market(**kwargs) -> MarketFigure:
     """A MarketFigure without a title (captions are written in Typst), in the manual's theme."""
     kwargs.setdefault("title", "")
-    kwargs.setdefault("theme", theme(kwargs.pop("palette", "manual")))
+    kwargs.setdefault("theme", theme(kwargs.pop("palette", None)))
     return MarketFigure(**kwargs)
 
 

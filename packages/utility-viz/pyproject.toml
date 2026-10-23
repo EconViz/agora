@@ -3,5 +3,6 @@ name = "utility-viz-manual"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
-    "utility-viz>=2.0.0b4",
+    "utility-viz>=2.0.0b8",
+    "mosaickit>=1.0.0rc6",
 ]

@@ -88,9 +88,11 @@ goes into the same file in `chapters/en/`, `chapters/zh-TW/` and
 ## Figures
 
 Figures contain no prose, so every edition of a manual shares its
-`figures/`. Change figures in the manual's `scripts/make_figures.py` or
-`config/figures.toml`, then run `make figures MANUAL=<manual>`. Do not edit
-the SVG files by hand.
+`figures/`. Change figures in the manual's `scripts/make_figures.py` or its
+settings in `config/` (`econ-viz.toml` and `econ-viz.<edition>.toml` for
+utility-viz and principle-viz, which the package loads itself;
+`figures.toml` for mosaickit and bezierkit), then run
+`make figures MANUAL=<manual>`. Do not edit the SVG files by hand.
 
 ## Updating for a new package release
 

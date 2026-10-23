@@ -2,7 +2,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 panels = [

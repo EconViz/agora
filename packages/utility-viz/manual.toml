@@ -28,6 +28,8 @@ zh-CN = "utility-viz 软件包：效用与消费者选择图形"
 # Release date of every version that #changed() or #api(added: ...) tags, so
 # call sites only name the version. Newest first; pre-releases allowed.
 [releases]
+"2.0.0b8" = "2026-10-23"
+"2.0.0b7" = "2026-10-23"
 "2.0.0b1" = "2026-10-03"
 "1.12.0" = "2026-09-26"
 "1.11.0" = "2026-09-26"

@@ -1,7 +1,7 @@
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Translog
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = Translog(alpha_x=0.6, alpha_y=0.4, beta_xy=0.12)
 eq = solve(model, px=2.0, py=3.0, income=30.0)

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-23T11:31:06.476457</dc:date>
+    <dc:date>2026-10-23T22:22:21.784600</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -32,32 +32,32 @@ z
    <g id="axes.x">
     <path d="M 54 384.48 
 L 388.8 384.48 
-" style="fill: none; stroke: #111111; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_2">
     <path d="M 388.4652 384.48 
 Q 388.6326 384.48 387.681966 384.48 
-" style="fill: none; stroke: #111111; stroke-linecap: round"/>
+" style="fill: none; stroke: #000000; stroke-linecap: round"/>
     <path d="M 382.881966 382.08 
 L 387.681966 384.48 
 L 382.881966 386.88 
 z
-" style="fill: #111111; stroke: #111111; stroke-linecap: round"/>
+" style="stroke: #000000; stroke-linecap: round"/>
    </g>
    <g id="axes.y">
     <path d="M 54 384.48 
 L 54 51.84 
-" style="fill: none; stroke: #111111; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #000000; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 54 52.17264 
 Q 54 52.00632 54 52.958034 
-" style="fill: none; stroke: #111111; stroke-linecap: round"/>
+" style="fill: none; stroke: #000000; stroke-linecap: round"/>
     <path d="M 51.6 57.758034 
 L 54 52.958034 
 L 56.4 57.758034 
 z
-" style="fill: #111111; stroke: #111111; stroke-linecap: round"/>
+" style="stroke: #000000; stroke-linecap: round"/>
    </g>
    <g id="axes.y.label">
     <path d="M 57.60525 35.1645 
@@ -93,7 +93,7 @@ L 52.29225 38.5635
 C 52.65525 36.4515 54.42075 34.29 55.79025 34.29 
 C 56.21925 34.29 56.41725 34.653 56.41725 35.412 
 z
-" style="fill: #111111"/>
+"/>
    </g>
    <g id="axes.x.label">
     <path d="M 406.482 389.65275 
@@ -127,7 +127,7 @@ C 399.7005 378.06975 400.6905 377.69025 401.9445 377.69025
 C 402.7365 377.69025 403.545 377.88825 404.0895 378.21825 
 C 405.162 378.84525 405.69 380.08275 405.69 381.89775 
 z
-" style="fill: #111111"/>
+"/>
    </g>
    <g id="axes.origin.label">
     <path d="M 42.3965 398.86375 
@@ -142,7 +142,7 @@ C 39.9545 388.25425 41.159 386.88475 42.3965 386.88475
 C 43.6175 386.88475 44.8385 388.25425 44.8385 392.57725 
 C 44.8385 396.96625 43.6175 398.35225 42.3965 398.35225 
 z
-" style="fill: #111111"/>
+"/>
    </g>
    <g id="market.welfare.cs">
     <path d="M 54 218.16 
@@ -150,7 +150,7 @@ L 54 107.28
 L 165.6 218.16 
 L 165.6 218.16 
 z
-" clip-path="url(#p84c1a152fc)" style="fill: #e0e0e0; fill-opacity: 0.15"/>
+" clip-path="url(#p2a8c28536d)" style="fill: #e0e0e0; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.ps">
     <path d="M 54 329.04 
@@ -158,21 +158,21 @@ L 54 218.16
 L 165.6 218.16 
 L 165.6 218.16 
 z
-" clip-path="url(#p84c1a152fc)" style="fill: #bdbdbd; fill-opacity: 0.15"/>
+" clip-path="url(#p2a8c28536d)" style="fill: #bdbdbd; fill-opacity: 0.15"/>
    </g>
    <g id="market.demand">
     <path d="M 54 107.28 
 L 333 384.48 
-" clip-path="url(#p84c1a152fc)" style="fill: none; stroke: #111111; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p2a8c28536d)" style="fill: none; stroke: #000000; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 329.04 
 L 306.216 78.4512 
-" clip-path="url(#p84c1a152fc)" style="fill: none; stroke: #4a4a4a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p2a8c28536d)" style="fill: none; stroke: #000000; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.equilibrium">
     <defs>
-     <path id="mc007b071eb" d="M 0 3.25 
+     <path id="mcc2cae0e7a" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -185,7 +185,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mc007b071eb" x="165.6" y="218.16"/>
+     <use xlink:href="#mcc2cae0e7a" x="165.6" y="218.16"/>
     </g>
    </g>
    <g id="market.demand.label">
@@ -215,7 +215,7 @@ L 341.250427 369.877073
 C 341.893927 369.877073 342.520927 369.794573 343.164427 369.794573 
 C 346.167427 369.794573 347.536927 371.048573 347.536927 373.754573 
 z
-" style="fill: #111111"/>
+"/>
    </g>
    <g id="market.supply.label">
     <path d="M 318.393427 63.237773 
@@ -241,7 +241,7 @@ L 317.485927 65.465273
 L 317.980927 65.465273 
 C 318.046927 64.574273 318.162427 63.947273 318.393427 63.237773 
 z
-" style="fill: #4a4a4a"/>
+"/>
    </g>
    <g id="market.equilibrium.label">
     <path d="M 165.74355 203.0625 
@@ -732,7 +732,7 @@ L 182.489699 142.065301
 L 184.949699 142.065301 
 L 184.949699 143.460301 
 z
-" style="fill: #111111"/>
+"/>
    </g>
    <g id="market.welfare.cs.label.leader">
     <path d="M 86.484375 185.675625 
@@ -1101,7 +1101,7 @@ L 182.489699 295.829699
 L 184.949699 295.829699 
 L 184.949699 297.224699 
 z
-" style="fill: #111111"/>
+"/>
    </g>
    <g id="market.welfare.ps.label.leader">
     <path d="M 86.484375 250.644375 
@@ -1111,7 +1111,7 @@ L 116.690485 280.850485
   </g>
  </g>
  <defs>
-  <clipPath id="p84c1a152fc">
+  <clipPath id="p2a8c28536d">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

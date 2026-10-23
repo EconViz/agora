@@ -1,0 +1,21 @@
+# The manual's figure settings, English edition. scripts/make_figures.py loads it with
+# principle_viz.Config.load(...).use(), with the font files linked beside it; the
+# econ-viz.zh-TW.toml and econ-viz.zh-CN.toml files differ in their fonts and language.
+
+base = "manual"      # the manual's black-and-white look (the EconViz greys)
+
+# Text in TeX Gyre Pagella, the manual's body face; math in Pagella Math.
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = [
+  "texgyrepagella-regular.otf",
+  "texgyrepagella-italic.otf",
+  "texgyrepagella-bold.otf",
+  "texgyrepagella-bolditalic.otf",
+]
+
+[principle]
+language = "en"      # built-in figure text ("Shortage", "Consumer surplus", ...)

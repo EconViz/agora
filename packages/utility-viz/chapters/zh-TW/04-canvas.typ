@@ -134,7 +134,7 @@ cvs.add_utility(
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -172,7 +172,7 @@ cvs.save("add_utility.png")
 #example([```python
 from utility_viz import Canvas, Config
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜體的 x 與 y
 cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # 預算線與可行集合
@@ -209,7 +209,7 @@ cvs.save("add_budget.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -242,7 +242,7 @@ cvs.save("add_equilibrium.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -282,7 +282,7 @@ cvs.save("add_ray.png")
 from utility_viz import Canvas, Config, Label, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -314,7 +314,7 @@ cvs.save("add_point.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -361,7 +361,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 titles = ["實線", "虛線", "點線", "點劃線"]
@@ -397,7 +397,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 titles = ["簡單", "三角形", "花式", "楔形"]
@@ -447,14 +447,16 @@ CanvasGrid([panels]).save("arrow_styles.png")
 
 === Marker 與 Label
 
+#changed("2.0.0b8", label: "Label")[新增 `top`、`bottom`、`left` 與 `right`，可微調已定位的單一標籤]
+
 #api(("Marker",), added: "v1.8.0", updated: "v1.9.0", syntax: [
   `Marker(color=None, size=None, shape=None, opacity=None)`
 ])[
   設定標記點的顏色、大小、形狀與透明度。`shape` 接受 #pkg("matplotlib") 的標記字串，例如 `"o"`、`"s"`、`"^"`、`"D"` 與 `"*"`。
 ]
 
-#api(("Label",), added: "v1.8.0", updated: "v1.9.0", syntax: [
-  `Label(text=None, position=None, offset=None, color=None, fontsize=None, visible=None, opacity=None)`
+#api(("Label",), added: "v1.8.0", updated: "v2.0.0b8", syntax: [
+  `Label(text=None, position=None, offset=None, color=None, fontsize=None, visible=None, opacity=None, top=None, bottom=None, left=None, right=None)`
 ])[
   設定文字、位置、位移、顏色、字級、可見性與透明度。位置可為上、下、左、右或四個角落；`Label(visible=False)` 隱藏對應文字。
 
@@ -471,6 +473,15 @@ CanvasGrid([panels]).save("arrow_styles.png")
       marker=Marker(color="black", shape="D"),
       label=Label(text="A", position="left", fontsize=14),
   )
+  ```
+
+  `top`、`bottom`、`left` 與 `right` 會在標籤自動定位之後再微調位置：可傳入點數，或帶單位的字串，例如 `"10pt"`、`"0.5em"`（以標籤字級為單位）或 `"2mm"`。位置仍由自動定位決定，之後加入的標籤也會避開移動後的標籤。在 `econ-viz.toml` 的 `[utility.label.<name>]` 寫入 `top = "2pt"`，可為該類標籤設定預設值（單位可用 pt、mm、cm 或 in，不支援 em）；標籤本身指定的值會取代該方向的預設值。未設定微調時，所有圖形維持不變。
+
+  ```python
+  from utility_viz import Label
+
+  cvs.add_equilibrium(eq, label=Label(top="10pt"))
+  cvs.add_point(5, 3, label=Label(text="A", left="6pt"))
   ```
 ]
 

@@ -20,7 +20,7 @@
 from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$")
 
@@ -107,7 +107,7 @@ fig.save("side_by_side.png")
 from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 載入圖形設定
+Config.load("econ-viz.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 budget = LinearBudget(px=2.0, py=2.0, income=40.0)

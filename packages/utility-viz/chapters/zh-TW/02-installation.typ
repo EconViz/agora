@@ -151,7 +151,8 @@ uv run python -c "from utility_viz import Canvas, solve; print('OK')"
     [發行套件], [`pip install econ-viz`], [`pip install utility-viz`],
     [匯入], [`import econ_viz`], [`import utility_viz`],
     [指令], [`econ-viz`], [`utility-viz`],
-    [設定檔], [`econ-viz.toml`], [`utility-viz.toml`],
+    [設定檔], [`econ-viz.toml`], [`econ-viz.toml`，由所有 EconViz 套件共用],
+    [設定檔格式], [`[color]`、`[stroke.*]`、`[legend]` 等位於頂層], [utility-viz 的表格位於 `[utility]` 下；`base`、`[font]`、`[fonts]` 與共用顏色位於頂層],
   )
 ] <tab-migrate>
 
@@ -167,7 +168,7 @@ uv run python -c "from utility_viz import Canvas, solve; print('OK')"
 - `from econ_viz import ...` 與文件記載的子模組（`econ_viz.models`、`econ_viz.optimizer`、`econ_viz.themes` 等）會對應到 `utility_viz` 的同名物件；名稱未變更者是同一個物件。
 - 建立 `econ_viz.Canvas`、`econ_viz.Figure` 或 `econ_viz.animation.Animator`，或存取 `econ_viz.Layout` 時，會發出指明替代名稱的 `UtilityVizDeprecationWarning`。
 - `econ-viz` 指令會印出棄用警告，再以相同參數執行 `utility-viz`。
-- 舊的 `econ-viz.toml` 仍可讀取，但會發出警告（詳見#ref(<sec-config-lookup>)）；`utility-viz init --migrate` 可將其複製為 `utility-viz.toml`（詳見#ref(<sec-cli-init>)）。
+- 2.0 測試版至 2.0.0b6 使用的 `utility-viz.toml` 仍可讀取，但會發出警告（詳見#ref(<sec-config-lookup>)）；1.x 格式中位於 `econ-viz.toml` 頂層的 utility-viz 表格也是如此。`utility-viz init --migrate` 會把這些表格移到 `econ-viz.toml` 的 `[utility]` 下（詳見#ref(<sec-cli-init>)）。
 
 #api(("UtilityVizDeprecationWarning",), added: "v2.0.0b1")[
   `FutureWarning` 的子類別，預設會顯示。訊息列出棄用版本、移除版本與替代方式，例如：
@@ -198,5 +199,5 @@ uv run python -c "from utility_viz import Canvas, solve; print('OK')"
 
 === 3.0.0 的移除範圍
 
-`econ_viz` 套件、`econ-viz` 指令與 `econ-viz.toml` 查找於 3.0.0 移除，而非 2.0.0。相容層只涵蓋文件記載的 1.x API；未記載的深層路徑（例如 `econ_viz.canvas.renderers`）僅盡力對應，隨時可能移除。
+`econ_viz` 套件、`econ-viz` 指令、`utility-viz.toml` 查找，以及 `econ-viz.toml` 頂層的 utility-viz 表格於 3.0.0 移除，而非 2.0.0。相容層只涵蓋文件記載的 1.x API；未記載的深層路徑（例如 `econ_viz.canvas.renderers`）僅盡力對應，隨時可能移除。
 

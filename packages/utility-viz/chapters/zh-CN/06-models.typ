@@ -44,7 +44,7 @@ Cobb-Douglas、CES 与 Translog 的无差异曲线为平滑曲线；最优解取
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CES
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = CES(alpha=0.5, beta=0.5, rho=-0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -82,7 +82,7 @@ cvs.save("ces.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Translog
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = Translog(alpha_x=0.6, alpha_y=0.4, beta_xy=0.12)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -120,7 +120,7 @@ cvs.save("translog.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Leontief
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = Leontief(a=1.0, b=1.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -156,7 +156,7 @@ cvs.save("leontief.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import PerfectSubstitutes
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = PerfectSubstitutes(a=1.0, b=2.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -191,7 +191,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CustomUtility
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = CustomUtility(func=lambda x, y: np.maximum(x, y), name="maximum")
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -226,7 +226,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import QuasiLinear
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = QuasiLinear(v_func=np.log, linear_in="y")
 eq = solve(model, px=1.0, py=2.0, income=20.0)
@@ -269,7 +269,7 @@ cvs.save("quasi_linear.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Haagsma
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = Haagsma(gamma_y=10.0)
 eq = solve(model, px=1.0, py=1.0, income=11.0)
@@ -300,7 +300,7 @@ cvs.save("haagsma.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import StoneGeary
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = StoneGeary(alpha=0.5, beta=0.5, bar_x=2.0, bar_y=2.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -335,7 +335,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels
 from utility_viz.models import Satiation
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 model = Satiation(bliss_x=6.0, bliss_y=4.0)
 

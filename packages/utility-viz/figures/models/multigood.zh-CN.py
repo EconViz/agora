@@ -1,7 +1,7 @@
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import MultiGoodCD
 
-Config.load("manual.toml").use()  # 载入图形设置
+Config.load("econ-viz.toml").use()  # 载入图形设置
 
 # 三种商品且 z 固定为 10
 model = MultiGoodCD({"x": 0.3, "y": 0.3, "z": 0.4})

@@ -10,6 +10,9 @@
 #changed("2.0.0b1", label: "utility-viz")[The command is now `utility-viz`; `econ-viz` prints a deprecation warning and forwards to it]
 #changed("2.0.0b1", label: "utility-viz plot")[Without `--config`, reads `utility-viz.toml` (or legacy `econ-viz.toml`) from the current directory]
 #changed("2.0.0b1", label: "utility-viz init")[New `--migrate` option]
+#changed("2.0.0b7", label: "utility-viz plot")[Without `--config`, reads `econ-viz.toml` (or `utility-viz.toml`, with a warning) from the current directory]
+#changed("2.0.0b8", label: "utility-viz init")[Writes the new layout, with utility-viz's tables under `[utility]`; `--migrate` moves them there]
+#changed("2.0.0b8", label: "utility-viz plot")[`--theme` accepts every built-in theme, including `colorblind` and `manual`; `dark` warns and uses `default`]
 
 The command-line interface plots diagrams, runs batches and prints demand
 formulas. Install it as a standalone tool with `uv tool install utility-viz`,
@@ -32,7 +35,7 @@ that it is deprecated and runs `utility-viz` with the same arguments
     [`utility-viz solve-tex ...`],
     [Print a closed-form Marshallian demand as TeX],
     [`utility-viz init [path]`],
-    [Create an `utility-viz.toml` configuration template],
+    [Create an `econ-viz.toml` configuration template],
   )
 ]
 
@@ -194,8 +197,8 @@ lies outside the model's domain.
 #param("--x-label", default: "x")[Horizontal axis label.]
 #param("--y-label", default: "y")[Vertical axis label.]
 #param("--title")[Figure title.]
-#param("--theme", default: "default")[Theme name: `default`, `nord`, `paper`, `monochrome`, `presentation` or `dark` (@sec-themes).]
-#param("--config")[Path to a TOML configuration file. Command-line options take precedence over the file. Without it, `utility-viz.toml` (or the legacy `econ-viz.toml`) in the current directory is used if present (@sec-config-lookup).]
+#param("--theme", default: "default")[Theme name: `manual`, `default`, `colorblind`, `monochrome`, `nord`, `paper` or `presentation` (@sec-themes). Without it, the `base` of the configuration file.]
+#param("--config")[Path to a TOML configuration file. Command-line options take precedence over the file. Without it, `econ-viz.toml` (or the older `utility-viz.toml`) in the current directory is used if present (@sec-config-lookup). Relative font paths are read from the folder of the file.]
 #param("--n-curves", default: "5")[Number of indifference curves.]
 #param("--dpi", default: "300")[Raster output resolution.]
 #param("--fill")[Shade the feasible set below the budget line.]
@@ -218,16 +221,19 @@ as well.
 #api(("utility-viz init",), added: "v1.10.0", syntax: [
   #raw("utility-viz init [")#meta("path")#raw("] [--force]")#raw(" [--migrate]")
 ])[
-  Write a commented `utility-viz.toml` template. Without a path it goes in the
-  current directory; an existing file is overwritten only with `--force`.
-  `--migrate` instead creates `utility-viz.toml` from a legacy
-  `econ-viz.toml` in the same directory and keeps the old file.
+  Write a commented `econ-viz.toml` template: the shared settings at the top
+  level and utility-viz's own under `[utility]`. Without a path it goes in
+  the current directory; an existing file is overwritten only with `--force`.
+  `--migrate` instead moves utility-viz's top-level tables under
+  `[utility]`, keeping the comments: it rewrites a `utility-viz.toml` in the
+  same directory into `econ-viz.toml` and keeps the old file, or, without
+  one, rewrites an old-layout `econ-viz.toml` in place.
 
   ```bash
   utility-viz init
   utility-viz init config/figures.toml
   utility-viz init --migrate
-  utility-viz plot --config utility-viz.toml --model cobb-douglas \
+  utility-viz plot --config econ-viz.toml --model cobb-douglas \
                 --px 2 --py 3 --income 30 --output figure.png
   ```
 ]

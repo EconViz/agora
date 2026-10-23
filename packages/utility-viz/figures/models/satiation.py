@@ -3,7 +3,7 @@ import numpy as np
 from utility_viz import Canvas, Config, levels
 from utility_viz.models import Satiation
 
-Config.load("manual.toml").use()  # figure settings
+Config.load("econ-viz.toml").use()  # figure settings
 
 model = Satiation(bliss_x=6.0, bliss_y=4.0)
 

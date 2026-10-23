@@ -10,6 +10,9 @@
 #changed("2.0.0b1", label: "utility-viz")[指令改為 `utility-viz`；`econ-viz` 會印出棄用警告並轉交給新指令]
 #changed("2.0.0b1", label: "utility-viz plot")[未指定 `--config` 時，讀取目前目錄的 `utility-viz.toml`（或舊的 `econ-viz.toml`）]
 #changed("2.0.0b1", label: "utility-viz init")[新增 `--migrate` 選項]
+#changed("2.0.0b7", label: "utility-viz plot")[未指定 `--config` 時，讀取目前目錄的 `econ-viz.toml`（或 `utility-viz.toml`，並發出警告）]
+#changed("2.0.0b8", label: "utility-viz init")[改寫出新格式，utility-viz 的表格位於 `[utility]` 下；`--migrate` 會把表格移到該處]
+#changed("2.0.0b8", label: "utility-viz plot")[`--theme` 接受所有內建主題，包括 `colorblind` 與 `manual`；`dark` 會發出警告並改用 `default`]
 
 命令列工具可繪圖、批次處理及輸出需求公式。以 `uv tool install utility-viz` 安裝為獨立工具，或在 #pkg("uv") 專案中於指令前加上 `uv run`（詳見#ref(<sec-install-cli>)）。由 #pkg("econ-viz") 相容套件安裝的 1.x 指令 `econ-viz` 在 2.x 仍可使用：它會發出棄用警告，再以相同參數執行 `utility-viz`（詳見#ref(<sec-migrate>)）。
 
@@ -26,7 +29,7 @@
     [`utility-viz solve-tex ...`],
     [以 TeX 格式輸出 Marshall 需求的閉式解],
     [`utility-viz init [path]`],
-    [建立 `utility-viz.toml` 設定範本],
+    [建立 `econ-viz.toml` 設定範本],
   )
 ]
 
@@ -179,8 +182,8 @@ utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
 #param("--x-label", default: "x")[橫軸標籤。]
 #param("--y-label", default: "y")[縱軸標籤。]
 #param("--title")[圖形標題。]
-#param("--theme", default: "default")[主題名稱：`default`、`nord`、`paper`、`monochrome`、`presentation` 或 `dark`（詳見#ref(<sec-themes>)）。]
-#param("--config")[TOML 設定檔路徑。命令列參數的優先順序高於設定檔。省略時，若目前目錄有 `utility-viz.toml`（或舊的 `econ-viz.toml`）則自動使用（詳見#ref(<sec-config-lookup>)）。]
+#param("--theme", default: "default")[主題名稱：`manual`、`default`、`colorblind`、`monochrome`、`nord`、`paper` 或 `presentation`（詳見#ref(<sec-themes>)）。省略時使用設定檔的 `base`。]
+#param("--config")[TOML 設定檔路徑。命令列參數的優先順序高於設定檔。省略時，若目前目錄有 `econ-viz.toml`（或較舊的 `utility-viz.toml`）則自動使用（詳見#ref(<sec-config-lookup>)）。相對的字型路徑以設定檔所在資料夾為準。]
 #param("--n-curves", default: "5")[無異曲線的條數。]
 #param("--dpi", default: "300")[點陣圖輸出解析度。]
 #param("--fill")[為預算線下方的可行集合加上陰影。]
@@ -199,13 +202,13 @@ utility-viz plot --model stone-geary --bar-x 2 --bar-y 2 \
 #api(("utility-viz init",), added: "v1.10.0", syntax: [
   #raw("utility-viz init [")#meta("path")#raw("] [--force]")#raw(" [--migrate]")
 ])[
-  建立含註解的 `utility-viz.toml` 範本。省略路徑時寫入目前目錄；檔案已存在時，必須使用 `--force` 才會覆寫。`--migrate` 則改為從同一目錄中舊的 `econ-viz.toml` 建立 `utility-viz.toml`，並保留舊檔。
+  建立含註解的 `econ-viz.toml` 範本：頂層為共用設定，utility-viz 自身的設定位於 `[utility]` 下。省略路徑時寫入目前目錄；檔案已存在時，必須使用 `--force` 才會覆寫。`--migrate` 則改為把 utility-viz 位於頂層的表格移到 `[utility]` 下，並保留註解：同一目錄有 `utility-viz.toml` 時，將其改寫為 `econ-viz.toml` 並保留舊檔；沒有時，則直接改寫舊格式的 `econ-viz.toml`。
 
   ```bash
   utility-viz init
   utility-viz init config/figures.toml
   utility-viz init --migrate
-  utility-viz plot --config utility-viz.toml --model cobb-douglas \
+  utility-viz plot --config econ-viz.toml --model cobb-douglas \
                 --px 2 --py 3 --income 30 --output figure.png
   ```
 ]

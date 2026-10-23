@@ -1,0 +1,18 @@
+# 手冊圖形的共用設定
+# 白底黑軸與灰色曲線
+# 畫圖前先載入本檔
+#
+#     Config.load("econ-viz.toml").use()
+#
+# 頂層放共用設定
+# 套件設定放在 [utility]
+
+base = "manual"             # 手冊的黑白樣式
+
+# 字型檔放在本檔旁邊
+[font]
+text = "serif"
+math = "texgyrepagella-math.otf"
+
+[fonts]
+serif = ["NotoSerifTC-Regular.otf", "NotoSerifTC-Bold.otf"]
