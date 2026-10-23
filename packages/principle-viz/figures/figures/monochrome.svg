@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T15:19:01.495947</dc:date>
+    <dc:date>2026-10-23T11:31:06.141012</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -151,7 +151,7 @@ L 54 107.28
 L 165.6 218.16 
 L 165.6 218.16 
 z
-" clip-path="url(#p9f2a7cc474)" style="fill: #e0e0e0; fill-opacity: 0.15"/>
+" clip-path="url(#p3e529543d0)" style="fill: #e0e0e0; fill-opacity: 0.15"/>
    </g>
    <g id="market.welfare.ps">
     <path d="M 54 329.04 
@@ -159,21 +159,21 @@ L 54 218.16
 L 165.6 218.16 
 L 165.6 218.16 
 z
-" clip-path="url(#p9f2a7cc474)" style="fill: #bdbdbd; fill-opacity: 0.15"/>
+" clip-path="url(#p3e529543d0)" style="fill: #bdbdbd; fill-opacity: 0.15"/>
    </g>
    <g id="market.demand">
     <path d="M 54 107.28 
 L 333 384.48 
-" clip-path="url(#p9f2a7cc474)" style="fill: none; stroke: #111111; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p3e529543d0)" style="fill: none; stroke: #111111; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 329.04 
 L 306.216 78.4512 
-" clip-path="url(#p9f2a7cc474)" style="fill: none; stroke: #4a4a4a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p3e529543d0)" style="fill: none; stroke: #4a4a4a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.equilibrium">
     <defs>
-     <path id="ma3154442ab" d="M 0 3.25 
+     <path id="m095fddc758" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -186,7 +186,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#ma3154442ab" x="165.6" y="218.16"/>
+     <use xlink:href="#m095fddc758" x="165.6" y="218.16"/>
     </g>
    </g>
    <g id="market.demand.label">
@@ -395,7 +395,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p9f2a7cc474">
+  <clipPath id="p3e529543d0">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

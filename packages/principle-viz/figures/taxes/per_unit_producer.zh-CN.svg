@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T15:16:49.512043</dc:date>
+    <dc:date>2026-10-23T11:28:06.327595</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -167,17 +167,17 @@ z
    <g id="market.demand">
     <path d="M 54 128.603077 
 L 333 384.48 
-" clip-path="url(#p043cd93728)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf21e6e5953)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 384.48 
 L 333 128.603077 
-" clip-path="url(#p043cd93728)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pf21e6e5953)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply.taxed">
     <path d="M 54 320.510769 
 L 317.934 78.4512 
-" clip-path="url(#p043cd93728)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pf21e6e5953)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.tax.shift">
     <path d="M 193.5 256.541538 
@@ -195,7 +195,7 @@ L 195.9 198.490342
    </g>
    <g id="market.equilibrium.baseline">
     <defs>
-     <path id="m167e41c791" d="M 0 3.25 
+     <path id="mfd5a573d7a" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -208,7 +208,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m167e41c791" x="193.5" y="256.541538" style="fill: #1a1a1a"/>
+     <use xlink:href="#mfd5a573d7a" x="193.5" y="256.541538" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="market.tax.shift.label">
@@ -475,7 +475,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p043cd93728">
+  <clipPath id="pf21e6e5953">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

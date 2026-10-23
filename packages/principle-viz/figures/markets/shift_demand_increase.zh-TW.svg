@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T15:15:41.603763</dc:date>
+    <dc:date>2026-10-23T11:25:57.545063</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -147,17 +147,17 @@ z
    <g id="market.demand">
     <path d="M 54 146.88 
 L 333 384.48 
-" clip-path="url(#pdf562e0400)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p9d4fb9b6ff)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 336.96 
 L 333 99.36 
-" clip-path="url(#pdf562e0400)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p9d4fb9b6ff)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.demand.shifted">
     <path d="M 57.348 78.4512 
 L 333 313.2 
-" clip-path="url(#pdf562e0400)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
+" clip-path="url(#p9d4fb9b6ff)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #8c8c8c; stroke-linejoin: miter"/>
    </g>
    <g id="market.comparison.movement.quantity">
     <path d="M 165.6 241.92 
@@ -189,7 +189,7 @@ L 209.85 212.198034
    </g>
    <g id="market.equilibrium.baseline">
     <defs>
-     <path id="mcd18618d2b" d="M 0 3.25 
+     <path id="m375258d2bc" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -202,12 +202,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#mcd18618d2b" x="165.6" y="241.92" style="fill: #1a1a1a"/>
+     <use xlink:href="#m375258d2bc" x="165.6" y="241.92" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="market.equilibrium.shifted">
     <defs>
-     <path id="m16d8145c3a" d="M 0 3.25 
+     <path id="mfcce0b9439" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -220,7 +220,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m16d8145c3a" x="207.45" y="206.28" style="fill: #6e6e6e"/>
+     <use xlink:href="#mfcce0b9439" x="207.45" y="206.28" style="fill: #6e6e6e"/>
     </g>
    </g>
    <g id="market.demand.label">
@@ -437,7 +437,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pdf562e0400">
+  <clipPath id="p9d4fb9b6ff">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T15:19:01.743809</dc:date>
+    <dc:date>2026-10-23T11:31:06.381650</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -132,16 +132,16 @@ z
    <g id="market.demand">
     <path d="M 54 107.28 
 L 333 384.48 
-" clip-path="url(#p26e9019738)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p7b5ee15217)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 329.04 
 L 306.216 78.4512 
-" clip-path="url(#p26e9019738)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p7b5ee15217)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.equilibrium">
     <defs>
-     <path id="m267694db16" d="M 0 3.25 
+     <path id="m2669187468" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -154,7 +154,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m267694db16" x="165.6" y="218.16" style="fill: #1a1a1a"/>
+     <use xlink:href="#m2669187468" x="165.6" y="218.16" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="market.demand.label">
@@ -499,7 +499,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p26e9019738">
+  <clipPath id="p7b5ee15217">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

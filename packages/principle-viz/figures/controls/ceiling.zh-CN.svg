@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T15:17:17.910538</dc:date>
+    <dc:date>2026-10-23T11:28:35.383841</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -650,27 +650,27 @@ z
    <g id="market.demand">
     <path d="M 54 107.28 
 L 333 384.48 
-" clip-path="url(#p20eae3b631)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p183c149732)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 329.04 
 L 306.216 78.4512 
-" clip-path="url(#p20eae3b631)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#p183c149732)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.guide.q_d">
     <path d="M 221.4 384.48 
 L 221.4 273.6 
-" clip-path="url(#p20eae3b631)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p183c149732)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.guide.q_s">
     <path d="M 109.8 384.48 
 L 109.8 273.6 
-" clip-path="url(#p20eae3b631)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#p183c149732)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.price">
     <path d="M 54 273.6 
 L 388.8 273.6 
-" clip-path="url(#p20eae3b631)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
+" clip-path="url(#p183c149732)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
    </g>
    <g id="market.control.price.label">
     <path d="M 380.626566 259.199482 
@@ -784,7 +784,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p20eae3b631">
+  <clipPath id="p183c149732">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>

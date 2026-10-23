@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-21T15:18:07.296795</dc:date>
+    <dc:date>2026-10-23T11:29:27.559512</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -345,41 +345,41 @@ L 206.181818 218.16
 L 206.181818 146.88 
 L 160.527273 182.52 
 z
-" clip-path="url(#p548bd25bf0)" style="fill: #595959; fill-opacity: 0.45"/>
+" clip-path="url(#pc01aba5aed)" style="fill: #595959; fill-opacity: 0.45"/>
    </g>
    <g id="market.demand">
     <path d="M 54 99.36 
 L 358.363636 336.96 
-" clip-path="url(#p548bd25bf0)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pc01aba5aed)" style="fill: none; stroke: #8c8c8c; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.supply">
     <path d="M 54 336.96 
 L 358.363636 99.36 
-" clip-path="url(#p548bd25bf0)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
+" clip-path="url(#pc01aba5aed)" style="fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: miter"/>
    </g>
    <g id="market.common_resource.social_cost">
     <path d="M 54 265.68 
 L 293.838545 78.4512 
-" clip-path="url(#p548bd25bf0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pc01aba5aed)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.common_resource.open_access.guide">
     <path d="M 206.181818 384.48 
 L 206.181818 218.16 
-" clip-path="url(#p548bd25bf0)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pc01aba5aed)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.common_resource.efficient.guide">
     <path d="M 160.527273 384.48 
 L 160.527273 182.52 
-" clip-path="url(#p548bd25bf0)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
+" clip-path="url(#pc01aba5aed)" style="fill: none; stroke-dasharray: 1,1.65; stroke-dashoffset: 0; stroke: #1a1a1a; stroke-linejoin: miter"/>
    </g>
    <g id="market.common_resource.fee">
     <path d="M 160.527273 253.8 
 L 160.527273 182.52 
-" clip-path="url(#p548bd25bf0)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
+" clip-path="url(#pc01aba5aed)" style="fill: none; stroke-dasharray: 3.7,1.6; stroke-dashoffset: 0; stroke: #595959; stroke-linejoin: miter"/>
    </g>
    <g id="market.common_resource.open_access">
     <defs>
-     <path id="md30b564a8c" d="M 0 3.25 
+     <path id="m1763067856" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -392,12 +392,12 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#md30b564a8c" x="206.181818" y="218.16" style="fill: #1a1a1a"/>
+     <use xlink:href="#m1763067856" x="206.181818" y="218.16" style="fill: #1a1a1a"/>
     </g>
    </g>
    <g id="market.common_resource.efficient">
     <defs>
-     <path id="m16920ac540" d="M 0 3.25 
+     <path id="m2a026dabe8" d="M 0 3.25 
 C 0.86191 3.25 1.688635 2.907559 2.298097 2.298097 
 C 2.907559 1.688635 3.25 0.86191 3.25 0 
 C 3.25 -0.86191 2.907559 -1.688635 2.298097 -2.298097 
@@ -410,7 +410,7 @@ z
 "/>
     </defs>
     <g>
-     <use xlink:href="#m16920ac540" x="160.527273" y="182.52" style="fill: #6e6e6e"/>
+     <use xlink:href="#m2a026dabe8" x="160.527273" y="182.52" style="fill: #6e6e6e"/>
     </g>
    </g>
    <g id="market.common_resource.fee.label">
@@ -1100,7 +1100,7 @@ L 188.883026 102.384219
   </g>
  </g>
  <defs>
-  <clipPath id="p548bd25bf0">
+  <clipPath id="pc01aba5aed">
    <rect x="54" y="51.84" width="334.8" height="332.64"/>
   </clipPath>
  </defs>
