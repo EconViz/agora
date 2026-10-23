@@ -2,7 +2,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 titles = ["簡單", "三角形", "花式", "楔形"]

@@ -1,7 +1,7 @@
 from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$")
 
@@ -12,7 +12,7 @@ cases = [
 ]
 for idx, (model, px, py, income) in enumerate(cases):
     eq = solve(model, px=px, py=py, income=income)
-    panel = fig[idx]  # 面板都是 Canvas
+    panel = fig[idx]  # 每個面板都是 Canvas
     panel.add_utility(model, levels=levels.around(eq.utility, n=5))
     panel.add_budget(px, py, income, fill=True)
     panel.add_equilibrium(eq, show_ray=True)

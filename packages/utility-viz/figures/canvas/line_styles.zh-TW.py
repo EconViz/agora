@@ -2,7 +2,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 titles = ["實線", "虛線", "點線", "點劃線"]

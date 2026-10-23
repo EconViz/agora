@@ -1,6 +1,6 @@
-# 圖形設定
-# 灰色曲線 黑色軸 白底
-# 畫圖前先載入
+# 手冊圖形的共用設定
+# 白底黑軸與灰色曲線
+# 畫圖前先載入本檔
 #
 #     Config.load("manual.toml").use()
 #
@@ -8,7 +8,7 @@
 
 base = "default"
 
-# 字體檔放在此檔旁
+# 字型檔放在本檔旁邊
 [font]
 text = "serif"
 math = "texgyrepagella-math.otf"
@@ -21,7 +21,7 @@ background = "#ffffff"
 axis = "#1a1a1a"
 label = "#1a1a1a"
 ic = "#8c8c8c"              # 無異曲線
-secondary_ic = "#b8b8b8"    # 強調曲線旁的曲線
+secondary_ic = "#b8b8b8"    # 被強調曲線兩側的曲線
 path = "#1a1a1a"            # 價格與所得消費路徑
 budget = "#222222"
 eq = "#1a1a1a"              # 均衡點與其他點
@@ -93,7 +93,7 @@ size = 5
 [marker.point]
 size = 5
 
-[label.point]               # 點旁的文字 如 x*
+[label.point]               # 點旁的文字例如 x*
 fontsize = 14
 position = "right"
 offset = 10

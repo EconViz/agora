@@ -20,7 +20,7 @@
 from utility_viz import Config, Figure, Layout, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
 fig = Figure(Layout.SIDE_BY_SIDE, x_max=20, y_max=15, x_label="$x$", y_label="$y$")
 
@@ -31,7 +31,7 @@ cases = [
 ]
 for idx, (model, px, py, income) in enumerate(cases):
     eq = solve(model, px=px, py=py, income=income)
-    panel = fig[idx]  # 面板都是 Canvas
+    panel = fig[idx]  # 每個面板都是 Canvas
     panel.add_utility(model, levels=levels.around(eq.utility, n=5))
     panel.add_budget(px, py, income, fill=True)
     panel.add_equilibrium(eq, show_ray=True)
@@ -107,13 +107,13 @@ fig.save("side_by_side.png")
 from utility_viz import Canvas, Config, LinearBudget, PricePath, levels
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 budget = LinearBudget(px=2.0, py=2.0, income=40.0)
 path = PricePath(model, budget=budget, price="px", price_range=(0.8, 6.0), n=40)
 
-# 圍繞路徑中段最適點的曲線
+# 圍繞中段最適點的曲線
 eq = path.equilibria[len(path.equilibria) // 2]
 
 cvs = Canvas(x_max=25, y_max=20, x_label="$x$", y_label="$y$")

@@ -1,7 +1,7 @@
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import Leontief
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 model = Leontief(a=1.0, b=1.0)
 eq = solve(model, px=2.0, py=3.0, income=30.0)

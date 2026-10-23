@@ -93,36 +93,36 @@
 ]
 
 #example([```bash
-# Cobb-Douglas，可行集合加阴影
+# Cobb-Douglas 并为可行集合加阴影
 utility-viz plot --model cobb-douglas --alpha 0.5 --beta 0.5 \
               --px 2 --py 3 --income 30 \
               --fill --output cobb_douglas.png
 
-# LaTeX 输入，Nord 主题，扩张路径
+# 用 LaTeX 与 Nord 主题画扩张路径
 utility-viz plot --latex "x^{0.4} y^{0.6}" \
               --px 2 --py 3 --income 30 \
               --theme nord --show-ray \
               --output cd_latex.png
 
-# 完全互补，加大画布
+# 完全互补并放大画布
 utility-viz plot --model leontief --a 1 --b 2 \
               --px 2 --py 3 --income 30 \
               --x-max 20 --y-max 15 \
               --output leontief.png
 
-# CES，只画无差异曲线
+# CES 只画无差异曲线
 utility-viz plot --model ces --rho -0.5 \
               --x-max 20 --y-max 15 --n-curves 6 \
               --no-budget --no-equilibrium \
               --output ces.png
 
-# 饱和（饱和点）
+# 饱和效用与饱和点
 utility-viz plot --model satiation --bliss-x 6 --bliss-y 4 \
               --x-max 12 --y-max 10 \
               --no-budget --no-equilibrium \
               --output satiation.png
 
-# 不加 --output：打开窗口
+# 不加 --output 就打开窗口
 utility-viz plot --model cobb-douglas --px 2 --py 3 --income 30
 ```])
 

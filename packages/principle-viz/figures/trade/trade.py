@@ -77,7 +77,7 @@ from principle_viz.welfare.surplus import (
 )
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG = tomllib.loads((ROOT / "config" / "figures.toml").read_text())
+CONFIG = tomllib.loads((ROOT / "config" / "principle-viz.toml").read_text())
 OUT = ROOT / CONFIG["output"]["dir"]
 FMT = CONFIG["output"]["format"]
 EDITIONS = ("en", "zh-TW", "zh-CN")
@@ -202,7 +202,7 @@ def set_edition(edition: str) -> None:
     """Draw the following figures in this language: the words in them are translated and set in a CJK face.
 
     principle-viz's built-in labels ("Shortage", "Consumer surplus", ...) are English; the table in
-    config/figures.toml gives their translations, applied to a figure just before it is drawn.
+    config/principle-viz.toml gives their translations, applied to a figure just before it is drawn.
     """
     global EDITION, _original_render
     from mosaickit.rendering.matplotlib.renderer import MatplotlibRenderer

@@ -84,9 +84,9 @@ from utility_viz import Canvas, solve
 #param("all")[全部可选依赖。]
 
 ```bash
-uv add "utility-viz[animation]"    # GIF 导出（Pillow）
+uv add "utility-viz[animation]"    # 以 Pillow 导出 GIF
 uv add "utility-viz[interactive]"  # 笔记本交互组件
-uv add "utility-viz[all]"          # 全部可选依赖
+uv add "utility-viz[all]"          # 安装全部可选依赖
 ```
 
 安装可选依赖不会自动运行动画或打开笔记本，仍需按各章示例调用对应的 API。

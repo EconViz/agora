@@ -134,7 +134,7 @@ cvs.add_utility(
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -172,7 +172,7 @@ cvs.save("add_utility.png")
 #example([```python
 from utility_viz import Canvas, Config
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
 cvs.add_budget(2.0, 3.0, 30.0, fill=True)  # 预算线与可行集合
@@ -209,7 +209,7 @@ cvs.save("add_budget.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -217,7 +217,7 @@ eq = solve(model, px=2.0, py=3.0, income=30.0)
 cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x 与 y
 cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
 cvs.add_budget(2.0, 3.0, 30.0, fill=True)
-cvs.add_equilibrium(eq)  # 最优点与通往坐标轴的虚线
+cvs.add_equilibrium(eq)  # 最优点与两条辅助虚线
 cvs.save("add_equilibrium.png")
 ```])
 
@@ -242,7 +242,7 @@ cvs.save("add_equilibrium.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -251,7 +251,7 @@ cvs = Canvas(x_max=20, y_max=15, x_label="$x$", y_label="$y$")  # 斜体的 x �
 cvs.add_utility(model, levels=levels.around(eq.utility, n=3))
 cvs.add_budget(2.0, 3.0, 30.0)
 cvs.add_equilibrium(eq)
-cvs.add_ray(eq.y / eq.x)  # 通过原点与最优点的射线
+cvs.add_ray(eq.y / eq.x)  # 过原点与最优点的射线
 cvs.save("add_ray.png")
 ```])
 
@@ -282,7 +282,7 @@ cvs.save("add_ray.png")
 from utility_viz import Canvas, Config, Label, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -314,7 +314,7 @@ cvs.save("add_point.png")
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CobbDouglas
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 model = CobbDouglas(alpha=0.5, beta=0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
@@ -361,7 +361,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import Canvas, Config, LineStyle
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 styles = [LineStyle.SOLID, LineStyle.DASHED, LineStyle.DOTTED, LineStyle.DASHDOT]
 titles = ["实线", "虚线", "点线", "点划线"]
@@ -397,7 +397,7 @@ from mosaickit import CanvasGrid
 
 from utility_viz import ArrowStyle, Canvas, Config
 
-Config.load("manual.toml").use()  # 图形设置
+Config.load("manual.toml").use()  # 载入图形设置
 
 styles = [ArrowStyle.SIMPLE, ArrowStyle.TRIANGLE, ArrowStyle.FANCY, ArrowStyle.WEDGE]
 titles = ["简单", "三角形", "花式", "楔形"]

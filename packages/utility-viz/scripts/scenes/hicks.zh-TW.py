@@ -21,13 +21,15 @@ from utility_viz import Config, DecompositionMethod
 from utility_viz.core.scenes import UTILITY_THEME, budget_layers, indifference_layers
 from utility_viz.models import CobbDouglas, decompose_price_effect
 
-INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 同 manual.toml 的顏色
+INK, DARK, GREY = "#1a1a1a", "#222222", "#8c8c8c"  # 顏色與 manual.toml 相同
 settings = Config.load("manual.toml")
 text = TextStyle(color=INK, size=14, font="serif")
 effect_name = TextStyle(color=INK, size=13, font="serif")
 
 # x 的價格由 2 漲到 4
-# A 舊 C 新 B 為補償點
+# A 為漲價前的最適點
+# C 為漲價後的最適點
+# B 為補償後的最適點
 model = CobbDouglas(alpha=0.5, beta=0.5)
 px0, px1, py, income = 2.0, 4.0, 3.0, 60.0
 result = decompose_price_effect(
@@ -94,8 +96,8 @@ for name, bundle in bundles.items():
         )
     )
 
-# x 方向效果畫成箭頭
-# 名稱展開到同一水平
+# x 方向的效果以箭頭表示
+# 名稱一律放在同一高度
 gap, row, depth, spread = 0.2, 1.6, -4.4, 3.8
 effects = [("A", "B", "替代效果", 1), ("B", "C", "所得效果", -1)]
 for i, (start, end, name, direction) in enumerate(effects):

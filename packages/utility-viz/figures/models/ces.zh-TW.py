@@ -1,7 +1,7 @@
 from utility_viz import Canvas, Config, levels, solve
 from utility_viz.models import CES
 
-Config.load("manual.toml").use()  # 圖形設定
+Config.load("manual.toml").use()  # 載入圖形設定
 
 model = CES(alpha=0.5, beta=0.5, rho=-0.5)
 eq = solve(model, px=2.0, py=3.0, income=30.0)
