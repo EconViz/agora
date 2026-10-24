@@ -258,7 +258,7 @@ econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
 
 `[principle.label.<group>]` 預設移動同一群組的所有標籤，因此在設定檔中設定一次，即可取代在每張圖上分別寫 `Label(top=...)`。標籤依其命名的對象分為五個群組，每個群組都有 `top`、`bottom`、`left` 與 `right` 四個鍵（#ref(<tab-label-groups>)）。
 
-#tbl(caption: [`[principle.label.<group>]` 的標籤群組])[
+#tbl(caption: [標籤群組])[
   #booktabs(
     columns: (auto, 1fr),
     header: ([群組], [標籤]),

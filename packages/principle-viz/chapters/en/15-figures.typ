@@ -338,7 +338,7 @@ setting in the file replaces a `Label(top=...)` on each figure. The five
 groups follow what a label names (@tab-label-groups); each takes `top`,
 `bottom`, `left` and `right`.
 
-#tbl(caption: [Label groups of `[principle.label.<group>]`])[
+#tbl(caption: [Label groups])[
   #booktabs(
     columns: (auto, 1fr),
     header: ([Group], [Labels]),

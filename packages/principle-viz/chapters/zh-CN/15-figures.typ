@@ -259,7 +259,7 @@ econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
 
 `[principle.label.<group>]` 默认移动同一分组的所有标签，因此在配置文件中设置一次，即可取代在每张图上分别写 `Label(top=...)`。标签按其命名的对象分为五个分组，每个分组都有 `top`、`bottom`、`left` 与 `right` 四个键（#ref(<tab-label-groups>)）。
 
-#tbl(caption: [`[principle.label.<group>]` 的标签分组])[
+#tbl(caption: [标签分组])[
   #booktabs(
     columns: (auto, 1fr),
     header: ([分组], [标签]),
