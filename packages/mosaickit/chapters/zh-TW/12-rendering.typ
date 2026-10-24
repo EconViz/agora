@@ -9,7 +9,7 @@
   #raw("render(scene, context) -> Any") \
   #raw("save(result, target, options) -> list[Path]")
 ])[
-  所有後端都必須實作的協定。繪製器接收不可變的場景與私有的繪製情境（規格、主題、覆寫、色盤、快取與綁定），並回傳由 `save` 寫出的結果。網格與動畫另需 `render_grid` 與 `save_animation`；繪製器若沒有實作它們，會引發 `RenderError`。內建後端仍在演進，因此繪製計畫與情境維持私有。
+  所有後端都必須實作的協定。繪製器接收不可變的場景與私有的繪製情境（規格、主題、覆寫、色盤、快取與綁定），並回傳由 `save` 寫出的結果。網格另需 `render_grid`；繪製器若沒有實作它，會引發 `RenderError`。內建後端仍在演進，因此繪製計畫與情境維持私有。
 ]
 
 #api(("RendererRegistry",), syntax: [#raw("RendererRegistry()")])[
@@ -47,10 +47,10 @@ finally:
     result.close()
 ```
 
-`render()` 回傳 `MatplotlibResult`，提供 `figure`、`axes`、`show()`、`save(target, **options)` 與 `close()`。`canvas.save()` 會自行關閉暫時結果。檔案格式由副檔名決定：`.png`、`.pdf` 或 `.svg`；其他副檔名會引發 `RenderError`。動畫接受 `.gif` 或 `.mp4`。網格中每格大小相同：寬度取「各畫布寬度除以所跨欄數」的最大值，高度取「各畫布高度除以所跨列數」的最大值；DPI 取各畫布中的最高值。
+`render()` 回傳 `MatplotlibResult`，提供 `figure`、`axes`、`show()`、`save(target, **options)` 與 `close()`。`canvas.save()` 會自行關閉暫時結果。檔案格式由副檔名決定：`.png`、`.pdf` 或 `.svg`；其他副檔名會引發 `RenderError`。網格中每格大小相同：寬度取「各畫布寬度除以所跨欄數」的最大值，高度取「各畫布高度除以所跨列數」的最大值；DPI 取各畫布中的最高值。
 
 == 快取
 
 #api(("RenderCache", "CacheKey"), syntax: [#raw("RenderCache(max_entries=256)")])[
-  有容量上限且執行緒安全的最近最少使用快取，用來存放解析後的圖層，並以圖層 id、綁定、模型、規格與樣式為鍵。除非以 `cache=` 傳入快取，否則每次繪製、網格或動畫工作都會建立自己的快取，因此工作之間不會意外共用狀態。要在多個工作間重用結果，請傳入同一個快取。無法雜湊的模型會繞過快取直接繪製；每種模型型別在每個快取中只會發出一次 `CacheBypassWarning`。模型請使用凍結的 dataclass。`clear()` 清空快取。
+  有容量上限且執行緒安全的最近最少使用快取，用來存放解析後的圖層，並以圖層 id、綁定、模型、規格與樣式為鍵。除非以 `cache=` 傳入快取，否則每次繪製或網格工作都會建立自己的快取，因此工作之間不會意外共用狀態。要在多個工作間重用結果，請傳入同一個快取。無法雜湊的模型會繞過快取直接繪製；每種模型型別在每個快取中只會發出一次 `CacheBypassWarning`。模型請使用凍結的 dataclass。`clear()` 清空快取。
 ]

@@ -15,7 +15,7 @@
 uv add bezierkit                 # the library
 uv add "bezierkit[cli]"          # with the command-line interface
 uv add "bezierkit[matplotlib]"   # with the Matplotlib adapter
-uv add "bezierkit==1.0.0"        # the version this manual describes
+uv add "bezierkit==1.1.0"        # the version this manual describes
 ```
 
 使用 #pkg("pip") 时，运行 `python -m pip install bezierkit`，可选依赖的写法相同。1.0.0 是第一个正式版：`bezierkit` 及其文档所列子包导出的名称按语义化版本管理，JSON 路径格式维持第 1 版。

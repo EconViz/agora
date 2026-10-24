@@ -54,10 +54,10 @@ uv run python main.py
 若要固定本手册使用的版本，可在添加依赖时指定版本号：
 
 ```bash
-uv add "utility-viz==2.0.0b1"
+uv add "utility-viz==2.0.0b8"
 ```
 
-2.0.0b1 是预览版。在没有 2.x 正式版之前，`uv add utility-viz` 与 `pip install utility-viz` 会直接安装此版本；正式版发布后，需以 `uv add --prerelease allow utility-viz` 或 `pip install --pre utility-viz` 才能安装预览版。
+2.0.0b8 是预览版。在没有 2.x 正式版之前，`uv add utility-viz` 与 `pip install utility-viz` 会直接安装此版本；正式版发布后，需以 `uv add --prerelease allow utility-viz` 或 `pip install --pre utility-viz` 才能安装预览版。
 
 若使用现有的 Python 虚拟环境，可通过 #pkg("pip") 安装：
 
@@ -124,7 +124,7 @@ uv run mypy .
 #changed("1.5.0", label: "econ-viz")[Colab 上的笔记本安装流程在重新启动后也能正常运作]
 
 ```bash
-uv run utility-viz --version   # utility-viz 2.0.0b1
+uv run utility-viz --version   # utility-viz 2.0.0b8
 uv run utility-viz help
 ```
 

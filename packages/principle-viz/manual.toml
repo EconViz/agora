@@ -9,8 +9,8 @@ editions = ["en", "zh-TW", "zh-CN"]
 # #pkg-meta("version"), #pkg-meta("python"), ...
 [package]
 name = "principle-viz"
-version = "0.10.1"
-date = "2026-10-03"
+version = "0.12.1"
+date = "2026-10-23"
 python = "3.10"
 repo = "https://github.com/EconViz/principle-viz"
 site = "https://econ-viz.org"

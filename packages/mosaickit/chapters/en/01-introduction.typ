@@ -4,11 +4,17 @@
 
 #changed("0.1.0")[First release: immutable scenes and layers, sparse styles, namespaced themes, canvases, spanning grids, parameter expressions, animation, Matplotlib rendering with job-scoped caches, and strict TOML configuration]
 #changed("0.1.1")[Package metadata on PyPI links the homepage, repository, issue tracker, changelog and release notes]
+#changed("1.0.0rc1")[Removed the deprecated `Animation` and `TextStyle.family` (see the chapters on parameters and styles)]
+#changed("1.0.0rc2")[Faster drawing with identical output: label placement, point validation and Matplotlib's mathtext parsing use arrays and caches scoped to one draw or save]
+#changed("1.0.0rc3")[Titles and text that mixes words with `$...$` math are set in the configured text fonts, so Chinese no longer comes out as boxes]
+#changed("1.0.0rc4")[Parsed fonts are shared across symbolic links; a configured title keeps the baseline Matplotlib gives it]
+#changed("1.0.0rc5")[New `mosaickit.econ_toml` reads the sections of `econ-viz.toml` that every EconViz package shares]
+#changed("1.0.0rc6")[Packages declare an `econ_toml.Schema` and mosaickit parses `econ-viz.toml` for them; shared themes (`mosaickit.themes`) and label nudges (`Nudge`) added]
 
 The #pkg("mosaickit") package assembles two-dimensional diagrams from small,
 immutable pieces. A scene is an ordered list of layers (paths, filled regions,
 markers, text, arrows, labels, braces). Each layer names a semantic role, a
-theme maps roles to styles, and a renderer produces PNG, SVG, PDF, GIF or MP4.
+theme maps roles to styles, and a renderer produces PNG, SVG or PDF.
 The package is domain-neutral. Domain packages such as #pkg("principle-viz")
 and #pkg("utility-viz") define their own models and role names, then pass
 #pkg("mosaickit") the layers to draw. Curve construction and TikZ export
@@ -63,7 +69,7 @@ order-restricted least squares behind @thm-spread.
     [Styles, colors, palettes], [#ref(<sec-styles>)],
     [Themes, roles, configuration], [#ref(<sec-themes>)],
     table.cell(rowspan: 2)[Output],
-    [Parameters, grids, animation], [#ref(<sec-parameters>)],
+    [Parameters and grids], [#ref(<sec-parameters>)],
     [Renderers, caches, saving], [#ref(<sec-rendering>)],
   )
 ] <tab-guide>

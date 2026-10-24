@@ -95,10 +95,10 @@ as a priority list: the first source that sets a field wins.
   Text styles. `size` is in points, `font` is a generic font (`"sans"`,
   `"serif"` or `"mono"`, @sec-fonts), `weight` is an integer from 1 to 1000,
   `"normal"` or `"bold"`, and `rotation` is in degrees counter-clockwise.
-  `family`, a font-family name, still works but is deprecated: it draws
-  through Matplotlib and ignores #pkg("glyphkit"). It will go in 1.0.
+  Pass the fields by name.
   #changed("0.9.0", label: "TextStyle")[`weight` is no longer deprecated]
   #changed("0.9.1", label: "TextStyle")[New `font` field; `family` is deprecated]
+  #changed("1.0.0rc1", label: "TextStyle")[Removed `family`; choose `font` and replace the files with `TextFonts`. Pass the fields by name; a scene document that holds `"family": null` still loads, one that names a family is refused]
 ]
 
 == Fonts <sec-fonts>

@@ -62,6 +62,18 @@ so it handles curves that turn back, close up or break into several pieces.
 #param("tolerance", type: "float", default: "1e-2")[Allowed deviation, in coordinate units, of the simplified and curved segments.]
 #param("gradient", type: "callable | None", default: "None")[$nabla F = (F_x, F_y)$, as a pair or a `Vector`. When given, straight pieces are bent into cubics that follow the curve's tangent.]
 
+#changed("1.1.0", label: "trace_sampled")[Traces level sets of a field that is already sampled on a grid]
+#api(("trace_sampled",), added: "v1.1.0", syntax: [
+  #raw("trace_sampled(")#meta("xs")#raw(", ")#meta("ys")#raw(", ")#meta("values")#raw(", *, levels, tolerance=1e-2, gradient=None)")
+])[
+  Trace $F(x, y) = c$ on a grid whose values are already computed, in
+  `bezierkit.implicit`. `values[row, column]` is $F$ at `(xs[column], ys[row])`,
+  so a vectorized $F$ can fill the whole grid in one call instead of one call
+  per point. `levels`, `tolerance` and `gradient` are as for `trace_implicit`;
+  `xs` and `ys` must be increasing, and `ValueError` is raised for a mismatched
+  shape or a non-finite value.
+]
+
 The algorithm is marching squares, the two-dimensional analogue of the
 marching cubes of #citet(<lorensen1987>). A grid cell has corners
 $v_(00), v_(10), v_(11), v_(01)$, counter-clockwise from the lower left,

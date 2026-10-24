@@ -9,7 +9,7 @@
   #raw("render(scene, context) -> Any") \
   #raw("save(result, target, options) -> list[Path]")
 ])[
-  所有后端都必须实现的协议。渲染器接收不可变的场景与私有的渲染上下文（规格、主题、覆盖、调色板、缓存与绑定），并返回由 `save` 写出的结果。网格与动画另需 `render_grid` 与 `save_animation`；渲染器如果没有实现它们，会引发 `RenderError`。内置后端仍在演进，因此渲染计划与上下文维持私有。
+  所有后端都必须实现的协议。渲染器接收不可变的场景与私有的渲染上下文（规格、主题、覆盖、调色板、缓存与绑定），并返回由 `save` 写出的结果。网格另需 `render_grid`；渲染器如果没有实现它，会引发 `RenderError`。内置后端仍在演进，因此渲染计划与上下文维持私有。
 ]
 
 #api(("RendererRegistry",), syntax: [#raw("RendererRegistry()")])[
@@ -47,10 +47,10 @@ finally:
     result.close()
 ```
 
-`render()` 返回 `MatplotlibResult`，提供 `figure`、`axes`、`show()`、`save(target, **options)` 与 `close()`。`canvas.save()` 会自行关闭暂时的结果。文件格式按扩展名决定：`.png`、`.pdf` 或 `.svg`（其他扩展名引发 `RenderError`）；动画接受 `.gif` 或 `.mp4`。网格中每格大小相同：宽为各画布宽度除以所跨列数的最大值，高为各画布高度除以所跨行数的最大值；DPI 取各画布中的最高者。
+`render()` 返回 `MatplotlibResult`，提供 `figure`、`axes`、`show()`、`save(target, **options)` 与 `close()`。`canvas.save()` 会自行关闭暂时的结果。文件格式按扩展名决定：`.png`、`.pdf` 或 `.svg`（其他扩展名引发 `RenderError`）。网格中每格大小相同：宽为各画布宽度除以所跨列数的最大值，高为各画布高度除以所跨行数的最大值；DPI 取各画布中的最高者。
 
 == 缓存
 
 #api(("RenderCache", "CacheKey"), syntax: [#raw("RenderCache(max_entries=256)")])[
-  有容量上限、线程安全的最近最少使用缓存，存放解析后的图层，以图层 id、绑定、模型、规格与样式为键。除非以 `cache=` 传入，每次绘制、网格或动画都创建自己的缓存，因此任务之间不会意外共用状态；要在多个任务间重用结果时，传入同一个缓存。无法哈希的模型不经缓存绘制，每种模型类型在每个缓存中只发出一次 `CacheBypassWarning`；模型请使用冻结的 dataclass。`clear()` 清空缓存。
+  有容量上限、线程安全的最近最少使用缓存，存放解析后的图层，以图层 id、绑定、模型、规格与样式为键。除非以 `cache=` 传入，每次绘制或网格都创建自己的缓存，因此任务之间不会意外共用状态；要在多个任务间重用结果时，传入同一个缓存。无法哈希的模型不经缓存绘制，每种模型类型在每个缓存中只发出一次 `CacheBypassWarning`；模型请使用冻结的 dataclass。`clear()` 清空缓存。
 ]

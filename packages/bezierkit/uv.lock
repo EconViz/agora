@@ -13,14 +13,14 @@ wheels = [
 
 [[package]]
 name = "bezierkit"
-version = "1.0.0"
+version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/95/84/95fb05e260c1c214c0d69cd5f80c235d87075bd30b8306c94cf928c4d52b/bezierkit-1.0.0.tar.gz", hash = "sha256:309fa0984a6cee703342c8e133a2983725e3bd6c12aca725d48decfe877a4060", size = 169027, upload-time = "2026-10-04T07:11:04.859Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/df/36/acba99ef8c4f9ef60b158931cfb6c154c6b53c0e5b305fbe33305f730f53/bezierkit-1.1.0.tar.gz", hash = "sha256:0623ec9a6a6bd76d650ff41edab701e0ceed9a511099e08e607d392ddebd2e49", size = 175614, upload-time = "2026-10-22T05:42:30.865Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/bf/899871c291ad2ead783008f085fa995096bac09c768a85a4c2b371ec11e6/bezierkit-1.0.0-py3-none-any.whl", hash = "sha256:42542e262c3829ce422fb3968b5d91049a02d12257611d9ef51ca5dc107eb553", size = 52479, upload-time = "2026-10-04T07:11:03.473Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/1a/e382527d19574e92d1c312a6c4615636aa74b0d9ab62a3e7c7b94b20389b/bezierkit-1.1.0-py3-none-any.whl", hash = "sha256:aa335bc523273704a0420ccfbd9ce2de52d5d054c57b43bfe17f297a530dbaf0", size = 54887, upload-time = "2026-10-22T05:42:29.607Z" },
 ]
 
 [package.optional-dependencies]
@@ -38,7 +38,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "bezierkit", extras = ["cli"], specifier = "==1.0.0" }]
+requires-dist = [{ name = "bezierkit", extras = ["cli"], specifier = "==1.1.0" }]
 
 [[package]]
 name = "colorama"

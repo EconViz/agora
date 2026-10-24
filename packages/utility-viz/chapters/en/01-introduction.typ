@@ -31,7 +31,7 @@ PDF, SVG, TikZ or animated GIF.
 Up to version 1.12 the package was called #pkg("econ-viz"). It was
 renamed #pkg("utility-viz") in 2.0.0; @sec-migrate describes what changed
 and how existing code keeps working. This manual describes the pre-release
-2.0.0b1.
+2.0.0b8.
 
 #pkg("utility-viz") belongs to the EconViz family of packages. It
 draws through #pkg("mosaickit"), a domain-neutral scene and rendering

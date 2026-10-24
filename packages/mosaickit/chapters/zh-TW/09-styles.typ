@@ -79,9 +79,10 @@
 ]
 
 #api(("TextStyle",), syntax: [#raw("TextStyle(color=None, size=None, font=None, weight=None, opacity=None, rotation=None)")])[
-  文字樣式。`size` 以點為單位，`font` 是通用字型（`"sans"`、`"serif"` 或 `"mono"`，見#ref(<sec-fonts>)），`weight` 是 1 到 1000 的整數、`"normal"` 或 `"bold"`，`rotation` 為逆時針旋轉的角度（度）。`family`（字型家族名稱）仍可用但已棄用：它走 Matplotlib 繪製，不經過 #pkg("glyphkit")，1.0 會移除。
+  文字樣式。`size` 以點為單位，`font` 是通用字型（`"sans"`、`"serif"` 或 `"mono"`，見#ref(<sec-fonts>)），`weight` 是 1 到 1000 的整數、`"normal"` 或 `"bold"`，`rotation` 為逆時針旋轉的角度（度）。欄位請以名稱傳入。
   #changed("0.9.0", label: "TextStyle")[`weight` 不再棄用]
   #changed("0.9.1", label: "TextStyle")[新增 `font` 欄位；`family` 棄用]
+  #changed("1.0.0rc1", label: "TextStyle")[移除 `family`；改以 `font` 選擇字型，並用 `TextFonts` 換成自己的字型檔。欄位請以名稱傳入；含 `"family": null` 的場景文件仍可載入，指定字型家族名稱的則會被拒絕]
 ]
 
 == 字型 <sec-fonts>

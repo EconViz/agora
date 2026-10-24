@@ -42,6 +42,13 @@
 #param("tolerance", type: "float", default: "1e-2")[简化与弯曲线段的容许偏差，单位同坐标。]
 #param("gradient", type: "callable | None", default: "None")[$nabla F = (F_x, F_y)$，以 tuple 或 `Vector` 回传。提供时，直线段会弯成沿曲线切线方向的三次曲线。]
 
+#changed("1.1.0", label: "trace_sampled")[对已在网格上采样的场描绘等值集]
+#api(("trace_sampled",), added: "v1.1.0", syntax: [
+  #raw("trace_sampled(")#meta("xs")#raw(", ")#meta("ys")#raw(", ")#meta("values")#raw(", *, levels, tolerance=1e-2, gradient=None)")
+])[
+  对已算好值的网格描绘 $F(x, y) = c$，位于 `bezierkit.implicit`。`values[row, column]` 是 $F$ 在 `(xs[column], ys[row])` 的值，因此向量化的 $F$ 可一次填满整个网格，不必逐点调用。`levels`、`tolerance` 与 `gradient` 同 `trace_implicit`；`xs` 与 `ys` 必须递增，形状不符或含非有限值时抛出 `ValueError`。
+]
+
 算法是行进方格法，即 #citet(<lorensen1987>) 行进立方体法的二维模拟。网格单元的角点为 $v_(00), v_(10), v_(11), v_(01)$，由左下角起逆时针排列，$F$ 的值分别为 $f_(00), f_(10), f_(11), f_(01)$。角点的值不小于水平 $c$ 时称为高。
 
 #definition(name: [边上的交点])[

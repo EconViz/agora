@@ -1,6 +1,6 @@
 #import "/template/manual.typ": *
 
-= 参数、网格与动画 <sec-parameters>
+= 参数与网格 <sec-parameters>
 
 == 参数与表达式
 
@@ -93,18 +93,4 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
   三个值的扫描
 ]) <fig-sweep>
 
-== 动画
-
-#api(("Animation",), syntax: [
-  #raw("Animation(template, parameter, values, fps=30)") \
-  #raw("Animation.sweep(canvas, values, *, fps=30)")
-])[
-  每个值对应一帧，由模板绑定该参数值而成。`frames()` 以与渲染器无关的场景逐一产生帧；`save(path)` 写出 GIF（通过 Pillow）或 MP4（通过 `ffmpeg`）。创建动画时即按参数检查各值；值列表为空或 `fps` 非正时引发 `ConfigurationError`。
-]
-
-```python
-from mosaickit import Animation
-
-values = shift.values([0.0, 1.0, 2.0, 3.0])
-Animation.sweep(template, values, fps=4).save("sweep.gif")
-```
+#changed("1.0.0rc1", label: "Animation")[移除 0.6.0 起弃用的 `Animation`、`Animation.sweep()` 与 Matplotlib 播放辅助函数；动画改由 #pkg("kinetickit") 负责，`CanvasGrid.sweep()` 与 `canvas.bind()` 仍为每个值画一格]

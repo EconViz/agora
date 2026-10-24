@@ -1,6 +1,6 @@
 #import "/template/manual.typ": *
 
-= 參數、網格與動畫 <sec-parameters>
+= 參數與網格 <sec-parameters>
 
 == 參數與運算式
 
@@ -93,18 +93,4 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
   三個值的掃描
 ]) <fig-sweep>
 
-== 動畫
-
-#api(("Animation",), syntax: [
-  #raw("Animation(template, parameter, values, fps=30)") \
-  #raw("Animation.sweep(canvas, values, *, fps=30)")
-])[
-  每個值對應一個畫面，由範本綁定該參數值而成。`frames()` 逐一產生與繪製器無關的場景；`save(path)` 寫出 GIF（透過 Pillow）或 MP4（透過 `ffmpeg`）。建立動畫時就會依參數檢查各值；值清單為空或 `fps` 非正時，會引發 `ConfigurationError`。
-]
-
-```python
-from mosaickit import Animation
-
-values = shift.values([0.0, 1.0, 2.0, 3.0])
-Animation.sweep(template, values, fps=4).save("sweep.gif")
-```
+#changed("1.0.0rc1", label: "Animation")[移除 0.6.0 起棄用的 `Animation`、`Animation.sweep()` 與 Matplotlib 播放輔助函式；動畫改由 #pkg("kinetickit") 負責，`CanvasGrid.sweep()` 與 `canvas.bind()` 仍為每個值畫一格]

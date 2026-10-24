@@ -12,8 +12,8 @@
   The protocol implemented by every backend. A renderer receives an
   immutable scene and a private render context (specification, theme, overrides,
   palette, cache and bindings), and returns a result that `save` writes.
-  Grids and animations also require `render_grid` and `save_animation`; a
-  renderer without them raises `RenderError`. Render plans and contexts
+  Grids also require `render_grid`; a renderer without it raises
+  `RenderError`. Render plans and contexts
   remain private while the built-in backend evolves.
 ]
 
@@ -83,8 +83,7 @@ finally:
 `render()` returns a `MatplotlibResult` with `figure`, `axes`, `show()`,
 `save(target, **options)` and `close()`. `canvas.save()` closes its
 temporary result itself. The file format follows the extension: `.png`,
-`.pdf` or `.svg` (anything else raises `RenderError`); animations take `.gif`
-or `.mp4`. A grid gives every cell one size: the largest canvas width
+`.pdf` or `.svg` (anything else raises `RenderError`). A grid gives every cell one size: the largest canvas width
 divided by the columns it spans, by the largest canvas height divided by
 the rows it spans; it uses the highest DPI among its canvases.
 
@@ -92,8 +91,8 @@ the rows it spans; it uses the highest DPI among its canvases.
 
 #api(("RenderCache", "CacheKey"), syntax: [#raw("RenderCache(max_entries=256)")])[
   A bounded, thread-safe least-recently-used cache for resolved layers, keyed
-  by layer id, bindings, model, specification and style. Each render, grid
-  or animation creates its own cache unless one is passed with `cache=`, so
+  by layer id, bindings, model, specification and style. Each render or grid
+  creates its own cache unless one is passed with `cache=`, so
   jobs never share state by accident; pass the same cache to reuse work
   across jobs. A model that cannot be hashed is rendered without caching,
   with one `CacheBypassWarning` per model type and cache; use frozen
