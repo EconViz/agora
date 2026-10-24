@@ -209,6 +209,7 @@ fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 
 #changed("0.12.0", label: "Config")[`Config.load("econ-viz.toml").use()` 讀取所有 EconViz 套件共用的設定檔]
 #changed("0.12.1", label: "Config")[改由 #pkg("mosaickit") 依 principle-viz 宣告的結構讀取並檢查檔案；共用的 `base` 決定起始主題]
+#changed("0.14.0", label: "Config")[`econ-viz.toml` 新增 `[principle.label.<group>]`，可依群組預設移動整批標籤]
 
 principle-viz 讀取所有 EconViz 套件共用的設定檔 `econ-viz.toml`，並由 #pkg("mosaickit") 讀取與檢查。頂層放置所有套件共用的設定：起始主題（`base`，可選#ref(<tab-palettes>)中的名稱）、字型，以及座標軸與標籤顏色。principle-viz 自身的設定放在 `[principle]` 表格中；其他套件的表格（例如 `[utility]`）會被略過。
 
@@ -252,6 +253,40 @@ equilibrium = 6.5    # 均衡點直徑
 ```text
 econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
 ```
+
+=== 標籤預設值 <sec-label-groups>
+
+`[principle.label.<group>]` 預設移動同一群組的所有標籤，因此在設定檔中設定一次，即可取代在每張圖上分別寫 `Label(top=...)`。標籤依其命名的對象分為五個群組，每個群組都有 `top`、`bottom`、`left` 與 `right` 四個鍵（#ref(<tab-label-groups>)）。
+
+#tbl(caption: [`[principle.label.<group>]` 的標籤群組])[
+  #booktabs(
+    columns: (auto, 1fr),
+    header: ([群組], [標籤]),
+    [`point`], [均衡點（`e_0`、`e^*`、`e_1`、`e_t`、`L^*`，以及離散情形的 `Q^* = ..., p^* = ...`）與生產可能曲線上的點],
+    [`curve`], [標在曲線末端的曲線名稱：`D`、`S`、`D_1`、`S + t`、`MSB`、`MSC`、`MC`、`\Sigma MB`、`PPF`、`PPF_0`、`PPF_1`],
+    [`region`], [填色區域內的名稱，含以引線標示的說明：消費者剩餘、生產者剩餘、無謂損失、租稅收入、補貼成本、關稅收入],
+    [`mark`], [價格線與政策標記：`p_c`、`p_f`、`w_min`、`p_w`、`p_w + t`，以及 `t = ...`、`s = ...` 與 `f = ...` 的價差標示],
+    [`annotation`], [其他文字：括號標籤（Shortage、Tax、Subsidy、Imports、Unemployment）、價格區間、指標值與彈性區段名稱],
+  )
+] <tab-label-groups>
+
+座標軸標籤（軸名稱、原點、軸上的 `Q_0`、`p_1` 等標記及其註記）不屬於任何群組，也無法微調。距離可為點數，或帶單位 `pt`、`mm`、`cm`、`in` 的字串；設定檔沒有字級，因此不接受 `em`。`top` 與 `bottom` 可以合併使用，`right` 與 `left` 亦同。未設定的鍵表示不移動；沒有 `[principle.label.*]` 設定的圖形維持不變：
+
+```toml
+[principle.label.point]
+top = "2pt"          # 均衡點標籤上移
+
+[principle.label.curve]
+right = "4pt"        # 曲線名稱右移
+
+[principle.label.region]
+bottom = "1mm"
+left = "0.5mm"
+```
+
+單一標籤若自行指定 `top`、`bottom`、`left` 或 `right`（透過 `Label(top=...)`、`labels=` 或 `configure_label()`），就只依這些值移動，#strong[不會]再套用所屬群組的預設值：單一標籤的微調會取代預設值，兩者不會相加。只改名、隱藏或指定 `offset` 的 `Label` 則仍保留預設的微調。帶引線的說明，其引線會持續指向移動後的標籤。
+
+各群組的預設值以 `mosaickit.Nudge` 存放在 `PlotTheme.label_nudges`，鍵為群組名稱；`principle_viz.label_groups.label_group(layer)` 回傳某個標籤圖層所屬的群組，不套用預設值的標籤則回傳 `None`。
 
 == 畫布
 

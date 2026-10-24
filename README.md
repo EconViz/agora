@@ -20,7 +20,7 @@ collected in a change history.
 | Manual | Package | Editions |
 |--------|---------|----------|
 | [`packages/utility-viz/`](packages/utility-viz/) | [utility-viz](https://github.com/EconViz/utility-viz) 2.0.0b8 (formerly econ-viz) | English, 繁體中文, 简体中文 |
-| [`packages/principle-viz/`](packages/principle-viz/) | [principle-viz](https://github.com/EconViz/principle-viz) 0.13.0 | English, 繁體中文, 简体中文 |
+| [`packages/principle-viz/`](packages/principle-viz/) | [principle-viz](https://github.com/EconViz/principle-viz) 0.14.0 | English, 繁體中文, 简体中文 |
 | [`packages/bezierkit/`](packages/bezierkit/) | [bezierkit](https://github.com/EconViz/bezierkit) 1.1.0 | English, 繁體中文, 简体中文 |
 | [`packages/mosaickit/`](packages/mosaickit/) | [mosaickit](https://github.com/EconViz/mosaickit) 1.0.0rc6 | English, 繁體中文, 简体中文 |
 

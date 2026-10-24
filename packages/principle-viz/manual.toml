@@ -9,7 +9,7 @@ editions = ["en", "zh-TW", "zh-CN"]
 # #pkg-meta("version"), #pkg-meta("python"), ...
 [package]
 name = "principle-viz"
-version = "0.13.0"
+version = "0.14.0"
 date = "2026-10-24"
 python = "3.10"
 repo = "https://github.com/EconViz/principle-viz"
@@ -28,6 +28,7 @@ zh-CN = "principle-viz 软件包：经济学基本图形"
 # Release date of every version that #changed() or #api(added: ...) tags, so
 # call sites only name the version. Newest first.
 [releases]
+"0.14.0" = "2026-10-24"
 "0.13.0" = "2026-10-24"
 "0.12.1" = "2026-10-23"
 "0.12.0" = "2026-10-23"
