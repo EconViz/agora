@@ -257,9 +257,9 @@ def ppf() -> None:
         frontier,
         points=((6, frontier.y_at(6), "A"), (4, 3, "B"), (7, 6, "C")),
     )
-    ppf_canvas(analysis, theme=theme()).save(out("ppf", "points"))
+    ppf_canvas(analysis, title=None, theme=theme()).save(out("ppf", "points"))
     growth = analyze_ppf_growth(frontier, PPFGrowthScenario(x_growth_rate=0.2, y_growth_rate=0.1))
-    ppf_growth_canvas(growth, theme=theme()).save(out("ppf", "growth"))
+    ppf_growth_canvas(growth, title=None, theme=theme()).save(out("ppf", "growth"))
 
 
 if __name__ == "__main__":

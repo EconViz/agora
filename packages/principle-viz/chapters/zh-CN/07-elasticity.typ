@@ -47,10 +47,12 @@ $Q = 4$ 处弹性为 $-1.5$，绝对值大于 1，需求有弹性；$Q = 5$ 为�
 $p = 12 - Q$ 的总收益最大值为 36，位于 $Q = 6$、$p = 6$。
 
 #api(("elasticity_revenue_canvases",), syntax: [
-  #raw("elasticity_revenue_canvases(")#meta("demand")#raw(", ")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("elasticity_revenue_canvases(")#meta("demand")#raw(", ")#meta("result")#raw(", *, titles=(\"Demand and Elasticity\", \"Total Revenue\"), theme=None, labels=None, visibility=None)")
 ])[
-  返回两张 #pkg("mosaickit") 画布，位于 `principle_viz.visuals.revenue`：一张是需求曲线，沿线标出 "Elastic"、"Unit elastic" 与 "Inelastic"，并标记单位弹性点；另一张是总收益对数量的曲线，标记最大值。两张画布各有标题。以 `mosaickit.CanvasGrid` 左右并排（参见#ref(<fig-revenue>)）。
+  返回两张 #pkg("mosaickit") 画布，位于 `principle_viz.visuals.revenue`：一张是需求曲线，沿线标出 "Elastic"、"Unit elastic" 与 "Inelastic"，并标记单位弹性点；另一张是总收益对数量的曲线，标记最大值。两张画布各有标题，由 `titles=(demand_title, revenue_title)` 设定：默认为 "Demand and Elasticity" 与 "Total Revenue"；某一项传入 `None` 则#strong[该画布不画标题]，其他文字照原样画出；默认的英文标题会依图形语言翻译。以 `mosaickit.CanvasGrid` 左右并排（参见#ref(<fig-revenue>)）。
 ]
+
+#changed("0.13.0", label: "elasticity_revenue_canvases")[`titles=(demand_title, revenue_title)` 设定两张图的标题；传入 `None` 则不画标题]
 
 ```python
 from mosaickit import CanvasGrid
@@ -62,7 +64,7 @@ from principle_viz.visuals.revenue import (
 demand = line_from_inverse(12.0, -1.0)
 schedule = elasticity_revenue_schedule(demand)
 canvases = elasticity_revenue_canvases(
-    demand, schedule, theme=PlotTheme(),
+    demand, schedule, titles=(None, None), theme=PlotTheme(),
 )
 CanvasGrid(canvases, rows=1).save("elasticity_total_revenue.png")
 ```
