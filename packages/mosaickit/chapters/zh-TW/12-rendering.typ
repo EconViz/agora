@@ -47,7 +47,7 @@ finally:
     result.close()
 ```
 
-`render()` 回傳 `MatplotlibResult`，提供 `figure`、`axes`、`show()`、`save(target, **options)` 與 `close()`。`canvas.save()` 會自行關閉暫時結果。檔案格式由副檔名決定：`.png`、`.pdf` 或 `.svg`；其他副檔名會引發 `RenderError`。網格中每格大小相同：寬度取「各畫布寬度除以所跨欄數」的最大值，高度取「各畫布高度除以所跨列數」的最大值；DPI 取各畫布中的最高值。
+`render()` 回傳 `MatplotlibResult`，提供 `figure`、`axes`、`show()`、`save(target, **options)` 與 `close()`。`canvas.save()` 會自行關閉暫時結果。檔案格式由副檔名決定：`.png`、`.pdf` 或 `.svg`；其他副檔名會引發 `RenderError`。網格中每格大小相同：寬度取*各畫布寬度除以所跨欄數*的最大值，高度取*各畫布高度除以所跨列數*的最大值；DPI 取各畫布中的最高值。
 
 == 快取
 
