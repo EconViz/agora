@@ -235,7 +235,7 @@ SUPPLY = line_from_inverse(2.0, 1.0)
 def elasticity_revenue() -> None:
     demand = line_from_inverse(12.0, -1.0)
     schedule = elasticity_revenue_schedule(demand)
-    CanvasGrid(elasticity_revenue_canvases(demand, schedule, theme=theme()), rows=1).save(
+    CanvasGrid(elasticity_revenue_canvases(demand, schedule, titles=(None, None), theme=theme()), rows=1).save(
         out("elasticity", "revenue")
     )
 

@@ -90,10 +90,20 @@ print(result.efficient_quantity, result.private_provision_quantity)
 ```
 
 #api(("public_good_canvas",), syntax: [
-  #raw("public_good_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("public_good_canvas(")#meta("result")#raw(", *, title=\"Public Good\", theme=None, labels=None, visibility=None)")
 ])[
-  位於 `principle_viz.visuals.market_failures` 的 #pkg("mosaickit") 畫布，畫出各人的邊際利益、其垂直加總、邊際成本，並在數量軸上標出 $Q_p$ 與 $Q^*$（參見#ref(<fig-public-good>)）。
+  位於 `principle_viz.visuals.market_failures` 的 #pkg("mosaickit") 畫布，畫出各人的邊際利益、其垂直加總、邊際成本，並在數量軸上標出 $Q_p$ 與 $Q^*$（參見#ref(<fig-public-good>)）。圖標題由 `title` 參數決定：預設為 "Public Good"，#strong[傳入 `None` 則不畫標題]，其他文字照原樣畫出；預設的英文標題會依圖形語言翻譯。
 ]
+
+#changed("0.13.0", label: "public_good_canvas")[`title=` 設定圖標題；傳入 `None` 則不畫標題]
+
+```python
+from principle_viz.visuals.market_failures import (
+    public_good_canvas,
+)
+
+public_good_canvas(result, title=None).save("public_good.png")
+```
 
 #fig("/figures/failures/public_good.zh-TW.svg", width: 46%, caption: [
   邊際利益的垂直加總

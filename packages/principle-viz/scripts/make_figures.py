@@ -270,7 +270,7 @@ def aggregation_figures() -> None:
 def elasticity_revenue() -> None:
     demand = line_from_inverse(12.0, -1.0)
     schedule = elasticity_revenue_schedule(demand)
-    CanvasGrid(elasticity_revenue_canvases(demand, schedule, theme=theme()), rows=1).save(
+    CanvasGrid(elasticity_revenue_canvases(demand, schedule, titles=(None, None), theme=theme()), rows=1).save(
         out("elasticity", "revenue")
     )
 
@@ -392,7 +392,7 @@ def market_failures() -> None:
         ),
         line_from_inverse(5, 0),
     )
-    public_good_canvas(public, theme=theme()).save(out("failures", "public_good"))
+    public_good_canvas(public, title=None, theme=theme()).save(out("failures", "public_good"))
 
 
 def factor_markets() -> None:
@@ -423,9 +423,9 @@ def ppf() -> None:
         frontier,
         points=((6, frontier.y_at(6), "A"), (4, 3, "B"), (7, 6, "C")),
     )
-    ppf_canvas(analysis, theme=theme()).save(out("ppf", "points"))
+    ppf_canvas(analysis, title=None, theme=theme()).save(out("ppf", "points"))
     growth = analyze_ppf_growth(frontier, PPFGrowthScenario(x_growth_rate=0.2, y_growth_rate=0.1))
-    ppf_growth_canvas(growth, theme=theme()).save(out("ppf", "growth"))
+    ppf_growth_canvas(growth, title=None, theme=theme()).save(out("ppf", "growth"))
 
 
 def figure_options() -> None:

@@ -38,10 +38,12 @@ print(ppf.assess(4, 3), ppf.assess(7, 6))
 
 #api(("analyze_ppf", "ppf_canvas"), syntax: [
   #raw("analyze_ppf(")#meta("frontier")#raw(", points=(), *, samples=101)") \
-  #raw("ppf_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("ppf_canvas(")#meta("result")#raw(", *, title=\"Production Possibilities Frontier\", theme=None, labels=None, visibility=None)")
 ])[
-  在曲线上采样，并评估以 `(x, y, label)` 三元组给定的点；`principle_viz.visuals.ppf` 中的 `ppf_canvas()` 画出曲线、为可达成的区域填色并标出各点（参见#ref(<fig-ppf>)）。
+  在曲线上采样，并评估以 `(x, y, label)` 三元组给定的点；`principle_viz.visuals.ppf` 中的 `ppf_canvas()` 画出曲线、为可达成的区域填色并标出各点（参见#ref(<fig-ppf>)）。图标题由 `title` 参数决定：默认为 "Production Possibilities Frontier"，#strong[传入 `None` 则不画标题]，其他文字照原样画出；默认的英文标题会依图形语言翻译。
 ]
+
+#changed("0.13.0", label: "ppf_canvas")[`title=` 设定图标题；传入 `None` 则不画标题]
 
 ```python
 from principle_viz import analyze_ppf
@@ -49,7 +51,7 @@ from principle_viz.visuals.ppf import ppf_canvas
 
 points = ((6, ppf.y_at(6), "A"), (4, 3, "B"), (7, 6, "C"))
 result = analyze_ppf(ppf, points=points)
-ppf_canvas(result).save("ppf_points.png")
+ppf_canvas(result, title=None).save("ppf_points.png")
 ```
 
 #fig("/figures/ppf/points.zh-CN.svg", width: 46%, caption: [
@@ -59,10 +61,12 @@ ppf_canvas(result).save("ppf_points.png")
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
   #raw("PPFGrowthScenario(x_growth_rate=0.0, y_growth_rate=0.0)") \
   #raw("analyze_ppf_growth(")#meta("frontier")#raw(", ")#meta("scenario")#raw(", *, samples=101)") \
-  #raw("ppf_growth_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("ppf_growth_canvas(")#meta("result")#raw(", *, title=\"Economic Growth\", theme=None, labels=None, visibility=None)")
 ])[
-  经济成长使各截距乘以一加上对应的成长率；结果包含 `baseline` 与 `shifted` 两条曲线及其采样点。`ppf_growth_canvas()` 画出两条曲线并命名为 $P P F_0$ 与 $P P F_1$（参见#ref(<fig-ppf-growth>)）。
+  经济成长使各截距乘以一加上对应的成长率；结果包含 `baseline` 与 `shifted` 两条曲线及其采样点。`ppf_growth_canvas()` 画出两条曲线并命名为 $P P F_0$ 与 $P P F_1$（参见#ref(<fig-ppf-growth>)）。其 `title` 的用法与 `ppf_canvas()` 相同，默认为 "Economic Growth"。
 ]
+
+#changed("0.13.0", label: "ppf_growth_canvas")[`title=` 设定图标题；传入 `None` 则不画标题]
 
 #fig("/figures/ppf/growth.zh-CN.svg", width: 46%, caption: [
   消费品与资本品增长

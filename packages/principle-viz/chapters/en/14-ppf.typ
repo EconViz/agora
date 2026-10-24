@@ -41,12 +41,17 @@ print(ppf.assess(4, 3), ppf.assess(7, 6))
 
 #api(("analyze_ppf", "ppf_canvas"), syntax: [
   #raw("analyze_ppf(")#meta("frontier")#raw(", points=(), *, samples=101)") \
-  #raw("ppf_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("ppf_canvas(")#meta("result")#raw(", *, title=\"Production Possibilities Frontier\", theme=None, labels=None, visibility=None)")
 ])[
   Sample the frontier and assess named points, given as `(x, y, label)`
   triples; `ppf_canvas()`, in `principle_viz.visuals.ppf`, draws it with the
-  attainable set shaded and the points labelled (@fig-ppf).
+  attainable set shaded and the points labelled (@fig-ppf). The figure title is
+  the `title` argument: it defaults to "Production Possibilities Frontier",
+  `None` draws no title and any other text is drawn as given. A default
+  English title is translated into the figure's language.
 ]
+
+#changed("0.13.0", label: "ppf_canvas")[`title=` sets the figure title; `None` draws none]
 
 ```python
 from principle_viz import analyze_ppf
@@ -54,7 +59,7 @@ from principle_viz.visuals.ppf import ppf_canvas
 
 points = ((6, ppf.y_at(6), "A"), (4, 3, "B"), (7, 6, "C"))
 result = analyze_ppf(ppf, points=points)
-ppf_canvas(result).save("ppf_points.png")
+ppf_canvas(result, title=None).save("ppf_points.png")
 ```
 
 #fig("/figures/ppf/points.svg", width: 46%, caption: [
@@ -64,13 +69,16 @@ ppf_canvas(result).save("ppf_points.png")
 #api(("PPFGrowthScenario", "analyze_ppf_growth", "ppf_growth_canvas"), syntax: [
   #raw("PPFGrowthScenario(x_growth_rate=0.0, y_growth_rate=0.0)") \
   #raw("analyze_ppf_growth(")#meta("frontier")#raw(", ")#meta("scenario")#raw(", *, samples=101)") \
-  #raw("ppf_growth_canvas(")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("ppf_growth_canvas(")#meta("result")#raw(", *, title=\"Economic Growth\", theme=None, labels=None, visibility=None)")
 ])[
   Economic growth scales each intercept by one plus its growth rate; the
   result holds the `baseline` and `shifted` frontiers and their sampled
   points. `ppf_growth_canvas()` draws both, named $P P F_0$ and $P P F_1$
-  (see @fig-ppf-growth).
+  (see @fig-ppf-growth). Its `title` works as for `ppf_canvas()`, with the
+  default "Economic Growth".
 ]
+
+#changed("0.13.0", label: "ppf_growth_canvas")[`title=` sets the figure title; `None` draws none]
 
 #fig("/figures/ppf/growth.svg", width: 46%, caption: [
   Growth in consumer and capital goods

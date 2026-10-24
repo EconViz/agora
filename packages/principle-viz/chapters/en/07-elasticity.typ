@@ -57,14 +57,19 @@ absolute value: `"elastic"` above 1, `"unit_elastic"` at 1 and
 For $p = 12 - Q$, maximum revenue is 36 at $Q = 6$, $p = 6$.
 
 #api(("elasticity_revenue_canvases",), syntax: [
-  #raw("elasticity_revenue_canvases(")#meta("demand")#raw(", ")#meta("result")#raw(", *, theme=None, labels=None, visibility=None)")
+  #raw("elasticity_revenue_canvases(")#meta("demand")#raw(", ")#meta("result")#raw(", *, titles=(\"Demand and Elasticity\", \"Total Revenue\"), theme=None, labels=None, visibility=None)")
 ])[
   Two #pkg("mosaickit") canvases, in `principle_viz.visuals.revenue`: the
   demand curve, labelled "Elastic", "Unit elastic" and "Inelastic" along
   its length with the unit-elastic point marked, and total revenue against
-  quantity with its maximum marked. Each canvas carries its own title. Place
-  them side by side with `mosaickit.CanvasGrid` (see @fig-revenue).
+  quantity with its maximum marked. Each canvas carries its own title, set by
+  `titles=(demand_title, revenue_title)`: `None` draws no title for that
+  canvas and any other text is drawn as given. A default English title is
+  translated into the figure's language. Place them side by side with
+  `mosaickit.CanvasGrid` (see @fig-revenue).
 ]
+
+#changed("0.13.0", label: "elasticity_revenue_canvases")[`titles=(demand_title, revenue_title)` sets the two figure titles; `None` draws none]
 
 ```python
 from mosaickit import CanvasGrid
@@ -76,7 +81,7 @@ from principle_viz.visuals.revenue import (
 demand = line_from_inverse(12.0, -1.0)
 schedule = elasticity_revenue_schedule(demand)
 canvases = elasticity_revenue_canvases(
-    demand, schedule, theme=PlotTheme(),
+    demand, schedule, titles=(None, None), theme=PlotTheme(),
 )
 CanvasGrid(canvases, rows=1).save("elasticity_total_revenue.png")
 ```

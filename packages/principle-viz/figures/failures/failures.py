@@ -270,7 +270,7 @@ def market_failures() -> None:
         ),
         line_from_inverse(5, 0),
     )
-    public_good_canvas(public, theme=theme()).save(out("failures", "public_good"))
+    public_good_canvas(public, title=None, theme=theme()).save(out("failures", "public_good"))
 
 
 if __name__ == "__main__":
