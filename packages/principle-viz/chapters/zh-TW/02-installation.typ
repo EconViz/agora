@@ -42,7 +42,7 @@ uv run python main.py
 若要固定本手冊使用的版本，可在加入依賴時指定版本號：
 
 ```bash
-uv add "principle-viz==0.13.0"
+uv add "principle-viz==0.14.0"
 ```
 
 若使用既有的 Python 虛擬環境，可透過 #pkg("pip") 安裝：

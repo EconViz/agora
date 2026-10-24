@@ -271,6 +271,7 @@ fig = MarketFigure(x_max=12, y_max=12, palette="monochrome")
 
 #changed("0.12.0", label: "Config")[`Config.load("econ-viz.toml").use()` reads the settings file every EconViz package shares]
 #changed("0.12.1", label: "Config")[#pkg("mosaickit") reads and checks the file from the schema principle-viz declares; the shared `base` picks the starting theme]
+#changed("0.14.0", label: "Config")[`[principle.label.<group>]` in `econ-viz.toml` moves whole groups of labels by default]
 
 principle-viz reads `econ-viz.toml`, the settings file every EconViz package
 shares; #pkg("mosaickit") reads and checks it. The top level sets what every
@@ -329,6 +330,55 @@ table, with the closest key when one is close:
 ```text
 econ-viz.toml: [principle.color] unknown key 'demnad'; did you mean 'demand'?
 ```
+
+=== Label defaults <sec-label-groups>
+
+`[principle.label.<group>]` moves every label of a group by default, so one
+setting in the file replaces a `Label(top=...)` on each figure. The five
+groups follow what a label names (@tab-label-groups); each takes `top`,
+`bottom`, `left` and `right`.
+
+#tbl(caption: [Label groups])[
+  #booktabs(
+    columns: (auto, 1fr),
+    header: ([Group], [Labels]),
+    [`point`], [Equilibrium points (`e_0`, `e^*`, `e_1`, `e_t`, `L^*`, the discrete `Q^* = ..., p^* = ...`) and the points of a production possibilities frontier],
+    [`curve`], [Curves named at their end: `D`, `S`, `D_1`, `S + t`, `MSB`, `MSC`, `MC`, `\Sigma MB`, `PPF`, `PPF_0`, `PPF_1`],
+    [`region`], [Names inside filled regions, callouts with a leader line included: consumer and producer surplus, deadweight loss, tax revenue, subsidy cost, tariff revenue],
+    [`mark`], [Price lines and policy marks: `p_c`, `p_f`, `w_min`, `p_w`, `p_w + t`, and the `t = ...`, `s = ...` and `f = ...` wedges],
+    [`annotation`], [Other text: brace labels (Shortage, Tax, Subsidy, Imports, Unemployment), price intervals, metrics and the elasticity zone names],
+  )
+] <tab-label-groups>
+
+Axis labels (the axis names, the origin, the marks on the axes such as `Q_0`
+and `p_1`, and their notes) belong to no group and cannot be nudged. A length
+is a number of points or a string with the unit `pt`, `mm`, `cm` or `in`;
+`em` is rejected, because the file has no font size. `top` and `bottom`
+combine, as do `right` and `left`. A key that is not set means no move, and
+a figure without `[principle.label.*]` settings is drawn as before:
+
+```toml
+[principle.label.point]
+top = "2pt"          # equilibrium labels 2 pt higher
+
+[principle.label.curve]
+right = "4pt"        # curve names 4 pt to the right
+
+[principle.label.region]
+bottom = "1mm"
+left = "0.5mm"
+```
+
+A label given its own `top`, `bottom`, `left` or `right` (through
+`Label(top=...)`, `labels=` or `configure_label()`) is moved by those values
+and #strong[not] by its group's default: the per-label nudge replaces the
+default; the two do not add up. A `Label` that only renames, hides or sets an
+`offset` keeps the default nudge. A callout's leader line keeps pointing at
+the moved label.
+
+Each default is a `mosaickit.Nudge` in `PlotTheme.label_nudges`, keyed by
+group name, and `principle_viz.label_groups.label_group(layer)` returns the
+group of a label layer, or `None` for one that takes no default.
 
 == Canvases
 
