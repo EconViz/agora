@@ -69,10 +69,10 @@ To pin the version this manual describes, give it when adding the
 dependency:
 
 ```bash
-uv add "utility-viz==2.0.0b1"
+uv add "utility-viz==2.0.0b8"
 ```
 
-2.0.0b1 is a pre-release. While no stable 2.x release exists,
+2.0.0b8 is a pre-release. While no stable 2.x release exists,
 `uv add utility-viz` and `pip install utility-viz` pick it up; once a stable
 release is published alongside it, opt in to pre-releases with
 `uv add --prerelease allow utility-viz` or `pip install --pre utility-viz`.
@@ -162,7 +162,7 @@ uv run mypy .
 #changed("1.5.0", label: "econ-viz")[Notebook install flow on Colab is restart-safe]
 
 ```bash
-uv run utility-viz --version   # utility-viz 2.0.0b1
+uv run utility-viz --version   # utility-viz 2.0.0b8
 uv run utility-viz help
 ```
 

@@ -52,7 +52,7 @@ To pin the version this manual describes, name it when adding the
 dependency:
 
 ```bash
-uv add "principle-viz==0.10.1"
+uv add "principle-viz==0.12.1"
 ```
 
 In an existing virtual environment, use #pkg("pip"):

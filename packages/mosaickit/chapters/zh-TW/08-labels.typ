@@ -47,6 +47,23 @@
   點旁的點標籤
 ]) <fig-points>
 
+== 微調標籤 <sec-nudge>
+
+#api(("Nudge", "nudge_from"), added: "v1.0.0rc6", syntax: [
+  #raw("Nudge(dx=0.0, dy=0.0)") \
+  #raw("nudge_from(*, top=None, bottom=None, left=None, right=None, font_size=None) -> Nudge")
+])[
+  在繪製器配置好標籤之後，再微調單一標籤的位置。`Nudge(dx, dy)` 使標籤向右移 `dx` 點、向上移 `dy` 點；`nudge_from` 以方向建立同樣的位移，其中 `dy = top - bottom`、`dx = right - left`。長度可以是以點為單位的數字，或帶單位的字串（`"10pt"`、`"0.5em"`、`"2mm"`、`"0.1in"`）；使用 `em` 時須給 `font_size`。`parse_length` 把單一長度轉成點。點標籤、區域標籤、大括號標籤與文字圖層都接受 `nudge=`；引線會跟著移動後的標籤，之後的標籤也會避開它。沒有微調時，輸出不變。
+  #changed("1.0.0rc6", label: "Nudge")[新增]
+]
+
+```python
+from mosaickit import Canvas, CanvasSpec, PointLabelLayer, nudge_from
+
+canvas = Canvas(CanvasSpec(x_range=(0, 10), y_range=(0, 10)))
+canvas.add(PointLabelLayer((5, 5), "$E$", nudge=nudge_from(top="3pt", right="2pt")))
+```
+
 == 硬性限制
 
 兩種標籤都遵守同一條規則：不遮蓋任何物件。障礙物包括座標軸上已繪製的內容：路徑的線段、標記與文字的矩形，以及填色區域的多邊形。以下搜尋函式位於 `mosaickit.layout.placement`；除 `place_beside` 外，也都由 `mosaickit.layout` 匯出。它們與幾何模組一樣，以顯示像素為單位運算；`scale` 則將以點為單位的間距換算為像素。

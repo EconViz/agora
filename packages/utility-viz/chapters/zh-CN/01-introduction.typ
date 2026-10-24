@@ -25,7 +25,7 @@
 
 图形默认显示第一象限，坐标轴以箭头表示并隐藏数字刻度，标签支持 TeX 数学语法。输出格式包括 PNG、PDF、SVG、TikZ 与 GIF。
 
-本软件包在 1.12 版以前名为 #pkg("econ-viz")，2.0.0 起更名为 #pkg("utility-viz")；变更内容与旧代码的兼容方式详见#ref(<sec-migrate>)。本手册说明预览版 2.0.0b1。
+本软件包在 1.12 版以前名为 #pkg("econ-viz")，2.0.0 起更名为 #pkg("utility-viz")；变更内容与旧代码的兼容方式详见#ref(<sec-migrate>)。本手册说明预览版 2.0.0b8。
 
 #pkg("utility-viz") 属于 EconViz 系列软件包：绘图通过与领域无关的场景与渲染库 #pkg("mosaickit")，曲线则以 #pkg("bezierkit") 描绘。经济学原理图形由同系列的 #pkg("principle-viz") 负责。
 

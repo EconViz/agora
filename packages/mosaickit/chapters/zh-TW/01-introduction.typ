@@ -4,8 +4,14 @@
 
 #changed("0.1.0")[首次發布：不可變的場景與圖層、稀疏樣式、具命名空間的主題、畫布、可跨格的網格、參數運算式、動畫、以工作為範圍快取的 Matplotlib 繪製，以及嚴格的 TOML 設定]
 #changed("0.1.1")[PyPI 上的套件資訊連結首頁、儲存庫、問題追蹤、更新紀錄與發布說明]
+#changed("1.0.0rc1")[移除已棄用的 `Animation` 與 `TextStyle.family`（詳見參數與樣式兩章）]
+#changed("1.0.0rc2")[繪製更快，輸出不變：標籤配置、點的檢查與 Matplotlib 的 mathtext 解析改用陣列，並使用只在單次繪製或儲存期間有效的快取]
+#changed("1.0.0rc3")[標題與夾有 `$...$` 數學式的文字改用設定的文字字型排版，中文不再顯示為方框]
+#changed("1.0.0rc4")[已解析的字型可跨符號連結共用；設定字型後的標題基線與 Matplotlib 的標題一致]
+#changed("1.0.0rc5")[新增 `mosaickit.econ_toml`，讀取每個 EconViz 套件共用的 `econ-viz.toml` 區段]
+#changed("1.0.0rc6")[各套件宣告 `econ_toml.Schema`，由 mosaickit 解析 `econ-viz.toml`；新增共用主題（`mosaickit.themes`）與標籤微調（`Nudge`）]
 
-#pkg("mosaickit") 套件以小型且不可變的元件組裝二維圖形：場景是一份有序的圖層清單（路徑、填色區域、標記、文字、箭頭、標籤、大括號）；每個圖層標明一個語意角色，主題將角色轉成樣式，繪製器再將結果輸出為 PNG、SVG、PDF、GIF 或 MP4。它不含任何特定領域的知識。#pkg("principle-viz")、#pkg("utility-viz") 等領域套件自行定義模型與角色名稱，再將要繪製的圖層交給 #pkg("mosaickit")；曲線建構與 TikZ 匯出則由 #pkg("bezierkit") 等幾何套件負責。
+#pkg("mosaickit") 套件以小型且不可變的元件組裝二維圖形：場景是一份有序的圖層清單（路徑、填色區域、標記、文字、箭頭、標籤、大括號）；每個圖層標明一個語意角色，主題將角色轉成樣式，繪製器再將結果輸出為 PNG、SVG 或 PDF。它不含任何特定領域的知識。#pkg("principle-viz")、#pkg("utility-viz") 等領域套件自行定義模型與角色名稱，再將要繪製的圖層交給 #pkg("mosaickit")；曲線建構與 TikZ 匯出則由 #pkg("bezierkit") 等幾何套件負責。
 
 == 設計
 
@@ -37,7 +43,7 @@
     [樣式、顏色、色盤], [#ref(<sec-styles>)],
     [主題、角色、設定], [#ref(<sec-themes>)],
     table.cell(rowspan: 2)[輸出],
-    [參數、網格、動畫], [#ref(<sec-parameters>)],
+    [參數與網格], [#ref(<sec-parameters>)],
     [繪製器、快取、儲存], [#ref(<sec-rendering>)],
   )
 ] <tab-guide>

@@ -16,7 +16,7 @@
 uv add bezierkit                 # the library
 uv add "bezierkit[cli]"          # with the command-line interface
 uv add "bezierkit[matplotlib]"   # with the Matplotlib adapter
-uv add "bezierkit==1.0.0"        # the version this manual describes
+uv add "bezierkit==1.1.0"        # the version this manual describes
 ```
 
 With #pkg("pip"), use `python -m pip install bezierkit` and the same extras.

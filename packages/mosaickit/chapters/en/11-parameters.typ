@@ -1,6 +1,6 @@
 #import "/template/manual.typ": *
 
-= Parameters, grids and animation <sec-parameters>
+= Parameters and grids <sec-parameters>
 
 == Parameters and expressions
 
@@ -132,22 +132,4 @@ CanvasGrid(cells, cols=3, links=[link]).save("sweep.pdf")
   A three-value sweep
 ]) <fig-sweep>
 
-== Animation
-
-#api(("Animation",), syntax: [
-  #raw("Animation(template, parameter, values, fps=30)") \
-  #raw("Animation.sweep(canvas, values, *, fps=30)")
-])[
-  Creates one frame per value by binding the parameter in the template.
-  `frames()` yields the frames as renderer-neutral scenes; `save(path)`
-  writes a GIF (through Pillow) or an MP4 (through `ffmpeg`). The values are checked
-  against the parameter when the animation is created; an empty list or a
-  non-positive `fps` raises `ConfigurationError`.
-]
-
-```python
-from mosaickit import Animation
-
-values = shift.values([0.0, 1.0, 2.0, 3.0])
-Animation.sweep(template, values, fps=4).save("sweep.gif")
-```
+#changed("1.0.0rc1", label: "Animation")[Removed `Animation`, `Animation.sweep()` and the Matplotlib playback helper, deprecated in 0.6.0; #pkg("kinetickit") animates scenes, and `CanvasGrid.sweep()` and `canvas.bind()` still draw one frame per value]

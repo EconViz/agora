@@ -4,6 +4,7 @@
 
 #changed("0.5.0rc1")[First release on PyPI: degree-generic Bézier curves, cubic segments and paths, constructions, Hermite interpolation, fitting, level-set tracing, sampling, exporters and a command-line interface]
 #changed("1.0.0")[First stable release; the public API follows semantic versioning]
+#changed("1.1.0")[Faster contour tracing, polyline fitting and path evaluation; the results are identical]
 
 The #pkg("bezierkit") package is a small mathematical toolkit for Bézier
 curves. It builds curves from control points or from endpoint conditions,

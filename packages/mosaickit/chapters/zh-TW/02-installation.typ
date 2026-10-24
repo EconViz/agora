@@ -4,14 +4,16 @@
 
 == 系統需求
 
-#pkg("mosaickit") 需要 Python #pkg-meta("python") 以上、#pkg("NumPy") 1.24 以上與 #pkg("Matplotlib") 3.6 以上（4 以下）；在 Python 3.10 上還會安裝 #pkg("tomli") 來讀取 TOML。GIF 輸出使用 #pkg("Pillow")，Matplotlib 本身已依賴此套件；MP4 輸出則需要 `PATH` 中有 `ffmpeg`。
+#pkg("mosaickit") 需要 Python #pkg-meta("python") 以上、#pkg("NumPy") 1.24 以上、#pkg("Matplotlib") 3.6 以上（4 以下）與負責排版文字的 #pkg("glyphkit") 1.0.0b3 以上（2 以下）；在 Python 3.10 上還會安裝 #pkg("tomli") 來讀取 TOML。
 
 == 安裝套件
 
 ```bash
 uv add mosaickit                 # the library
-uv add "mosaickit==0.5.1"        # the version this manual describes
+uv add "mosaickit==1.0.0rc6"     # the version this manual describes
 ```
+
+1.0.0rc6 是預覽版。在 1.0 正式版發布之前，直接執行 `uv add mosaickit` 或 `pip install mosaickit` 安裝的是 0.9.2；需以 `uv add --prerelease allow mosaickit` 或 `pip install --pre mosaickit` 才能安裝預覽版。
 
 若使用 #pkg("pip")，請執行 `python -m pip install mosaickit`。匯入 `mosaickit` 時不會一併匯入 Matplotlib：內建繪製器要到畫布第一次繪製時，才會依名稱載入（詳見#ref(<sec-rendering>)）。
 

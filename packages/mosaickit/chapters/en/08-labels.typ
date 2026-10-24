@@ -65,6 +65,30 @@ edge, because that is where the label belongs.
   Point labels beside points
 ]) <fig-points>
 
+== Nudging a label <sec-nudge>
+
+#api(("Nudge", "nudge_from"), added: "v1.0.0rc6", syntax: [
+  #raw("Nudge(dx=0.0, dy=0.0)") \
+  #raw("nudge_from(*, top=None, bottom=None, left=None, right=None, font_size=None) -> Nudge")
+])[
+  Fine-tunes one label after the renderer has placed it. `Nudge(dx, dy)`
+  moves the label `dx` points right and `dy` points up; `nudge_from` builds
+  the same move from directions, with `dy = top - bottom` and
+  `dx = right - left`. A length is a number of points or a string with a
+  unit (`"10pt"`, `"0.5em"`, `"2mm"`, `"0.1in"`); `em` needs `font_size`.
+  `parse_length` reads one length in points. Point, region, brace and text
+  labels take `nudge=`; a leader follows the moved label and later labels
+  avoid it. Without a nudge the output is unchanged.
+  #changed("1.0.0rc6", label: "Nudge")[Added]
+]
+
+```python
+from mosaickit import Canvas, CanvasSpec, PointLabelLayer, nudge_from
+
+canvas = Canvas(CanvasSpec(x_range=(0, 10), y_range=(0, 10)))
+canvas.add(PointLabelLayer((5, 5), "$E$", nudge=nudge_from(top="3pt", right="2pt")))
+```
+
 == Hard constraints
 
 Both kinds of label must cover nothing. Obstacles are collected from the

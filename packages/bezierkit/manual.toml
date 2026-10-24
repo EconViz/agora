@@ -2,8 +2,8 @@ editions = ["en", "zh-TW", "zh-CN"]
 
 [package]
 name = "bezierkit"
-version = "1.0.0"
-date = "2026-10-04"
+version = "1.1.0"
+date = "2026-10-22"
 python = "3.10"
 repo = "https://github.com/EconViz/bezierkit"
 site = "https://econ-viz.org"
@@ -17,6 +17,7 @@ zh-TW = "bezierkit 套件：Bézier 曲線輸出工具"
 zh-CN = "bezierkit 软件包：Bézier 曲线输出工具"
 
 [releases]
+"1.1.0" = "2026-10-22"
 "1.0.0" = "2026-10-04"
 "0.5.0rc1" = "2026-09-28"
 
