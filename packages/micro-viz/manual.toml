@@ -1,0 +1,59 @@
+# micro-viz manual: everything the shared template needs to know about
+# this manual. main.typ reads it with toml() and passes it to manual(); a YAML
+# file with the same keys works too (read it with yaml()).
+
+# Editions this manual is written in; each has chapters/<edition>/.
+editions = ["en", "zh-TW", "zh-CN"]
+
+# The documented package: shown on the title page and in the text via
+# #pkg-meta("version"), #pkg-meta("python"), ...
+[package]
+name = "micro-viz"
+version = "0.2.0.dev0"
+date = "2026-10-25"
+python = "3.10"
+repo = "https://github.com/EconViz/micro-viz"
+site = "https://econ-viz.org"
+pypi = "https://github.com/EconViz/micro-viz"
+email = "contact@econ-viz.org"
+license = "MIT License"
+
+# Title page, per edition. Every occurrence of package.name is set in the
+# package face.
+[title]
+en = "micro-viz: Diagrams for Producer Theory and Market Structure"
+zh-TW = "micro-viz 套件：生產者理論與市場結構圖形"
+zh-CN = "micro-viz 软件包：生产者理论与市场结构图形"
+
+# Release date of every version that #changed() or #api(added: ...) tags, so
+# call sites only name the version. Newest first.
+[releases]
+"0.2.0.dev0" = "2026-10-25"
+
+# Authors in title-page order. `name` and `affiliation` are given per
+# edition. `affiliation` and `email` are optional; the corresponding author's
+# note gives the project address, so readers do not write to co-authors.
+[[authors]]
+name = { en = "Pin Yue Sung", zh-TW = "Pin Yue Sung", zh-CN = "Pin Yue Sung" }
+affiliation = { en = "Department of International Business, National Chengchi University, Taipei, Taiwan", zh-TW = "國立政治大學國際經營與貿易學系，臺北，臺灣", zh-CN = "台湾政治大学国际经营与贸易学系，台北，台湾" }
+email = "contact@econ-viz.org"
+corresponding = true
+
+[[authors]]
+name = { en = "Ling Tak Douglas Chung", zh-TW = "Ling Tak Douglas Chung", zh-CN = "Ling Tak Douglas Chung" }
+affiliation = { en = "Department of International Business, National Chengchi University, Taipei, Taiwan", zh-TW = "國立政治大學國際經營與貿易學系，臺北，臺灣", zh-CN = "台湾政治大学国际经营与贸易学系，台北，台湾" }
+
+# Placeholder names in ⟨...⟩ specific to this manual, translated for the CJK
+# editions (generic ones come from template/config/strings.toml).
+[meta-terms.zh-TW]
+"analysis" = "分析結果"
+"outcome" = "結果"
+"cost" = "成本函式"
+
+[meta-terms.zh-CN]
+"analysis" = "分析结果"
+"outcome" = "结果"
+"cost" = "成本函数"
+
+[publish]
+name = "micro-viz-manual"

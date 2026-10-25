@@ -1,0 +1,16 @@
+[project]
+name = "micro-viz-manual"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "micro-viz[animation]",
+    "mosaickit>=1.0.0rc9",
+]
+
+# micro-viz is not on PyPI yet, so the manual builds its figures from GitHub.
+# Pin `rev` (or a PyPI version) when a release is made.
+[tool.uv.sources]
+micro-viz = { git = "https://github.com/EconViz/micro-viz" }
+
+[tool.uv]
+prerelease = "allow"
