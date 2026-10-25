@@ -11,7 +11,7 @@
 + *測試與變更記錄。* 測試模型、改變參數會改變圖形、`title=None` 不畫標題、標籤找得到空位，以及範例可以執行。
 
 ```python
-from micro_viz.visuals.plane import Plane, linear, sample
+from micro_viz.visuals.plane import Plane, linear
 
 
 def demand_canvas(
@@ -28,6 +28,50 @@ def demand_canvas(
     plane.line(linear(intercept, -slope, x_max), plane.t("monopoly.demand"))
     return plane.finish()
 ```
+
+== 平面工具組 <sec-plane>
+
+#api(("Plane",), syntax: [
+  ```python
+  Plane(
+      *,
+      prefix,
+      x_label,
+      y_label,
+      x_max,
+      y_max,
+      theme=None,
+      labels=None,
+      title=None,
+      margin=0.1,
+      y_range=None,
+      size=(6.0, 6.0),
+      dpi=150,
+  )
+  ```
+])[
+  `micro_viz.visuals.plane` 中的一張平面圖。它的方法以 `prefix` 為基礎加入有穩定編號的圖層；`finish()` 回傳 `Canvas`。
+]
+
+#param("line(points, name=None, *, role=\"micro.curve.marginal\", at=1.0)")[經過 `points` 的曲線，名稱放在沿曲線 `at` 的比例處（1 是右端）。]
+#param("thin(points, name=None, *, at=1.0)")[變動後的曲線：細實線。]
+#param("guide(a, b)")[兩點之間的虛線輔助線。]
+#param("dot(point)")[一個點。]
+#param("point(x, y, *, xtext=None, ytext=None, name=None, marker=True)")[一個點，附有通到座標軸的虛線輔助線與給定的軸上記號。]
+#param("xmark(x, text)")[橫軸上的記號。]
+#param("ymark(y, text)")[縱軸上的記號。]
+#param("area(polygon, name=None, *, shade=\"mid\")")[上色的區域，可在區域內標示名稱。]
+#param("arrow(a, b, *, rotate=False, label=None)")[實線的移動箭頭：預設為直線表示平行移動，`rotate` 為彎箭頭表示斜率改變。]
+#param("t(key, **fields)")[標籤編號對應的內建（或已取代的）文字。]
+#param("finish()")[完成的 `Canvas`。]
+
+#api(("linear",), syntax: [
+  ```python
+  linear(intercept, slope, x_max, x_min=0.0)
+  ```
+])[
+  從 `x_min` 到 `x_max` 的線段 $y = "intercept" + "slope" dot x$，以兩個點表示。
+]
 
 == 慣例
 

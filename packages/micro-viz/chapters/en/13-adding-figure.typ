@@ -11,7 +11,7 @@ Which figures exist is decided by the issues and milestones of the repository. S
 + *Tests and changelog.* Test the model, that a changed parameter changes the figure, that `title=None` draws no title, that labels find free places, and that the example runs.
 
 ```python
-from micro_viz.visuals.plane import Plane, linear, sample
+from micro_viz.visuals.plane import Plane, linear
 
 
 def demand_canvas(
@@ -28,6 +28,50 @@ def demand_canvas(
     plane.line(linear(intercept, -slope, x_max), plane.t("monopoly.demand"))
     return plane.finish()
 ```
+
+== The plane kit <sec-plane>
+
+#api(("Plane",), syntax: [
+  ```python
+  Plane(
+      *,
+      prefix,
+      x_label,
+      y_label,
+      x_max,
+      y_max,
+      theme=None,
+      labels=None,
+      title=None,
+      margin=0.1,
+      y_range=None,
+      size=(6.0, 6.0),
+      dpi=150,
+  )
+  ```
+])[
+  One plane diagram in `micro_viz.visuals.plane`. Its methods add layers with stable ids built from `prefix`; `finish()` returns the `Canvas`.
+]
+
+#param("line(points, name=None, *, role=\"micro.curve.marginal\", at=1.0)")[A curve through `points`, named at the fraction `at` along it (1 is the right end).]
+#param("thin(points, name=None, *, at=1.0)")[A curve after a change: thin and solid.]
+#param("guide(a, b)")[A dashed guide between two points.]
+#param("dot(point)")[A dot.]
+#param("point(x, y, *, xtext=None, ytext=None, name=None, marker=True)")[A dot with dashed guides to the axes and the given axis marks.]
+#param("xmark(x, text)")[A mark on the horizontal axis.]
+#param("ymark(y, text)")[A mark on the vertical axis.]
+#param("area(polygon, name=None, *, shade=\"mid\")")[A shaded region, optionally named inside it.]
+#param("arrow(a, b, *, rotate=False, label=None)")[A solid movement arrow: straight for a shift, curved with `rotate` for a slope change.]
+#param("t(key, **fields)")[The built-in (or overridden) text for a label id.]
+#param("finish()")[The finished `Canvas`.]
+
+#api(("linear",), syntax: [
+  ```python
+  linear(intercept, slope, x_max, x_min=0.0)
+  ```
+])[
+  The segment $y = "intercept" + "slope" dot x$ from `x_min` to `x_max`, as two points.
+]
 
 == Conventions
 
