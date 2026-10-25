@@ -21,6 +21,7 @@ collected in a change history.
 |--------|---------|----------|
 | [`packages/utility-viz/`](packages/utility-viz/) | [utility-viz](https://github.com/EconViz/utility-viz) 2.0.0b8 (formerly econ-viz) | English, 繁體中文, 简体中文 |
 | [`packages/principle-viz/`](packages/principle-viz/) | [principle-viz](https://github.com/EconViz/principle-viz) 0.14.0 | English, 繁體中文, 简体中文 |
+| [`packages/micro-viz/`](packages/micro-viz/) | [micro-viz](https://github.com/EconViz/micro-viz) 0.2.0.dev0 | English, 繁體中文, 简体中文 |
 | [`packages/bezierkit/`](packages/bezierkit/) | [bezierkit](https://github.com/EconViz/bezierkit) 1.1.0 | English, 繁體中文, 简体中文 |
 | [`packages/mosaickit/`](packages/mosaickit/) | [mosaickit](https://github.com/EconViz/mosaickit) 1.0.0rc6 | English, 繁體中文, 简体中文 |
 
@@ -68,7 +69,7 @@ through `kpsewhich`; if TeX Live is not on your `PATH`, pass
 | `packages/<manual>/chapters/<edition>/` | Chapter sources, with the same file names in every edition |
 | `packages/<manual>/figures/` | Generated figures (SVG or PDF), shared by all editions |
 | `packages/<manual>/scripts/`, `config/` | Figure script and its settings, references (`refs.bib`) |
-| `packages/<manual>/config/econ-viz[.<edition>].toml` | Figure settings of utility-viz and principle-viz, one `econ-viz.toml` per edition (`base = "manual"`), loaded by the package itself (`Config.load(...).use()`) |
+| `packages/<manual>/config/econ-viz[.<edition>].toml` | Figure settings of utility-viz, principle-viz and micro-viz, one `econ-viz.toml` per edition (`base = "manual"`), loaded by the package itself (`Config.load(...).use()`) |
 | `build/<manual>/` | Built PDFs (not tracked) |
 
 ## Adding a manual
