@@ -50,7 +50,7 @@ Builders that draw several panels take `titles` (one per panel) instead of `titl
     [`micro_viz/locale/labels.json`], [Every built-in word, by id and language],
     [`micro_viz/theme.py`, `config.py`], [The theme and the `[micro]` settings schema],
     [`micro_viz/animation/`], [Optional animation over a parameter],
-    [`examples/scripts/`], [One script per topic; the figures of this manual],
+    [`examples/scripts/<topic>/`], [Scripts, one folder per topic; the figures of this manual],
   )
 ] <tab-layout>
 

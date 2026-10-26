@@ -50,7 +50,7 @@ monopoly_canvas(outcome, analysis, profit=True).save("monopoly.svg")
     [`micro_viz/locale/labels.json`], [所有内置文本，依编号与语言整理],
     [`micro_viz/theme.py`、`config.py`], [主题与 `[micro]` 设置结构],
     [`micro_viz/animation/`], [选用的参数动画],
-    [`examples/scripts/`], [每个主题一支脚本；本手册的图形],
+    [`examples/scripts/<topic>/`], [脚本，每个主题一个文件夹；本手册的图形],
   )
 ] <tab-layout>
 

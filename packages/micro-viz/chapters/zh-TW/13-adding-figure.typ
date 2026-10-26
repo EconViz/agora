@@ -7,7 +7,7 @@
 + *模型。* 把方程式放進 `micro_viz/<topic>.py` 的凍結資料類別，檢查輸入，並拋出套件例外的子類別。不引入任何繪圖器。
 + *繪圖函式。* 撰寫 `micro_viz/visuals/<topic>.py`。`Plane` 以穩定的圖層編號（`micro.<prefix>.<kind>.<n>`）收集曲線、輔助線、點、標記、區域與箭頭。
 + *文字。* 把文字以三種語言加入 `locale/labels.json`。繪圖函式中不寫顯示用的文字。
-+ *匯出與範例。* 把名稱加入 `micro_viz/__init__.py`、`visuals/__init__.py` 與 `tests/test_package.py`；以 `common.py` 的共用 `parser` 與 `Session` 撰寫 `examples/scripts/<topic>.py`，讓範圍與選項成為參數。
++ *匯出與範例。* 把名稱加入 `micro_viz/__init__.py`、`visuals/__init__.py` 與 `tests/test_package.py`；以 `common.py` 的共用 `parser` 與 `Session` 撰寫 `examples/scripts/<topic>/<script>.py`，讓範圍與選項成為參數。
 + *測試與變更記錄。* 測試模型、改變參數會改變圖形、`title=None` 不畫標題、標籤找得到空位，以及範例可以執行。
 
 ```python

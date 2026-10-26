@@ -6,7 +6,7 @@ Run from the manual's directory (micro-viz/):
     uv run python scripts/make_figures.py costs monopoly  # some scripts
     uv run python scripts/make_figures.py --list          # list the scripts
 
-The figures are drawn by the real example scripts in scripts/examples/, once per edition
+The figures are drawn by the real example scripts in scripts/examples/<topic>/, once per edition
 from that edition's settings file (config/econ-viz.toml, econ-viz.zh-TW.toml or
 econ-viz.zh-CN.toml: the black-and-white "manual" look, the edition's fonts, and micro-viz's
 built-in words in the edition's language). Figures carry no titles; captions are written in
@@ -51,6 +51,12 @@ ANIMATIONS = {
 }
 
 
+def script_path(script: str) -> Path:
+    """The file of one example script, which sits in the folder of its topic."""
+    (path,) = EXAMPLES.glob(f"*/{script}.py")
+    return path
+
+
 def config_for(edition: str) -> Path:
     name = (
         "econ-viz.toml" if edition == "en" else f"econ-viz.{edition}.toml"
@@ -62,7 +68,7 @@ def run(script: str, edition: str, target: Path) -> list[Path]:
     """Run one example script for one edition and return the SVG files it wrote."""
     with tempfile.TemporaryDirectory(prefix="micro-viz-manual-") as tmp:
         command = [
-            sys.executable, str(EXAMPLES / f"{script}.py"),
+            sys.executable, str(script_path(script)),
             "--output-dir", tmp,
             "--config", str(config_for(edition)),
             "--language", edition,
@@ -90,10 +96,10 @@ def draw(
                 if path.name.split(".")[0] not in keep:
                     path.unlink()
     if keep is None:
-        shutil.copy(EXAMPLES / f"{script}.py", target / f"{group}.py")
+        shutil.copy(script_path(script), target / f"{group}.py")
     else:  # several scripts share the folder: each figure gets its own script
         for stem in keep:
-            shutil.copy(EXAMPLES / f"{script}.py", target / f"{stem}.py")
+            shutil.copy(script_path(script), target / f"{stem}.py")
     shutil.copy(EXAMPLES / "common.py", target / "common.py")
     print(f"{group}: {script}")
 
