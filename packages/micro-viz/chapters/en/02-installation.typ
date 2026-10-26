@@ -53,11 +53,11 @@ uv run pytest
 
 == Running the examples <sec-run-examples>
 
-The scripts in `examples/scripts/` write SVG files into `examples/output/`. They use the black-and-white `manual` look, which needs the TeX Gyre Pagella fonts; pass the directory of the font files with `--fonts-dir` if they are not found automatically.
+The scripts in `examples/scripts/<topic>/` write SVG files into `examples/output/<topic>/`. They use the black-and-white `manual` look, which needs the TeX Gyre Pagella fonts; pass the directory of the font files with `--fonts-dir` if they are not found automatically.
 
 ```bash
-uv run python examples/scripts/production.py
-uv run python examples/scripts/production.py \
+uv run python examples/scripts/production/production.py
+uv run python examples/scripts/production/production.py \
     --config examples/econ-viz.zh-TW.toml \
     --fonts-dir path/to/NotoSerifTC
 ```

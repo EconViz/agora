@@ -7,7 +7,7 @@ Which figures exist is decided by the issues and milestones of the repository. S
 + *Model.* Put the equations in a frozen dataclass in `micro_viz/<topic>.py`. Check the inputs and raise a subclass of the package's errors. No renderer is imported.
 + *Builder.* Write `micro_viz/visuals/<topic>.py`. `Plane` collects curves, guides, points, marks, regions and arrows with stable layer ids (`micro.<prefix>.<kind>.<n>`).
 + *Text.* Add the words to `locale/labels.json` in all three languages. Never write display text in the builder.
-+ *Export and example.* Add the names to `micro_viz/__init__.py`, `visuals/__init__.py` and `tests/test_package.py`; write `examples/scripts/<topic>.py` with the shared `parser` and `Session` from `common.py`, so ranges and options are arguments.
++ *Export and example.* Add the names to `micro_viz/__init__.py`, `visuals/__init__.py` and `tests/test_package.py`; write `examples/scripts/<topic>/<script>.py` with the shared `parser` and `Session` from `common.py`, so ranges and options are arguments.
 + *Tests and changelog.* Test the model, that a changed parameter changes the figure, that `title=None` draws no title, that labels find free places, and that the example runs.
 
 ```python
